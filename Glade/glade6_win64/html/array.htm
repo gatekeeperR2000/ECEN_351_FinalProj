@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+  <html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+
+  <body bgcolor="#FFFFFF">
+    <div align="left">
+        <img src="images/canvasview" width="32" height="32" align="right"><br>
+      </div>
+      <div align="left">
+        <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+          Reference</font></b></font></p>
+        <hr>
+        <!-- #BeginEditable "text" -->
+
+      <h2><font face="Arial, Helvetica, sans-serif">
+        array
+      </font></h2>
+
+      <p>
+        An array is a reference to an array of <a href="cellview.htm">cellViews</a>, 
+        in another <a href="cellview.htm">cellView</a>. Arrays correspond to GDS2 AREFs. 
+        Arrays are created using the dbCreateArray <a href="cellview.htm">cellView </a>function. 
+        An array is derived from the <a href="inst.htm">inst </a>class.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::numRows(uint16_t rows)
+      <font></h4>
+
+      <p>
+        Set the number of rows of this array.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        uint16_t  array::rows()
+      <font></h4>
+
+      <p>
+        Get the number of rows for this array.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::numCols(uint16_t cols)
+      <font></h4>
+
+      <p>
+        Set the number of columns for this array.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        uint16_t  array::cols()
+      <font></h4>
+
+      <p>
+        Get the number of columns for this array.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::rowSpacing(int32_t spacing)
+      <font></h4>
+
+      <p>
+        Set the row spacing. This can be positive or negative.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t  array::rowSpacing()
+      <font></h4>
+
+      <p>
+        Get the row spacing.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::colSpacing(int32_t spacing)
+      <font></h4>
+
+      <p>
+        set the column spacing for this array. This can be positive or negative.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t  array::colSpacing()
+        <font></h4>
+
+      <p>
+        Get the column spacing.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t  array:left()
+      </font></h4>
+
+      <p>
+        Get the left edge of the array&#39;s bounding box. Note the bounding box of an 
+        array encloses all cells in the array, and depends on the origin, rotation and 
+        magnification, if any.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t  array::bottom()
+      </font></h4>
+
+      <p>
+        Get the bottom edge of the array&#39;s bounding box
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t  array::right()
+      </font></h4>
+
+      <p>
+        Get the right edge of the array&#39;s bounding box
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t  array::top()
+      </font></h4>
+
+      <p>
+        Get the top edge of the array&#39;s bounding box
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool array::offGrid(const int32_t grid) const
+      </font></h4>
+
+      <p>
+        Checks if an array origin is on the grid <em>grid,</em> which is in database units.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::orient(orient_t orient)
+      </font></h4>
+
+      <p>
+        Set the array orientation. orient can be one of: R0, R90, R180, R270, MX, MXR90, MY, MYR90.
+      </p>
+
+      <p><br />
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        orient_t array::orient ()
+      </font></h4>
+
+      <p>
+        Get the array orientation.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::bound(bool b)
+      </font></h4>
+
+      <p>
+        Set the array binding. This should probably not be set by the user.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool array::bound()
+      </font></h4>
+
+      <p>
+        Get the instance binding status. An array is bound if it references a valid master.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        double array::mag()
+      </font></h4>
+
+      <p>
+        Get the array magnification. Magnifications other than 1.0 are supported, but their use is deprecated.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Rect.htm">Rect</a> array::bBox()
+      </font></h4>
+
+      <p>
+        Get the array's bounding box.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        const char * array::libName()
+      </font></h4>
+
+      <p>
+        Get the array&#39;s lib name.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="library.htm">library</a> * array::lib()
+      </font></p>
+
+      <p>
+        Get the array&#39;s library.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        char * array::cellName()
+      </font></h4>
+
+      <p>
+        Get the array&#39;s master cell name.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::cellName(const char *s)
+      </font></p>
+
+      <p>
+        Set the array master&#39;s cellName.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        char * array::viewName()
+      </font></h4>
+
+      <p>
+        Get the array&#39;s view name.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::viewName(const char *s)</strong>
+      </font></h4>
+
+      <p>
+        Set the array master&#39;s viewName.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::instName(<a href="cellview.htm">cellView</a> *cv, const char *instName)
+      </font></h4>
+
+      <p>
+        Set the array&#39;s <em>instName</em>. <em>cv</em> is the <a href="cellview.htm">cellView </a>
+        containing the instance.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        char * array::instName()
+      </font></h4>
+
+      <p>
+        Get the array&#39;s instName.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="cellview.htm">cellView </a> * array::getMaster()
+      </font></h4>
+
+      <p>
+        Get the cellview of the array&#39;s master.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::setMaster(<a href="cellview.htm">cellView</a> * cv)
+      </font></p>
+
+      <p>
+        Set the array&#39;s master cellView.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point &amp;</a> array::origin()
+      </font></h4>
+
+      <p>
+        Get the origin of the array. Note that an array&#39;s origin does not 
+        have to be e.g. the lower left of its bounding box - it can be anywhere.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::origin(const <a href="Point.htm">Point </a> &amp;p)
+      </font></h4>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::origin(int x, int y)
+      </font></h4>
+
+      <p>
+        Set the origin of the array.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Rect.htm">Rect </a> array:bBox()
+      </font></h4>
+
+      <p>
+        Get the array&#39;s bounding box.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        db_Type array::objType() const
+      </font></h4>
+
+      <p>
+        Returns the objects type as ARRAY
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        const char * array::objName() const
+      </font></h4>
+
+      <p>
+        Returns the print name i.e. &quot;ARRAY&quot;
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t array::getNearestEdge(const <a href="Point.htm">Point </a>&amp;p, </strong><a href="segment.htm">segment </a>&amp;edge) const
+      </font></h4>
+
+      <p>
+        Get the nearest <em>edge </em>of this object to a Point <em>p</em>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Rect.htm">Rect</a>  array::getBoundary()
+      </font></h4>
+
+      <p>
+        Returns the boundary shape rectangle (e.g. for a symbol or abstract view) 
+        if it exists; if not the master's bounding box.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::transform(<a href="transform.htm">transform</a> &amp;trans)
+      </font></h4>
+
+      <p>
+        Transform the array by the given transform <em>trans</em>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::scale(double scalefactor, double grid)
+      </font></h4>
+
+      <p>
+        Scale the array origin coordinates by <em>scalefactor</em>, snapping to <em>grid</em>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::Move(<a href="cellview.htm">cellView</a> *cv, Point delta, bool opt=true)
+      </font></h4>
+
+      <p>
+        Move the array origin by delta. If opt is true then the database is re-optimised 
+        for the new array position. If there are a lot of objects to move it makes sense 
+        to turn this off and instead use the cellView update() function after moving them all.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="dbObj.htm">dbObj </a>* array::Copy(<a href="cellview.htm">cellView</a> *cv, <a href="Point.htm">Point </a>delta)
+      </font></h4>
+
+      <p>
+        Copy the array. <em>cv</em> is the destination cellview, <em>delta</em> is the offset from the current origin. 
+        Returns a pointer to the copied object.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="dbObj.htm">dbObjList&lt;dbObj&gt;</a> * array::Flatten(<a href="cellview.htm">cellView </a>
+        *cv, <a href="transform.htm">transform</a> &amp;trans)
+      </font></h4>
+
+      <p>
+        Flatten the array into the cellView <em>cv</em>, with the given transform <em>trans</em>. 
+        Returns a dbObjList of the flattenned objects.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="instPin.htm">instPin</a> &amp; array::dbCreateInstPin(<a href="net.htm">net</a> *n, const char *name)
+      </font></h4>
+
+      <p>
+        Create an instance pin on this array for the net <em>n</em> and pin name <em>name</em>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::dbDeleteInstPin(<a href="net.htm">net</a> *n, const char *pinName)
+      </font></h4>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        array::dbDeleteInstPin(<a href="instPin.htm">instPin</a> *ip)</strong>
+      </font></h4>
+
+      <p>
+        Delete the instPin given by <em>ip</em> from this array.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="instPin.htm" pbzloc="1001">instPin</a> * array::dbFindInstPinByName(const char *name)
+      </font></h4>
+
+      <p>
+        Find the inst pin with name <em>name</em> on this array. Returns nullptr if not found.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="dbObjList.htm">dbObjList</a>&lt;<a href="instPin.htm">instPin</a>&gt; * array::getInstPins()
+      </font></h4>
+
+      <p>
+        Get a list of all instPins for this array.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t num = array::getNumInstPins()
+      </font></h4>
+
+      <p>
+        Get the number of instPins for this array.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int16_t layer()
+      </font></h4>
+
+      <p>
+        Returns the layer of the array, TECH_INSTANCE_LAYER.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t array::mfactor()
+      </font></h4>
+
+      <p>
+        Returns the m factor (multiplication factor) of the array.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int16_t array::numBits()
+      </font></h4>
+
+      <p>
+        Returns the number of bits if the array has a vector name.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+
+      <!-- #EndEditable --> 
+        <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+        <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

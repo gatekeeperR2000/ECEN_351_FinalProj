@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" -->
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" -->
+  <h2 align="left"><font face="Arial, Helvetica, sans-serif"><font face="Arial"><b>Change
+    Log</b> 2023 </font></font></h2>
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><font size="4" face="Arial"><strong>Contents
+    for 2022 can be found <a href="changes_2022.htm">here</a></strong></font></font></p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.56 / 4.7.95 release on 10/02/2023</strong></p>
+  <p align="left">- bugfix: dbDeleteCellView() could cause a crash in certain circumstances.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.57 / 4.7.96 release on 10/02/2023</strong></p>
+  <p align="left">- bugfix: If creating a PCell, and the PCell creation failed e.g due to a syntax error, and the same cellView was open in an existing window, then a crash would occur. Now, if creating a PCell and the cellView exists, its window is closed and deleted before (re)creating the PCell.</p>
+  <p align="left">- bugfix: Bad RGB values in techfile would give incorrect error message.</p>
+  <p align="left">- enhancement: Python wrappers that return a list e.g. dbGetOverlaps() have performance improvements.</p>
+  <p align="left">- bugfix: Fixed a crash that could occur when 'Show All Layers' in the LSW was selected after e.g. showing only system or user layers.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.58 / 4.7.97 release on 08/03/2023</strong></p>
+  <p align="left">- enhancement: Message dock window status (hidden/shown) is saved to preferences file.</p>
+  <p align="left">- enhancement: When reading GDS with no techfile, layer names are just the GDS layer number (no preceding 'L') and similarly purposes are the datatype number.</p>
+  <p align="left">- enhancement: Toolbars can be hidden and their status (hidden/shown) is saved to preferences file.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.59 / 4.7.98 release on 28/03/2023</strong></p>
+  <p align="left">- bugfix: Changing fill patterns in LSW to solid/empty/cross didn't always work as expected.</p>
+  <p align="left">- bugfix: Fix issue that hierarchy browser could crash on Linux.</p>
+  <p align="left">- bugfix: Hierarchy browser descend/ascend did not work as expected.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.60 / 4.7.99 release on 06/04/2023</strong></p>
+  <p align="left">- enhancement: Added selection filter toolbar. This allows control of type of object that can be selected e.g. rectangles, polygons, instances etc.</p>
+  <p align="left">- enhancement: Added case sensitivity flag to Search dialog to allow e.g. case sensitive or case insensitive searching of instance names, text labels etc.</p>
+  <p align="left">- bugfix: Export image to SVG was not working correctly.</p>
+  <p align="left">- bugfix: Text import from DXF orientation error.</p>
+  <p align="left">- enhancement: Export Image to SVG now works for OpenGL rendering.</p>
+  <p align="left">- enhancement: The File->Export Image menu item has been moved to File->Export->Export Image, and remembers last image type / file name.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.61 / 4.7.100 release on 10/07/2023</strong></p>
+  <p align="left">- bugfix: NLP expression parser handles instPins that are bus pins now.</p>
+  <p align="left">- bugfix: Fix a crash that could occur running boolean ops on hierarchical layout with unbound instances.</p>
+  <p align="left">- bugfix: Fix a crash when deleting a layer.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.62 / 4.7.101 release on 21/07/2023</strong></p>
+  <p align="left">- bugfix: Schematic editor did not autoroute on inst rotation.</p>
+  <p align="left">- bugfix: Autoroute on move did not always choose best branch point.</p>
+  <p align="left">- bugfix: Undo/Redo improvements.</p>
+  <p align="left">- bugfix: Move schematic inst created single point wires.</p>
+  <p align="left">- bugfix: Move schematic inst created wires with bad coordinates.</p>
+  <p align="left">- bugfix: Schematic editor schCheck() cleans up duplicate solder dots and wires.</p>
+  <p align="left">- bugfix: Fixes and improvements to schematic move/rotate/align with autorouting.</p>
+  <p align="left">- enhancement: Schematic and symbol editors support align command.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.63 / 4.7.102 release on 29/08/2023</strong></p>
+  <p align="left">- enhancement: LEF/DEF 6.0 reader/writer changes.</p>
+  <p align="left">- enhancement: DEF support for 45 degree routing enabled.</p>
+  <p align="left">- enhancement: DEF support for MASK construct enabled.</p>
+  <p align="left">- enhancement: Techfile has new LAYER field 'mask' for mask number (colour).</p>
+  <p align="left">- enhancement: DEF supports rectangles and polygons for special nets.</p>
+  <p align="left">- enhancement: DEF RECT in nets now supported.</p>
+  <p align="left">- enhancement: Paths that turn 180 degrees now have their turn extension of half width.</p>
+  <p align="left">- bugfix: DEF 6.0 bug reading compressed DEF fixed.</p>
+  <p align="left">- bugfix: Reading compressed DEF from command line now possible.</p>
+  <p align="left">- bugfix: Export OASIS doe not write DEF ROWS.</p>
+  <p align="left">- enhancement: Export OASIS and export GDS2 now have option to write H/VSegs as paths (the default) or rectangles.</p>
+  <p align="left">- enhancement: Export GDS will automatically compress output if a filename with suffix '.gz' is used.</p>
+  <p align="left">- enhancement: Import DEF has option to create pin text labels.</p>
+  <p align="left">- enhancement: Import DEF has option to allow specifying view name on cmd line with the -dev_view option (which must preced the -def option).</p>
+  <p align="left">- enhancement: cmd line option -gdsout_viewlist specifies a switch list for writing GDS2. The option *must* precede -gdsout and the viewlist is a space seperated list of view names, enclosed in double quotes.  The views in the viewlist will be used when outputting a cell; the first view of the list will be used if it exists, else the next view etc..</p>
+  <p align="left">- enhancement: cmd line option -oasisout_viewlist specifies a switch list for writing OASIS. The option *must* precede -oasisout and the viewlist is a space seperated list of view names, enclosed in double quotes.  The views in the viewlist will be used when outputting a cell; the first view of the list will be used if it exists, else the next view etc..</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.64 / 4.7.103 release on 10/09/2023</strong></p>
+  <p align="left">- bugfix: Fixed a potential hang when running ui().compare2() in threaded mode.</p>
+  <p align="left">- bugfix: Fixed a bug writing OASIS with unbound instances.</p>
+  <p align="left">- enhancement: Write OASIS defaults to writing viaInsts as cell refs.</p>
+  <p align="left">- enhancement: Reading DEF pins with '.extraNN' style pin names strips the '.extraNN</num>'.</p>
+  <p align="left">- bugfix: Reading DEF with lef ORIGIN now handled correctly. Same with FOREIGN.</p>
+  <p align="left">- bugfix: Fixed an issue when importing DEF with special net routing that could cause incorrect layer and/or width assignment.</p>
+  <p align="left">- bugfix: ui::compare() / compare2() gave error and aborted if number of shapes on layers didn't match. Now gives warning and continues.</p>
+  <p align="left">- enhancement: Added -def_met_pins option to create pin labels on pin layers, rather than TEXT layer.</p>
+  <p align="left">- enhancement: Added -def_pin_extra_purpose to create additional pin shape on the specified pin layer purpose.</p>
+  <p align="left">- enhancement: Techfile mapping to GDS/OASIS now supports multiple layer/datatypes on export. Format of a LAYER line is "LAYER name purpose L1:D1,L2:D2... L1:D1 rgb sel? vis? fillstyle linestyle valid? mask". The old format is still supported for backwards compatibility.</p>
+  <p align="left">- bugfix: Import OASIS was referencing cells in a library from a previously imported library if cellname/viewname matched; now chooses cellView from same library by preference.</p>
+  <p align="left">- bugfix: 2 point diagonal path bounding box could give zero width/height; better algorithm used.</p>
+  <p align="left">- bugfix: GDS2 with invalid user units now automatically corrected.</p>
+  <p align="left">- bugfix: SWIG helper functions e.g. getOverlaps() that return a list should not return null if no list entries.</p>
+  <p align="left">- enhancement: Techfile settings for systems layers are now enabled correctly. Previously, setting system layer attributes e.g. GDS layer/datatype on 'boundary' 'drawing' did not allow lookup of these attributes via the getLayerGDSPair / getLayerGDSLayer functions.</p>
+  <p align="left">- enhancement: Exporting GDS2 with no layer mapping silently dropped data. Now an error is given.
+  <p align="left">- bugfix: Better 2 point diagonal path bounding box.</p>
+  <p align="left">- enhancement: LSW Show viewport layers / Show cellview layers was slow on large designs; several speedups made to improve the speed.</p>
+  <p align="left">- enhancement: OVERLAP in LEF cuts macro boundary shape.</p>
+  <p align="left">- bugfix: LEF ORIGIN alters macro boundary correctly.</p>
+  <p align="left">- enhancement: -lefout and -defout cmd line options.</p>
+  <p align="left">- bugfix: Fixed a GDS output bug when mapping layer to multiple GDS layer/datatypes.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.65 / 4.7.104 release on 09/10/2023</strong></p>
+  <p align="left">- bugfix: Fixed a crash occasionally when opening an abstract view.</p>
+  <p align="left">- enhancement: Set export Oasis/Gds2 dialog viewlist to reasonable values.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.66 / 4.7.105 release on 16/10/2023</strong></p>
+  <p align="left">- bugfix: Fixed an issue where saving a library then trying to read that library caused an error.</p>
+  <p align="left">- enhancement: Limit warnings about unconnected pins for DEF specialnets.</p>
+  <p align="left">- enhancement: Apply button now works on Display Options form.</p>
+  <p align="left">- enhancement: Apply button added to Selection Options form.</p>
+  <p align="left">- bugfix: Ubuntu 22.04 did not display 2 canvases corretly.</p>
+  <p align="left">- bugfix: Ubuntu 22.04 spurious openssl messages on startup.</p>
+  <p align="left">- bugfix: Export GDS2 occasional crash fixed.</p>
+  <p align="left">- bugfix: Hierarchy browser ascend/descend did not function as expected.</p>
+  <p align="left">- bugfix: Fixed an occasional crash with > 1 window open and same technology.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.67 / 4.7.106 release on 19/12/2023</strong></p>
+  <p align="left">- bugfix: Filesizes of > 4Gb gave error on Windows owing to _fstat. Using _fstat64 now.</p>
+  <p align="left">- bugfix: Swapping layer order by dragging layer widgets in the LSW was not working. 
+                    Now, their drawing order is changed; higher order layers are drawn 'on top' of lower order layers.</p>
+  <p align="left">- bugfix: Setting search type to 'label' only allowd criteria for tect of '=='. Now '!=' and '==' are the possible choices.</p>
+  <p align="left">- bugfix: Better resizing of column wodths in search dialog.</p>
+  <p align="left">&nbsp;</p>
+  
+  <!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

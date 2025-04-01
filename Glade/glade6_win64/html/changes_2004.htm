@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --><font face="Arial, Helvetica, sans-serif"> <h4 align="left">
+  <font face="Arial" size="5"> 
+ Change Log 2004</font> 
+     </h4> <h4 align="left">
+  <font face="Arial"> 
+   </font>&nbsp;<font size="4">Contents for 2003 can be found <a 
+href="changes_2003.htm">here</a></font> 
+     </h4> <h4 align="left">
+  <font face="Arial">Version 
+1.2.14 release on 5/1/2004</font> 
+     </h4><p align="left"  > <font face="Arial">- Fixed a 
+bug where ECOs were not setting power/ground pins as specialnet pins, leading to 
+them being connected in the regular 
+    nets section.</font></p>
+  <p align="left"><font face="Arial"  >- FIxed a 
+bug where default vias were being output as part of special nets rather than 
+regular nets.</font></p> <p align="left">
+  <font face="Arial">- Fixed 
+bug loading incorrect display grid preferences.</font> 
+     </p><p align="left"  > <font face="Arial">- Added a 
+View Overlapping 
+    Cells command.</font></p>
+  <p align="left"><font face="Arial"  ></font></p> <h4 align="left">
+  <font face="Arial">Version 
+1.2.15 release on 12/1/2004</font> 
+     </h4><p align="left"  ><font face="Arial">- 
+Cell/View model implemented in 
+DB.</font></p>
+  <p align="left"><font face="Arial"  >- Help 
+buttons implemented on import/export dialogs and hyperlinked to documentation.</font></p> <p align="left">
+  <font face="Arial">- Replace 
+View command implemented. Handle for ORIGIN and FOREIGN offsets when swapping 
+views.</font>  
+</p><p align="left"  > <font face="Arial">- Fixed a 
+    bug writing GDS2.</font></p>
+  <p align="left"><font face="Arial"  >- Export 
+LEF now writes correct FOREIGN/ORIGIN.</font></p> <p align="left">
+  <font face="Arial">- Changed 
+default database units to 2000</font></p><p align="left"  > <font face="Arial">- Import 
+GDS2 scales correctly to default database units, allowing both GDS2 and LEF/DEF 
+to be read in to the same 
+    library.</font></p>
+  <p align="left"><font face="Arial"  ></font></p> <h4 align="left">
+  <font face="Arial">Version 
+1.2.16 release on 19/1/2004</font></h4><p align="left"  > <font face="Arial">- 
+bugfixes for DEF out.</font></p>
+  <p align="left"><font face="Arial"  >- Select 
+/ deselect edge by area implemented</font></p> <p align="left"> 
+  <font face="Arial">- Stretch 
+now works on multiple edges</font> 
+    </p><p align="left"><font face="Arial"  >- 
+Implemented Create Rows command. Creates rows for designs with std cell 
+placements.</font></p><p align="left"  ><font face="Arial"></font></p>
+  <h4 align="left"><font face="Arial"   >  Version 1.2.17 release 
+    on 27/1/2004</font></h4>
+<p align="left"><font face="Arial">- Import 
+DEF now writes meaningful error messages </font></p>
+<p align="left"><font face="Arial">- Create 
+Inst no longer crashes on LEF/DEF designs </font></p>
+<p align="left"><font face="Arial">- Query 
+dialog automatically resizes based on displayed tab widget </font></p>
+<p align="left"><font face="Arial">- ECO 
+place implemented. </font></p>
+<p align="left"><font face="Arial">- Various 
+LEF out bugs fixed.<br><br></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.18 release on 9/2/2004<br></font></h4>
+<p align="left"><font face="Arial">- Query 
+dialog now has 'Common' button to change all selected object's attributes 
+simulataneously. </font></p>
+<p align="left"><font face="Arial">- Add 
+fillers now sets 'SOURCE' property to 'DIST'.<br></font></p>
+<p align="left"><font face="Arial">- DEF 
+in/out reads/writes 'SOURCE' attribute for components.<br></font></p>
+<p align="left"><font face="Arial">- DEF 
+in/out reads/writes 'SHAPE' attribute for special nets.<br></font></p>
+<p align="left"><font face="Arial">- DEF 
+in/out reads/writes via PATTERNNAME.<br></font></p>
+<p align="left"><font face="Arial">- Copy 
+shape now copies connectivity if present.<br></font></p>
+<p align="left"><font face="Arial">- Bug fix 
+for querying an inst and changing an attribute trashed instance name.<br></font></p>
+<p align="left"><font face="Arial">- DEF 
+writer now writes much much smaller DEF files due to coordinate compression. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.19 release on 20/2/2004 </font></h4>
+<p align="left"><font face="Arial">- Redraw 
+bug on X11 fixed (display 'hangs' occasionally until mouse is moved) </font></p>
+<p align="left"><font face="Arial">- Screen 
+not erased before a repaint, to avoid flicker.<br></font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.20 release on 17/3/2004 </font></h4>
+<p align="left"><font face="Arial">- Stretch 
+will now stretch edges/vertices, and any other selected objects get moved. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.21 release on 26/3/2004 </font></h4>
+<p align="left"><font face="Arial">- Draw 
+ruler now allows panning and zooming while drawing the ruler. </font></p>
+<p align="left"><font face="Arial">- Fixed a 
+bug copying shapes with no net attribute. </font></p>
+<p align="left"><font face="Arial">- Fixed a 
+bug in Import DEF which occasionally corrupted the heap. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.22 release on 12/4/2004 </font></h4>
+<p align="left"><font face="Arial">- 
+File-&gt;View command added to view (and make simple edits to) ascii files. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.23 release on 25/5/2004 </font></h4>
+<p align="left"><font face="Arial">- Better 
+error reporting from Import LEF/DEF </font></p>
+<p align="left"><font face="Arial">- 
+Improvements to display speed </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.24 release on 29/6/2004 </font></h4>
+<p align="left"><font face="Arial">- Import 
+Verilog command added. Imports hierarchical verilog and optionally flattens it 
+and binds instances to abstract views, and initialises the floorplan to a 
+defined aspect ratio and utilisation. </font></p>
+<p align="left"><font face="Arial">- bug fix 
+in Export Verilog to stop writing power/ground pins </font></p>
+<p align="left"><font face="Arial">- DB now 
+has HSeg and VSeg object types which are created by Import DEF. These require 
+substantially less memory compared to using paths. DEF writer and GDS writer 
+updated to write correct DEF/GDS2 when HSeg/VSeg objects exist. NB: edge/vertex 
+selection and stretching currently are not implemented for HSeg/VSegs. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.25 release on 2/7/04 </font></h4>
+<p align="left"><font face="Arial">- bugfix 
+for memory leak in Import DEF. Memory for one DEF example reduced from 317Mb to 
+194Mb. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.26 release on 6/7/04 </font></h4>
+<p align="left"><font face="Arial">- Added 
+help to many more forms and updated online help documentation </font></p>
+<p align="left"><font face="Arial">- Display 
+path outlines only now switches to display centreline only if path width is less 
+than display filter threshold </font></p>
+<p align="left"><font face="Arial">- Closing 
+main window now correctly closes any child windows </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.27 release on 11/8/04 </font></h4>
+<p align="left"><font face="Arial">- Import 
+DEF and Import GDS2 can read zipped data format (*.gz files) </font></p>
+<p align="left"><font face="Arial">- bugfix 
+for crash when dynamically highlighting HSeg/VSegs </font></p>
+<p align="left"><font face="Arial">- Select 
+vertex now shows selected vertex correctly. </font></p>
+<p align="left"><font face="Arial">- Fixed a 
+crash reading GDS2 with annoted instance names </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.28 release on 20/8/04 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Ruler start position now snaps to grid </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Selection of multiple objects now correctly cycles thru possible objects 
+</font></p>
+<p align="left"><font face="Arial">- Added 
+'Edit Bindkeys' command to allow user control of accelerator keys. Bindkeys are 
+saved to the preferences file (.gladerc) and loaded at startup. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Flattening insts which contain insts now maintains correct orientation. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Cursor box is erased when mouse leaves the drawing area. </font></p>
+<p align="left"><font face="Arial">- 
+Implemented dynamic panning. Press and hold down the middle mouse button and 
+drag; panning is done in real time. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.29 release on 25/8/04 </font></h4>
+<p align="left"><font face="Arial">- Convert 
+path to polygon command added </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+convert path to poly created 1 too many vertices in resulting poly </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+close line during Create Polygon drawn incorrectly </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+report all entered vertices for Create Polygon </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+stretching segments of polygons failed if stretch segment was between last and 
+first point of polygon </font></p>
+<p align="left"><font face="Arial">- Create 
+path now shows path outline while entering path segments </font></p>
+<p align="left"><font face="Arial">- Create 
+path form remembers previous width/extent settings </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+move inst now correctly shows outline during move snapping to rows if requested. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Draw Ruler on Linux port works correctly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Edit in place did not highlight selected instances in EIP cell </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.30 release on 20/9/04 </font></h4>
+<p align="left"><font face="Arial">- Import 
+OASIS implemented. Basic OASIS functionality is now supported. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.31 release on 23/9/04 </font></h4>
+<p align="left"><font face="Arial">- Trees 
+built flat until call to optimise(). Provides a 30% speed increase reading in 
+design data. </font></p>
+<p align="left"><font face="Arial">- Export 
+OASIS command implemented. Basic functionality includes support for cells, text, 
+rectangle, polygon and path elements. Repetitions for square rectangles. Arrays 
+output as repetitions. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Arrays were not being drawn correctly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Create Inst form not reading row/column spacing correctly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Changing a stipple to fill type 'cross' did not set the pattern. </font></p>
+<p align="left"><font face="Arial">- Import 
+OASIS file is now possible from the command line. Use '-o oasisFileName'. 
+</font></p>
+<p align="left"><font face="Arial">- Help 
+button added to Rotate dialog. Dialogs generally cleaned up. </font></p>
+<p align="left"><font face="Arial">- Add 
+Vertex command added. Can now add a vertex to a path or polygon. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed some memory leaks in selection and querying. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+specifying an incorrect OASIS filename led to a crash. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.32 release on 15/10/04 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+selecting polygons and paths sometimes failed. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+querying polygons with more than 8 vertices sometimes hung. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+trees not optimised after LEF in. Now, whenever a cellView is opened a check is 
+made to see if the cellView's trees need optimising. </font></p>
+<p align="left"><font face="Arial">- Windows 
+version now gives a stacktrace when it crashes. This can be emailed for bug 
+resolution. </font></p>
+<p align="left"><font face="Arial">- Windows 
+memory usage reporting improved. </font></p>
+<p align="left"><font face="Arial">- A new 
+hierarchy browser has been added to allow rapid movement through a design's 
+hierarchy. Use the View-&gt;Hierarchy command to try it out. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.33 release on 21/10/04 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Save Technology wasn't saving layer linestyle information. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Corrected a small bug that made diagonals look odd when they were clipped to the 
+viewport boundary. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+A few memory leaks fixed. </font></p></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

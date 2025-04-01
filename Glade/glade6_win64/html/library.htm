@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+	<head>
+		<!-- #BeginEditable "doctitle" --> 
+		<title>Glade Reference Manual</title>
+		<link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+		<!-- #EndEditable -->
+		<meta http-equiv="Content-Type"
+		content="text/html; charset=iso-8859-1">
+		<style type="text/css">
+		body,td,th {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		</style>
+	</head>
+
+	<body bgcolor="#FFFFFF">
+		<div align="left">
+			<img src="images/canvasview" width="32" height="32" align="right"><br>
+		</div>
+		<div align="left">
+		<p align="left"><font face="Arial, Helvetica, sans-serif">
+			<b><font size="4">
+				Glade Reference
+			</font></b>
+		</font></p>
+		<hr>
+
+		<!-- #BeginEditable "text" -->
+		<h2><font face="Arial, Helvetica, sans-serif">
+			Libraries
+		</font></h2>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			All design data is stored in libraries. Libraries contain cells and views; the combination of a cell and a view is a cellView, 
+			which contains the actual design data. For example a library may contain a cell &#39;NAND2&#39;. This cell may contain a 
+			cellView &#39;NAND2&#39; &#39;layout&#39;, where &#39;layout is the view of the cell.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			library * library::library(const char *fred)
+			</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Construct a library called &quot;fred&quot;, returning the library object. A default techfile is created with system layers only.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			bool  library::dbOpenLib(const char *libPath)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Opens and reads a previously saved library. libPath is the full path to the library, including the library name. 
+			Returns true if the library can be opened successfully, otherwise false. Note you need to create a library object before you can read a saved library.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			bool  library::dbSaveLib(const char *libPath)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Saves a library to disk. libPath is the full path to the library, including the library name. Returns true if the library can be saved successfully, otherwise false.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			library::dbClose(const char *cellName, const char *viewName)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Closes a cellview. Currently this does not purge the cellview from virtual memory.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			list library::cellNames()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Returns a Python list of all the cell names in the library.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			list library::getCells()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			<p>Returns a Python list of the cells in the library.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			list library::viewNames()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Returns a Python list of all the view names in the library.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			list library::getViews()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Returns a Python list of the views in the library.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			int library::dbu()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Return the size of a database unit in meters. Deprecated, use cellView::dbu().
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			int library::dbuPerUU()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Return the number of database units per micron (defaults to 1000). Deprecated, use cellView::dbuPerUU(.)
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			library::dbBindInstMasters()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Rebinds the instance masters for this library. All cellViews in the library are checked, 
+			and if their master cellView is unbound, then a search is performed in the currently 
+			open libraries in an attempt to rebind it. For example, to rebind all open libraries 
+			you can use the following:
+		</font></p>
+
+		<blockquote> 
+			<pre>
+			libs = getLibList()
+			for lib in libs :
+				lib.dbBindInstMasters()
+			</pre>
+		</blockquote>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			<a href="cellview.htm">cellView </a>
+			* library::dbOpenCellView(const char *cellName, const char *viewName, char  mode)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">Returns a cellView object. 
+			&quot;mode&quot; can be &#39;r&#39;, &#39;w&#39; or &#39;a&#39;. &#39;w&#39; 
+			mode is used to create a new cellView; the cellView must not exist. &#39;a&#39; 
+			mode is used to append (edit) an existing cellView; the cellView must exist. &#39;r&#39; 
+			mode is used to read an existing cellView; the cellView must exist. An exception is thrown on failure.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			bool library::dbCopyCellView(const char *newCellName, const char *newViewName,  const char *oldLibName, const char *oldCellName, const char *oldViewName)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Copies a cellview. Returns true if successful.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			bool  library::dbRenameCellView(const char *newCellName, const char *newViewName, const char *oldCellName, const char *oldViewName)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Renames a cellView. Returns true if successful.
+		</font></p>
+
+		<p pbzloc="19">&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			<a href="cellview.htm">cellView </a>
+			* library::dbFindCellViewByName(const char *cellName, const char *viewName)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Returns a cellView object corresponding to the given <em>cellName </em>and <em>viewName</em>, or None if it does not exist in the library.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			<a href="cell.htm">cell </a>
+			* library::dbFindCellByName(const char *cellName)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Returns a cell object corresponding to the given <em>cellName</em>, or None if it does not exist.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			<a href="view.htm">view </a>
+			* library::dbFindViewByName(const char *viewName)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Returns a view object corresponding to the given <em>viewName</em>, or None if it does not exist.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			bool library::dbDeleteCellView(const char *cellName, const char *viewName)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Deletes the cellview specified by cellName and viewName and returns true if sucessful, None if not.
+		</font></p>
+
+		<p pbzloc="55">&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			bool library::dbRenameCell(const char *newCellName, const char *oldCellName)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Renames a cell. Returns true if sucessful, false if not.
+		</font></p>
+
+		<h4>&nbsp;</h4>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			bool library::dbDeleteCell(const char *cellName)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Deletes the cell specified by cellName and returns true if sucessful, false if not.
+		</font></p>
+
+		<h4>&nbsp;</h4>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			char * library::libName()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Returns the name of the library.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			char * library::libPath()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Returns the library path if the library has been read or saved on disk, otherwise None.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			<a href="techFile.htm">techfile </a>
+			* library::tech()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Returns a pointer to the library&#39;s techfile.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			<a href="library.htm">library </a>
+			* db::getLibByName(&quot;libName&quot;)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Get a library by name.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			int library::addVia(<a href="via.htm">via </a>*v, bool check)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Adds a via&nbsp; <em>v</em> to the library via table and returns the via&#39;s index 
+			in that table. If check is true (the default is false), the via name is checked and 
+			the new via will NOT be added; the index returned is that of the existing via.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			<a href="via.htm">via</a> 
+			* library::getVia(int index)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Gets a via by index from the library. No bounds checking is performed.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif" >
+			<a href="via.htm">via</a> 
+			* library::getViaByName(const char *name)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Gets a via by name.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			int library::getViaIndexByName(const char *name)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Gets a via&#39;s index by the via name.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			const char * library::getViaNameByindex(int index)
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Gets a via&#39;s name from its index.
+		</font></p>
+
+		<p>&nbsp;</p>
+
+		<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+			int library::getNumVias()
+		</font></h4>
+
+		<p><font face="Arial, Helvetica, sans-serif">
+			Gets the number of vias in the library&#39;s via table. Note the table size is currently limited to 8192 vias.
+		</font></p>
+
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+
+		<p align="left"><font face="Arial" size="5"><strong><u>Iterators</u></strong></font></p>
+		<p align="left"><font face="Arial">It is possible to use iterators in Python:</font></p>
+		<p align="left" class="shadowHeading1"><font face="Arial"><strong>iter = cellIterator(library *lib)</strong></font></p>
+		<p align="left"><font face="Arial">Initialises the cell iterator for the library. For example:</font></p>
+		<pre>
+			# Script to print cell names in a library
+			#
+			from ui import *
+			#
+			cv = getEditCellView()
+			lib = cv.lib()
+			iter = cellIterator(lib)
+			while not iter.end() :
+				cell = iter.value()
+				name = cell.name()
+				print &quot;Cell name = &quot;, name
+				iter.next()
+			#
+		</pre>
+		<p align="left" class="shadowHeading1">iter.next()</p>
+		<p align="left">Advances the iterator to the next instance.</p>
+		<p align="left">&nbsp;</p>
+		<p align="left" class="shadowHeading1">bool iter.end()</p>
+		<p align="left">Returns false if there are more instances, else returns true if there are no more.</p>
+		<p align="left">&nbsp;</p>
+		<p align="left" class="shadowHeading1"><a href="inst.htm">inst</a> = iter.value()</p>
+		<p align="left">Returns the current instance.</p>
+		<p align="left">&nbsp;</p>
+		<p align="left" class="shadowHeading1">iter = viewIterator(library *lib)</p>
+		<p align="left">Initialises the view iterator for the library. The iterator has similar next(), end();and value() functions as above.</p>
+
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		
+		<!-- #EndEditable --> 
+		<p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+		<p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+		</div>
+	</body>
+	<!-- #EndTemplate -->
+</html>

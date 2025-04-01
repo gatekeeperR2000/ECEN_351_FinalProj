@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+	<head>
+		<!-- #BeginEditable "doctitle" --> 
+		<title>Glade Reference Manual</title>
+		<link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+		<!-- #EndEditable -->
+		<meta http-equiv="Content-Type"
+		content="text/html; charset=iso-8859-1">
+		<style type="text/css">
+		body,td,th {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		</style>
+	</head>
+  <body bgcolor="#ffffff">
+
+    <div align="left">
+      <img align="right" src="canvasview" width="32" height="32" ><br>
+    </div>
+    <div align="left">
+      <p align="left">
+        <font face="Arial, Helvetica, sans-serif"><b>
+          <font size="4">
+            Glade Reference
+          </font></b>
+        </font></p>
+      <hr>
+      <!-- #BeginEditable "text" -->
+      <h2><font face="Arial, Helvetica, sans-serif">
+        view&nbsp;class
+      </font></h2>
+
+      <p><font face="Arial, Helvetica, sans-serif">
+        The view class represents a view, which is a 
+        representation of a cell. The combination of a cell and a view 
+        is a cellView.
+    </font></p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        view * view
+      </font></h4>
+
+      <p>
+        Creates an view object.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">     
+        list  view::getCellViews()
+      </font></h4>
+
+      <p>
+        Get a Python list of the cellViews for this view.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">       
+        view::name(char *s)
+      </font></h4>
+     
+      <p>
+        Sets the view's name.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"> 
+        char * view::name()
+      </font></h4>
+
+      <p>
+        Gets the view's name.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">      
+        view::setViewType(db_viewType type)
+      </font></h4>
+
+      <p>
+        Sets the view's type. The viewType can 
+        currently be one of maskLayout, schematic, symbol, abstract.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"> 
+        db_viewType view::viewType()
+      </font></h4>
+
+      <p>
+        Returns the view's type.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"> 
+        view::addCellView(<a href="cellview.htm">cellView</a>&nbsp;&nbsp;*cv)
+      </font></h4>
+
+      <p>
+        Adds cv to the view's cellView list.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"> 
+        <a href="cellview.htm">cellView</a>* view::dbFindCellViewByView(char *viewName)
+      </font></h4>
+
+      <p>
+        Finds the cellView for this view with 
+        view name cellName. If it does not exist, a null pointer is returned.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"> 
+        dbType view::objType()
+      </font></h4>
+
+      <p>
+        Returns the object's type (VIEW).
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">     
+        char * view::objName()
+      </font></h4>
+
+      <p>
+        Returns the object's print name ("VIEW").
+      </p>
+
+      <p></p>
+      <p></p>
+
+      <!-- #EndEditable -->
+      <p><a href="contents.htm" ><font face="Arial, Helvetica, sans-serif">Contents</font></a><font 
+      face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm" >Index</a></font></p>
+      <p><font size="-2" face="Arial, Helvetica, sans-serif">Copyright � Peardrop Design&nbsp; Systems Ltd 
+      2017.</font></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : default
+* Top Cell Name: opamp
+* View Name: layout
+* Netlist created: 5.May.2016
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vss vdd
+
+*******************************************************************************
+* Library Name: default
+* Cell Name:    opamp
+* View Name:    layout
+*******************************************************************************
+
+.SUBCKT opamp vinp vinn vref vp vout
+*.PININFO vinp:I vinn:I vref:I vp:I vout:O
+
+m0 n1 n1 vdd vdd pch w=5u l=0.7u m=2
+m1 n2 n1 vdd vdd pch w=5u l=0.7u m=2
+m2 vout n2 vdd vdd pch w=5u l=0.5u m=4
+m3 n1 vp vdd vdd pch w=1u l=1.2u m=1
+m4 n2 vp vdd vdd pch w=1u l=1.2u m=1
+m5 n1 vinp n3 vss nch w=2u l=0.7u m=4
+m6 n2 vinn n3 vss nch w=2u l=0.7u m=4
+m7 n3 vref vss vss nch w=5u l=1.2u m=4
+m8 vout vref vss vss nch w=5u l=1.2u m=4
+r0 n2 n4 rppoly w=2u r=1750.0
+r1 n4 n5 rppoly w=2u r=1750.0
+c0 n5 vout nmoscap w=8u l=8u
+.ENDS

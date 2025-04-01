@@ -1,0 +1,26 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : buffer_example
+* Top Cell Name: buffer
+* View Name: extracted
+* Netlist created: 16.Feb.2019 19:01:18
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd gnd
+
+*******************************************************************************
+* Library Name: buffer_example
+* Cell Name:    buffer
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT buffer POS OUT IN NEG
+*.PININFO POS:B OUT:B IN:B NEG:B
+
+MM3 POS n4 OUT POS C5NPMOS w=1.8e-06 l=6e-07 as=3.24e-12 ps=7.2e-06 ad=3.24e-12 pd=7.2e-06
+MM2 POS IN n4 POS C5NPMOS w=1.8e-06 l=6e-07 as=3.24e-12 ps=7.2e-06 ad=3.24e-12 pd=7.2e-06
+MM1 NEG n4 OUT NEG C5NNMOS w=1.8e-06 l=6e-07 as=3.24e-12 ps=7.2e-06 ad=3.24e-12 pd=7.2e-06
+MM0 NEG IN n4 NEG C5NNMOS w=1.8e-06 l=6e-07 as=3.24e-12 ps=7.2e-06 ad=3.24e-12 pd=7.2e-06
+.ENDS

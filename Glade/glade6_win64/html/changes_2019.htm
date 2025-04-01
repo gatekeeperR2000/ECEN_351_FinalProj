@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" -->
+<h2 align="left"><font face="Arial, Helvetica, sans-serif"><font face="Arial"><b>Change Log</b> 2019 </font></font></h2>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><font face="Arial" size="4"><strong>Contents for 2018 can be found <a href="changes_2018.htm">here</a></strong></font></font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.6.69 release on 12/01/2019</strong></p>
+<p align="left">- enhancement: On Windows, setting the env var PYTHOMHOME overrides the bundled Python libraries/DLLs.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.6.70 release on 09/02/2019</strong></p>
+<p align="left">- bugfix: Removed reporting labels as shapes with zero area in boolean engine.</p>
+<p align="left">- bugfix: Instances with magnification could be filtered out from display as filtering didn't consider magnification.</p>
+<p align="left">- enhancement: Added geomInteracts() boolean function.</p>
+<p align="left">- enhancement: Building edgeLayers in boolean engine speeded up.</p>
+<p align="left">- enhancement: geomNeighbours() DRC check for neighbouring contact/via spacing check.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.6.71 release on 26/02/2019</strong></p>
+<p align="left">- bugfix: Fixed an error in boolean merging which could cause neighbour edge tracing errors.</p>
+<p align="left">- bugfix: Resistor extraction had terminals A and B but the optional third (bulk) terminal was also called B. It is now BULK.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.6.72 release on 28/03/2019</strong></p>
+<p align="left">- bugfix: Cursor could change to left/right arrow on entering the app via a dock window.</p>
+<p align="left">- enhancement: Add Marker dialog now allows entering coordinates in DBU as well as microns. Makes it easier to cut&amp;paste coordinates reported by some errors.</p>
+<p align="left">- bugfix: Calling Verify->Check a second time caused a crash.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.0 release on 05/04/2019</strong></p>
+<p align="left">- enhancement: improved spatial database.</p>
+<p align="left">- enhancement: Import Oasis now allows either preserving paths or converting them to rectangles or H/VSegs.</p>
+<p align="left">- enhancement: Export Oasis now has options like Export GDS2 to output all layers, visible layers or a specified layer only.</p>
+<p align="left">- enhancement: Fast rendering for Window-&gt;Fit command.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.1 release on 08/04/2019</strong></p>
+<p align="left">- bugfix: In partial select mode, with dynamic highlighting on, a crash could occur when a via instance would be highlighted.</p>
+<p align="left">- bugfix: dbCreateHole could fail with geometries that were non manhattan.</p>
+<p align="left">- bugfix: dbCreateHole now prefers vertical cutlines to equally preferred horizontal/vertical cutlines.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.2 release on 11/04/2019</strong></p>
+<p align="left">- enhancement: Trace net can select shapes as well as highlight the traced net. Note than only shapes in the top level of the hierarchy can be selected.</p>
+<p align="left">- enhancement: HSeg/VSeg can have no net info. This gives reduced memory usage in import GDS2/OASIS when paths are converted to V/HSegs.</p>
+<p align="left">- bugfix: dbFindHierOverlaps() was not initialising filter size to 0. This could cause Trace Net to give incomplete results. </p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.3 release on 14/04/2019</strong></p>
+<p align="left">- bugfix: rolled back fast window fit code as causing issues.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.4 release on 18/04/2019</strong></p>
+<p align="left">- bugfix: Dim factor was not being read correctly from preferences file.</p>
+<p align="left">- bugfix: A Qt bug caused blitter not to release OpenGL context.</p>
+<p align="left">- bugfix: Loading a PCell via File-&gt;New Cell will reimport an already imported module. Previously if a PCell module had been imported, it would be reused.</p>
+<p align="left">- bugfix: Various issues with the World View tool fixed.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.5 release on 09/05/2019</strong></p>
+<p align="left">- enhancement: Multi part paths can now have an OFFSET keyword to offset the MPP layer from the centreline by some value. Typically used if you want a MPP with two sets of contacts - by offsetting the contacts by +/- some value.</p>
+<p align="left">- enhancement: Multi part paths have a better algorithm for contact placement.</p>
+<p align="left">- enhancement: techfile getLayerOvlp/setLayerOvlp renamed getLayerExt/setLayerExt as this is an extension rule.</p>
+<p align="left">- enhancement: Importing a techfile can now replace or merge with existing technology.</p>
+<p align="left">- enhancement: Example PCells e.g. nch.py now written using rules derived from library techfile instead of hard coded rules in the PCell.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.6 release on 14/05/2019</strong></p>
+<p align="left">- bugfix: Fixed a bug in dbCreatePCell that could cause a crash.</p>
+<p align="left">- bugfix: Fixed a bug in geomConnect that could give opens for some cases.</p>
+<p align="left">- enhancement: Gemini writes command line arguments on startup</p>
+<p align="left">- enhancement: Gemini writes MOS device W/L and XY coordinate (if present in input netlist) for unmatched devices.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.7 release on 22/05/2019</strong></p>
+<p align="left">- bugfix: Crash occurred if PCell function name was different from the .py filename. Now gives error message.</p>
+<p align="left">- enhancement: Added an 'isValid' layer option to the techfile LAYER definition. Layers with isValid == 'f' will not be shown by default in the LSW.</p>
+<p align="left">- enhancement: Dynamic highlight shows the layer or instName of the highlighted object in the status bar.</p>
+<p align="left">- bugfix: Fixed a potential crash in dbGetOverlaps()</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.8 release on 28/05/2019</strong></p>
+<p align="left">- bugfix: Fixed a bounding box issue with paths that could cause them not to be displayed at certain zoom/positions.</p>
+<p align="left">- bugfix: Fixed a bug in geomNeighbours() that gave false errors.</p>
+<p align="left">- bugfix: Fixed a bug in geomSpace() with diffnet flag that gave false errors.</p>
+<p align="left">- bugfix: Fixed a bug with geom2DSpace() that gave incorrect parallel spacing errors.</p>
+<p align="left">- bugfix: Fixed a randon crash in geomArea()</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.9 released on 14/06/2019</strong></p>
+<p align="left">- bugfix: geomGetRectangles() / geomGetPolygons() returned a temporary which caused a crash.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.10 release on 19/07/2019</strong></p>
+<p align="left">- bugfix: Net tracer did not add connectivity to vias with a missing layer stack shape.</p>
+<p align="left">- bugfix: Net tracer did not trace vias sometimes.</p>
+<p align="left">- bugfix: On non-manhattan shapes, net tracer could sometimes trace unconnected shapes.</p>
+<p align="left">- enhancement: Net tracer can now write out all traced shapes to a cellView. One or more traced nets can be written this way. Any assigned connectivity is also written.</p>
+<p align="left">- enhancement: A python interface to the net tracer has been added. ui.traceNet(cellView *cv, Point start, int mode, bool addConnectivity=False, char *netName=NULL, char *libName=NULL, char *cellName =NULL; char *viewName=NULL). mode is either 1 (just highlight the traced shapes), 2 (just select the top level traced shaped) or 3 (highlight the traced shapes, and write them to the cellView given by libName/cellName/viewName) A similar interface has been created for ui.traceLabel()</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.11 release on 03/08/2019</strong></p>
+<p align="left">- bugfix: Colinear path/poly point removal was retaining points that were on backtracks. This might make sense for some applications, but for the boolean processor it was causing major problems if such shapes existed (oFten the result of upsizing/downsizing). Therefore colinear backtrack points are now removed.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.12 release on 14/08/2019</strong></p>
+<p align="left">- FIxed a Gemini bug where transistors with 3 terminals (bulk assumed) were gaining paramater mismatches.</p>
+<p align="left">- Fixed a new awkward bug in touch/abut of shape checks.</p>
+<p align="left">- Made monochrome work in PNG or SVG on graphical output of design data.</p>
+<p align="left">- fixed MINEXT in techfile so it actually works. Sets 'abut' flag off, so shapes that should extend but abut are flagged as errors.</p>
+<p align="left">- Improved error reporting for Verify-&gt;Check... commands.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.13 release on 30/09/2019</strong></p>
+<p align="left">- implemented geomGetNet() command to get shapes connected to a specified net.</p>
+<p align="left">- Boolean ops transfer net info. </p>
+<p align="left">- geomGetShapes() sets net info into boolean engine if shapes in cellView have net info.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.14 release on 14/10/2009</strong></p>
+<p align="left">- bugfix: Min area checkin had incorrect logic. </p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.15 release on 22/10/2019</strong></p>
+<p align="left">- bugfix: geomLabel did not correctly pass net info to output layer</p>
+<p align="left">- bugfix: geomGetNet(layer, 'name') did not save net info to output layer</p>
+<p align="left">- enhancement: geomGetHoled(layer) outputs shapes to layer that contain holes. geomGetUnHoled() returns all shapes on layer without holes.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.16 release on 28/10/2019</strong></p>
+<p align="left">- bugfix: Dynamic highlight was showing incorrect position of highlighted instances.</p>
+<p align="left">- bugfix: Closing a window using the window close button ignores 'Cancel' option in checkIfEdited dialog and closed regardless.</p>
+<p align="left">- bugfix: Edit in Place in non-OpenGL mode dimmed the EIP cell as well as other instances.</p>
+<p align="left">- bugfix: Instance/master name text in non-OpenGL mode too small.</p>
+<p align="left">- bugfix: When using dimming of unselected shapes, text labels could be drawn incorrectly.</p>
+<p align="left">- bugfix: Using the chop cmd on shapes with holes produced incorrect results.</p>
+<p align="left">- bugfix: Changing Display Options-&gt;Instance Names would reset display stop level if previously set by View-&gt;level 0 / View-&gt;level 99.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.17 release on 12/11/2019</strong></p>
+<p align="left">- enhancement: Align tool has new spacing mode 'Layer Spacing' which takes the spacing for the reference object layer from the techfile minSpacing for that layer.</p>
+<p align="left">- enhancement: dbCreateNet() sets nets ending with '!' as global nets.</p>
+<p align="left">- bugfix: Fixed a crash if the LSW colour dialog was open and the application was hidden then shown.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.18 release on 02/12/2019</strong></p>
+<p align="left">- bugfix: Zoomin out when viewing e.g a pin from the basic library failed due to rounding of the small world coordinate space. This is now fixed.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.19 release on 10/12/2019</strong></p>
+<p align="left">- bugfix: When generating layout from schematic, the 'Create m factor instances' still created multiple instances if unchecked.</p>
+<p align="left">- bugfix: Two layer spacing/enclosure/extension rules were not read from library techfile. </p>
+<p align="left">- bugfix: 'Duplicate hash table entry' error could occur when processing shapes with holes.. </p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.20 release on 17/12/2019</strong></p>
+<p align="left">- bugfix: Create Wire cmd sometimes did not merge with existing wires correctly.</p>
+<p align="left">- bugfix: Create Wire cmd using the 'route' option could sometimes miss a segment when starting from a pin.</p>
+<p align="left">- bugfix: Create Path cmd using 'HV' or 'VH' snapping caused missing intermediate path point.</p>
+<p align="left">- bugfix: Fixed an issue where e.g. multiple layers could connect to another layer by the same via layer, e.g. active/poly1/poly2 to metal. Now you can change layer up in the Create Path command from any of the layers, but you can only change down from e.g. the metal layer to the next lower routing layer in the techfile, e.g. poly2.</p>
+<p align="left">- enhancement: Added ui().editFile() python command. With no arguments, opens a file chooser menu for a file to be edited. Or with a string argument, opens that file.</p>
+<p align="left">- enhancement: Glade text view/edit widget has line numbering.</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+  <!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

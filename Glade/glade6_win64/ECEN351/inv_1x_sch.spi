@@ -1,0 +1,26 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : buffer_ex
+* Top Cell Name: inverter
+* View Name: schematic
+* Netlist created: 23.Feb.2019 20:45:56
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd gnd
+
+*******************************************************************************
+* Library Name: buffer_ex
+* Cell Name:    inverter
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT inverter Vin vpos vneg Vout
+*.PININFO Vin:I vpos:B Vout:O vneg:B
+
+M1 Vin Vout vneg vneg nch
+M0 vpos vpos Vin Vout pch
+.ENDS
+
+.END

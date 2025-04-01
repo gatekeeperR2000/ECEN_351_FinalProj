@@ -1,0 +1,33 @@
+.SUBCKT D_Flip_Flop D_in clk Q_out Qn_out
+*.PININFO  D_in:B Q_out:O clk:I Qn_out:O
+*
+*.SCALE METER
+.GLOBAL vss
+.GLOBAL vdd
+
+*
+M9  n14 n7 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M6  Qn_out n0 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M4  Q_out Qn_out vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M7  Qn_out n0 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M20  n0 n1 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M13  n6 clkbb n7 vss C5NNMOS  w=1.8u l=0.6u m=1
+M5  Q_out Qn_out vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M2  clkb clk vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M8  n14 n7 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M3  clkbb clkb vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M21  n0 n1 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M15  n6 n14 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M14  n6 n14 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M19  n1 clkbb n14 vss C5NNMOS  w=1.8u l=0.6u m=1
+M22  n4 clkbb n1 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M17  n4 clkb n1 vss C5NNMOS  w=1.8u l=0.6u m=1
+M18  n1 clkb n14 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M16  n4 n0 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M12  n6 clkb n7 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M10  n7 clkb D_in vss C5NNMOS  w=1.8u l=0.6u m=1
+M1  clkbb clkb vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M11  n7 clkbb D_in vdd C5NPMOS  w=3.6u l=0.6u m=1
+M0  clkb clk vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M23  n4 n0 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+.ENDS

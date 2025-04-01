@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+  <!-- #BeginEditable "doctitle" --> 
+  <title>Glade Reference Manual</title>
+  <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>
+        <font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif"><u>Selecting Objects</u></font></h2>
+
+      <p>
+        In Glade, selected objects are part of what is called the <i>selected set</i>. You 
+        can add and/or delete objects from the selected set. Many commands work on the 
+        selected set e.g. move, copy, stretch etc.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h3><font face="Arial, Helvetica, sans-serif">
+        Selection modes and types
+      </font></h3>
+
+      <p>
+        Glade has 2 selection modes: Full and Partial. You can toggle between modes with 
+        the F4 key. Alternatively you can set the selection mode from the 
+        <a href="view_menu.htm#selection_options">Selection Options</a> form. The current 
+        selection mode is displayed on the status bar.
+      </p>
+
+      <p>
+        <b>Full mode</b> selects objects. Shapes, instances and via instances can be selected. 
+        Full mode<b> </b>selects objects that lie under the selection point or are contained 
+        in the selection area.
+      </p>
+
+      <p>
+        <b>Partial mode</b> selects edges or vertices of shapes such as rectangles and polygons, 
+        and centrelines or centreline vertices of paths. If selecting by area (left click &amp; 
+        drag), any objects contained in the area are selected in full mode.
+      </p>
+
+      <p>
+        Glade has two selection types: Item and Net. You can set the selection type in the 
+        <a href="view_menu.htm#selection_options">Selection Options</a> form.
+      </p>
+
+      <p>
+        <b>Item mode</b> selects individual shapes, instances etc.
+      </p>
+
+      <p>
+        <b>Net mode</b> will select all shapes of a net if any shape selected is part of a net.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h3><font face="Arial, Helvetica, sans-serif">Making a Selection</font></h3>
+
+      <p>
+        The left mouse button is used to select objects. You can select or deselect individual 
+        objects by left-clicking on them; you can select or deselect multiple objects within an 
+        area by left clicking and dragging the mouse.
+      </p>
+      <p>
+        If the left mouse button is clicked while the cursor is over an object then any existing 
+        selected objects are deselected, and an object under the cursor will be selected if possible. 
+        Whether an object is selectable or not depends on if it's layer is selectable. You can 
+        control layer selectability using the <a href="theLSW.htm">LSW</a>. If the layer is not 
+        visible, then objects on that layer will not be selectable either. If no object can be found 
+        to select, then the selected set is empty. The number of objects in the selected set is shown 
+        on the status bar.
+      </p>
+
+      <p>
+        If the object you have selected is not the one you wished, clicking again will select a 
+        different object. Each new click will select a new object, as long as you keep the cursor in 
+        exactly the same position.
+      </p>
+
+      <p>
+        Clicking and dragging the left mouse button performs area select. Any selectable objects 
+        contained in the selection area will be selected.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h3><font face="Arial, Helvetica, sans-serif">Modifier keys</font></h3>
+
+      <p>
+        The <b>Control</b> and <b>Shift</b>  keys modify selection:
+      </p>
+
+      <p>
+        Holding down the <b>Shift</b> key while making a selection will add selected objects to 
+        the selected set. 
+      </p>
+
+      <p>
+        Holding down the <b>Control</b> key while making a selection will remove selected objects
+        from the selected set.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h3><font face="Arial, Helvetica, sans-serif"> Select all / Deselect all</font></h3>
+
+      <p>
+        Menu commands and bindkeys exist for <a href="view_menu.htm#edit_selectall">selecting</a> 
+        all selectable objects in the cellview or for <a href="view_menu.htm#edit_deselectall">deselecting</a> 
+        all objects from the selected set.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h3><font face="Arial, Helvetica, sans-serif">Selection Layer</font></h3>
+
+      <p>
+        The <i>select</i> layer in the <a href="theLSW.htm">LSW</a> allows you to control how a selected 
+        object is highlighted. By default a white outline is used but you can change the colour and linewidth. 
+        Currently a fill pattern cannot be applied to selected objects. 
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop  Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

@@ -1,0 +1,38 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 11:58:51 on Apr  2 2019 by Visual C++ 13.2
+-----------------------------------------------------------------------------
+
+Gemini started at 20:36:04 on 09/04/2019
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : mux4to1_1x_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       24
+  Number of nets    :       17
+  Number of ports   :       7
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : mux4to1_1x.cdl_flat
+-----------------------------------------------------------------------------
+  Number of devices :       24
+  Number of nets    :       17
+  Number of ports   :       7
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		mux4to1_1x_extracted.cdl	mux4to1_1x.cdl_flat
+  Number of devices :       24			24
+  Number of nets    :       17			17
+  Number of ports   :       7			7
+
+There were no device property errors.
+29 (70%) matches were found by local matching.
+All nodes were matched in 9 passes.
+
+The netlists match.
+
+0 devices and 0 nets written to C:\Users\Randall Jack\Desktop\glade4_win64\ECEN351\mux4to1_1x.err
+
+Gemini completed at 20:36:04 on 09/04/2019
+

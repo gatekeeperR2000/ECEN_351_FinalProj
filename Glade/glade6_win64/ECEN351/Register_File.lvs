@@ -1,0 +1,619 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 12:20:00 on Nov 29 2022 by Visual C++ 13.3
+-----------------------------------------------------------------------------
+
+Gemini started at 13:05:14 on 03/04/2023
+
+Command line:
+	-w 10.000000 -g C:\Users\Randall_Jack\Desktop\glade5_win64\ECEN351\Register_File.err -S C:\Users\Randall_Jack\Desktop\glade5_win64\ECEN351\Register_File_extracted.cdl C:\Users\Randall_Jack\Desktop\glade5_win64\ECEN351\RegisterFile.net_flat 
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : Register_File_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       418
+  Number of nets    :       185
+  Number of ports   :       3
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : RegisterFile.net_flat
+-----------------------------------------------------------------------------
+  Number of devices :       418
+  Number of nets    :       219
+  Number of ports   :       7
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		Register_File_extracted.cdl	RegisterFile.net_flat
+  Number of devices :       402			400
+  Number of nets    :       169			203
+  Number of ports   :       3			7
+
+
+The circuits are different.
+
+These circuits contain some symmetry (21% nodes not yet matched).
+Gemini will attempt to find a valid match for symmetrical nodes.
+M#M################################A total of 14 transistor chains were out of order.
+
+
+The following transistors have property mismatches:
+
+           Register_File_extracted.cdl            RegisterFile.net_flat
+(1) Device type:                 N                                N
+    Inst name  :               MM7                       M7/XX1/XX8
+    Model      :           C5NNMOS                          C5NNMOS
+    S:                        n116                    /XX1/XX8/N001
+    D:                          n3                         /XX1/Vss
+    G:                       Addr2                            addr0
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                       Addr0                            addr1
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                       Addr1                            addr1
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+(2) Device type:                 N                                N
+    Inst name  :               MM3                        M7/XX1/X0
+    Model      :           C5NNMOS                          C5NNMOS
+    S:                         n71                     /XX1/X0/N001
+    D:                          n3                         /XX1/Vss
+    G:                        n111                        /XX1/N001
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                         n93                        /XX1/N002
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                         n96                        /XX1/N003
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+(3) Device type:                 N                                N
+    Inst name  :               MM6                       M7/XX1/XX7
+    Model      :           C5NNMOS                          C5NNMOS
+    S:                          n3                    /XX1/XX7/N001
+    D:                         n33                         /XX1/Vss
+    G:                        n111                        /XX1/N001
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                       Addr0                            addr1
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                       Addr1                            addr1
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+(4) Device type:                 N                                N
+    Inst name  :              MM10                       M7/XX1/XX2
+    Model      :           C5NNMOS                          C5NNMOS
+    S:                          n3                         /XX1/Vss
+    D:                         n19                    /XX1/XX2/N001
+    G:                       Addr2                        /XX1/N003
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                         n93                        /XX1/N002
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                         n96                            addr0
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+(5) Device type:                 N                                N
+    Inst name  :               MM5                       M7/XX1/XX3
+    Model      :           C5NNMOS                          C5NNMOS
+    S:                        n103                    /XX1/XX3/N001
+    D:                          n3                         /XX1/Vss
+    G:                        n111                        /XX1/N001
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                         n93                            addr1
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                       Addr1                        /XX1/N003
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+(6) Device type:                 N                                N
+    Inst name  :               MM8                       M7/XX1/XX4
+    Model      :           C5NNMOS                          C5NNMOS
+    S:                         n75                    /XX1/XX4/N001
+    D:                          n3                         /XX1/Vss
+    G:                       Addr1                            addr0
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                         n93                            addr1
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                       Addr2                        /XX1/N003
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+(7) Device type:                 N                                N
+    Inst name  :               MM4                       M7/XX1/XX5
+    Model      :           C5NNMOS                          C5NNMOS
+    S:                          n3                         /XX1/Vss
+    D:                         n16                    /XX1/XX5/N001
+    G:                        n111                            addr1
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                       Addr0                        /XX1/N002
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                         n96                        /XX1/N001
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+(8) Device type:                 N                                N
+    Inst name  :               MM9                       M7/XX1/XX6
+    Model      :           C5NNMOS                          C5NNMOS
+    S:                         n43                    /XX1/XX6/N001
+    D:                          n3                         /XX1/Vss
+    G:                       Addr2                            addr0
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                       Addr0                        /XX1/N002
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+    G:                         n96                            addr1
+    W/L:   (um)        5.400/0.600                      3.600/0.600
+8 device property errors.
+476 (83%) matches were found by local matching.
+
+The following netlist mismatches occurred:
+
+-----------------------------------------------------------------------------
+	Netlist errors : Register_File_extracted.cdl 
+-----------------------------------------------------------------------------
+32 NETS do not match:
+NET "n33" 6 connections
+  P: (inst MM239) [g] n33 :: [s,d,sub] n4, n157, n4 [l=0.6, w=3.6] (x=-7.650, y=110.100)
+  N: (inst MM30) [g] n33 :: [s,d,sub] n157, n3, n3 [l=0.6, w=1.8] (x=-7.650, y=96.900)
+  P: (inst MM231) [g] Addr1 :: [s,d,sub] n4, n33, n4 [l=0.6, w=3.6] (x=-14.850, y=110.100)
+  P: (inst MM215) [g] n111 :: [s,d,sub] n4, n33, n4 [l=0.6, w=3.6] (x=-19.650, y=110.100)
+  N: (inst MM6) [g] n111, Addr0, Addr1 :: [s,d,sub] n3, n33, n3 [l=0.6, w=5.4] (x=-19.650, y=96.900)
+  P: (inst MM223) [g] Addr0 :: [s,d,sub] n4, n33, n4 [l=0.6, w=3.6] (x=-17.250, y=110.100)
+NET "n3" 340 connections
+NET "Addr0" 14 connections
+NET "Addr1" 14 connections
+NET "n157" 4 connections
+  P: (inst MM247) [g] n157 :: [s,d,sub] n4, n137, n4 [l=0.6, w=3.6] (x=7.350, y=110.100)
+  N: (inst MM38) [g] n157 :: [s,d,sub] n137, n3, n3 [l=0.6, w=1.8] (x=7.350, y=96.900)
+  N: (inst MM30) [g] n33 :: [s,d,sub] n157, n3, n3 [l=0.6, w=1.8] (x=-7.650, y=96.900)
+  P: (inst MM239) [g] n33 :: [s,d,sub] n4, n157, n4 [l=0.6, w=3.6] (x=-7.650, y=110.100)
+NET "n14" 4 connections
+  N: (inst MM39) [g] n14 :: [s,d,sub] n3, n120, n3 [l=0.6, w=1.8] (x=7.350, y=88.500)
+  P: (inst MM248) [g] n14 :: [s,d,sub] n120, n4, n4 [l=0.6, w=3.6] (x=7.350, y=73.500)
+  N: (inst MM31) [g] n116 :: [s,d,sub] n14, n3, n3 [l=0.6, w=1.8] (x=-7.650, y=88.500)
+  P: (inst MM240) [g] n116 :: [s,d,sub] n14, n4, n4 [l=0.6, w=3.6] (x=-7.650, y=73.500)
+NET "n116" 6 connections
+  P: (inst MM240) [g] n116 :: [s,d,sub] n14, n4, n4 [l=0.6, w=3.6] (x=-7.650, y=73.500)
+  N: (inst MM31) [g] n116 :: [s,d,sub] n14, n3, n3 [l=0.6, w=1.8] (x=-7.650, y=88.500)
+  P: (inst MM232) [g] Addr2 :: [s,d,sub] n116, n4, n4 [l=0.6, w=3.6] (x=-14.850, y=73.500)
+  N: (inst MM7) [g] Addr2, Addr0, Addr1 :: [s,d,sub] n116, n3, n3 [l=0.6, w=5.4] (x=-19.650, y=84.900)
+  P: (inst MM224) [g] Addr0 :: [s,d,sub] n4, n116, n4 [l=0.6, w=3.6] (x=-17.250, y=73.500)
+  P: (inst MM216) [g] Addr1 :: [s,d,sub] n4, n116, n4 [l=0.6, w=3.6] (x=-19.650, y=73.500)
+NET "n4" 356 connections
+NET "n85" 6 connections
+  P: (inst MM354) [g] n85 :: [s,d,sub] n122, n60, n4 [l=0.6, w=3.6] (x=71.850, y=26.700)
+  P: (inst MM314) [g] n85 :: [s,d,sub] n41, n48, n4 [l=0.6, w=3.6] (x=49.650, y=26.700)
+  N: (inst MM137) [g] n85 :: [s,d,sub] n45, n60, n3 [l=0.6, w=1.8] (x=69.450, y=41.700)
+  N: (inst MM113) [g] n85 :: [s,d,sub] n48, n28, n3 [l=0.6, w=1.8] (x=52.050, y=41.700)
+  P: (inst MM306) [g] n83 :: [s,d,sub] n4, n85, n4 [l=0.6, w=3.6] (x=44.550, y=26.700)
+  N: (inst MM97) [g] n83 :: [s,d,sub] n3, n85, n3 [l=0.6, w=1.8] (x=44.550, y=41.700)
+NET "n59" 6 connections
+  N: (inst MM133) [g] n59 :: [s,d,sub] n159, n66, n3 [l=0.6, w=1.8] (x=69.450, y=135.300)
+  P: (inst MM350) [g] n59 :: [s,d,sub] n112, n66, n4 [l=0.6, w=3.6] (x=71.850, y=120.300)
+  N: (inst MM109) [g] n59 :: [s,d,sub] n26, n31, n3 [l=0.6, w=1.8] (x=52.050, y=135.300)
+  P: (inst MM310) [g] n59 :: [s,d,sub] n26, n38, n4 [l=0.6, w=3.6] (x=49.650, y=120.300)
+  P: (inst MM302) [g] n97 :: [s,d,sub] n4, n59, n4 [l=0.6, w=3.6] (x=44.550, y=120.300)
+  N: (inst MM93) [g] n97 :: [s,d,sub] n3, n59, n3 [l=0.6, w=1.8] (x=44.550, y=135.300)
+NET "n131" 6 connections
+  N: (inst MM108) [g] n131 :: [s,d,sub] n42, n86, n3 [l=0.6, w=1.8] (x=52.050, y=143.700)
+  N: (inst MM132) [g] n131 :: [s,d,sub] n153, n72, n3 [l=0.6, w=1.8] (x=69.450, y=143.700)
+  P: (inst MM309) [g] n131 :: [s,d,sub] n42, n55, n4 [l=0.6, w=3.6] (x=49.650, y=156.900)
+  P: (inst MM349) [g] n131 :: [s,d,sub] n95, n153, n4 [l=0.6, w=3.6] (x=71.850, y=156.900)
+  P: (inst MM301) [g] n15 :: [s,d,sub] n4, n131, n4 [l=0.6, w=3.6] (x=44.550, y=156.900)
+  N: (inst MM92) [g] n15 :: [s,d,sub] n3, n131, n3 [l=0.6, w=1.8] (x=44.550, y=143.700)
+NET "n80" 6 connections
+  N: (inst MM114) [g] n80 :: [s,d,sub] n20, n151, n3 [l=0.6, w=1.8] (x=52.050, y=3.300)
+  P: (inst MM355) [g] n80 :: [s,d,sub] n143, n77, n4 [l=0.6, w=3.6] (x=71.850, y=16.500)
+  N: (inst MM138) [g] n80 :: [s,d,sub] n7, n77, n3 [l=0.6, w=1.8] (x=69.450, y=3.300)
+  P: (inst MM315) [g] n80 :: [s,d,sub] n140, n151, n4 [l=0.6, w=3.6] (x=49.650, y=16.500)
+  N: (inst MM98) [g] n35 :: [s,d,sub] n3, n80, n3 [l=0.6, w=1.8] (x=44.550, y=3.300)
+  P: (inst MM307) [g] n35 :: [s,d,sub] n4, n80, n4 [l=0.6, w=3.6] (x=44.550, y=16.500)
+NET "n46" 6 connections
+  N: (inst MM107) [g] n46 :: [s,d,sub] n152, n126, n3 [l=0.6, w=1.8] (x=52.050, y=182.100)
+  P: (inst MM308) [g] n46 :: [s,d,sub] n152, n162, n4 [l=0.6, w=3.6] (x=49.650, y=167.100)
+  N: (inst MM131) [g] n46 :: [s,d,sub] n58, n90, n3 [l=0.6, w=1.8] (x=69.450, y=182.100)
+  P: (inst MM348) [g] n46 :: [s,d,sub] n34, n58, n4 [l=0.6, w=3.6] (x=71.850, y=167.100)
+  P: (inst MM300) [g] n139 :: [s,d,sub] n4, n46, n4 [l=0.6, w=3.6] (x=44.550, y=167.100)
+  N: (inst MM91) [g] n139 :: [s,d,sub] n3, n46, n3 [l=0.6, w=1.8] (x=44.550, y=182.100)
+NET "n99" 6 connections
+  N: (inst MM110) [g] n99 :: [s,d,sub] n74, n13, n3 [l=0.6, w=1.8] (x=52.050, y=96.900)
+  N: (inst MM134) [g] n99 :: [s,d,sub] n118, n164, n3 [l=0.6, w=1.8] (x=69.450, y=96.900)
+  P: (inst MM311) [g] n99 :: [s,d,sub] n74, n5, n4 [l=0.6, w=3.6] (x=49.650, y=110.100)
+  P: (inst MM351) [g] n99 :: [s,d,sub] n136, n164, n4 [l=0.6, w=3.6] (x=71.850, y=110.100)
+  P: (inst MM303) [g] n84 :: [s,d,sub] n4, n99, n4 [l=0.6, w=3.6] (x=44.550, y=110.100)
+  N: (inst MM94) [g] n84 :: [s,d,sub] n3, n99, n3 [l=0.6, w=1.8] (x=44.550, y=96.900)
+NET "n8" 6 connections
+  P: (inst MM312) [g] n8 :: [s,d,sub] n73, n113, n4 [l=0.6, w=3.6] (x=49.650, y=73.500)
+  N: (inst MM135) [g] n8 :: [s,d,sub] n125, n92, n3 [l=0.6, w=1.8] (x=69.450, y=88.500)
+  N: (inst MM111) [g] n8 :: [s,d,sub] n73, n110, n3 [l=0.6, w=1.8] (x=52.050, y=88.500)
+  P: (inst MM352) [g] n8 :: [s,d,sub] n18, n92, n4 [l=0.6, w=3.6] (x=71.850, y=73.500)
+  N: (inst MM95) [g] n87 :: [s,d,sub] n3, n8, n3 [l=0.6, w=1.8] (x=44.550, y=88.500)
+  P: (inst MM304) [g] n87 :: [s,d,sub] n4, n8, n4 [l=0.6, w=3.6] (x=44.550, y=73.500)
+NET "n135" 6 connections
+  P: (inst MM313) [g] n135 :: [s,d,sub] n106, n132, n4 [l=0.6, w=3.6] (x=49.650, y=63.300)
+  N: (inst MM136) [g] n135 :: [s,d,sub] n76, n173, n3 [l=0.6, w=1.8] (x=69.450, y=50.100)
+  P: (inst MM353) [g] n135 :: [s,d,sub] n173, n44, n4 [l=0.6, w=3.6] (x=71.850, y=63.300)
+  N: (inst MM112) [g] n135 :: [s,d,sub] n106, n165, n3 [l=0.6, w=1.8] (x=52.050, y=50.100)
+  P: (inst MM305) [g] n30 :: [s,d,sub] n4, n135, n4 [l=0.6, w=3.6] (x=44.550, y=63.300)
+  N: (inst MM96) [g] n30 :: [s,d,sub] n3, n135, n3 [l=0.6, w=1.8] (x=44.550, y=50.100)
+NET "Addr2" 12 connections
+NET "n30" 8 connections
+  P: (inst MM305) [g] n30 :: [s,d,sub] n4, n135, n4 [l=0.6, w=3.6] (x=44.550, y=63.300)
+  P: (inst MM345) [g] n30 :: [s,d,sub] n173, n76, n4 [l=0.6, w=3.6] (x=69.450, y=63.300)
+  P: (inst MM321) [g] n30 :: [s,d,sub] n106, n165, n4 [l=0.6, w=3.6] (x=52.050, y=63.300)
+  N: (inst MM144) [g] n30 :: [s,d,sub] n44, n173, n3 [l=0.6, w=1.8] (x=71.850, y=50.100)
+  N: (inst MM96) [g] n30 :: [s,d,sub] n3, n135, n3 [l=0.6, w=1.8] (x=44.550, y=50.100)
+  N: (inst MM104) [g] n30 :: [s,d,sub] n106, n132, n3 [l=0.6, w=1.8] (x=49.650, y=50.100)
+  P: (inst MM297) [g] n21 :: [s,d,sub] n30, n4, n4 [l=0.6, w=3.6] (x=39.450, y=63.300)
+  N: (inst MM88) [g] n21 :: [s,d,sub] n3, n30, n3 [l=0.6, w=1.8] (x=39.450, y=50.100)
+NET "n87" 8 connections
+  N: (inst MM95) [g] n87 :: [s,d,sub] n3, n8, n3 [l=0.6, w=1.8] (x=44.550, y=88.500)
+  N: (inst MM103) [g] n87 :: [s,d,sub] n73, n113, n3 [l=0.6, w=1.8] (x=49.650, y=88.500)
+  P: (inst MM320) [g] n87 :: [s,d,sub] n73, n110, n4 [l=0.6, w=3.6] (x=52.050, y=73.500)
+  P: (inst MM344) [g] n87 :: [s,d,sub] n92, n125, n4 [l=0.6, w=3.6] (x=69.450, y=73.500)
+  N: (inst MM143) [g] n87 :: [s,d,sub] n18, n92, n3 [l=0.6, w=1.8] (x=71.850, y=88.500)
+  P: (inst MM304) [g] n87 :: [s,d,sub] n4, n8, n4 [l=0.6, w=3.6] (x=44.550, y=73.500)
+  N: (inst MM87) [g] n21 :: [s,d,sub] n87, n3, n3 [l=0.6, w=1.8] (x=39.450, y=88.500)
+  P: (inst MM296) [g] n21 :: [s,d,sub] n4, n87, n4 [l=0.6, w=3.6] (x=39.450, y=73.500)
+NET "n139" 8 connections
+  P: (inst MM300) [g] n139 :: [s,d,sub] n4, n46, n4 [l=0.6, w=3.6] (x=44.550, y=167.100)
+  N: (inst MM139) [g] n139 :: [s,d,sub] n34, n58, n3 [l=0.6, w=1.8] (x=71.850, y=182.100)
+  N: (inst MM91) [g] n139 :: [s,d,sub] n3, n46, n3 [l=0.6, w=1.8] (x=44.550, y=182.100)
+  N: (inst MM99) [g] n139 :: [s,d,sub] n152, n162, n3 [l=0.6, w=1.8] (x=49.650, y=182.100)
+  P: (inst MM316) [g] n139 :: [s,d,sub] n152, n126, n4 [l=0.6, w=3.6] (x=52.050, y=167.100)
+  P: (inst MM340) [g] n139 :: [s,d,sub] n58, n90, n4 [l=0.6, w=3.6] (x=69.450, y=167.100)
+  P: (inst MM292) [g] n21 :: [s,d,sub] n4, n139, n4 [l=0.6, w=3.6] (x=39.450, y=167.100)
+  N: (inst MM83) [g] n21 :: [s,d,sub] n139, n3, n3 [l=0.6, w=1.8] (x=39.450, y=182.100)
+NET "n35" 8 connections
+  N: (inst MM146) [g] n35 :: [s,d,sub] n143, n77, n3 [l=0.6, w=1.8] (x=71.850, y=3.300)
+  P: (inst MM307) [g] n35 :: [s,d,sub] n4, n80, n4 [l=0.6, w=3.6] (x=44.550, y=16.500)
+  N: (inst MM98) [g] n35 :: [s,d,sub] n3, n80, n3 [l=0.6, w=1.8] (x=44.550, y=3.300)
+  P: (inst MM347) [g] n35 :: [s,d,sub] n7, n77, n4 [l=0.6, w=3.6] (x=69.450, y=16.500)
+  N: (inst MM106) [g] n35 :: [s,d,sub] n140, n151, n3 [l=0.6, w=1.8] (x=49.650, y=3.300)
+  P: (inst MM323) [g] n35 :: [s,d,sub] n20, n151, n4 [l=0.6, w=3.6] (x=52.050, y=16.500)
+  N: (inst MM90) [g] n21 :: [s,d,sub] n3, n35, n3 [l=0.6, w=1.8] (x=39.450, y=3.300)
+  P: (inst MM299) [g] n21 :: [s,d,sub] n4, n35, n4 [l=0.6, w=3.6] (x=39.450, y=16.500)
+NET "n97" 8 connections
+  N: (inst MM101) [g] n97 :: [s,d,sub] n26, n38, n3 [l=0.6, w=1.8] (x=49.650, y=135.300)
+  P: (inst MM342) [g] n97 :: [s,d,sub] n159, n66, n4 [l=0.6, w=3.6] (x=69.450, y=120.300)
+  N: (inst MM93) [g] n97 :: [s,d,sub] n3, n59, n3 [l=0.6, w=1.8] (x=44.550, y=135.300)
+  P: (inst MM302) [g] n97 :: [s,d,sub] n4, n59, n4 [l=0.6, w=3.6] (x=44.550, y=120.300)
+  P: (inst MM318) [g] n97 :: [s,d,sub] n26, n31, n4 [l=0.6, w=3.6] (x=52.050, y=120.300)
+  N: (inst MM141) [g] n97 :: [s,d,sub] n66, n112, n3 [l=0.6, w=1.8] (x=71.850, y=135.300)
+  N: (inst MM85) [g] n21 :: [s,d,sub] n97, n3, n3 [l=0.6, w=1.8] (x=39.450, y=135.300)
+  P: (inst MM294) [g] n21 :: [s,d,sub] n4, n97, n4 [l=0.6, w=3.6] (x=39.450, y=120.300)
+NET "n17" 16 connections
+NET "n84" 8 connections
+  P: (inst MM303) [g] n84 :: [s,d,sub] n4, n99, n4 [l=0.6, w=3.6] (x=44.550, y=110.100)
+  N: (inst MM102) [g] n84 :: [s,d,sub] n74, n5, n3 [l=0.6, w=1.8] (x=49.650, y=96.900)
+  P: (inst MM319) [g] n84 :: [s,d,sub] n74, n13, n4 [l=0.6, w=3.6] (x=52.050, y=110.100)
+  N: (inst MM94) [g] n84 :: [s,d,sub] n3, n99, n3 [l=0.6, w=1.8] (x=44.550, y=96.900)
+  N: (inst MM142) [g] n84 :: [s,d,sub] n136, n164, n3 [l=0.6, w=1.8] (x=71.850, y=96.900)
+  P: (inst MM343) [g] n84 :: [s,d,sub] n118, n164, n4 [l=0.6, w=3.6] (x=69.450, y=110.100)
+  P: (inst MM295) [g] n21 :: [s,d,sub] n84, n4, n4 [l=0.6, w=3.6] (x=39.450, y=110.100)
+  N: (inst MM86) [g] n21 :: [s,d,sub] n3, n84, n3 [l=0.6, w=1.8] (x=39.450, y=96.900)
+NET "n15" 8 connections
+  P: (inst MM341) [g] n15 :: [s,d,sub] n153, n72, n4 [l=0.6, w=3.6] (x=69.450, y=156.900)
+  P: (inst MM317) [g] n15 :: [s,d,sub] n42, n86, n4 [l=0.6, w=3.6] (x=52.050, y=156.900)
+  N: (inst MM100) [g] n15 :: [s,d,sub] n42, n55, n3 [l=0.6, w=1.8] (x=49.650, y=143.700)
+  N: (inst MM92) [g] n15 :: [s,d,sub] n3, n131, n3 [l=0.6, w=1.8] (x=44.550, y=143.700)
+  N: (inst MM140) [g] n15 :: [s,d,sub] n153, n95, n3 [l=0.6, w=1.8] (x=71.850, y=143.700)
+  P: (inst MM301) [g] n15 :: [s,d,sub] n4, n131, n4 [l=0.6, w=3.6] (x=44.550, y=156.900)
+  N: (inst MM84) [g] n21 :: [s,d,sub] n3, n15, n3 [l=0.6, w=1.8] (x=39.450, y=143.700)
+  P: (inst MM293) [g] n21 :: [s,d,sub] n15, n4, n4 [l=0.6, w=3.6] (x=39.450, y=156.900)
+NET "n83" 8 connections
+  N: (inst MM105) [g] n83 :: [s,d,sub] n48, n41, n3 [l=0.6, w=1.8] (x=49.650, y=41.700)
+  N: (inst MM97) [g] n83 :: [s,d,sub] n3, n85, n3 [l=0.6, w=1.8] (x=44.550, y=41.700)
+  P: (inst MM346) [g] n83 :: [s,d,sub] n45, n60, n4 [l=0.6, w=3.6] (x=69.450, y=26.700)
+  N: (inst MM145) [g] n83 :: [s,d,sub] n122, n60, n3 [l=0.6, w=1.8] (x=71.850, y=41.700)
+  P: (inst MM306) [g] n83 :: [s,d,sub] n4, n85, n4 [l=0.6, w=3.6] (x=44.550, y=26.700)
+  P: (inst MM322) [g] n83 :: [s,d,sub] n28, n48, n4 [l=0.6, w=3.6] (x=52.050, y=26.700)
+  N: (inst MM89) [g] n21 :: [s,d,sub] n83, n3, n3 [l=0.6, w=1.8] (x=39.450, y=41.700)
+  P: (inst MM298) [g] n21 :: [s,d,sub] n4, n83, n4 [l=0.6, w=3.6] (x=39.450, y=26.700)
+NET "n49" 4 connections
+  P: (inst MM246) [g] n49 :: [s,d,sub] n29, n4, n4 [l=0.6, w=3.6] (x=7.350, y=120.300)
+  N: (inst MM37) [g] n49 :: [s,d,sub] n3, n29, n3 [l=0.6, w=1.8] (x=7.350, y=135.300)
+  P: (inst MM238) [g] n103 :: [s,d,sub] n49, n4, n4 [l=0.6, w=3.6] (x=-7.650, y=120.300)
+  N: (inst MM29) [g] n103 :: [s,d,sub] n3, n49, n3 [l=0.6, w=1.8] (x=-7.650, y=135.300)
+NET "n169" 4 connections
+  N: (inst MM35) [g] n169 :: [s,d,sub] n142, n3, n3 [l=0.6, w=1.8] (x=7.350, y=182.100)
+  P: (inst MM244) [g] n169 :: [s,d,sub] n142, n4, n4 [l=0.6, w=3.6] (x=7.350, y=167.100)
+  P: (inst MM236) [g] n71 :: [s,d,sub] n169, n4, n4 [l=0.6, w=3.6] (x=-7.650, y=167.100)
+  N: (inst MM27) [g] n71 :: [s,d,sub] n169, n3, n3 [l=0.6, w=1.8] (x=-7.650, y=182.100)
+NET "n129" 4 connections
+  P: (inst MM245) [g] n129 :: [s,d,sub] n4, n53, n4 [l=0.6, w=3.6] (x=7.350, y=156.900)
+  N: (inst MM36) [g] n129 :: [s,d,sub] n53, n3, n3 [l=0.6, w=1.8] (x=7.350, y=143.700)
+  N: (inst MM28) [g] n16 :: [s,d,sub] n3, n129, n3 [l=0.6, w=1.8] (x=-7.650, y=143.700)
+  P: (inst MM237) [g] n16 :: [s,d,sub] n4, n129, n4 [l=0.6, w=3.6] (x=-7.650, y=156.900)
+NET "n179" 4 connections
+  N: (inst MM42) [g] n179 :: [s,d,sub] n81, n3, n3 [l=0.6, w=1.8] (x=7.350, y=3.300)
+  P: (inst MM251) [g] n179 :: [s,d,sub] n4, n81, n4 [l=0.6, w=3.6] (x=7.350, y=16.500)
+  N: (inst MM34) [g] n19 :: [s,d,sub] n179, n3, n3 [l=0.6, w=1.8] (x=-7.650, y=3.300)
+  P: (inst MM243) [g] n19 :: [s,d,sub] n179, n4, n4 [l=0.6, w=3.6] (x=-7.650, y=16.500)
+NET "n183" 4 connections
+  P: (inst MM250) [g] n183 :: [s,d,sub] n57, n4, n4 [l=0.6, w=3.6] (x=7.350, y=26.700)
+  N: (inst MM41) [g] n183 :: [s,d,sub] n3, n57, n3 [l=0.6, w=1.8] (x=7.350, y=41.700)
+  N: (inst MM33) [g] n43 :: [s,d,sub] n183, n3, n3 [l=0.6, w=1.8] (x=-7.650, y=41.700)
+  P: (inst MM242) [g] n43 :: [s,d,sub] n183, n4, n4 [l=0.6, w=3.6] (x=-7.650, y=26.700)
+NET "n171" 4 connections
+  P: (inst MM249) [g] n171 :: [s,d,sub] n4, n155, n4 [l=0.6, w=3.6] (x=7.350, y=63.300)
+  N: (inst MM40) [g] n171 :: [s,d,sub] n3, n155, n3 [l=0.6, w=1.8] (x=7.350, y=50.100)
+  N: (inst MM32) [g] n75 :: [s,d,sub] n171, n3, n3 [l=0.6, w=1.8] (x=-7.650, y=50.100)
+  P: (inst MM241) [g] n75 :: [s,d,sub] n4, n171, n4 [l=0.6, w=3.6] (x=-7.650, y=63.300)
+15 DEVICES could not be matched, possibly because of other unmatched devices:
+DEVICE P: (inst MM301) [g] n15 :: [s,d,sub] n4, n131, n4 [l=0.6, w=3.6] (x=44.550, y=156.900)
+DEVICE P: (inst MM305) [g] n30 :: [s,d,sub] n4, n135, n4 [l=0.6, w=3.6] (x=44.550, y=63.300)
+DEVICE P: (inst MM300) [g] n139 :: [s,d,sub] n4, n46, n4 [l=0.6, w=3.6] (x=44.550, y=167.100)
+DEVICE P: (inst MM303) [g] n84 :: [s,d,sub] n4, n99, n4 [l=0.6, w=3.6] (x=44.550, y=110.100)
+DEVICE P: (inst MM224) [g] Addr0 :: [s,d,sub] n4, n116, n4 [l=0.6, w=3.6] (x=-17.250, y=73.500)
+DEVICE P: (inst MM231) [g] Addr1 :: [s,d,sub] n4, n33, n4 [l=0.6, w=3.6] (x=-14.850, y=110.100)
+DEVICE P: (inst MM306) [g] n83 :: [s,d,sub] n4, n85, n4 [l=0.6, w=3.6] (x=44.550, y=26.700)
+DEVICE P: (inst MM240) [g] n116 :: [s,d,sub] n14, n4, n4 [l=0.6, w=3.6] (x=-7.650, y=73.500)
+DEVICE P: (inst MM232) [g] Addr2 :: [s,d,sub] n116, n4, n4 [l=0.6, w=3.6] (x=-14.850, y=73.500)
+DEVICE P: (inst MM302) [g] n97 :: [s,d,sub] n4, n59, n4 [l=0.6, w=3.6] (x=44.550, y=120.300)
+DEVICE P: (inst MM307) [g] n35 :: [s,d,sub] n4, n80, n4 [l=0.6, w=3.6] (x=44.550, y=16.500)
+DEVICE P: (inst MM239) [g] n33 :: [s,d,sub] n4, n157, n4 [l=0.6, w=3.6] (x=-7.650, y=110.100)
+DEVICE P: (inst MM223) [g] Addr0 :: [s,d,sub] n4, n33, n4 [l=0.6, w=3.6] (x=-17.250, y=110.100)
+DEVICE P: (inst MM216) [g] Addr1 :: [s,d,sub] n4, n116, n4 [l=0.6, w=3.6] (x=-19.650, y=73.500)
+DEVICE P: (inst MM304) [g] n87 :: [s,d,sub] n4, n8, n4 [l=0.6, w=3.6] (x=44.550, y=73.500)
+
+-----------------------------------------------------------------------------
+	Netlist errors : RegisterFile.net_flat 
+-----------------------------------------------------------------------------
+66 NETS do not match:
+NET "Vss" 240 connections
+NET "VDD" 352 connections
+NET "/XX3/vss" 46 connections
+NET "/XX4/XX1/cklbb" 1 connections
+  N: (inst M1/XX4/XX1) [g] /XX4/XX1/cklbb :: [s,d,sub] /XX4/XX1/N005, /XX4/XX1/N001, Vss [l=0.6, w=1.8]
+NET "/XX7/XX1/cklb" 1 connections
+  N: (inst M13/XX7/XX1) [g] /XX7/XX1/cklb :: [s,d,sub] /XX7/XX1/N003, /XX7/N001, Vss [l=0.6, w=1.8]
+NET "/XX8/XX1/cklbb" 1 connections
+  N: (inst M1/XX8/XX1) [g] /XX8/XX1/cklbb :: [s,d,sub] /XX8/XX1/N005, /XX8/XX1/N001, Vss [l=0.6, w=1.8]
+NET "/XX9/XX1/cklb" 1 connections
+  N: (inst M13/XX9/XX1) [g] /XX9/XX1/cklb :: [s,d,sub] /XX9/XX1/N003, /XX9/N001, Vss [l=0.6, w=1.8]
+NET "/XX9/XX1/cklbb" 1 connections
+  N: (inst M1/XX9/XX1) [g] /XX9/XX1/cklbb :: [s,d,sub] /XX9/XX1/N005, /XX9/XX1/N001, Vss [l=0.6, w=1.8]
+NET "/XX6/XX1/cklbb" 1 connections
+  N: (inst M1/XX6/XX1) [g] /XX6/XX1/cklbb :: [s,d,sub] /XX6/XX1/N005, /XX6/XX1/N001, Vss [l=0.6, w=1.8]
+NET "/XX2/XX1/cklbb" 1 connections
+  N: (inst M1/XX2/XX1) [g] /XX2/XX1/cklbb :: [s,d,sub] /XX2/XX1/N005, /XX2/XX1/N001, Vss [l=0.6, w=1.8]
+NET "/XX7/XX1/cklbb" 1 connections
+  N: (inst M1/XX7/XX1) [g] /XX7/XX1/cklbb :: [s,d,sub] /XX7/XX1/N005, /XX7/XX1/N001, Vss [l=0.6, w=1.8]
+NET "/XX4/XX1/cklb" 1 connections
+  N: (inst M13/XX4/XX1) [g] /XX4/XX1/cklb :: [s,d,sub] /XX4/XX1/N003, /XX4/N001, Vss [l=0.6, w=1.8]
+NET "/XX5/XX1/cklb" 1 connections
+  N: (inst M13/XX5/XX1) [g] /XX5/XX1/cklb :: [s,d,sub] /XX5/XX1/N003, /XX5/N001, Vss [l=0.6, w=1.8]
+NET "/XX10/XX1/cklb" 1 connections
+  N: (inst M13/XX10/XX1) [g] /XX10/XX1/cklb :: [s,d,sub] /XX10/XX1/N003, /XX10/N001, Vss [l=0.6, w=1.8]
+NET "/XX6/XX1/cklb" 1 connections
+  N: (inst M13/XX6/XX1) [g] /XX6/XX1/cklb :: [s,d,sub] /XX6/XX1/N003, /XX6/N001, Vss [l=0.6, w=1.8]
+NET "/XX5/XX1/cklbb" 1 connections
+  N: (inst M1/XX5/XX1) [g] /XX5/XX1/cklbb :: [s,d,sub] /XX5/XX1/N005, /XX5/XX1/N001, Vss [l=0.6, w=1.8]
+NET "/XX8/XX1/cklb" 1 connections
+  N: (inst M13/XX8/XX1) [g] /XX8/XX1/cklb :: [s,d,sub] /XX8/XX1/N003, /XX8/N001, Vss [l=0.6, w=1.8]
+NET "/XX10/XX1/cklbb" 1 connections
+  N: (inst M1/XX10/XX1) [g] /XX10/XX1/cklbb :: [s,d,sub] /XX10/XX1/N005, /XX10/XX1/N001, Vss [l=0.6, w=1.8]
+NET "/XX2/XX1/cklb" 1 connections
+  N: (inst M13/XX2/XX1) [g] /XX2/XX1/cklb :: [s,d,sub] /XX2/XX1/N003, /XX2/N001, Vss [l=0.6, w=1.8]
+NET "addr1" 22 connections
+NET "addr0" 10 connections
+  P: (inst M1/XX1/XX8) [g] addr0 :: [s,d,sub] /XX1/XX8/N001, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M7/XX1/XX8) [g] addr0, addr1, addr1 :: [s,d,sub] /XX1/XX8/N001, /XX1/Vss, /XX1/Vss [l=0.6, w=3.6]
+  N: (inst M1/XX1/XX9) [g] addr0 :: [s,d,sub] /XX1/N001, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M2/XX1/XX9) [g] addr0 :: [s,d,sub] /XX1/N001, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M1/XX1/XX2) [g] addr0 :: [s,d,sub] /XX1/XX2/N001, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M7/XX1/XX2) [g] addr0, /XX1/N002, /XX1/N003 :: [s,d,sub] /XX1/XX2/N001, /XX1/Vss, /XX1/Vss [l=0.6, w=3.6]
+  P: (inst M1/XX1/XX4) [g] addr0 :: [s,d,sub] /XX1/XX4/N001, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M7/XX1/XX4) [g] addr0, addr1, /XX1/N003 :: [s,d,sub] /XX1/XX4/N001, /XX1/Vss, /XX1/Vss [l=0.6, w=3.6]
+  P: (inst M1/XX1/XX6) [g] addr0 :: [s,d,sub] /XX1/XX6/N001, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M7/XX1/XX6) [g] addr0, /XX1/N002, addr1 :: [s,d,sub] /XX1/XX6/N001, /XX1/Vss, /XX1/Vss [l=0.6, w=3.6]
+NET "we0" 2 connections
+  N: (inst M6/XX1/X0) [g] /XX1/X0/N001 :: [s,d,sub] we0, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/X0) [g] /XX1/X0/N001 :: [s,d,sub] we0, VDD, VDD [l=0.6, w=3.6]
+NET "we2" 2 connections
+  N: (inst M6/XX1/XX3) [g] /XX1/XX3/N001 :: [s,d,sub] we2, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/XX3) [g] /XX1/XX3/N001 :: [s,d,sub] we2, VDD, VDD [l=0.6, w=3.6]
+NET "/XX4/LOAD" 2 connections
+  P: (inst M12/XX4/XX2) [g] /XX4/LOAD :: [s,d,sub] /XX4/XX2/selb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX4/XX2) [g] /XX4/LOAD :: [s,d,sub] /XX4/XX2/selb, Vss, Vss [l=0.6, w=1.8]
+NET "we1" 2 connections
+  N: (inst M6/XX1/XX2) [g] /XX1/XX2/N001 :: [s,d,sub] we1, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/XX2) [g] /XX1/XX2/N001 :: [s,d,sub] we1, VDD, VDD [l=0.6, w=3.6]
+NET "/XX10/LOAD" 2 connections
+  P: (inst M12/XX10/XX2) [g] /XX10/LOAD :: [s,d,sub] /XX10/XX2/selb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX10/XX2) [g] /XX10/LOAD :: [s,d,sub] /XX10/XX2/selb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX6/LOAD" 2 connections
+  P: (inst M12/XX6/XX2) [g] /XX6/LOAD :: [s,d,sub] /XX6/XX2/selb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX6/XX2) [g] /XX6/LOAD :: [s,d,sub] /XX6/XX2/selb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX9/DIN" 2 connections
+  N: (inst M4/XX9/XX2) [g] /XX9/XX2/selbb :: [s,d,sub] /XX9/XX2/N001, /XX9/DIN, Vss [l=0.6, w=1.8]
+  P: (inst M3/XX9/XX2) [g] /XX9/XX2/selb :: [s,d,sub] /XX9/XX2/N001, /XX9/DIN, VDD [l=0.6, w=3.6]
+NET "/XX2/LOAD" 2 connections
+  P: (inst M12/XX2/XX2) [g] /XX2/LOAD :: [s,d,sub] /XX2/XX2/selb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX2/XX2) [g] /XX2/LOAD :: [s,d,sub] /XX2/XX2/selb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX10/DIN" 2 connections
+  N: (inst M4/XX10/XX2) [g] /XX10/XX2/selbb :: [s,d,sub] /XX10/XX2/N001, /XX10/DIN, Vss [l=0.6, w=1.8]
+  P: (inst M3/XX10/XX2) [g] /XX10/XX2/selb :: [s,d,sub] /XX10/XX2/N001, /XX10/DIN, VDD [l=0.6, w=3.6]
+NET "/XX8/LOAD" 2 connections
+  P: (inst M12/XX8/XX2) [g] /XX8/LOAD :: [s,d,sub] /XX8/XX2/selb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX8/XX2) [g] /XX8/LOAD :: [s,d,sub] /XX8/XX2/selb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX3/Addr2" 2 connections
+  P: (inst M12/XX3/XX3) [g] /XX3/Addr2 :: [s,d,sub] /XX3/XX3/selb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX3/XX3) [g] /XX3/Addr2 :: [s,d,sub] /XX3/XX3/selb, /XX3/vss, /XX3/vss [l=0.6, w=1.8]
+NET "/XX9/LOAD" 2 connections
+  P: (inst M12/XX9/XX2) [g] /XX9/LOAD :: [s,d,sub] /XX9/XX2/selb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX9/XX2) [g] /XX9/LOAD :: [s,d,sub] /XX9/XX2/selb, Vss, Vss [l=0.6, w=1.8]
+NET "we4" 2 connections
+  N: (inst M6/XX1/XX5) [g] /XX1/XX5/N001 :: [s,d,sub] we4, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/XX5) [g] /XX1/XX5/N001 :: [s,d,sub] we4, VDD, VDD [l=0.6, w=3.6]
+NET "/XX5/LOAD" 2 connections
+  P: (inst M12/XX5/XX2) [g] /XX5/LOAD :: [s,d,sub] /XX5/XX2/selb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX5/XX2) [g] /XX5/LOAD :: [s,d,sub] /XX5/XX2/selb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX7/DIN" 2 connections
+  N: (inst M4/XX7/XX2) [g] /XX7/XX2/selbb :: [s,d,sub] /XX7/XX2/N001, /XX7/DIN, Vss [l=0.6, w=1.8]
+  P: (inst M3/XX7/XX2) [g] /XX7/XX2/selb :: [s,d,sub] /XX7/XX2/N001, /XX7/DIN, VDD [l=0.6, w=3.6]
+NET "/XX2/DIN" 2 connections
+  N: (inst M4/XX2/XX2) [g] /XX2/XX2/selbb :: [s,d,sub] /XX2/XX2/N001, /XX2/DIN, Vss [l=0.6, w=1.8]
+  P: (inst M3/XX2/XX2) [g] /XX2/XX2/selb :: [s,d,sub] /XX2/XX2/N001, /XX2/DIN, VDD [l=0.6, w=3.6]
+NET "/XX8/DIN" 2 connections
+  N: (inst M4/XX8/XX2) [g] /XX8/XX2/selbb :: [s,d,sub] /XX8/XX2/N001, /XX8/DIN, Vss [l=0.6, w=1.8]
+  P: (inst M3/XX8/XX2) [g] /XX8/XX2/selb :: [s,d,sub] /XX8/XX2/N001, /XX8/DIN, VDD [l=0.6, w=3.6]
+NET "/XX4/DIN" 2 connections
+  N: (inst M4/XX4/XX2) [g] /XX4/XX2/selbb :: [s,d,sub] /XX4/XX2/N001, /XX4/DIN, Vss [l=0.6, w=1.8]
+  P: (inst M3/XX4/XX2) [g] /XX4/XX2/selb :: [s,d,sub] /XX4/XX2/N001, /XX4/DIN, VDD [l=0.6, w=3.6]
+NET "we5" 2 connections
+  N: (inst M6/XX1/XX6) [g] /XX1/XX6/N001 :: [s,d,sub] we5, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/XX6) [g] /XX1/XX6/N001 :: [s,d,sub] we5, VDD, VDD [l=0.6, w=3.6]
+NET "/XX5/DIN" 2 connections
+  N: (inst M4/XX5/XX2) [g] /XX5/XX2/selbb :: [s,d,sub] /XX5/XX2/N001, /XX5/DIN, Vss [l=0.6, w=1.8]
+  P: (inst M3/XX5/XX2) [g] /XX5/XX2/selb :: [s,d,sub] /XX5/XX2/N001, /XX5/DIN, VDD [l=0.6, w=3.6]
+NET "/XX6/DIN" 2 connections
+  N: (inst M4/XX6/XX2) [g] /XX6/XX2/selbb :: [s,d,sub] /XX6/XX2/N001, /XX6/DIN, Vss [l=0.6, w=1.8]
+  P: (inst M3/XX6/XX2) [g] /XX6/XX2/selb :: [s,d,sub] /XX6/XX2/N001, /XX6/DIN, VDD [l=0.6, w=3.6]
+NET "we3" 2 connections
+  N: (inst M6/XX1/XX4) [g] /XX1/XX4/N001 :: [s,d,sub] we3, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/XX4) [g] /XX1/XX4/N001 :: [s,d,sub] we3, VDD, VDD [l=0.6, w=3.6]
+NET "/XX7/LOAD" 2 connections
+  P: (inst M12/XX7/XX2) [g] /XX7/LOAD :: [s,d,sub] /XX7/XX2/selb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX7/XX2) [g] /XX7/LOAD :: [s,d,sub] /XX7/XX2/selb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX1/XX7/N001" 5 connections
+  N: (inst M6/XX1/XX7) [g] /XX1/XX7/N001 :: [s,d,sub] we6, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/XX7) [g] /XX1/XX7/N001 :: [s,d,sub] we6, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M2/XX1/XX7) [g] addr1 :: [s,d,sub] /XX1/XX7/N001, VDD, VDD [l=0.6, w=7.2]
+  N: (inst M7/XX1/XX7) [g] /XX1/N001, addr1, addr1 :: [s,d,sub] /XX1/XX7/N001, /XX1/Vss, /XX1/Vss [l=0.6, w=3.6]
+  P: (inst M1/XX1/XX7) [g] /XX1/N001 :: [s,d,sub] /XX1/XX7/N001, VDD, VDD [l=0.6, w=3.6]
+NET "/XX8/XX1/clkbb" 5 connections
+  P: (inst M14/XX8/XX1) [g] /XX8/XX1/clkbb :: [s,d,sub] /XX8/XX1/N003, /XX8/N001, VDD [l=0.6, w=3.6]
+  N: (inst M15/XX8/XX1) [g] /XX8/XX1/clkbb :: [s,d,sub] /XX8/XX1/N004, /XX8/XX1/N003, Vss [l=0.6, w=1.8]
+  P: (inst M4/XX8/XX1) [g] /XX8/XX1/clkbb :: [s,d,sub] /XX8/XX1/N006, /XX8/XX1/N005, VDD [l=0.6, w=3.6]
+  N: (inst M9/XX8/XX1) [g] /XX8/XX1/clkb :: [s,d,sub] /XX8/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX8/XX1) [g] /XX8/XX1/clkb :: [s,d,sub] /XX8/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+NET "/XX2/XX1/clkbb" 5 connections
+  P: (inst M14/XX2/XX1) [g] /XX2/XX1/clkbb :: [s,d,sub] /XX2/XX1/N003, /XX2/N001, VDD [l=0.6, w=3.6]
+  N: (inst M15/XX2/XX1) [g] /XX2/XX1/clkbb :: [s,d,sub] /XX2/XX1/N004, /XX2/XX1/N003, Vss [l=0.6, w=1.8]
+  P: (inst M4/XX2/XX1) [g] /XX2/XX1/clkbb :: [s,d,sub] /XX2/XX1/N006, /XX2/XX1/N005, VDD [l=0.6, w=3.6]
+  N: (inst M9/XX2/XX1) [g] /XX2/XX1/clkb :: [s,d,sub] /XX2/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX2/XX1) [g] /XX2/XX1/clkb :: [s,d,sub] /XX2/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+NET "/XX5/XX1/clkbb" 5 connections
+  P: (inst M14/XX5/XX1) [g] /XX5/XX1/clkbb :: [s,d,sub] /XX5/XX1/N003, /XX5/N001, VDD [l=0.6, w=3.6]
+  N: (inst M15/XX5/XX1) [g] /XX5/XX1/clkbb :: [s,d,sub] /XX5/XX1/N004, /XX5/XX1/N003, Vss [l=0.6, w=1.8]
+  P: (inst M4/XX5/XX1) [g] /XX5/XX1/clkbb :: [s,d,sub] /XX5/XX1/N006, /XX5/XX1/N005, VDD [l=0.6, w=3.6]
+  N: (inst M9/XX5/XX1) [g] /XX5/XX1/clkb :: [s,d,sub] /XX5/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX5/XX1) [g] /XX5/XX1/clkb :: [s,d,sub] /XX5/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+NET "/XX10/XX1/clkbb" 5 connections
+  P: (inst M14/XX10/XX1) [g] /XX10/XX1/clkbb :: [s,d,sub] /XX10/XX1/N003, /XX10/N001, VDD [l=0.6, w=3.6]
+  N: (inst M15/XX10/XX1) [g] /XX10/XX1/clkbb :: [s,d,sub] /XX10/XX1/N004, /XX10/XX1/N003, Vss [l=0.6, w=1.8]
+  P: (inst M4/XX10/XX1) [g] /XX10/XX1/clkbb :: [s,d,sub] /XX10/XX1/N006, /XX10/XX1/N005, VDD [l=0.6, w=3.6]
+  N: (inst M9/XX10/XX1) [g] /XX10/XX1/clkb :: [s,d,sub] /XX10/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX10/XX1) [g] /XX10/XX1/clkb :: [s,d,sub] /XX10/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+NET "/XX4/XX1/clkbb" 5 connections
+  P: (inst M14/XX4/XX1) [g] /XX4/XX1/clkbb :: [s,d,sub] /XX4/XX1/N003, /XX4/N001, VDD [l=0.6, w=3.6]
+  N: (inst M15/XX4/XX1) [g] /XX4/XX1/clkbb :: [s,d,sub] /XX4/XX1/N004, /XX4/XX1/N003, Vss [l=0.6, w=1.8]
+  P: (inst M4/XX4/XX1) [g] /XX4/XX1/clkbb :: [s,d,sub] /XX4/XX1/N006, /XX4/XX1/N005, VDD [l=0.6, w=3.6]
+  N: (inst M9/XX4/XX1) [g] /XX4/XX1/clkb :: [s,d,sub] /XX4/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX4/XX1) [g] /XX4/XX1/clkb :: [s,d,sub] /XX4/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+NET "/XX7/XX1/clkbb" 5 connections
+  P: (inst M14/XX7/XX1) [g] /XX7/XX1/clkbb :: [s,d,sub] /XX7/XX1/N003, /XX7/N001, VDD [l=0.6, w=3.6]
+  N: (inst M15/XX7/XX1) [g] /XX7/XX1/clkbb :: [s,d,sub] /XX7/XX1/N004, /XX7/XX1/N003, Vss [l=0.6, w=1.8]
+  P: (inst M4/XX7/XX1) [g] /XX7/XX1/clkbb :: [s,d,sub] /XX7/XX1/N006, /XX7/XX1/N005, VDD [l=0.6, w=3.6]
+  N: (inst M9/XX7/XX1) [g] /XX7/XX1/clkb :: [s,d,sub] /XX7/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX7/XX1) [g] /XX7/XX1/clkb :: [s,d,sub] /XX7/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+NET "/XX9/XX1/clkbb" 5 connections
+  P: (inst M14/XX9/XX1) [g] /XX9/XX1/clkbb :: [s,d,sub] /XX9/XX1/N003, /XX9/N001, VDD [l=0.6, w=3.6]
+  N: (inst M15/XX9/XX1) [g] /XX9/XX1/clkbb :: [s,d,sub] /XX9/XX1/N004, /XX9/XX1/N003, Vss [l=0.6, w=1.8]
+  P: (inst M4/XX9/XX1) [g] /XX9/XX1/clkbb :: [s,d,sub] /XX9/XX1/N006, /XX9/XX1/N005, VDD [l=0.6, w=3.6]
+  N: (inst M9/XX9/XX1) [g] /XX9/XX1/clkb :: [s,d,sub] /XX9/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX9/XX1) [g] /XX9/XX1/clkb :: [s,d,sub] /XX9/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+NET "/XX6/XX1/clkbb" 5 connections
+  P: (inst M14/XX6/XX1) [g] /XX6/XX1/clkbb :: [s,d,sub] /XX6/XX1/N003, /XX6/N001, VDD [l=0.6, w=3.6]
+  N: (inst M15/XX6/XX1) [g] /XX6/XX1/clkbb :: [s,d,sub] /XX6/XX1/N004, /XX6/XX1/N003, Vss [l=0.6, w=1.8]
+  P: (inst M4/XX6/XX1) [g] /XX6/XX1/clkbb :: [s,d,sub] /XX6/XX1/N006, /XX6/XX1/N005, VDD [l=0.6, w=3.6]
+  N: (inst M9/XX6/XX1) [g] /XX6/XX1/clkb :: [s,d,sub] /XX6/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX6/XX1) [g] /XX6/XX1/clkb :: [s,d,sub] /XX6/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+NET "/XX8/XX1/clkb" 7 connections
+  N: (inst M9/XX8/XX1) [g] /XX8/XX1/clkb :: [s,d,sub] /XX8/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M2/XX8/XX1) [g] /XX8/XX1/clkb :: [s,d,sub] /XX8/XX1/N005, /XX8/XX1/N001, VDD [l=0.6, w=3.6]
+  P: (inst M16/XX8/XX1) [g] /XX8/XX1/clkb :: [s,d,sub] /XX8/XX1/N004, /XX8/XX1/N003, VDD [l=0.6, w=3.6]
+  N: (inst M3/XX8/XX1) [g] /XX8/XX1/clkb :: [s,d,sub] /XX8/XX1/N006, /XX8/XX1/N005, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX8/XX1) [g] /XX8/XX1/clkb :: [s,d,sub] /XX8/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M12/XX8/XX1) [g] clk :: [s,d,sub] /XX8/XX1/clkb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX8/XX1) [g] clk :: [s,d,sub] /XX8/XX1/clkb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX10/XX1/clkb" 7 connections
+  N: (inst M9/XX10/XX1) [g] /XX10/XX1/clkb :: [s,d,sub] /XX10/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M2/XX10/XX1) [g] /XX10/XX1/clkb :: [s,d,sub] /XX10/XX1/N005, /XX10/XX1/N001, VDD [l=0.6, w=3.6]
+  P: (inst M16/XX10/XX1) [g] /XX10/XX1/clkb :: [s,d,sub] /XX10/XX1/N004, /XX10/XX1/N003, VDD [l=0.6, w=3.6]
+  N: (inst M3/XX10/XX1) [g] /XX10/XX1/clkb :: [s,d,sub] /XX10/XX1/N006, /XX10/XX1/N005, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX10/XX1) [g] /XX10/XX1/clkb :: [s,d,sub] /XX10/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M12/XX10/XX1) [g] clk :: [s,d,sub] /XX10/XX1/clkb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX10/XX1) [g] clk :: [s,d,sub] /XX10/XX1/clkb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX5/XX1/clkb" 7 connections
+  N: (inst M9/XX5/XX1) [g] /XX5/XX1/clkb :: [s,d,sub] /XX5/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M2/XX5/XX1) [g] /XX5/XX1/clkb :: [s,d,sub] /XX5/XX1/N005, /XX5/XX1/N001, VDD [l=0.6, w=3.6]
+  P: (inst M16/XX5/XX1) [g] /XX5/XX1/clkb :: [s,d,sub] /XX5/XX1/N004, /XX5/XX1/N003, VDD [l=0.6, w=3.6]
+  N: (inst M3/XX5/XX1) [g] /XX5/XX1/clkb :: [s,d,sub] /XX5/XX1/N006, /XX5/XX1/N005, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX5/XX1) [g] /XX5/XX1/clkb :: [s,d,sub] /XX5/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M12/XX5/XX1) [g] clk :: [s,d,sub] /XX5/XX1/clkb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX5/XX1) [g] clk :: [s,d,sub] /XX5/XX1/clkb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX6/XX1/clkb" 7 connections
+  N: (inst M9/XX6/XX1) [g] /XX6/XX1/clkb :: [s,d,sub] /XX6/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M2/XX6/XX1) [g] /XX6/XX1/clkb :: [s,d,sub] /XX6/XX1/N005, /XX6/XX1/N001, VDD [l=0.6, w=3.6]
+  P: (inst M16/XX6/XX1) [g] /XX6/XX1/clkb :: [s,d,sub] /XX6/XX1/N004, /XX6/XX1/N003, VDD [l=0.6, w=3.6]
+  N: (inst M3/XX6/XX1) [g] /XX6/XX1/clkb :: [s,d,sub] /XX6/XX1/N006, /XX6/XX1/N005, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX6/XX1) [g] /XX6/XX1/clkb :: [s,d,sub] /XX6/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M12/XX6/XX1) [g] clk :: [s,d,sub] /XX6/XX1/clkb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX6/XX1) [g] clk :: [s,d,sub] /XX6/XX1/clkb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX4/XX1/clkb" 7 connections
+  N: (inst M9/XX4/XX1) [g] /XX4/XX1/clkb :: [s,d,sub] /XX4/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M2/XX4/XX1) [g] /XX4/XX1/clkb :: [s,d,sub] /XX4/XX1/N005, /XX4/XX1/N001, VDD [l=0.6, w=3.6]
+  P: (inst M16/XX4/XX1) [g] /XX4/XX1/clkb :: [s,d,sub] /XX4/XX1/N004, /XX4/XX1/N003, VDD [l=0.6, w=3.6]
+  N: (inst M3/XX4/XX1) [g] /XX4/XX1/clkb :: [s,d,sub] /XX4/XX1/N006, /XX4/XX1/N005, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX4/XX1) [g] /XX4/XX1/clkb :: [s,d,sub] /XX4/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M12/XX4/XX1) [g] clk :: [s,d,sub] /XX4/XX1/clkb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX4/XX1) [g] clk :: [s,d,sub] /XX4/XX1/clkb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX7/XX1/clkb" 7 connections
+  N: (inst M9/XX7/XX1) [g] /XX7/XX1/clkb :: [s,d,sub] /XX7/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M2/XX7/XX1) [g] /XX7/XX1/clkb :: [s,d,sub] /XX7/XX1/N005, /XX7/XX1/N001, VDD [l=0.6, w=3.6]
+  P: (inst M16/XX7/XX1) [g] /XX7/XX1/clkb :: [s,d,sub] /XX7/XX1/N004, /XX7/XX1/N003, VDD [l=0.6, w=3.6]
+  N: (inst M3/XX7/XX1) [g] /XX7/XX1/clkb :: [s,d,sub] /XX7/XX1/N006, /XX7/XX1/N005, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX7/XX1) [g] /XX7/XX1/clkb :: [s,d,sub] /XX7/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M12/XX7/XX1) [g] clk :: [s,d,sub] /XX7/XX1/clkb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX7/XX1) [g] clk :: [s,d,sub] /XX7/XX1/clkb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX2/XX1/clkb" 7 connections
+  N: (inst M9/XX2/XX1) [g] /XX2/XX1/clkb :: [s,d,sub] /XX2/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M2/XX2/XX1) [g] /XX2/XX1/clkb :: [s,d,sub] /XX2/XX1/N005, /XX2/XX1/N001, VDD [l=0.6, w=3.6]
+  P: (inst M16/XX2/XX1) [g] /XX2/XX1/clkb :: [s,d,sub] /XX2/XX1/N004, /XX2/XX1/N003, VDD [l=0.6, w=3.6]
+  N: (inst M3/XX2/XX1) [g] /XX2/XX1/clkb :: [s,d,sub] /XX2/XX1/N006, /XX2/XX1/N005, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX2/XX1) [g] /XX2/XX1/clkb :: [s,d,sub] /XX2/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M12/XX2/XX1) [g] clk :: [s,d,sub] /XX2/XX1/clkb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX2/XX1) [g] clk :: [s,d,sub] /XX2/XX1/clkb, Vss, Vss [l=0.6, w=1.8]
+NET "/XX9/XX1/clkb" 7 connections
+  N: (inst M9/XX9/XX1) [g] /XX9/XX1/clkb :: [s,d,sub] /XX9/XX1/clkbb, Vss, Vss [l=0.6, w=1.8]
+  P: (inst M2/XX9/XX1) [g] /XX9/XX1/clkb :: [s,d,sub] /XX9/XX1/N005, /XX9/XX1/N001, VDD [l=0.6, w=3.6]
+ 
+ P: (inst M16/XX9/XX1) [g] /XX9/XX1/clkb :: [s,d,sub] /XX9/XX1/N004, /XX9/XX1/N003, VDD [l=0.6, w=3.6]
+  N: (inst M3/XX9/XX1) [g] /XX9/XX1/clkb :: [s,d,sub] /XX9/XX1/N006, /XX9/XX1/N005, Vss [l=0.6, w=1.8]
+  P: (inst M10/XX9/XX1) [g] /XX9/XX1/clkb :: [s,d,sub] /XX9/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M12/XX9/XX1) [g] clk :: [s,d,sub] /XX9/XX1/clkb, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M11/XX9/XX1) [g] clk :: [s,d,sub] /XX9/XX1/clkb, Vss, Vss [l=0.6, w=1.8]
+NET "we7" 2 connections
+  N: (inst M6/XX1/XX8) [g] /XX1/XX8/N001 :: [s,d,sub] we7, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/XX8) [g] /XX1/XX8/N001 :: [s,d,sub] we7, VDD, VDD [l=0.6, w=3.6]
+NET "we6" 2 connections
+  N: (inst M6/XX1/XX7) [g] /XX1/XX7/N001 :: [s,d,sub] we6, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/XX7) [g] /XX1/XX7/N001 :: [s,d,sub] we6, VDD, VDD [l=0.6, w=3.6]
+NET "addr2" 4 connections
+  P: (inst M24/XX3/XX2) [g] addr2 :: [s,d,sub] /XX3/XX2/sel1b, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M23/XX3/XX1) [g] addr2 :: [s,d,sub] /XX3/XX1/sel1b, /XX3/vss, /XX3/vss [l=0.6, w=1.8]
+  P: (inst M24/XX3/XX1) [g] addr2 :: [s,d,sub] /XX3/XX1/sel1b, VDD, VDD [l=0.6, w=3.6]
+  N: (inst M23/XX3/XX2) [g] addr2 :: [s,d,sub] /XX3/XX2/sel1b, /XX3/vss, /XX3/vss [l=0.6, w=1.8]
+NET "/XX1/Vss" 54 connections
+NET "/XX1/XX8/N001" 5 connections
+  N: (inst M6/XX1/XX8) [g] /XX1/XX8/N001 :: [s,d,sub] we7, /XX1/Vss, /XX1/Vss [l=0.6, w=1.8]
+  P: (inst M5/XX1/XX8) [g] /XX1/XX8/N001 :: [s,d,sub] we7, VDD, VDD [l=0.6, w=3.6]
+  P: (inst M2/XX1/XX8) [g] addr1 :: [s,d,sub] /XX1/XX8/N001, VDD, VDD [l=0.6, w=7.2]
+  N: (inst M7/XX1/XX8) [g] addr0, addr1, addr1 :: [s,d,sub] /XX1/XX8/N001, /XX1/Vss, /XX1/Vss [l=0.6, w=3.6]
+  P: (inst M1/XX1/XX8) [g] addr0 :: [s,d,sub] /XX1/XX8/N001, VDD, VDD [l=0.6, w=3.6]
+13 DEVICES could not be matched, possibly because of other unmatched devices:
+DEVICE P: (inst M10/XX7/XX1) [g] /XX7/XX1/clkb :: [s,d,sub] /XX7/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M10/XX6/XX1) [g] /XX6/XX1/clkb :: [s,d,sub] /XX6/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M10/XX4/XX1) [g] /XX4/XX1/clkb :: [s,d,sub] /XX4/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M2/XX1/XX7) [g] addr1 :: [s,d,sub] /XX1/XX7/N001, VDD, VDD [l=0.6, w=7.2]
+DEVICE P: (inst M5/XX1/XX7) [g] /XX1/XX7/N001 :: [s,d,sub] we6, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M10/XX10/XX1) [g] /XX10/XX1/clkb :: [s,d,sub] /XX10/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M10/XX2/XX1) [g] /XX2/XX1/clkb :: [s,d,sub] /XX2/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M2/XX1/XX8) [g] addr1 :: [s,d,sub] /XX1/XX8/N001, VDD, VDD [l=0.6, w=7.2]
+DEVICE P: (inst M1/XX1/XX8) [g] addr0 :: [s,d,sub] /XX1/XX8/N001, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M5/XX1/XX8) [g] /XX1/XX8/N001 :: [s,d,sub] we7, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M10/XX5/XX1) [g] /XX5/XX1/clkb :: [s,d,sub] /XX5/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M10/XX8/XX1) [g] /XX8/XX1/clkb :: [s,d,sub] /XX8/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+DEVICE P: (inst M10/XX9/XX1) [g] /XX9/XX1/clkb :: [s,d,sub] /XX9/XX1/clkbb, VDD, VDD [l=0.6, w=3.6]
+
+39 devices and 26 nets written to C:\Users\Randall_Jack\Desktop\glade5_win64\ECEN351\Register_File.err
+
+Gemini completed at 13:05:14 on 03/04/2023

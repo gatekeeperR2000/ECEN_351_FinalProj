@@ -1,0 +1,44 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 11:36:22 on Jan  9 2025 by Visual C++ 13.4
+-----------------------------------------------------------------------------
+
+Gemini started at 10:42:40 on 22/02/2025
+
+Command line:
+	-w 10.000000 -g C:\Users\Randall\Desktop\glade6_win64\ECEN351\nand2_1x.err -S C:\Users\Randall\Desktop\glade6_win64\ECEN351\nand2_1x_extracted.cdl C:\Users\Randall\Desktop\glade6_win64\ECEN351\nand2_1x.cdl_flat 
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : nand2_1x_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       4
+  Number of nets    :       6
+  Number of ports   :       3
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : nand2_1x.cdl_flat
+-----------------------------------------------------------------------------
+  Number of devices :       4
+  Number of nets    :       6
+  Number of ports   :       3
+
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		nand2_1x_extracted.cdl	nand2_1x.cdl_flat
+  Number of devices :       3			3
+  Number of nets    :       5			5
+  Number of ports   :       3			3
+
+
+These circuits contain some symmetry (50% nodes not yet matched).
+Gemini will attempt to find a valid match for symmetrical nodes.
+M##There were no device property errors.
+3 (37%) matches were found by local matching.
+All nodes were matched in 7 passes.
+
+The netlists match.
+
+0 devices and 0 nets written to C:\Users\Randall\Desktop\glade6_win64\ECEN351\nand2_1x.err
+
+Gemini completed at 10:42:40 on 22/02/2025

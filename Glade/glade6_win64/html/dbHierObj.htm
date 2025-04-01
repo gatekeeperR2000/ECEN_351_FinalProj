@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+
+  <body bgcolor="#FFFFFF">
+  <div align="left">
+    <img src="images/canvasview" width="32" height="32" align="right"><br>
+  </div>
+
+  <div align="left">
+    <p align="left"><font face="Arial, Helvetica, sans-serif"><b>
+      <font size="4">
+        Glade Reference
+      </font></b>
+    </font></p>
+    <hr>
+
+<!-- #BeginEditable "text" -->
+
+<h2><font face="Arial, Helvetica, sans-serif">
+    dbHierObj class
+</font></h2>
+
+<p>
+    A dbHierObj is a helper class created in hierarchical searches using dbGetHierOverlaps(). 
+    It contains the object, the cellView that contains the object&nbsp;and the transformation 
+    of the object from the top level.
+</p>
+
+<p>&nbsp;</p>
+
+<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+    hierObj = dbHierObj(<a href="cellview.htm">cellView </a> *cv, <a href="dbObj.htm">dbObj </a> *obj, <a href="transform.htm">transform </a> trans);
+</font></h4>
+
+<p>
+    Construct a dbHierObj with the cellView <em>cv</em> containing object <em>obj </em>and 
+    the transformation <em>trans</em> as seen from the top level.
+</p>
+
+<p>&nbsp;</p>
+
+<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+    bool dbHierObj::operator== (const dbHierObj &amp; other)
+</font><h4>
+
+<p>
+    true if the two dbHierObjs are equal.
+</p>
+
+<p>&nbsp;</p>
+
+<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+    operator != (const dbHierObj &amp; other)
+</font></h4>
+
+<p>
+    true if the two dbHierObjs are not equal.
+</p>
+
+<p>&nbsp;</p>
+
+<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+    bool operator &lt; (const dbHierObj &amp; other)
+</font></h4>
+
+<p>
+    true if the dbHierObj is &#39;less than&#39; the other. 
+    &#39;Less than&#39; is a rather arbitrary comparison used for sorting. 
+    Objects are compared by type, layer, transformation and finally their pointlist.
+</p>
+
+<p>&nbsp;</p>
+
+<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+    <a href="dbObj.htm">dbObj </a>*obj = hierObj.object()
+</font></h4>
+
+<p>
+    Returns the dbObj associated with the dbHierObj.
+</p>
+
+<p>&nbsp;</p>
+
+<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+    <a href="transform.htm">transform </a>trans = hierObj.transform()
+</font></p>
+
+<p>
+    Returns the transform of the dbHierObj.
+</p>
+
+<p>&nbsp;</p>
+
+<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+    int hierObj::layer()
+</font></h4>
+
+<p>
+    Returns the layer of the object.
+</p>
+
+<p>&nbsp;</p>
+
+<h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+    <a href="cellview.htm">cellView </a>*cv = hierObj.cv()
+</font></h4>
+
+<p>
+    Returns the cellView that contains the object.
+</p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<!-- #EndEditable --> 
+<p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

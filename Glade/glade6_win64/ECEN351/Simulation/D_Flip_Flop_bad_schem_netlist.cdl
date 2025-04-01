@@ -1,0 +1,49 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib_bad
+* Top Cell Name: D_Flip_Flop_bad
+* View Name: schematic
+* Netlist created: 11.Mar.2025 10:20:51
+*******************************************************************************
+
+*.SCALE METER
+.GLOBAL vdd
+.GLOBAL vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib_bad
+* Cell Name:    D_Flip_Flop_bad
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT D_Flip_Flop_bad D_in clk Q_out Qn_out 
+*.PININFO D_in:I Q_out:O clk:I Qn_out:O
+
+M20 n14 n8 vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M2 clkb clk vss vss C5NNMOS w=1.8u l=0.6u m=1
+M22 n9 clkbb n8 vdd C5NPMOS w=3.6u l=0.6u m=1
+M14 n12 n10 vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M0 clkb clk vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M12 n12 clkb n6 vdd C5NPMOS w=3.6u l=0.6u m=1
+M4 Q_out Qn_out vss vss C5NNMOS w=1.8u l=0.6u m=1
+M6 Qn_out n14 vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M18 n8 clkb n10 vdd C5NPMOS w=3.6u l=0.6u m=1
+M17 n9 clkb n8 vss C5NNMOS w=1.8u l=0.6u m=1
+M23 n9 n14 vss vss C5NNMOS w=1.8u l=0.6u m=1
+M19 n8 clkbb n10 vss C5NNMOS w=1.8u l=0.6u m=1
+M9 n10 n6 vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M11 n6 clkbb D_in vdd C5NPMOS w=3.6u l=0.6u m=1
+M16 n9 n14 vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M15 n12 n10 vss vss C5NNMOS w=1.8u l=0.6u m=1
+M5 Q_out Qn_out vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M21 n14 n8 vss vss C5NNMOS w=1.8u l=0.6u m=1
+M3 clkbb clkb vss vss C5NNMOS w=1.8u l=0.6u m=1
+M7 Qn_out n14 vss vss C5NNMOS w=1.8u l=0.6u m=1
+M8 n10 n6 vss vss C5NNMOS w=1.8u l=0.6u m=1
+M13 n12 clkbb n6 vss C5NNMOS w=1.8u l=0.6u m=1
+M1 clkbb clkb vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M10 n6 clkb D_in vss C5NNMOS w=1.8u l=0.6u m=1
+.ENDS
+
+.END

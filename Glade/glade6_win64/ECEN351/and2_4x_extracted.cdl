@@ -1,0 +1,30 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib
+* Top Cell Name: and2_4x
+* View Name: extracted
+* Netlist created: 22.Mar.2019 20:11:26
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    and2_4x
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT and2_4x Y B A
+*.PININFO Y:B B:B A:B
+
+MM13 Y n5 vdd vdd C5NPMOS w=7.2e-06 l=6e-07 as=1.188e-11 ps=1.77e-05 ad=1.296e-11 pd=1.8e-05 $X=16.35 $Y=11.7
+MM10 vdd B n5 vdd C5NPMOS w=3.6e-06 l=6e-07 as=2.97e-12 ps=1.05e-05 ad=3.24e-12 pd=1.08e-05 $X=4.35 $Y=15.3
+MM9 Y n5 vss vss C5NNMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=6.48e-12 pd=1.08e-05 $X=16.35 $Y=2.1
+MM7 n6 A n5 vss C5NNMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=6.48e-12 pd=1.08e-05 $X=6.75 $Y=2.1
+MM6 vss B n6 vss C5NNMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=6.48e-12 pd=1.08e-05 $X=4.35 $Y=2.1
+MM12 vdd n5 Y vdd C5NPMOS w=7.2e-06 l=6e-07 as=1.188e-11 ps=1.77e-05 ad=1.296e-11 pd=1.8e-05 $X=13.95 $Y=11.7
+MM8 vss n5 Y vss C5NNMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=6.48e-12 pd=1.08e-05 $X=13.95 $Y=2.1
+MM11 n5 A vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=2.97e-12 ps=1.05e-05 ad=3.24e-12 pd=1.08e-05 $X=6.75 $Y=15.3
+.ENDS

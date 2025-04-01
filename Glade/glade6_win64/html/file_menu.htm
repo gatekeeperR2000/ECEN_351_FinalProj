@@ -1,0 +1,1343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>
+        <font size="4">Glade Reference
+
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">File Menu Commands</font></h2>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;New Lib
+      </font></h4>
+
+      <p align="center"><img border="0" hspace="0" src="images/newLib.png"></p>
+
+      <p>
+        Creates a new library. <em> Load techfile</em> enables the <em>Technology File</em> field and will 
+        load that techfile into the new library. <em>Attach to library</em> enables the <em>Attach library 
+        name</em> field, and will attach the library's techfile to an existing (open) library. <em>Database 
+        units/micron</em> controls the precision of the represented data. 
+        Unless you have a good reason to change this and understand the implications, leave it as 1000 (i.e. 
+        1 dbu = 1nm).
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Open Lib<a name="import_library"></a>
+      </font></h4>
+
+      <h4 align="center"><img src="images/openLib.png" width="838" height="577" alt="Open Library"></h4>
+
+      <p>
+        If you have an existing Glade library, you can use 
+        the Open Library command to specify a library name to open. Note that Glade libraries 
+        are just directories, so select the library by selecting the directory with 
+        the same name and click OK. Internally cellviews are stored as files of 
+        the form cellName/viewName. The library technology file is also stored in the 
+        library in binary format and is called glade.lib. 
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Save Lib<a name="export_library"></a>
+      </font></h4>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Save Lib As...<a name="export_library"></a>
+      </font></h4>
+
+      <p align="center"><img src="images/saveLib.png" width="299" height="135" alt="Save Lib"></p>
+
+      <p align="left">
+        Use the File-&gt;Save Lib or File-&gt;Save Lib As... to save a library to disk after importing design 
+        data. You specify a library name, which translates to a directory name in Unix or Windows, and the 
+        library data is written to files in this directory. These files are binary - do not attempt to alter them, 
+        delete or rename them, or your design data may become corrupted.
+      </p>
+
+      <<p>&nbsp;</p>
+
+      <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Close Lib<a name="file_closelib"></a>
+      </font></h4>
+
+      <h4 align="center"><img src="images/closeLib.png" width="303" height="109" alt="Close Lib"></h4>
+
+      <p align="left">
+        The Close Library 
+        command closes the chosen library. All cellviews from the library will be 
+        purged from virtual memory. The system will prompt you to save any modified 
+        cellviews. If  a window displaying a cellView from the library is open, it will be closed.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;New Cell<a name="file_new"></a>
+      </font></h4>
+
+      <p align="center"><img src="images/newCell.png" width="303" height="285" alt="New Cell"></p>
+
+      <p align="left">
+        Use the New Cell dialog 
+        to create a new cellview. The library given by <em>Library Name</em> must already exist. Specify 
+        <em>the Cell Name</em> and the <em>View Name</em>. Set the <em>View Type </em>to the type of the 
+        cellView; valid options are layout,  schematic, symbol, abstract, autoLayout. Setting the <em>View 
+        Type</em> will set a default <em>View  Name</em>. If <em>CellView is a PCell</em> is  checked, a 
+        PCell (parameterised cell) will be read from the <em>PCell script</em> file. In this case the 
+        Cell  Name is automatically assigned from the python script name, and the <em>Cell Name</em> 
+        field is greyed out.<br> The new cellView is added to the library and displayed in  the library browser, 
+        and automatically opened if <em>Automatically Open cellView?</em> Is checked.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Open Cell...<a name="file_opencell"></a>
+      </font></h4>
+
+      <p align="left">
+        Invokes the <a href="tools_menu.htm#library_browser">library browser</a>&nbsp;to allow opening of a cellview.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Save Cell<a name="export_cell"></a>
+      </font></h4>
+
+      <p>
+        Use the Save Cell command to save 
+        the current cellview to a library on disk.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Restore Cell<a name="file_restorecell"></a>
+      </font></h4>
+
+      <p>
+        Use the Restore Cell command to restore a cellview from disk.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2><font face="Arial, Helvetica, sans-serif">Import Commands<a name="file_import"></a></font></h2>
+
+      <p>
+        Normally the sequence of importing 
+        design data into Glade is performed by importing a techfile first, then either 
+        importing GDS2 or importing LEF and then DEF. If you do not have a technology 
+        file, you can just import GDS2 or LEF/DEF, as basic technology information 
+        will be created for each layer read. In the case of GDS2, layers will be of 
+        the form L0, L1... where the number is the GDS2 layer number. All layers created 
+        by importing GDS2 will have purpose drawing, and layer colors will be assigned 
+        at random with hollow fill style. Layers created by importing LEF will have 
+        the LEF layer name and 4 purposes (drawing, net, pin and boundary). You can 
+        then subsequently <a href="#file_export" target="_self">export the technology 
+        file</a> for later use.
+      </p>
+
+      <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;Skill Techfile<a name="import_cds"></a>
+      </font></h4>
+
+      <p align="left">
+        Selecting File-&gt;Import-&gt;Skill Techfile... displays the Import Cadence Techfile dialog:
+      </p>
+
+      <p align="center"><img border="0" hspace="0" src="images/importCds.png"></p>
+
+      <p align="left">
+        <i>Display Resource File</i> specifies the Cadence display resource file (typically display.drf). 
+        <i>Technology File</i> specifies the Cadence Skill technology file. 
+        <i>Into Library</i> should specify a library name to import the technology into, and will be created 
+        if it does not already exist. If the library does exist, the imported techfile will be merged with the 
+        existing one. This can produce unpredictable results and is not advised. 
+        <i>Database units/micron</i> sets the internal database resolution; in most cases 1000 is suitable. 
+        If <em>Use GDS map file</em> is set, stream layer/datatype numbers&nbsp;to Cadence layer/purpose names 
+        are set using a mapfile. The map file format is simply lines containing layer name, purpose name, 
+        stream layer number and stream datatype number. Comment lines (lines begininning with the # character) are ignored.
+      </p>
+
+      <p align="left">
+        Note there are some 
+        limitations on importing Skill techfiles. Stipple patterns of size 4x4, 8x8, 16x16 and 32x32 are supported, 
+        other stipple pattern sizes will be rounded up to the next supported size. The Skill techfile should be written 
+        from Virtuoso and should not be hand edited else it may not parse sucessfully. However the parser can 
+        handle simple Skill expressions e.g. arithmetic operators, commonly found in techfiles.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;Laker Techfile<a name="import_laker"></a>
+      </font></h4>
+
+      <p align="left">
+        Selecting File-&gt;Import-&gt;Laker Techfile displays the Import Laker techfile dialog:
+      </p>
+
+      <p align="center"><img border="0" hspace="0" src="images/importLaker.png"></p>
+
+      <p align="left">
+        <i>Display File</i> specifies the Laker display file (typically default.dsp). 
+        <i>Technology File</i> specifies the Laker technology file. 
+        <i>Into Library</i> should specify a library name to import the technology into, and 
+        will be created if it does not already exist. If the library does exist, the 
+        imported techfile will be merged with the existing one. This can produce 
+        unpredictable results and is not advised. 
+        <em>Database units/micron</em> sets the database units. 
+        <em>Use GDS map file</em>, if checked, allows a GDS layermap file to be used. The map 
+        file format is simply lines containing layer name, purpose name, stream layer number 
+        and stream datatype number. Comment lines (lines begininning with the # character) 
+        are ignored. If the technology file also contains a tfStreamIoTable section, the map 
+        file entries will be merged and will overwrite tfStreamIoTable entries.
+      </p>
+
+      <p align="left">
+        Laker stipple patterns 
+        of size 4x4, 8x8, 16x16 and 32x32 are supported, other stipple pattern sizes 
+        will be rounded up to the next supported size. Currently only layer colour 
+        / stipple / linestyle data and stream number / datatype info is read from 
+        the Laker techfile.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;Techfile<a name="import_tech"></a>
+      </font></h4>
+
+      <p>
+        Selecting the File-&gt;Import-&gt;Techfile menu item displays the Import Techfile dialog.
+      </p>
+
+      <p align="center"><img src="images/importTech.png" width="299" height="165" alt="Import Techfile"></p>
+
+      <p>
+        A (Glade) technology file can be used when no Cadence / Laker techfile is available. 
+        The <i>Technology File</i> can be chosen using the file chooser button. 
+        The <i>Library</i> name should be specified, and the library will be created if it does not 
+        already exist. If the library does exist, the imported techfile will be merged with the existing 
+        one. This can produce unpredictable results and is not advised. 
+        <i>Database units/micron</i> sets the internal database resolution; in most cases 1000 is suitable.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;GDS2<a name="import_gds2"></a>
+      </font></h4>
+
+      <p>
+        Selecting the File-&gt;Import-&gt;GDS2 menu item displays the Import GDS2 dialog:
+      </p>
+
+      <p align="center"><img src="images/importGds2.png" width="456" height="683" alt="Import GDS2"></p>
+
+      <p>
+        The GDS2 file to import can be chosen using the file chooser button. Multiple GDS2 files can 
+        be read if they are entered separated by a comma. If the file name extension is '.gz' then 
+        the compressed file will be unzipped on the fly. For debugging purposes, the 
+        GDS2 can be dumped to a readable ASCII format if the <i>Dump to File</i> button 
+        is checked and a file name given in the <i>File name</i> field. 
+      </p>
+
+      <p>
+        The <i>Library Name</i> field specifies the library name that the GDS2 will be imported to.
+        If you have previously read in a techfile, the library field will be preset to this library name. 
+        If the library does not exist, it will be created with a default techfile.
+      </p>
+
+      <p>
+        GDS2 can be scaled while read in if the <i>Scale Factor</i> field is set to a number other than 1. 
+        For example, if a scale factor of 0.5 is chosen, all coodinates will be multiplied by 0.5 and the 
+        design is shrunk by a factor of 2. This can be useful for scaling entire design databases.
+      </p>
+
+      <p>
+        An <i>X offse</i>t and <i>Y offset</i> can also be specified. The specified offsets 
+        are added to all coordinates in the design, in effect moving the origin of the 
+        design. Note that offsets are applied <strong>BEFORE</strong>any user-specified <em>Scale Factor</em>.
+      </p>
+
+      <p>
+        The <em>View Name</em> specifies the view name created when a cell is imported. If cell 
+        mapping is used, this value will be overriden by the map library/cell/view names.
+      </p>
+
+      <p>
+        You have a choice of importing all layers, layers defined in the techfile or just a single layer in the 
+        <em>Import Layer(s)</em> field. When '<em>Single</em>' is selected, a GDS2 layer number and datatype 
+        number need to be specified, and only shapes on this layer/datatype will be imported.
+      </p>
+      <p>
+        When cells are imported, if a cell of the same name exists you have 3 options available in the 
+        <em>Duplicate Cells</em> field. <em>Overwrite</em> means the new cell will replace the existing cell. 
+        <em>Ignore</em> will mean the new cell definition is ignored, along with all data in it. <em>Merge</em> 
+        means the original cell data is preserved, and any data in the new cell is added to it. This may cause 
+        duplicate shapes, but can be used to merge GDS data.
+      </p>
+      <p>
+        GDS2 structure and array names can have their <i>Case</i> preserved, forced to upper case or lower case 
+        depending on the '<em>Case</em>' radio buttons. Note that if you have a structure named 'AND2' 
+        and one called 'and2' and do not preserve case, then the second structure encountered will give rise to a 
+        duplicate cell and will be handled by the settings in the <em>Duplicate Cells</em> field..
+      </p>
+      <p>
+        Manhattan 2 point paths can be converted to paths (the default), rectangles or H/V segs. The latter two
+        can result is smaller memory usage for designs that use lots of 2 point paths for e.g. metal fill.
+      </p>
+      <p>
+        GDS2 properties can be used to import net names and instance names into the Glade database. Many layout 
+        editors and place &amp; route tools can output this data, and if GDS2 properties are present with the 
+        chosen attribute numbers then net and/or instance names will be annotated into the database.
+      </p>
+      <p>
+        <i>Set Library dbu/UU from GDS</i> will set the library database units from that specified in the GDS2 file. 
+        This should normally be checked if importing into an empty library. If you want to import GDS2 data into an 
+        existing library, uncheck this so the existing library units can be used; the GDS2 data will be scaled to match 
+        if the GDS2 units differ from the library units. Note this scaling occurs before any user-defined offset 
+        or user-defined scale factor is applied.
+      </p>
+      <p>
+        <i>Report Dubious Data</i> will give warnings/errors to the message window if dubious data is encountered, 
+        such as polygons with less than 3 vertices.
+      </p>
+      <p>
+        <em>Set library name from GDS libname</em> will set the Glade library name of the imported GDs to the GDS library name.
+      </p>
+      <p>
+        Convert via cells to vias</em> will identify potential via cells in the GDS. A via cell is a cell 
+        with 3 layers, of which two are of function ROUTING and one of function CUT, as defined in the techfile. 
+        A via will be created for each distinct cell and added to the library. On stream out via 
+        <a href="export_gds2">Export Gds2</a>, vias can be converted back to cells. Note this option can increase
+        import time of large GDS files.
+      </p>
+      <p>
+        <i>Report cell names read</i> will write each cell (GDS STRUCT) encountered in the input GDS data. 
+        For large designs this can slow things down so by default it is turned off.
+      </p>
+      <p>
+        <i>Open Top Cell(s)</i> will attempt to identify and open cells that appear to be the 'top cell' of a 
+        GDS file. A top cell is not referenced by other cells, and contains one of more cell placements.
+      </p>
+      <p>
+        if <em>Import PCell Properties</em> is checked, properties of PCells are imported if they have been written 
+        previously using the File-&gt;Export-&gt;GDS2 command with the option checked.
+      </p>
+      <p>
+        The GDS2 reader is single pass. As forward references are allowed in GDS2 (a cell, or GDS structure, 
+        can be referenced in a SREF before the cell has been defined), after reading the GDS a recursive check is 
+        made to ensure all cells have valid bounding boxes.
+      </p>
+      <p>
+        GDS2 structures are imported as cells with a view type of 'layout'.
+      </p>
+      <p>  
+        GDS2 magnification is supported in Glade. GDS SREFs or AREFs (instances or arrays in Glade) can only     
+        have manhattan rotations. This is to maintain compatibility with Cadence Virtuoso , which has the same 
+        limitation.
+      </p>
+      <p>
+        GDS2 arrays are not allowed to have non-orthogonal row/column spacings. A warning is issued if encountered, 
+        and they will be represented as orthogonal arrays. This is consistent with Cadence Virtuoso and the GDS2 'specification'.
+      </p>
+      <p>
+        If a GDS file is imported without a Glade techfile having been previously read which defines the 
+        mapping between layer names/purposes and GDS layer numbers / datatypes, then the 
+        GDS layers are mapped to layer names e.g. L0 P0 for 
+        the first GDS layer/datatype shape encountered etc. The layer name assigned (L0) does 
+        NOT equate to the GDS layer number, it represents the first (internal) layer 
+        in the techfile. For this reason it is strongly recommended that you import GDS2 
+        after importing a techfile containinglayer names and GDS layer/datatype mappings.
+      </p>
+      <p>
+        If a GDS file is imported into an existing library containing cellviews, any existing cellview of the same name 
+        as a GDS2 struct (cell) will be overwritten and a warning issued.
+      </p>
+      <p>
+        GDS2 cells (STRUCTs) can be mapped to cellViews using cell mapping tab:
+      </p>
+      <p align="center"><img src="images/importGds2_2.png" width="572" height="634" alt="Import GDS2 Map Cells"></p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+
+      <p>
+        The + button adds an entry to the map table, the - button removed a selected entry. The GDS Name field specifies 
+        the GDS2 STRUCT name, and the Library Name, Cell Name and View Name specify the cellView to map this STRUCT to. 
+        The cell mapping can be loaded or saved to a file; the format is ascii and consists of 4 values per line (library 
+        name, cell name, view name and GDS name) separated by whitespace. The same format is used by the cell map table 
+        in the File-&gt;Export-&gt;GDS2 command.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;OASIS<a name="import_oasis"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Import-&gt;OASIS displays the Import Oasis dialog:
+      </p>
+
+      <p align="center"><img border="0" hspace="0" src="images/importOasis.png"></p>
+
+      <p>
+        OASIS is a replacement for GDS2 
+        with data compression to give much smaller file sizes. Typically 10-50x compression 
+        compared to GDS2 can be achieved. The OASIS reader supports CBLOCK compressed 
+        records and both strict and non-strict mode OASIS files.
+      </p>
+
+      <p>
+        The OASIS <em>input file</em> to be imported can be chosen using the file browser button. 
+        A <em>library name</em> to import the OASIS into MUST be specified, and will be created 
+        if it does not already exist. Multiple OASIS files can be read if they are entered 
+        separated by a comma, however subsequent OASIS files should not try and redefine cells 
+        previously defined or an error will result.
+      </p>
+      <p>
+        OASIS data can be scaled while read in if the <em>Scale Factor</em> field is set to a number 
+        other than 1. For example, if a scale factor of 0.5 is chosen, all coodinates will be multiplied 
+        by 0.5 and the design is shrunk by a factor of 2. This can be useful for scaling entire design databases.
+      </p>
+      <p>
+        An <em>X offse</em>t and <em>Y offset</em> can also be specified. The specified offsets 
+        are added to all coordinates in the design, in effect moving the origin of the 
+        design. Note that offsets are applied <b>BEFORE</b> any user-specified <em>Scale Factor</em>.
+      </p>
+      <p>
+        The <em>View Name</em> specifies the view name created when a cell is imported. If cell 
+        mapping is used, this value will be overriden by the map library/cell/view names.
+      </p>
+      <p>
+        OASIS structure and array names can have their <i>Case</i> preserved, forced to upper case or lower case 
+        depending on the '<em>Case</em>' radio buttons. Note that if you have a structure named 'AND2' 
+        and one called 'and2' and do not preserve case, then the second structure encountered will give rise to a 
+        duplicate cell and will be handled by the settings in the <em>Duplicate Cells</em> field..
+      </p>      
+      <p>
+        When cells are imported, if a cell of the same name exists you have 3 options available in the 
+        <em>Duplicate Cells</em> field. <em>Overwrite</em> means the new cell will replace the existing cell. 
+        <em>Ignore</em> will mean the new cell definition is ignored, along with all data in it. <em>Merge</em> 
+        means the original cell data is preserved, and any data in the new cell is added to it. This may cause 
+        duplicate shapes, but can be used to merge GDS data.
+      </p>
+      <p>
+        Manhattan 2 point paths can be converted to paths (the default), rectangles or H/V segs. The latter two
+        can result is smaller memory usage for designs that use lots of 2 point paths for e.g. metal fill.
+      </p>
+      <p>
+        OASIS properties can be used to import net names and instance names into the Glade database. Many layout 
+        editors and place &amp; route tools can output this data, and if OASIS properties are present with the 
+        chosen attribute numbers then net and/or instance names will be annotated into the database.
+      </p>
+      <p>
+        If <em>Report dubious data</em> is checked, errors are reported for e.g. polygons with less than 3 vertices. 
+        If <em>Allow non-printing characters in strings</em> is checked, then any valid ascii character is allowed in 
+        e.g. text names; else only printing characters as defined in the Oasis spec are allowed.
+      </p>
+      <p>
+       At present the following OASIS constructs are silently ignored:
+      </p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif">XNAME</font>
+        <li><font face="Arial, Helvetica, sans-serif">XELEMENT</font>
+        <li><font face="Arial, Helvetica, sans-serif">XGEOMETRY</font>
+        <li><font face="Arial, Helvetica, sans-serif">PROPERTY</font>
+        </li>
+      </ul>
+
+      <p>&nbsp;</p>
+
+      <p>
+        If an OASIS file is imported into an existing library containing cellviews, any existing 
+        cellview of the same name as a OASIS cell will be overwritten and a warning issued.
+      </p>
+      <p>
+        OASIS cells can be mapped to cellViews using cell mapping tab:
+      </p>
+
+      <p align="center"><img src="images/importOasis_2.png" width="563" height="550" alt="Import Oasis"></p>
+
+      <p align="left">
+        The + button adds an entry to the map table, the - button removed a selected entry. The OASIS Name 
+        field specifies the OASIS cellname, and the Library Name, Cell Name and View Name specify the cellView 
+        to map this name to. The cell mapping can be loaded or saved to a file; the format is ascii and 
+        consists of 4 values per line (library name, cell name, view name and OASIS name) separated by 
+        whitespace. The same format is used by the cell map table in the File-&gt;Export-&gt;OASIS command.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;LEF<a name="import_lef"></a>
+      </font> </h4>
+
+      <p>
+        Selecting the File-&gt;Import-&gt;LEF menu item displays the Import LEF dialog:
+      </p>
+
+      <p align="center"><img border="0" hspace="0" src="images/importLEF.png"></p>
+
+      <p>
+        The LEF file(s) to be imported can be chosen using the file 
+        browser button. Multiple LEF files may be read by 
+        selecting each one in the file browser, or if they are entered separated by 
+        a comma. If the file name extension is '.gz' then the compressed file will 
+        be unzipped on the fly. A library to import the LEF into should be specified, 
+        and will be created if it does not already exist. Multiple LEF files can be 
+        read, however subsequent LEF files should not try and redefine sites or macros previously defined 
+        or an error will result. A technology LEF should always be read first 
+        - this contains layer definitions for routing and cut layers. Note that 
+        all LEF files should have a VERSION statement to be valid LEF files. 
+      </p>
+
+      <p>
+        If the LEF UNITS are larger than 
+        the database units (by default 1000 dbu/micron) e.g. 2000, then the library 
+        database units are changed to the LEF UNITS. For this reason one should ensure 
+        that the first LEF file read has the largest UNITS.
+      </p>
+
+      <p>
+        LEF Macros are imported as cells 
+        with a view type of 'abstract'. A rectangle on the system layer 'boundary' 
+        is created for each macro according to the macro's SIZE . LEF OBS statements 
+        create shapes on the 'boundary' purpose for that shape, and LEF PORT statements 
+        create shapes on the 'pin' purpose. If the <i>Generate pin labels</i> option 
+        is set, text labels are created for the LEF pins on the system Text layer 
+        and can be displayed by making labels visible - see the 
+        <a href="view_menu.htm#display_preferences">Display Options</a> command. 
+        <em>Size</em> sets the size of the generated labels. The 
+        labels are generated on a layer as specified by the <em>Label Layer</em> field; 
+        either the system layer TEXT purpose drawing or the same layer as the pin shape, but with purpose 'TXT'. If 
+        <em>Generate a label for all pin shapes</em> is checked, multiple labels will be generated for 
+        each pin shape. This is not desirable for standard cells, but can be useful for large macros.
+      </p>
+
+      <p>
+        If a LEF file is imported into an existing library containing cellviews, any existing 
+        cellview of the same name as a LEF macro and view 'abstract' will NOT be overwritten.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">File-&gt;Import-&gt;DEF<a name="import_def"></a></font></h4>
+
+      <p>
+        Selecting the File-&gt;Import-&gt;DEF menu item displays the Import DEF dialog:
+      </p>
+
+      <p align="center"><img src="images/importDEF.png" width="300" height="290" alt="Import DEF"></p>
+
+      <p>
+        The <em>DEF File</em> to be imported can be chosen with the file browser button. If the file name extension is '.gz' 
+        then the compressed file will be unzipped on the fly. A library to import the DEF into MUST be specified in the 
+        <em>Into Library</em>> field and will be created if it does not already exist. 
+      </p>
+      <p>
+        LEF must have previously been imported to create abstract views for 
+        all components defined in the DEF COMPONENTS section; however you can set 
+        the <i>View Name</i> to 'abstract' when importing DEF to create an abstract 
+        for use by other DEF files, for example for a hierarchical design. 
+      </p>
+      <p>
+        <em>View List</em> specifies the view list that is searched for each DEF component. 
+        A master cellView with the component name and the first valid view in the list will be chosen.
+        
+        A rectangle on the system layer 'boundary' is created according to the DEF DIEAREA statement. 
+      </p>
+      <p>
+        If the <i>ECO placement mode</i> button is checked, the DIAREA secion of the DEF is updated, 
+        the COMPONENTS section of the DEF file will be parsed and instance origins and orientations of the 
+        current cellview will be updated, and the PINS section of the DEF will be parsed, replacing 
+        existing pins. All components in the ECO file must exist in the current open cellview.
+      </p>
+      <p>
+        If <em>Additional DEF pin layer</em> is checked, a DEF PIN has and additional shape on the same 
+        routing layer but with purpose given by <em>Purpose</em>. This is in addition to the normal 'pin' 
+        purpose shape.
+      </p>
+      <p>
+        DEF PINs have pin text labels on either the system 'text' layer or on the routing layer according 
+        to the setting of the <em>Pin Label Layer</em>.
+      </p>
+      <p>
+        <em>Report Missing pin connections to special nets</em> will report all missing pin connections 
+        to special nets. Sometimes you don't care and this option can be turned off to minimise verbosity.
+        <em>Report Unplaced components</em> report DEF COMPONENTS that do not have status PLACED.
+      </p>
+      <p>
+        If <i>Import special net routing</i> is checked, special net routing will be created in the design. 
+        If it is not checked only the connectivity information is imported. 
+      </p>
+      <p>
+        If <i>Import regular net routing</i> is checked, regular net routing will be created in the design. 
+        If it is not checked only connectivity information is imported.  
+      </p>
+      <p>
+        Import DEF will expect all referenced 
+        macros to have been previously imported by the Import LEF command as abstract 
+        views. Macros can be either imported into the same library as the DEF, or 
+        in multiple libraries, in which case Import DEF will search the libraries 
+        to resolve instance masters. However there is a restriction in that DEF must 
+        be imported into a library that has had a technology LEF imported (this is 
+        so the library has layer information such as layer type of routing, cut etc. 
+        defined). Failure to do so will give rise to via layers not being correctly 
+        recognised.
+      </p>
+      <p>
+        If you are importing hierarchical DEFs, you need to import the child cell DEF 
+        files first and set the <em>View Name</em> 
+        to abstract. You should also import each child DEF into a unique library, which 
+        has its technology file and technology LEF already imported. The reason is that 
+        P&amp;R tools create DEF viaRule vias with names that may not be unique between 
+        different DEF files (e.g. a typical viaRule via called M1M2GEN may have variants 
+        M1M2GEN_1, M1M2GEN_2 etc. created). So if you try and import multiple DEFs into 
+        a single library, you will most likely get duplicate via name warnings, and only 
+        the viaRule vias of the first DEF file will be used.
+      </p>
+      <p>
+        So for example a section of Python code to load sub block DEFs and a top level def could be:
+      </p>
+      <blockquote style="MARGIN-RIGHT: 0px" dir="ltr">
+        <p>
+          <font size="2" face="Courier">
+            from ui import *<br>
+            gui = cvar.uiptr<br>
+            gui.importTech("lib1",&nbsp;"my.tch")<br>
+            gui.importLef("lib1", "tech.lef")
+          </font>
+        </p>
+        <p>
+          <font size="2" face="Courier New">gui.importLef("lib1", "stdcells.lef")</font>
+        </p>
+        <p>
+          <font size="2" face=Courier>
+            gui.importTech("lib2",&nbsp;"my.tch")<br>
+            gui.importLef("lib2",  "tech.lef")<br>
+            gui.importDef("lib2", "abstract", "block1.def")
+          </font>
+        </p>
+        <p><font size="2" face=Courier>
+          gui.importTech("lib3",&nbsp;"my.tch")<br>
+          gui.importLef("lib3",  "tech.lef")<br>
+          gui.importDef("lib3", "abstract", "block2.def")
+        </font>
+        </p>
+        <p><font size="2" face="Courier">
+          # top level DEF<br>
+          gui.importDef("lib1", "autoLayout", "top.def")<br>
+        </font>
+        </p>
+      </blockquote>
+      <p>
+        Note that if you import DEF which 
+        references multiple libraries created by importing LEF, all the LEF libraries 
+        <b>mus</b>t have the same LEF UNITS! 
+      </p>
+      <p>
+        Import DEF creates a cellView with a cellname as defined by the DEF DESIGN keyword.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;Verilog<a name="import_verilog"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Import-&gt;Verilog menu item displays the Import Verilog dialog:
+      </p>
+
+      <p align="center"><img src="images/importVerilog.png" width="299" height="371" alt="Import Verilog"></p>
+
+      <p>
+        The verilog file to be imported can be chosen with the file 
+        browser button. A library to import the Verilog into MUST be specified, and will 
+        be created if it does not already exist. The power and ground net names will be 
+        used to connect any logic 1 (verilog 1'b1) and logic 0 (verilog 1'b0) nets to. 
+        Verilog modules will be imported into the database as verilog views. <strong>Leaf cells 
+        must exist as abstract views (from Import LEF) for 
+        flattening to work</strong>. If <i>Flatten hierarchy</i> is checked, the top 
+        cell will be flattened into the view specified, and Verilog leaf cells mapped to 
+        LEF cells of the same name. During the flattening process, instance 
+        pins on leaf cells are connected to the power and ground nets of the same 
+        name. Pins are created for inputs and outputs of the top level module. The 
+        pins will be on the <i>Horizontal pin layer</i> for pins on the left and right 
+        of the block and on the <i>Vertical pin layer</i> for pins on the top and 
+        bottom of the block. <i>Aspect ratio</i> sets the aspect ration of the block; 
+        the number is the ratio of height to width. <i>Utilisation</i> sets the ratio 
+        of cell area to design boundary size. Rows are created in the design and cells 
+        are placed randomly in the rows, spaced by 2 times the site width.
+      </p>
+      <p>
+        Verilog modules are imported as cells with a view type of 'verilog'.
+      </p>
+      <p>
+        NB Only basic structural level 
+        Verilog is supported. Simple ASSIGN statements are supported.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;ECO<a name="import_eco"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Import-&gt;ECO  displays the Import ECO dialog:
+      </p>
+
+      <p align="center"><img src="images/importECO.png" width="320" height="115"></p>
+
+      <p>
+        This is used for importing an ECO 
+        file to make changes to the connectivity of the current open design.
+      </p>
+
+      <p>An example of ECO file syntax is as follows. Lines beginning with a '#' are comments.
+      </p>
+      <p>
+        - Detach Pin AF|AFFF|U179.B from Net AF|AFFF|N351 ; <br>
+        - Delete Pin AF|AFFF|U179.B ; <br>
+        - Detach Pin AF|AFFF|U179.A from Net AF|AFFF|N356 ; <br>
+        - Delete Pin AF|AFFF|U179.A ; <br>
+        - Detach Pin AF|AFFF|U179.Y from Net AF|AFFF|N368 ; <br>
+        - Delete Pin AF|AFFF|U179.Y ; <br>
+        - Change Cell AF|AFFF|U179 from Model NOR2X1 to Model NOR2X2 ; <br>
+        - Add Pin AF|AFFF|U179.B ; <br>
+        - Attach Pin AF|AFFF|U179.B from Net AF|AFFF|N351 ; <br>
+        - Add Pin AF|AFFF|U179.A ; <br>
+        - Attach Pin AF|AFFF|U179.A from Net AF|AFFF|N356 ; <br>
+        - Add Pin AF|AFFF|U179.Y ; <br>
+        - Attach Pin AF|AFFF|U179.Y from Net AF|AFFF|N368 ; </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;DXF<a name="import_dxf"></a>
+      </font></h4>
+      <p>
+        Selecting File-&gt;Import-&gt;DXF... displays the Import DXF dialog:
+      </p>
+
+      <p align="center"><img src="images/importDXF.png" width="299" height="195" alt="Import DXF"></p>
+
+      <p>
+        DXF is a common drafting 
+        format. <i>DXF file</i> specifies the name of the DXF file to import; the 
+        file can be chosen with the file browser button. A library must be specified; 
+        it will be created if it does not already exist. A cell name to import the 
+        drawing into must also be specified; it defaults to 'top'. Hierarchical designs 
+        can be imported.
+      </p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;EDIF&hellip;<a name="import_edif"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Import-&gt;EDIF&hellip; displays the Import EDIF dialog.
+      </p>
+
+      <p align="center"><img src="images/importEDIF.png" width="303" height="174" alt="Import EDIF"></p>
+
+      <p>
+        EDIF is a format for exchanging schematic and netlist  data. <em>EDIF File</em> specifies the name 
+        of  the EDIF file to import.  <em>Scale</em> defines the resulting database units; <em>160dbu/uu</em> 
+        is typical for Cadence compatible schematics. <em>From EDIF scale</em> sets the database units per 
+        user unit (dbu/uu) to  that defined by the EDIF numberDefinition entry.
+      </p>
+      <p>
+        When exporting EDIF from another CAD system, symbol  libraries should be exported as externals in 
+        EDIF. Then, when importing EDIF  into Glade, matching libraries should be opened before the import. 
+        The Glade  symbol libraries will obviously need to have the same size symbols, with the  same pin 
+        names/locations as the originals. Alternatively it is possible to  export symbol libraries in EDIF 
+        and have them created in Glade.
+      </p>
+      <p>
+        Although EDIF is supposed to be a &lsquo;standard&rsquo;,  interpretation is another matter and how 
+        design data is exported is very much  vendor-dependent. 
+      </p>
+
+      <p align="left">&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Import-&gt;DSPF
+      </font></h4>
+
+      <p>
+        The <strong>File-&gt;Import-&gt;DSPF&hellip;</strong> command displays the Import DSPF dialog.
+      </p>
+
+      <p align="center"><img src="images/importDSPF.png" alt="Import DSPF"></p>
+
+      <p align="center"> </p>
+
+      <p>
+        <em>DSPF File</em> specifies the name of the DSPF file to import. 
+      </p>
+      <p>
+        <em>Into Library</em> specifies the library to  import into. 
+      </p>
+      <p>
+        <em>Purpose Name</em> specifies the layer prupose for nets to be created on, the default is 'net'.
+      </p>
+      <p>
+        <em>Action></em> specifies what to do is a top level cell already exists for the DSPF being imported.
+      </p>
+      <p>
+        If <em>Read All Nets?</em> is checked, all DSPF nets will be read, else only those specified in the 
+        <em>Net names to read</em> field will be imported.
+      </p>
+      <p>
+        <em>Store Parasitic Capacitors</em> reads the C&hellip;.. lines in the DSPF 
+        and creates parasitic capacitors and their  subnodes. 
+      </p>
+      <p>
+        <em>Store Parasitic Resistors</em> reads  the R&hellip; 
+        lines in the DSPF and creates parasitic resistors and their subnodes. The  rectangular resistor shapes 
+        (defined by their $X, $Y, $L, $W values, plus their  subnode $X, $Y values) are created in the top level 
+        cell. 
+      </p>
+      </p>
+        <em>Store Instances</em> generates instance masters and instances in the top  level cell.
+      </p>
+
+      <p align="left">&nbsp;</p>
+
+      <h2><font face="Arial, Helvetica, sans-serif">Export Commands<a name="file_export"></a></font></h2>
+
+      <p>
+        Glade currently permits exporting 
+        design data in GDS2, OASIS, LEF, DEF, DXF, Verilog and CDLformats.
+      </p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">File-&gt;Export-&gt;Techfile<a name="export_tech"></a></font></h4>
+
+      <h2 align="center"><img border="0" hspace="0" src="images/exportTech.png"></h2>
+
+      <p>
+        Choose a library to export the techfile from, and the name 
+        of an output file which can be selected by using the file chooser button. If 
+        <em>Save system layers</em> is checked, they will be written to the techfile. 
+        This is only necessary if you do not want to use the default layer colors e.g. 
+        if you want a white background, you need to set the 'backgnd' system layer color to white, and set 
+        the 'select' color to something other than white, and e.g. the 'cursor' color to something 
+        other than yellow etc.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Export-&gt;GDS2<a name="export_gds2"></a> 
+       </font></h4>
+
+      <p>
+        Selecting the File-&gt;Export-&gt;GDS2 menu item displays the Export GDS2 dialog:
+      </p>
+
+      <p align="center"><img src="images/exportGds2.png" width="560" height="612" alt="Export GDS2"></p>
+
+      <p>
+        Choose a library to export GDS2 
+        from, and the name of an output file which can be selected by using the file 
+        chooser button. If you want to output only certain cells in the design, specify 
+        them in the&nbsp; <i>Export Cells</i>&nbsp; Cell Names field and uncheck the <i>All?</i> button. 
+        Else if <i>All?</i> is 
+        checked then all cells in the library will be exported. If <em>Child Cells</em> 
+        is checked, then cells are exported to match the instances in the design hierarchy being exported.
+      </p>
+      <p>
+        The <i>View name(s)</i> field allows you 
+        to specify what views are exported. The view names can be delimited by whitespace. Note for 
+        example if you want to output from a LEF/DEF top level  cellView, you will need to specify 
+        autoLayout (the view type of the DEF top level), abstract (the view type of the LEF cells) and 
+        layout (the view type of the vias). If your design contains cells with multiple views of viewType 
+        maskLayout, then this field is automatically populated with the view names.
+      </p>
+      <p>
+        Cells specified in the&nbsp; <i>Export 
+        Cells</i> field will be output with all subcells i.e. the complete hierarchy 
+        will be output, thus the resulting GDS2 will be complete, as long as <em>Child 
+        Cells</em> is checked.
+      </p>
+      <p>
+        <em>Output vias as cells</em> does just 
+        that; vias are written as cell instances with the cell master name equal to the 
+        instance name. This is typically useful for LEF/DEF where you don't want to 
+        flatten the vias into their individual shapes.
+      </p>
+      <p>
+        <em>Output Layers</em>  allows you to control which GDS layers are 
+        exported. <em>All</em> will output all layers, <em>Visible</em> will output 
+        layers currently set visible in the LSW, and <em>This Layer</em> will only 
+        output a specific layer chosen by the layer chooser.
+      </p>
+      <p>
+        If <em>Output using gzip 
+        compression</em> is checked, the GDS2 data is compressed using the gzip 
+        algorithm. If <em>Report cell names written</em> is checked, cell names are 
+        output to the message window as they are written. If <em>Output Vias as Cells</em> is checked, via 
+        instances are output as cells rather than shapes. This can significantly reduce the size of the 
+        output GDS2. The export time is increased due to the extra processing of this option. <em>Snap grid for 
+        circles/arcs</em> snaps the vertices of arcs/circles to the specified grid in 
+        microns. Circles are output as GDS boundaries and lines/arcs as zero width 
+        paths.<em> Vertex Limit for Polygons</em> sets the maximum vertex count for polygons. Any polygon with 
+        a greater number of vertices will be fractured into multiple polygons.
+      </p>
+      <p>
+        Net names of shapes can be output with default GDS attribute 
+        number 23 if the <i>Output net names</i> box is checked. Device names can be output with default GDS 
+        attribute number 7 if the <em>Output Device Names</em> box is checked. Instance names can be output as 
+        properties with the default GDS2 attribute number 102 if <i>Output inst names</i> 
+        box is checked.  These numbers 
+        are arbitrary and can be changed as desired.
+      </p>
+      <p>
+        If the <em>Output Single Net Shapes Only</em> box is checked, only shapes and via instances which have 
+        net attributes, and a net name given by <em>Net Name,</em> are output.
+      </p>
+      <p>
+        if <em>Export PCell Properties</em> is checked, PCell information is written as GDS2 properties with 
+        fixed attribute numbers: STRUCTs (cellViews) that are PCells have their PCell name written as attribute 
+        number 19; STRUCTs that are submasters have their PCell name written as attribute number 20. Submaster 
+        properties are written with attribute 11 for the property name, then attributes 13-18 for property values 
+        depending on the type of the property. Note that using this option may make the GDS2 unreadable by other 
+        GDS readers, although it has been tested with Cadence Virtuoso and found to be compatible. GDS2 originally 
+        had severe limits on the length of property values; Glade relaxes these limits to 512 characters maximum 
+        and will truncate values longer.  
+      </p>
+      <p>
+        GDS2 cells (STRUCTs) can be mapped from cellViews using cell mapping tab:
+      </p>
+
+      <p align="center"><img src="images/exportGds2_2.png" width="679" height="487" alt="Export GDS2 Map File"></p>
+
+      <p>
+        The + button adds an entry to the map table, the - button removed a selected entry. The <em>GDS Name</em> 
+        field specifies the GDS2 STRUCT name, and the <em>Library Name</em>, <em>Cell Name</em> and <em>View Name</em> 
+        specify the cellView to map to this STRUCT. The cell mapping can be loaded or saved to a file; the format 
+        is ascii and consists of 4 values per line (library name, cell name, view name and GDS name) separated by
+         whitespace. The same format is used by the cell map table in the File-&gt;Import-&gt;GDS2 command. The map 
+         table is automatically populated with potentially conflicting cell/view names that would normally map to 
+         the same GDS2 STRUCT name. In this case each cell/view combination will have a map table entry, with an 
+         auto generated GDS2 name which is of the form &lt;cellname&gt;_01, &lt;cellname&gt;_02 etc. 
+       </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Export-&gt;OASIS<a name="export_oasis"></a>
+      </font></h4>
+
+      <p>
+        Selecting the File-&gt;Export-&gt;OASIS menu item displays the Export OASIS dialog:
+      </p>
+
+      <p align="center"><img src="images/exportOasis.png" width="403" height="409" alt="Export Oasis"></p>
+
+      <p>
+        Choose a library to export OASIS 
+        from and the name of an output file which can be selected by using the file 
+        chooser button. If <i>Strict Mode</i> is checked, names of cells, text strings, 
+        layers, property names and property strings are collected together into tables 
+        and referenced by an offset in the END record as per the OASIS standard. In 
+        Strict mode, if <i>Write cell offsets</i> is checked, the property S_CELL_OFFSET 
+        is written for each cell in the cellname table so that random access to cells 
+        are possible allowing e.g. multithreaded reading of the OASIS file. If <i>CBLOCK 
+        compression</i> is checked, strict mode tables and cell data is compressed 
+        using RFC1951 compression. This can result in significant reductions in file 
+        size.
+      </p>
+
+      <p>
+        The <i>View name(s)</i> field allows 
+        you to specify what views are exported. The view names can be seperated by 
+        a comma or a space. They are populated by default from the views found in the library.
+      </p>
+
+      <p>
+        If cell name(s) are specified in 
+        the <i>Output Cell(s)</i> field and <i>All?</i> is unchecked, only the specified 
+        cells, and any of their child cells, will be output.
+      </p>
+
+      <p>
+        OASIS cells  can be mapped from cellViews using cell mapping tab:
+      </p>
+      <p align="center"><img src="images/exportOasis_2.png" width="665" height="504" alt="Export Oasis"></p>
+
+      <p>
+        The + button adds an entry to the map table, the - button removed a selected entry. The <em>OASIS Name</em> 
+        field specifies the OASIS cellname, and the <em>Library Name</em>, <em>Cell Name</em> and <em>View Name</em> 
+        specify the cellView to map to this cell. The cell mapping can be loaded or saved to a file; the format is 
+        ascii and consists of 4 values per line (library name, cell name, view name and OASIS name) separated by 
+        whitespace. The same format is used by the cell map table in the File-&gt;Import-&gt;OASIS command. The map 
+        table is automatically populated with potentially conflicting cell/view names that would normally map to the 
+        same OASIS cellname. In this case each cell/view combination will have a map table entry, with an auto 
+        generated OASIS cellname which is of the form &lt;cellname&gt;_01, &lt;cellname&gt;_02 etc.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Export-&gt;LEF<a name="export_lef"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Export-&gt;LEF menu item displays the Export LEF dialog:
+      </p>
+
+      <p align="center"><img src="images/exportLEF.png" width="299" height="245" alt="Export LEF"></p>
+
+      <p>
+        Specify the LEF file to export 
+        in the 'LEF file' field, using the file chooser button as required. You must 
+        specify the library to export from. Either all cells can be written, if <i>Export 
+        all cells</i> is checked, or just the currently open cell. If the <i>Write 
+        Technology</i> is checked, then the LEF technology section is written (layer 
+        widths/spacings, vias definitions etc). <i>Power Nets</i> specifies power 
+        pins in the LEF macros that should have their USE set to POWER. <i>Ground 
+        Nets</i> specifies ground pins in the LEF macros that should have their USE 
+        set to GROUND. Note that currently LEF technology section can only be written 
+        if a technology LEF has previously been imported.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Export-&gt;DEF<a name="export_def"></a>
+      </font></h4>
+
+      <p>
+        Selecting the File-&gt;Export-&gt;DEF  menu item displays the Export DEF dialog:
+      </p>
+
+      <p align="center"><img src="images/exportDEF.png" width="301" height="321" alt="Export DEF"></p>
+
+      <p>
+        Specify the DEF file to export 
+        in the 'DEF file' field, using the file chooser button as required. you must 
+        specify the library to export from; however the library, cell name and view 
+        name will default to the current open cellview.
+      </p>
+      <p>
+        You may selectively write parts 
+        of the def file by checking or unchecking the Components, Pins, Regular and 
+        Special nets check boxes. For example DEF with just placement information 
+        would require just the Components and Pins checked. You can also choose to 
+        write just connectivity of nets, or the physical shapes as well.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Export-&gt;Verilog<a name="export_verilog"></a>
+      </font></h4>
+
+      <p>
+        Selecting the File-&gt;Export-&gt;Verilog  menu item displays the Export Verilog dialog:
+      </p>
+
+      <p align="center"><img src="images/exportVerilog.png" width="401" height="340" alt="Export Verilog"></p>
+
+      <p>
+        Specify the Verilog file to export 
+        in the Verilog file field, using the file chooser button if required. The 
+        library, cell name and view name fields are pre-seeded with the currently 
+        open cellview. Note that Verilog can only be exported from a cellview that 
+        has connectivity, e.g. one that was created by importing Verilog or DEF. If
+        <em>Mode</em> is set to <em>Flat</em>, the Verilog netlist will be a flat 
+        representation of the  top level design, else it will be hierarchical.
+        For a hierarchical netlist from a schematic, the <em>Switch List</em> and 
+        <em>Stop List</em> control the netlist hierarchy traversal. Switch/Stop/Globals 
+        lists are stored with a name tag, so multiple different switch/stop lists 
+        can be chosen from. The SwitchList name field is the name of the tag. You 
+        can edit this name to create a new tag, and the name and the switch/stop/globals 
+        lists will be stored in the gladerc.xml file so they can be recalled in future 
+        sessions. The <em>Switch List</em> is a list of view names that the netlister 
+        can descend into. The <em>Stop List</em> is a list of views that the netlister 
+        will stop descending into.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Export-&gt;DXF<a name="export_dxf"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Import-&gt;DXF... displays the Export DXF dialog:
+      </p>
+
+      <p align="center"><img src="images/exportDXF.png" width="299" height="246" alt="Export DXF"></p>
+
+      <p>
+        DXF is a common drafting 
+        format. <i>DXF file</i> specifies the name of the DXF file to export; the 
+        file can be chosen with the file browser button. The library and cell to export 
+        defaults to the current open cellview. If the cell contains hierarchy, subcells 
+        are also exported. If <i>Export Text</i> is checked, text labels are output 
+        to the DXF file. If <i>All layers</i> is checked, all the cell's layers are 
+        output; if not, only the currently visible layers will be output.
+        <em>Net Names as Text</em> will output net names as text to the DXF file. 
+        <em>Net Text Height</em> sets the text label height.
+      </p>
+
+    <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Export-&gt;CDL<a name="export_cdl"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Export-&gt;CDL... displays the Export CDL dialog:
+      </p>
+
+      <p align="center"><img src="images/exportCDL1.png" width="488" height="640" alt="Export CDL1"></p>
+
+      <p align="center"><img src="images/exportCDL2.png" width="488" height="640" alt="Export CDL2"></p>
+
+      <p>
+        The Export CDL dialog can be used to write a flat netlist from a layout/extracted view, or a hierarchical 
+        netlist from a schematic view. CDL is a spice like netlist format with some extensions over spice syntax. 
+      </p>
+      <p>
+        <em>CDL file</em> specifies the name of the CDL file to export; the file can be chosen with the 
+        file browser button. The <em>From Library</em>, <em>Cell Name</em> and <am>View Name</am> default to 
+        the current open cellview. 
+      </p>
+      <p>
+        The <em>Pin Order List</em> shows the order pins will be written in the extracted netlist .subckt header. 
+        This is so the user can match the pin order to a simulation testbench etc. For a flat netlist the 
+        pin order can be changed by clicking on a pin name and using the up/down arrow 
+        buttons to move the pin; pins are written in the order of the 
+        list from top to bottom. For a hierarchical netlist, the pin order is obtained from the 
+        <a href="symbol_edit.htm">NLPDeviceFormat</a> property on the symbol view of the top level cellView. 
+      </p>
+      <p>
+        <em>Global Nets</em> defines nets that should 
+        be global in the CDL netlist. They should be separated by a space character as 
+        delimiter. 
+      </p>
+      <p>
+        <em>Scale</em> determines the scale of the units written to the CDL 
+        file.  
+      </p>
+      <p>
+        For a hierarchical netlist from a schematic, the <em>Switch List</em> and <em>Stop List</em> control the 
+        netlist hierarchy traversal. Switch/Stop/Globals lists are stored 
+        with a name tag, so multiple different switch/stop lists can be chosen from. The SwitchList name field 
+        is the name of the tag. You can edit this name to create a new tag, and the name and the switch/stop/globals 
+        lists will be stored in the gladerc.xml file so they can be recalled in future sessions. The <em>Switch List</em> 
+        is a list of view names that the netlister can descend into. The <em>Stop List</em> is a list of views that the 
+        netlister will stop descending into, and instead write the device to the netlist according to its NLPDeviceFormat 
+        property. The <em>Switch List</em> and <em>Stop List</em> have no effect for layout view types. 
+      </p>
+      <p>
+        <em>Add .end for SPICE</em> will add a .end line as the last line of the netlist, useful if you are netlisting a schematic for 
+        Spice simulation. 
+      </p>
+      <p>
+        <em>True Spice format</em> will write the netlist in SPICE compatible format, with no $ 
+        arguments. 
+      </p>
+      <p>
+        <em>Annotate XY origins of devices</em> annotates  the XY coordinate of the device origin as $X=, $Y=. 
+      </p>
+
+      <p>
+        For resistors, <em>Use Model Name</em> specifies that the resistor model name should be output to the 
+        CDL file instead of the resistor value. 
+        <em>Use Resistance from property name</em> specifies that the resistance, 
+        as given by the value of the property name, is output to the CDL file rather 
+        than the model name. 
+      </p>
+      <p>
+        For capacitors, <em>Use Model Name</em> specifies that the  capacitor model name should be output to the 
+        CDL file instead of the capacitorvalue. 
+        <em>Use Capacitance from property name</em> specifies that the capacitance, as given by the value of 
+        the property name, is output to the CDL file rather than the model name. 
+      </p>
+      <p><
+        If <em>Drop parasitic caps less than</em> is checked, all parasitic caps less than the specified value 
+        (in Farads) will not be output to the CDL file. 
+        If <em>Merge parasitic caps</em> is specified, multiple parasitics between two unique nets will be merged into a single 
+        lumped cap between the nets.
+      </p>
+      <p>
+        <em>Netlisting property name</em> is the name of a NLP expression property on the instance masters that will 
+        be used to control netlist formatting. It defaults to NLPDeviceFormat. If not present, the netlister will use
+        a default suitable for Spice/CDL.
+      </p>
+      <p>
+        <em>Bus Delimiter characters</em> specifies the bus delimiter chancters used for buses.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Export-&gt;EDIF&hellip;</strong><a name="export_edif"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Export-&gt;EDIF&hellip; displays the Export EDIF dialog.
+      </p>
+
+      <p align="center"><img src="images/exportEDIF.png" width="307" height="239" alt="Export EDIF"> </p>
+
+      <p>
+        <em>EDIF File</em> specifies the file name to export to. <em>Library</em> , <em>Cell Name</em> and 
+        <em>View Name</em> set the design to export, which defaults to the open  cellView. <em>External libraries</em> 
+        specifies reference libraries that will not be exported as libraries in EDIF,  but as an external construct.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Export Image...<a name="file_dumpgraphics"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Export Image... dumps the current window to a PNG, JPEG or SVG format file.
+      </p>
+
+      <p align="center"><img src="images/exportImage.png" width="307" height="210" alt="Export Image"></p>
+
+      <p>
+        <em>Filename</em> specifies the file to export. <em>File Type</em> specifies the image type. PNG format is 
+        smaller and has superior image quality to JPEG, at least for layout data. SVG (Scalable Vector Format) can 
+        be scaled/zoomed without loss of image quality and is more suitable for schematics/symbols. <em>Mode</em> 
+        allows monochrome images to be exported, currently for SVG only. A monochome image may be preferred for documentation.
+      </p>
+
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Print...<a name="file_print"></a>
+      </font></h4>
+
+      <p>
+        Prints the current design. The 
+        system printer options form is displayed allowing the user to specify paper 
+        size, landscape/portrait mode etc. The design is printed directly as it appears 
+        onscreen, so e.g. rulers etc. will be rendered. A white <a href="theLSW.htm#backgnd">background 
+        </a>should be chosen for printing on normal paper, and layer colours chosen 
+        carefully to give best results.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Read Skill Files...<a name="file_runscript"></a>
+      </font></h4>
+
+      <p align="center"><img src="images/readSkillFiles.png" alt="Export Image"></p>
+
+      <p>
+        Reads Skill files written by dbWriteSkill in Cadence Virtuoso. <em>Directory</em> is the directory containing the Skill files to read. 
+        Use the Browse Folder button to select the directory; when done the directory is read and tech files for the various skill file libraries are created.
+        The table lists the library name, the display file, the tech file and the regexp of the Skill file names. You can add or delete libraries as required.
+        For example delelete the 'basic' library and cdsDefTechLib.
+
+        Note that the Skill file parser is still in the experimental stage and does not pars all Cadence db... functions.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Read Skill File...<a name="file_runscript"></a>
+      </font></h4>
+
+      <p>
+        Reads a single Skill file written by Cadence Virtuoso.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Run Script...<a name="file_runscript"></a>
+      </font></h4>
+
+      <p>
+        Runs a python script. User python  scripts will normally start with 'from ui import *' to import the database 
+        and gui wrappings. Python output is written to the Output dockable window.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Edit ascii file...<a name="file_editfile"></a>
+      </font></h4>
+
+      <p>
+        Selecting File-&gt;Edit ascii file... opens a file chooser dialog and allows you to view and make simple 
+        edits to any ascii file.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        File-&gt;Exit<a name="file_exit"></a><a name="save_cells"></a>
+      </font></h4>
+
+      <p>
+        Exits Glade. Any designs opened  are checked for changes before exiting. If  there are cells which have 
+        been edited, a list of the edited cells is displayed in the Save Cells dialog, with one dialog for each 
+        library containing unsaved cells.
+      </p>
+
+      <p align="center"><img src="images/saveCells.png" width="587" height="402" alt="Save Cells"></p>
+
+      <p>
+        If <i>Save</i> is clicked, all checked cells are saved and the program exits. If <i>Don't Save</i> is clicked, 
+        no cells are saved and the program exits. If <i>Cancel</i> is clicked, no cells are saved and the program does 
+        not exit. If <i>Check All </i>is clicked, all the cells in the cell list are checked. If <i>Check None</i> is 
+        clicked, all the cells in the cell list are unchecked.
+      </p>
+
+      <p>
+        The Save Cells dialog is also displayed if the Glade window is closed via the window manager close button and 
+        there are edited cells that are unsaved, and may be displayed if a crash occurs and Glade is able to perform 
+        an orderly shutdown.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

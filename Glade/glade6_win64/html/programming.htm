@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" -->
+
+<h2 align="left"><font face="Arial, Helvetica, sans-serif">
+  Programming Glade in Python
+</font></h2>
+
+<p>
+  The entire Glade database and much of the UI is wrapped in Python using SWIG. This means you can 
+  write Python scripts to automate tasks - <a href="pcells.htm">PCells</a> (parameterised cells) 
+  are a good example. Why Python? Well it is an object-oriented language and so it wraps C++ well, 
+  unlike some other interpreted languages.
+</p>
+
+<p>
+  You can enter python commands directly at the command line. Some useful ones:
+</p>
+
+<div>
+<pre>
+    getSelectedSet()
+</pre>
+</div>
+
+<p>
+  returns a python list of the selected objects. You can print information about an object using 
+  the print command:
+</p>
+
+<div>
+<pre>
+    objs = getSelectedSet()
+    for obj in objs :
+       print obj
+</pre>
+</div>
+
+<p>
+  To get the current cellview, use:
+</p>
+
+<div>
+  <pre>
+    cv = getEditCellView()
+  </pre>
+</div>
+
+<p>&nbsp;</p>
+
+<p>
+  To open a library, use:
+</p>
+
+<div>
+  <pre>
+    lib = getLibByName(&quot;myLib&quot;)
+  </pre>
+</div>
+
+<p>&nbsp;</p>
+
+<p>
+  To open a cellView, use:
+</p>
+
+<div>
+  <pre>
+    # 'r' opens an existing cell for read
+    # 'a' opens an existing cell for edit
+    # 'w' creates a new cell.
+      cv = lib.dbOpenCellView(&quot;myCell&quot;, &quot;layout&quot;, 'a')
+  </pre>
+</div>
+
+<p>&nbsp;</p>
+
+<p>
+  Some python bindings require C style arrays of coordinates. You can use the python intarray(number_of_elements) 
+  function to create an array with a specified size.
+</p>
+
+<p>&nbsp;</p>
+
+<h2>
+  The command line interpreter
+</h2>
+
+<p>
+  The message window at the bottom of the Glade main window is split into two parts: the message pane, which 
+  shows messages and output from the Python interpreter. You can use the Right Mouse Button to copy text from 
+  the message pane. Below the message pane is the command line. You can type Python commands into the command 
+  line.</p>
+
+<p align="left"><img border="0" height="0" hspace="0" src="images/cmdLine.png" width="100" /></p>
+
+<p>&nbsp;</p>
+
+<p>
+  The Python command line supports various control characters to assist in typing in Python commands:
+</p>
+
+<p><strong>Left Arrow</strong> - move the cursor one character left.</p>
+
+<p><strong>Right Arrow</strong> - move the cursor one character right.</p>
+
+<p><strong>Up arrow</strong> - retrieve previous command (or clear line if no previous command)</p>
+
+<p><strong>Down arrow</strong> - retrieve next command (or clear line if no next command)</p>
+
+<p><strong>Home</strong> - move the cursor to the start of the line</p>
+
+<p><strong>End</strong> - move the cursor to the end of the line</p>
+
+<p><strong>Ctrl-A</strong> - select all text on the line</p>
+
+<p><strong>Ctrl-C</strong> - copy the selected text to the clipboard</p>
+
+<p><strong>Ctrl-V</strong> - paste the clipboard to the line</p>
+
+<p><strong>Ctrl-X</strong> - delete the selected text</p>
+
+<p><strong>Ctrl-Z</strong> - undo the last editing operation</p>
+
+<p><strong>Ctrl-Y</strong> - redo the last editing operation</p>
+
+<p>&nbsp;</p>
+
+<h2>
+  Writing Python scripts
+</h2>
+
+<p>
+  An example of a Python script follows. Don&#39;t forget that Python relies on indentation for e.g. 
+  <em>for</em> and <em>while</em> loops!
+</p>
+
+<div>
+<pre>
+    # Example python script
+    print(&#39;Starting script...&#39;)
+    #
+    # Create a new library, called &#39;fred&#39;
+    lib = library(&quot;fred&quot;)
+    #
+    # Create a new cellView in this library
+    cv = lib.dbOpenCellView(&quot;test&quot;, &quot;layout&quot;, &#39;w&#39;)
+    #
+    # A rectangle. By default database units are 0.001 micron
+    width = 10000
+    pitch = width * 2
+    r = Rect(0, 0, 0, 0)
+    #
+    # Create four rectangles on layer 1
+    layer = 1
+    for i in range(2) :
+      for j in range(2) :
+     	  r.setLeft(j * pitch) 
+     	  r.setRight(j * pitch + width)
+     	  r.setBottom(i * pitch)
+     	  r.setTop(i * pitch + width)
+     	  cv.dbCreateRect(r, layer);
+    #
+    # Update the cellView after creating any objects
+    cv.update()
+    #
+    # Open the cellView for display
+    ui().openCellView(&quot;fred&quot;, &quot;test&quot;, &quot;layout&quot;)
+    #
+    # Do a region query
+    q = cv.bBox()
+    objs = cv.dbGetOverlaps(q, layer)
+    obj = objs.first()
+    while obj :
+       print(&#39;found object &#39;, obj.objName(), &#39; with origin = (&#39;, obj.left(), obj.bottom(), &#39;)&#39;)
+       obj = objs.next()
+    #
+    print(&#39;Finished script...&#39;)
+</pre>
+</div>
+
+<p>&nbsp;</p>
+
+<h2>
+  Database reference
+</h2>
+
+<p>The following sections of the database bindings have been documented.</p>
+
+<div align="left">
+<ul>
+	<li><a href="arc.htm">arc</a></li>
+	<li><a href="array.htm">array</a></li>
+	<li><a href="cell.htm">cell</a></li>
+	<li><a href="cellview.htm">cellView</a></li>
+	<li><a href="dbObj.htm">dbObj</a></li>
+	<li><a href="dbHierObj.htm">dbHierObj</a></li>
+	<li><a href="dbObjList.htm">dbObjList</a></li>
+	<li><a href="Edge.htm">Edge</a></li>
+  <li><a href="EdgeF.htm">EdgeF</a></li>
+	<li><a href="ellipse.htm">ellipse</a></li>
+	<li><a href="group.htm">group</a></li>
+	<li><a href="HSeg.htm">HSeg</a></li>
+	<li><a href="inst.htm">inst</a></li>
+	<li><a href="instPin.htm">instPin</a></li>
+	<li><a href="label.htm">label</a></li>
+	<li><a href="library.htm">library</a></li>
+  <li><a href="lpp.htm">lpp</a></li>
+	<li><a href="mpp.htm">mpp</a></li>
+	<li><a href="net.htm">net</a></li>
+	<li><a href="path.htm">path</a></li>
+	<li><a href="pin.htm">pin</a></li>
+	<li><a href="Point.htm">Point</a></li>
+  <li><a href="PointF.htm">PointF</a></li>
+	<li><a href="pointList.htm">pointlist</a></li>
+	<li><a href="polygon.htm">polygon</a></li>
+	<li><a href="Rect.htm">Rect</a></li>
+	<li><a href="rectangle.htm">rectangle</a></li>
+	<li><a href="segment.htm">segment</a></li>
+	<li><a href="shape.htm">shape</a></li>
+	<li><a href="techFile.htm">techfile</a></li>
+	<li><a href="transform.htm">transform</a></li>
+	<li><a href="transform64.htm">transform64</a></li>
+	<li><a href="ui.htm">ui</a></li>
+	<li><a href="Vector.htm">Vector</a></li>
+	<li><a href="vertex.htm">vertex</a></li>
+	<li><a href="VSeg.htm">VSeg</a></li>
+	<li><a href="via.htm">via</a></li>
+	<li><a href="viaInst.htm">viaInst</a></li>
+	<li><a href="view.htm">view</a></li>
+</ul>
+<!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop  Design 2024.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

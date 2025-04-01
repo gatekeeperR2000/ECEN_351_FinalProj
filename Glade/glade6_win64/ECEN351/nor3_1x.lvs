@@ -1,0 +1,44 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 12:20:00 on Nov 29 2022 by Visual C++ 13.3
+-----------------------------------------------------------------------------
+
+Gemini started at 15:08:28 on 31/08/2023
+
+Command line:
+	-w 10.000000 -g C:\Users\Randall_Jack\Desktop\glade5_win64\ECEN351\nor3_1x.err -S C:\Users\Randall_Jack\Desktop\glade5_win64\ECEN351\nor3_1x_extracted.cdl C:\Users\Randall_Jack\Desktop\glade5_win64\ECEN351\nor3_1x.cdl_flat 
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : nor3_1x_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       9
+  Number of nets    :       8
+  Number of ports   :       4
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : nor3_1x.cdl_flat
+-----------------------------------------------------------------------------
+  Number of devices :       6
+  Number of nets    :       8
+  Number of ports   :       3
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		nor3_1x_extracted.cdl	 nor3_1x.cdl_flat
+  Number of devices :       4			4
+  Number of nets    :       6			6
+  Number of ports   :       4			3
+
+
+These circuits contain some symmetry (60% nodes not yet matched).
+Gemini will attempt to find a valid match for symmetrical nodes.
+M#M##There were no device property errors.
+4 (40%) matches were found by local matching.
+All nodes were matched in 7 passes.
+
+The netlists match.
+
+0 devices and 0 nets written to C:\Users\Randall_Jack\Desktop\glade5_win64\ECEN351\nor3_1x.err
+
+Gemini completed at 15:08:28 on 31/08/2023
+

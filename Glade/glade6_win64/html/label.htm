@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+    <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">label class</font></h2>
+
+    <p>
+      The label class is derived from a shape. This class is normally created in a cellView using 
+      the dbCreateLabel function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * label::theLabel()
+    </font></h4>
+
+    <p>
+      Gets the label name
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::theLabel(char *name)
+    </font></h4>
+
+    <p>
+      Sets the label name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t label::height()
+    </font></h4>
+
+    <p>
+      Gets the label&#39;s height attribute
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::height(float64_t h)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s height
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t w = label::width()
+    </font></h4>
+
+    <p>
+      Gets the label&#39;s width
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::width(float64_t w)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s width. This is not used.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_Orient o =label::orient()
+    </font></h4>
+
+    <p>
+      Gets the label orientation.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::orient(db_Orient o)
+    </font></h4>
+
+    <p>
+      Sets the label orientation
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Point.htm"></a> Point</a> label::origin()
+    </font></h4>
+
+    <p>
+      Gets the label&#39;s origin
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::origin(int32_t x, int32_t y)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s origin
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::origin(<a href="Point.htm">Point </a>p)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s origin
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::setType(db_labelType t)
+    </font></h4>
+
+    <p>
+      Sets the label type. The type can be one of <em>normal</em>, <em>cdlLabel</em>, or <em>pyLabel</em>
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_LabelType label::type()
+    </font></h4>
+
+    <p>
+      Gets the label type.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_TextAlign label::align()
+    </font></h4>
+
+    <p>
+      Gets the label&#39;s alignment.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::align(db_TextAlign a)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s alignment.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::overline(bool b)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s overline flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool label::overline()
+    </font></h4>
+
+    <p>
+      Gets the label&#39;s overline flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::underline(bool b)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s underline flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool label::underline()
+    </font></h4>
+
+    <p>
+      Gets the label&#39;s underline flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::strikethru(bool b)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s strikethru flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool label::strikethru()
+    </font></h4>
+
+    <p>
+      Gets the label&#39;s strikethru flag.
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::flags(uint16_t flags)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s flag bits.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      uint16_t label::flags()
+    </font></h4>
+
+    <p>
+      Gets the label&#39;s flag bits.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Rect.htm">Rect </a> label::bBox()
+    </font></h4>
+
+    <p>
+      Gets the bounding box of the label. Note that as a label does not have a &#39;real&#39; 
+      bounding box - the box is approximately the size of the displayed text of the label,
+      in database units.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::bBox(<a href="Rect.htm">Rect </a>box)
+    </font></h4>
+
+    <p>
+      Sets the label&#39;s bounding box. This is not used and will throw an 
+      exception if called.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::objType()
+    </font></h4>
+
+    <p>
+      Get the object type (TEXT)
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * label::objName()
+    </font></h4>
+
+    <p>
+      Gets the object name (&quot;LABEL&quot;)
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t label::getNearestEdge(const <a href="Point.htm">Point </a> &amp;p, <a href="segment.htm">segment </a> &amp;edge)
+    </font></h4>
+
+    <p>
+      Gets the nearest edge of the label&#39;s bounding box to a Point p. The function returns the distance to the edge.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::transform(<a href="transform.htm">transform </a>trans)
+    </font></h4>
+
+    <p>
+      Transform a label by some transform <em>trans</em>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool label::ptInPoly(const <a href="Point.htm">Point</a > &amp;p)
+    </font></h4>
+
+    <p>
+      Returns true if the Point <em>p</em> is within the label's display bBox.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::Move(<a href="cellview.htm">cellView </a>*cv, <a href="Point.htm">Point </a>delta, bool opt = true)
+    </font></h4>
+
+    <p>
+      Moves a label by distance delta. If opt is true then the database is re-optimised for the new label position. 
+      If there are a lot of objects to move it makes sense to turn this off and instead use the cellView update() 
+      function after moving them all.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj</a> *obj = label::Copy(<a href="cellview.htm">cellView </a>*cv, <a href="Point.htm">Point </a>delta, int16_t layer=-1)
+    </font></h4>
+
+    <p>
+      Copy the label to cellView cv, with offset delta. If layer is non-negative the label will 
+      be copied to the new layer.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj </a>*obj = label::Flatten(<a href="cellview.htm">cellView </a>*cv, <a href="transform.htm">transform </a>trans)
+    </font></h4>
+
+    <p>
+      >Flatten the label into cellView cv with some transform trans.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::bias(int32_t bias, float64_t grid)
+    </font></h4>
+
+    <p>
+      Bias the label. As the label is really just a point, this does nothing useful.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      label::scale(float64_t scale, float64_t grid)
+    </font></h4>
+
+    <p>
+      Scale the label. The  label&rsquo;s origin is scaled by the value scale.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool label::operator ==
+    </font></h4>
+
+    <p>
+      Returns true if the label&rsquo;s origin is equal to the other label&rsquo;s.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool label::operator !=
+    </font></h4>
+
+    <p>
+      Returns true if the label&rsquo;s origin is not equal to the other label&rsquo;s.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool label::operator &lt;
+    </font></h4>
+
+    <p>
+      Returns true if the label&rsquo;s origin is less than the other label&rsquo;s.
+    </p>
+
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

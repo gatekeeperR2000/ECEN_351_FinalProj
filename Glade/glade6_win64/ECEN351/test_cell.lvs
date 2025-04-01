@@ -1,0 +1,38 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 11:58:51 on Apr  2 2019 by Visual C++ 13.2
+-----------------------------------------------------------------------------
+
+Gemini started at 14:33:12 on 11/04/2019
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : test_cell_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       60
+  Number of nets    :       36
+  Number of ports   :       12
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : test_cell.cdl_flat
+-----------------------------------------------------------------------------
+  Number of devices :       60
+  Number of nets    :       36
+  Number of ports   :       12
+
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		test_cell_extracted.cdl	test_cell.cdl_flat
+  Number of devices :       60			60
+  Number of nets    :       36			36
+  Number of ports   :       12			12
+
+There were no device property errors.
+82 (85%) matches were found by local matching.
+All nodes were matched in 19 passes.
+
+The netlists match.
+
+0 devices and 0 nets written to C:\Users\Randall Jack\Desktop\glade4_win64\ECEN351\test_cell.err
+
+Gemini completed at 14:33:12 on 11/04/2019

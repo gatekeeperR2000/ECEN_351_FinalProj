@@ -1,0 +1,27 @@
+Version 4
+SymbolType CELL
+LINE Normal -32 48 -32 -48
+LINE Normal -64 -32 -32 -32
+LINE Normal 96 0 64 0
+LINE Normal 16 -48 -32 -48
+LINE Normal 16 48 -32 48
+LINE Normal 0 -80 0 -48
+LINE Normal 0 48 0 80
+LINE Normal -64 32 -32 32
+ARC Normal -32 -48 64 48 16 48 16 -48
+TEXT 0 -2 Center 2 1x
+PIN -64 -32 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN -64 32 NONE 8
+PINATTR PinName B
+PINATTR SpiceOrder 2
+PIN 96 0 NONE 8
+PINATTR PinName Y
+PINATTR SpiceOrder 3
+PIN 0 -80 NONE 8
+PINATTR PinName vdd
+PINATTR SpiceOrder 4
+PIN 0 80 NONE 8
+PINATTR PinName vss
+PINATTR SpiceOrder 5

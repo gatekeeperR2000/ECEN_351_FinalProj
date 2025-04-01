@@ -1,0 +1,17 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 19:13:31 on Feb  9 2021 by Visual C++ 13.3
+-----------------------------------------------------------------------------
+
+Gemini started at 14:19:46 on 21/02/2022
+
+Command line:
+	-w 10.000000 -g .\Test_std_cell.err -S .\Test_std_cell_extracted.cdl C:\Users\Randall_Jack\Desktop\ECEN351_LTspice\Test_std_cell.spi 
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : Test_std_cell_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       16
+  Number of nets    :       7
+  Number of ports   :       2
+
+Fatal error at line 2: device 'XX1' not defined.

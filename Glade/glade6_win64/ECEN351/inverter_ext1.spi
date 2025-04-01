@@ -1,0 +1,23 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : buffer_ex
+* Top Cell Name: inverter
+* View Name: extracted
+* Netlist created: 19.Feb.2021 17:30:45
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: buffer_ex
+* Cell Name:    inverter
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT inverter
+
+MM1 n0 n1 n3 n0 C5NPMOS w=1.8e-06 l=6e-07 as=3.78e-12 ps=7.8e-06 ad=3.78e-12 pd=7.8e-06
+MM0 n2 n1 n3 n2 C5NNMOS w=1.8e-06 l=6e-07 as=3.78e-12 ps=7.8e-06 ad=3.78e-12 pd=7.8e-06
+.ENDS

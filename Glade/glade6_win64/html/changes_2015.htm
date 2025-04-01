@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" -->
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --> 
+  <font face="Arial, Helvetica, sans-serif">
+  <h2 align="left"><b>Change Log</b> 2015</h2></h4>
+  <h4 align="left">Contents for 2014 can be found <a href="changes_2014.htm">here</a></h4>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.37 release on 04/01/2015</strong></p>
+  <p align="left">- bugfix: reads Cadence techfile with extra system layer numbers / purposes</p>
+  <p align="left"></p>
+  <p align="left"><strong>Version 4.4.38 release on 30/1/2015</strong></p>
+  <p align="left">- bugfix: moving circles/arcs/allipses caused 
+    a crash</p>
+  <p align="left">- enhancement: Query dialog can now change 
+    multiple instance master lib / cell / view, e.g. replace all selected instances 
+    of cellA with cellB.</p>
+  <p align="left">- enhancement: non-editable fields of query 
+    dialog greyed out</p>
+  <p align="left"></p>
+  <p align="left"><strong>Version 4.4.39 release on 06/02/2015</strong></p>
+  <p align="left">- bugfix: fixed crash if expanding cells with 
+    unbound instances</p>
+  <p align="left">- bugfix: Various bugs fixed when trying to 
+    create instances in a second library whose master cellViews were in the 
+    first.</p>
+  <p align="left">- enhancement: added a 'Create CellView' to 
+    the library browser (RMB on the library to see the popup of options)</p>
+  <p align="left">- enhancement: improved the Cadence techfile 
+    parser. Creates layers defined in the GDS layermap file even if not in the 
+    techfile. Handles lines with pattern '_NA_'. Handles defaultPackets.</p>
+  <p align="left"></p>
+  <p align="left"><strong>Version 4.4.40 release on 22/02/2015</strong></p>
+  <p align="left">- bugfix: round corners undo/redo was not 
+    implemented. This has now been done.</p>
+  <p align="left">- hierarchy browser 'ascend' still treeated 
+    child cell as to cell for editing, even though top cell was displayed.</p>
+  <p align="left">- Snap grid error messages were 
+    incorrect.</p>
+  <p align="left">- Docs had dbObj and derived 
+    classes 'left/SetLeft, right/setRight, bottom/setBottom, top/setTop methods 
+    described differently from the geometry 'Rect'. These have been corrected. Mote 
+    that trying to set a bounding boc coord for a dbObj is only going to work for a 
+    rectangle object! All others will cause an exception as they are illogical.</p>
+  <p align="left">- get/setXLo / xHi etc. methods for Rect 
+    object deprecated for Rect class. They still work, but please use 
+    left/right/top/bottom methods instead.The old methods will eventually be 
+    removed.</p>
+  <p align="left">- bugfix: library browser 'Delete Library' 
+    option renamed 'Close Library' and a check is done for modified cells and the 
+    user give the option to save them. Libraries are NOT deleted by glade. If you 
+    really want to delete a library and all its cells, delete the library directory 
+    via your OS. </p>
+  <p align="left">- fixed a bug in the chop cmd. Undo and redo 
+    work correctly now.</p>
+  <p align="left">- fixed a bug in undo/redo in non-OpenGL 
+    mode.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.41 release on 01/03/2015</strong></p>
+  <p align="left">- enhancement: *.db files now included in 
+    Import GDS dialog, as Calibre writes GDS with .db extensions.</p>
+  <p align="left">- enhancement: *.drc.results files now 
+    included in Import Calibre errors file, as Calibre now writes errors with this 
+    extension.</p>
+  <p align="left">- bugfix: LSW 'Show Cell Layers' could 
+    sometimes cause a crash.</p>
+  <p align="left">- bugfix: LSW 'Show Viewport Layers' could 
+    sometimes cause a crash.</p>
+  <p align="left">- bugfix: fixed a bug in the reshape cmd for 
+    paths/polygons that could cause a crash.</p>
+  <p align="left">- bugfix: fixed a grid error that could cause 
+    a crash in Edit-&gt;TiledBooleans.</p>
+  <p align="left">- bugfix: fixed some more undo/redo bugs.</p>
+  <p align="left">- enhancement: added shape * 
+    castToShape(dbObj *) function for python where results are dbObjs, but you want 
+    shapes....</p>
+  <p align="left">- enhancement: cellView::dbRoundCorners() now 
+    returns the shape it has rounded, rather than a boolean. Fixed to improve 
+    regression testing.</p>
+  <p align="left">- enhancement: Query dialog now shows the 
+    number of selected items. The next and previous buttons are greyed out if there 
+    are no more next or previous items in the selected set.</p>
+  <p align="left">- bugfix: 'Close Library'&nbsp;only closes 
+    all cellViews associated with this library, not ones open from another library. 
+    It checks if any cells have been modified in the lib and prompts the user to 
+    save them.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.42 release on 15/03/2015</strong></p>
+  <p align="left">- Update to version 5.8 of LEF/DEF reader. 
+    'new' constructs are currently silently ignored and hence will not be written 
+    back. Hopefully this will change in the near future.</p>
+  <p align="left">- bugfix: LSW 'Make System Layers Visible' 
+    was not working.</p>
+  <p align="left">- bugfix: outputting GDS2 from a cellView 
+    containing vias (e.g. fro LEF/DEF input) was not outputting the vias...</p>
+  <p align="left">- bugfix: with two MDI windows open and 
+    tiled, the view level was getting reset switching between windows.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.43 release on 24/3/2015</strong></p>
+  <p align="left">- bugfix: fixed occasional crashes when using 
+    the lib browser to create libraries/cellViews...</p>
+  <p align="left">- bugfix: there is a serialisation bug in a 
+    couple of Qt classes that means different binary data is written by QDataStream 
+    for&nbsp;Qt 4.8.x and 5.x. This means a Windows lib can't be read by a Linux/Mac 
+    machine and vice versa. To work around this until I have a better solution, 
+    there are two env vars you can use to get round this: GLADE_READ_48_LIBS allows 
+    a Windows machine to read a Linux Glade library, and GLADE_WRITE_48_LIBS allows 
+    a Linux machine to write libraries that have been written by a Windows machine. 
+    Of course, only use the former on Windows and the latter on Linux!</p>
+  <p align="left">- bugfix: ui::compareCells could crash if 
+    given a bad layer number </p>
+  <p align="left">- enhancement: Ubuntu 14.04 64 bit has been 
+    converted to Qt 5.4. Not without some pain! But this means its libraries will be 
+    fully compatible with current Windows versions without the need for the env vars 
+    as above. It is also planned to do the same conversion to 14.04 32 bit version. 
+    As for e.g. CentOs 6, that is next to be converted.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.44 release on 13/4/2015</strong></p>
+  <p align="left">- bugfix: Edit-&gt;Bindkeys was not working 
+    correctly.</p>
+  <p align="left">- bugfix: Some library browser menu commands 
+    were incorrect.</p>
+  <p align="left">- workaround: For OSX with a Retina display, 
+    OpenGL is automatically disabled until the scaling bug is resolved.</p>
+  <p align="left">- enhancement: All versions except CentOS 5 
+    have been converted to Qt 5.4. Unfortunately, it does not seem possible to build 
+    Qt5 on CentOS5...</p>
+  <p align="left">- enhancement: It is now possible to re-read 
+    the same DEF file without a crash. The existing cellview created from the 
+    previous imported DEF is deleted (and its window closed if open) and a new 
+    cellview will be created. </p>
+  <p align="left">- bugfix: fixed a bug where 
+    Edit-&gt;Layers-&gt;Create... and Delete... were not displaying their 
+    dialogs.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.45 release on 03/04/2015</strong></p>
+  <p align="left">- upgrade: Qt 5.4.1 on Mac OSX has Retina 
+    display bugs fixed thanks to a patch from the Qt folks, so now works fully under 
+    OpenGL.</p>
+  <p align="left">- upgrade: Windows 32/64/xp versions upgraded 
+    to Qt 5.4.1.</p>
+  <p align="left">- bugfix: Floorplan-&gt;Create Group did not 
+    delete groups.</p>
+  <p align="left">- bugfx: Deleting a system layer is not 
+    allowed any more.</p>
+  <p align="left">- bugfix: Editing bindkeys was not changing 
+    them.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.46 release on 15/05/2015</strong></p>
+  <p align="left">- enhancement: hierarcy browser can switch 
+    betweeen cell names ( the default) and inst names)</p>
+  <p align="left">- enhancement: Mac version now has Window 
+    menu working correctly.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.47 release on 21/05/2015</strong></p>
+  <p align="left">- bugfix: Windows versions now find the 
+    distributed python libs etc. even if glade is started from the cmd window in 
+    some other directory.</p>
+  <p align="left">- bugfix: some minor code errors that could 
+    cause a crash fixed.</p>
+  <p align="left">&nbsp;</p>
+  <p><strong>Version 4.4.48 release on 30/05/2015</strong></p>
+  <p align="left">- bugfix: geomAllowedWidths() reported false 
+    errors</p>
+  <p align="left">- enhancement: Option when exporting PINs in 
+    LEF to export shapes as seperate PORTs instead of the default, which is to 
+    output all shapes as a single PORT.</p>
+  <p align="left">&nbsp;</p>
+  <p><strong>Version 4.4.49 release on 05/06/2015</strong></p>
+  <p>- bugfix: CDL  netlist flattener for LVS failed if global nets were declared</p>
+  <p align="left"></p>
+  <p><strong>Version 4.4.50 release on 21/06/2015</strong></p>
+  <p align="left">- bugfix: circular holes created using 
+    boolean ops could sometimes miss a vertex.</p>
+  <p align="left">- enhancement: cv.dbCreateCircle() and 
+    cv.dbCreateEllipse() now take a fourth argument which is the number of segments 
+    the circle is represented by, when converted to e.g. GDS2, OASIS, boolean ops, 
+    or drawing. Previously this was 128 - if the argument is not set, it defaults to 
+    128.</p>
+  <p align="left">- bugfix: vertical/horizontal flags in 
+    geom....() commands were incorrect.</p>
+  <p align="left">- bugfix: multithreaded connectivity was 
+    turned off unless the GLADE_THREADED_EXTRACTION env var was set to the number of 
+    threads (i.e. logical cores available). Now, if this env var is not set, the 
+    maximum number of available cores will be used</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.51 release on 29/06/2015</strong></p>
+  <p align="left">- patch fix for a bug in 
+    cellView::geomCreateHole()</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.52 release on 19/07/2015</strong></p>
+  <p align="left">- fix for creating labels that could cause a 
+    crash.</p>
+  <p align="left">- various other minor bugfixes.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.53 release on 06/09/2015</strong></p>
+  <p align="left">- Gravity to path centrline/outline made 
+    radio buttons as you can't have both.</p>
+  <p align="left">- bugfix: Path bounding box fixed for 
+    non-manhattan paths.</p>
+  <p align="left">- bugfix: running tiled boolean checks in 
+    non-threaded mode did not obey the operation code.</p>
+  <p align="left">- bugfix: renaming a cell in the lib browser 
+    deleted the cell.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.54 release on 24/10/2015</strong></p>
+  <p align="left">- bugfix: modal paths in Oasis were using 
+    incorrect extensions</p>
+  <p align="left">- bugfix: Chinese locale not working 
+    correctly</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.55 release on 30/11/2015</strong></p>
+  <p align="left">- bugfix: various minor bugs</p>
+  <p align="left">- creating an instance with 2 libraries open 
+    caused a crash</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 4.4.56 release on 20/12/2015</strong></p>
+  <p align="left">- bugfix: geomNotch gave false errors on 
+    non-manhattan edges</p>
+  <p align="left">&nbsp;</p>
+  </font>
+  <!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

@@ -1,0 +1,40 @@
+* C:\Users\Randall_Jack\Desktop\ECEN351_LTspice\Test_std_cell_top.asc
+XX1 NC_01 NC_02 NC_03 NC_04 test_std_cell
+
+* block symbol definitions
+.subckt test_std_cell inv_in inv_out vdd vss
+XX1 inv_in inv1 vdd vss inv_1x
+XX2 inv1 inv2 vdd vss inv_2x
+XX3 inv2 inv3 vdd vss inv_4x
+XX4 inv3 inv_out vdd vss inv_8x
+.include 'C5N_models_Glade.txt'
+Vpos vdd 0 5
+Vneg vss 0 0
+Vin inv_in 0 pulse 0 5 0 .1n .1n 4.9n 10n
+.ends test_std_cell
+
+.subckt inv_1x A Z vdd vss
+M1 Z A vss vss C5NNMOS l=0.6u w=1.8u m=1
+M2 Z A vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends inv_1x
+
+.subckt inv_2x A Z vdd vss
+M1 Z A vss vss C5NNMOS l=0.6u w=1.8u m=2
+M2 Z A vdd vdd C5NPMOS l=0.6u w=3.6u m=2
+.ends inv_2x
+
+.subckt inv_4x A Z vdd vss
+M1 Z A vss vss C5NNMOS l=0.6u w=1.8u m=4
+M2 Z A vdd vdd C5NPMOS l=0.6u w=3.6u m=4
+.ends inv_4x
+
+.subckt inv_8x A Z vdd vss
+M1 Z A vss vss C5NNMOS l=0.6u w=1.8u m=8
+M2 Z A vdd vdd C5NPMOS l=0.6u w=3.6u m=8
+.ends inv_8x
+
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\Randall_Jack\Documents\LTspiceXVII\lib\cmp\standard.mos
+.backanno
+.end

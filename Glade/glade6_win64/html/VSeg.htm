@@ -1,0 +1,395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+  <!-- #BeginEditable "doctitle" -->
+  <title>Glade Reference Manual</title>
+  <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+  <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+  </div>
+  <div align="left">
+    <p align="left">
+      <font face="Arial, Helvetica, sans-serif"><b>
+        <font size="4">Glade Reference
+        </font></b>
+      </font></p>
+    <hr>
+
+    <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">
+      VSeg class
+    </font></h2>
+
+    <p>
+      A <a href="#_VSeg_class">VSeg</a> represents a wiring segment for 
+      place&amp;route data. It is a 2 vertex  vertical path. A 
+      <a href="#_VSeg_class">VSeg</a> is normally created by the 
+      cellView::dbCreateVSeg() function.
+    </p>
+    
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      VSeg::setPoints(int32_t x1,  int32_t y1, int32_t x2, int32_t y2)
+    </font></h4>
+
+    <p>
+      Sets the vertices of the <a href="#_VSeg_class">VSeg</a>
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::left()
+    </font></h4>
+
+    <p>
+      Gets the leftmost X coordinate of a <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::right()
+    </font></h4>
+
+    <p>
+      Gets the rightmost X coordinate of a <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::bottom()
+    </font></h4>
+
+    <p>
+      Gets the lowest Y coordinate of a <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::top()
+    </font></h4>
+
+    <p>
+      Gets the highest Y coordinate of a <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::width()</strong>
+    </font></h4>
+
+    <p>
+      Gets the <a href="#_VSeg_class">VSeg</a> width.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      VSeg::setStyle(int32_t s)
+    </font></h4>
+
+    <p>
+      Sets the <a href="#_VSeg_class">VSeg</a> style, i.e. the  type of the path end. 
+      The style can be one of: 0 - truncate, 1 - round, 2 -  extend, 4 - varextend, 8 - octagonal. 
+      Python global variables TRUNCATE, ROUND,  EXTEND, VAREXTEND, OCTAGONAL are defined to these values.
+    </p>
+    
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::getStyle()
+    </font></h4>
+
+    <p>
+      Gets the <a href="#_VSeg_class">VSeg</a> style.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      VSeg::setSpecial(bool  val)
+    </font></h4>
+
+    <p>
+      Sets the <a href="#_VSeg_class">VSeg</a> specialNet status
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      VSeg::isSpecial()
+    </font></h4>
+
+    <p>
+      Returns true is the <a href="#_VSeg_class">VSeg</a> is a  specialNet.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      VSeg::setNet(net *n)
+    </font></h4>
+
+    <p>
+      Sets the <a href="#_VSeg_class">VSeg</a> net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      VSeg::getNet()
+    </font></h4>
+
+    <p>
+      Returns the <a href="#_VSeg_class">VSeg</a> net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="#_Rect_class">Rect</a>  VSeg::bBox()
+    </font></h4>
+
+    <p>
+      Get the bounding box of this <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbtype_t VSeg::objType()
+    </font></h4>
+
+    <p>
+      Returns the object type of this <a href="#_VSeg_class">VSeg</a> as HSEG.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * VSeg::objName()
+    </font></h4>
+
+    <p>
+      Returns the object name of this <a href="#_VSeg_class">VSeg</a> as &quot;HSEG&quot;.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::nPoints()
+    </font></h4>
+
+    <p>
+      Returns the number of points of the <a href="#_VSeg_class">VSeg</a> (2).
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="#_Point_class">Point</a> * VSeg::ptlist()
+    </font></h4>
+
+    <p>
+      Returns the point list of this <a href="#_VSeg_class">VSeg</a> as a C array of Points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t VSeg::area()
+    </font></h4>
+
+    <p>
+      Get the area of this <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int VSeg::.perimeter()
+    </font></h4>
+    
+    <p>
+      Get the perimeter of this <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="#_Point_class">Point</a> VSeg::origin()
+    </font></h4>
+
+    <p>
+      Returns the origin point of a <a href="#_VSeg_class">VSeg</a>
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      VSeg::setOrigin(const <a href="#_Point_class">Point</a> &amp;p)
+    </font></h4>
+
+    <p>
+      Sets the origin of a <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::extent()
+    </font></h4>
+
+    <p>
+      Returns the extent, i.e. the length of the <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      VSeg::setExtent(int32_t e)
+    </font></h4>
+
+    <p>
+      Sets the extent of the <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="#_Point_class">Point</a> VSeg::getFirstVertex()
+      </font></h4>
+
+    <p>
+      Gets the first vertex of this <a href="#_VSeg_class">VSeg</a>
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="#_Point_class">Point</a> VSeg::getLastVertex()
+    </font></h4>
+
+    <p>
+      Gets the last vertex of this <a href="#_VSeg_class">VSeg</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool VSeg::ptInPoly(const <a href="#_Point_class">Point</a> &amp;p)
+    </font></h4>
+
+    <p>
+      Returns true if the <a href="#_Point_class">Point</a> p is contained 
+      in the <a href="#_VSeg_class">VSeg</a> or on its edges.
+    </p>
+    
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      VSeg::Move(<a href="#_cellView_class">cellView</a> dest, <a href="#_Point_class">Point</a> delta, bool opt = true)
+    </font></h4>
+    
+    <p>
+      Move this <a href="#_VSeg_class">VSeg</a> by distance <em>delta</em>. 
+      If <em>opt</em> is true then the database is re-optimised for the new 
+      <a href="#_VSeg_class">VSeg</a> position. If there are a lot of objects to 
+      move it  makes sense to turn this off and instead use the <a href="#_cellView_class">cellView</a>
+      update() function after moving them all.
+    </p>
+
+    <p>&nbsp; </p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="#_dbObj_class">dbObj</a> * VSeg::Copy(<a href="#_cellView_class">cellView</a> 
+      *dest, <a href="#_Point_class">Point</a> delta, int layerNum = -1)
+    </font></h4>
+    
+    <p>
+      Copy this <a href="#_VSeg_class">VSeg</a> to <a href="#_cellView_class">cellView</a> 
+      <em>dest</em>,  with offset <em>delta</em>. If <em>layer</em> is a positive integer 
+      the <a href="#_VSeg_class">VSeg</a> will be copied to the new layer number.
+    </p>
+    
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="#_dbObj_class">dbObj</a> * VSeg::Flatten(<a href="#_cellView_class">cellView</a> 
+      *dest, <a href="#_transform_class">transform</a> trans)
+    </font></h4>
+
+    <p>
+      Flatten this <a href="#_VSeg_class">VSeg</a> into <a href="#_cellView_class">cellView</a> 
+      <em>dest</em> with transformation <em>trans</em>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::getNearestEdge(<a href="#_Point__class">Point</a> p, <a href="#_segment_class">segment</a> &amp;edge, bool centreLine=true, bool  outLine=true)
+    </font></h4>
+
+    <p>
+      Gets the nearest segment <em>edge</em> to the <a href="#_VSeg_class">VSeg</a> from 
+      the <a href="#_Point_class">Point</a> <em>p</em> and returns the distance. 
+      If <em>centreline</em> is true, the centre line of  the <a href="#_VSeg_class">VSeg</a> 
+      is considered. If <em>outLine</em> is true, the outline edges of the 
+      <a href="#_VSeg_class">VSeg</a> are considered.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t VSeg::getNearestVertex(<a href="#_Point__class">Point</a> p, <a href="#_vertex_class">vertex></a> &amp;vert)
+    </font></h4>
+    
+    <p>
+      Gets the nearest vertex <em>vert </em>to  the <a href="#_VSeg_class">VSeg</a> from 
+      the <a href="#_Point_class">Point</a> p and returns the distance.
+    </p>
+    
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * VSeg::getNetName()
+    </font></h4>
+
+    <p>
+      Returns the <a href="#_VSeg_class">VSeg</a> net name as a  string.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool VSeg::offGrid(int32_t  grid)
+    </font></h4>
+
+    <p>
+      Returns true if the <a href="#_VSeg_class">VSeg</a> is  offgrid.</p>
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+    <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+    <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+  </div>
+  </body>
+<!-- #EndTemplate --></html>

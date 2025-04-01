@@ -1,0 +1,1591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" -->
+    <style type="text/css">
+    #default {
+}
+    body div div {
+	text-align: left;
+}
+    .code {
+}
+    .code {
+}
+    </style>
+    <!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --> 
+<h2 align="left"> <font face="Arial, Helvetica, sans-serif">Verification commands</font></h2>
+<p align="left">&nbsp;</p>
+<h2 align="left"> <font face="Arial, Helvetica, sans-serif">DRC checking</font> 
+</h2>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Glade supports design 
+  rule checking and connectivity extraction using the Python scripting language 
+  to write DRC/extraction decks. The advantage of this is that you are using the 
+  same procedural language as the rest of the database and UI functionality. An 
+  example python DRC script looks like:</font> </p>
+<blockquote> 
+  <pre>from ui import *<br>
+  # Get the open cellView<br>
+  cv = getEditCellView()<br>
+  geomBegin(cv)<br>
+  # Get layers<br>
+  active = geomGetShapes("active", "drawing")<br>
+  poly   = geomGetShapes("poly", "drawing")<br>
+  # Form derived layer<br>
+  gate   = geomAnd(active, poly)<br>
+  # Run width check<br>
+  geomWidth(gate, 0.18 &quot;gate width &lt; 0.18um&quot;)<br>
+  geomEnd()</pre></blockquote>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">In this example we first initialise the&nbsp;geometry 
+package and tell it we want to 
+  check the current editing cellview with the geomBegin(cv) command. We then get shapes on different 
+  layers and perform boolean operations on them. Finally we check the derived 
+  layer using the geomWidth function. By default this writes DRC violations shapes to 
+  the TECH_DRCMARKER_LAYER (drcMarker layer in the LSW).</font> </p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif"> After completing DRC 
+  operations we call geomEnd() to free memory.</font> </p>
+<p align="left"> <font face="Arial">In the above example, 'active' and 'poly' 
+  are original layers. 'gate' is a derived layer that does not exist in the original 
+  cellView. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h2 align="left"> <font face="Arial, Helvetica, sans-serif">Boolean processing 
+  functions</font> </h2>
+<p align="left"><font face="Arial">Before 
+using DRC or LPE (extraction) commands, we normally need to perform some layer 
+processing using boolean operations or select operations. For example in order 
+to extract a MOS transistor, we need to identify the gate area by using&nbsp;the 
+&nbsp;geomAnd() &nbsp;of the poly and diffusion layers, and we need to 
+use the geomAndNot() of the diffusion and poly layers to split the diffusion 
+between the source and the drain of the device, else we end up with all 
+devices S/D terminals shorted.</font> </p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The following layer 
+  processing functions are supported. Note that these don't have to be used just 
+  for DRC or LPE - you can use them in any python script for layer processing. 
+  The 'layers' that the commands produce are in fact temporary binary edge files.&nbsp; 
+  These files are called file0000.dat, file0001.dat etc. and are automatically 
+  deleted during geomEnd().</font> <font face="Arial">By default the layer files are written in the 
+directory that Glade is invoked in. However if the environment variable 
+GLADE_DRC_WORK_DIR is set to a valid directory, then they will be written to 
+that directory instead.</font> </p>
+<p align="left"><font face="Arial">Optional arguments are shown 
+as e.g. hier=True, indicating that the default value of True is used if the argument 
+is not specified.</font> </p>
+<p align="left"></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">geomBegin( cellView 
+  cv)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Initialise the DRC 
+  package. A valid cellView  must be passed to initialise the package. 
+  The cellView will be the one that subsequent processing operates on.</font> <font face="Arial">Note the former 
+equivalent function drcInit(cv) is still supported, but deprecated.</font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif"></font> 
+</h4>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">geomEnd()</font> 
+</h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Uninitialise the DRC 
+  package. Working memory is freed. Temporary layer files are deleted.</font> <font face="Arial">Note the former 
+equivalent function drcUnInit(cv) is still supported, but deprecated.</font> 
+</p>
+<p align="left"></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomGetShapes('layerName', purpose =  
+   'drawing', hier=True)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Initialises<i> out_layer</i> 
+  with all shapes on the layer <i>layerName</i>, with purpose <i>purpose</i>. <em>purpose</em> defaults to 'drawing' if not 
+given.&nbsp;The resulting 
+  derived <i>out_layer</i> contains merged shapes. The default is to get all shapes 
+  through the hierarchy; if the optional parameter&nbsp; <i>hier</i> is False, 
+  then only top level shapes are processed.</font> </p>
+<p align="left"></p>
+<p align="left"><strong>out_layer = geomStartPoly(vertices)</strong></p>
+<p align="left">Creates a polygon from the given <em>vertices</em> list and saves to the layer <em>out_layer</em>, which will be overwritten if it exists. The resulting output layer is not merged. The vertex list must be in counterclockwise order and not self-intersecting. For example:</p>
+<blockquote>
+  <pre align="left">y4 = geomAddShape([ [0,0], [1000, 0], [1000, 2000], [0, 2000] ])</pre>
+</blockquote>
+<p align="left"><strong>out_layer = geomAddPoly(layer, vertices)</strong></p>
+<p align="left">Adds a polygon from the given vertices to the edge layer <em>layer,</em> and saves to the layer <em>out_layer</em>. The resulting output layer is merged with existing shapes on the layer. The vertex list must be in counterclockwise order and not self-intersecting. For example:</p>
+<blockquote>
+  <pre>y3 = geomAddShapes(y3, [1000, 0], [1000, 2000], [0, 2000] ])</pre>
+</blockquote>
+<p align="left"><strong>out_layer = geomAddShape(layer, shape)</strong></p>
+<p align="left">Adds a shape <em>shape</em> to the edge layer <em>layer</em>. The resulting output layer is merged. For example:</p>
+<blockquote>
+  <pre align="left">y4 = geomEmpty()
+cutshape = cv.dbCreateRect(cut, y4_lyr)</pre>
+  <pre align="left">y4 = geomAddShape(y4, cutshape)</pre>
+</blockquote>
+<p align="left"><strong>out_layer = geomAddShape(layer, shapes)</strong></p>
+<p align="left">Adds a python list of shapes to the edge layer <em>layer</em>. The resulting output layer is merged. For example:</p>
+<blockquote>
+  <pre>y3 = geomEmpty()
+shapes = []
+   for i in range(0,4) :
+   shape = cv.dbCreateRect(box, y3_lyr)
+   box.offset(2000, 0)
+   shapes.append(shape)</pre>
+  <pre>y3 = geomAddShapes(y3, shapes)</pre>
+</blockquote>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">num = geomNumShapes(layer)</font> 
+</h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Returns&nbsp;the number 
+  of shapes in a layer. This can be used as a test, e.g.</font> </p>
+<div align="left"> 
+  <pre>	if geomNumShapes(diff) != 0 :<br>		gate = geomAnd(poly, diff)</pre></div>
+<p align="left"><font face="Arial"><strong > </strong> 
+</font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>out_layer = geomEmpty()</strong> 
+</font></p>
+<p align="left"><font face="Arial">Creates a dummy empty <em>out_layer</em> .</font> 
+</p>
+<p align="left"><font face="Arial"><strong > </strong> 
+</font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>out_layer = geomBkgnd(size = 0.0)</strong> 
+</font></p>
+<p align="left"><font face="Arial">Creates <em>out_layer</em> with an extent the 
+size of the cellView's bounding box, plus <em>size</em> (which defaults to 
+0.0um). This is useful for example to create a pwell layer when the original 
+mask data just has nwell information:</font> </p>
+<blockquote style="MARGIN-RIGHT: 0px" dir="ltr">
+  <div align="left">
+  <pre>nwell = geomGetShapes('nwell', 'drawing')<br>bkgnd = geomBkgnd()<br>psub = geomAndNot(bkgnd, nwell)</pre></div>
+</blockquote>  
+<p align="left"><font face="Arial"><strong>geomErase('layerName', 
+purpose='drawing')</strong></font></p>   <p align="left"><font face="Arial">Erases 
+any design data on layer <em>layerName</em> in the current cellView. <em>purpose</em> defaults to 'drawing'     
+if not given. Beware: there is no way of undoing this operation.</font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif" > </font> 
+</h4>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomMerge(layer)</font> 
+</h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Returns the&nbsp;merged 
+  shapes on <i>layer</i>. This is equivalent to a single layer OR. Note that geomGetShapes() 
+  always merges raw input data, so there is normally no need to separately merge 
+  layers.</font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif" >  
+  </font> </h4>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomOr(layer1, 
+  layer2)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Returns the OR (union) 
+  of&nbsp;the two layers.</font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif" >  
+  </font> </h4>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomAnd(layer1, 
+  layer2)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Returns the AND (intersection) 
+  of&nbsp;the two layers.</font> </p>
+<p align="left"></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomNot(layer)</font> 
+</h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Returns&nbsp;the inverse of the 
+  layer. Effectively it runs geomAndNot(), with the first 'layer' being a rectangle 
+  the size of the cellView's bounding box, and the second the specified layer.</font> 
+</p>
+<p align="left"></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomAndNot(layer1, 
+  layer2)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Returns&nbsp;the AND 
+  NOT of <i>layer1</i> with <i>layer2</i>. This is equivalent to subtracting all 
+  shapes on <i>layer2</i> from <i>layer1</i>.</font> </p>
+<p align="left"></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">out_layer<strong> = geomXor(layer1, layer2)</strong>  
+  </font> </p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Returns the XOR of&nbsp;the 
+  two layers.</font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif" >  
+  </font> </h4>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomSize(layer, size, flag =  
+  0)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Sizes the layer by 
+  <i>size</i> microns. A positive <i>size</i> grows the layer, while a negative 
+  <i>size</i> shrinks the layer. If a shape should shrink so its width becomes 
+  zero, it will no longer be present in the <em>sized_layer</em> .</font> <font face="Arial">The third 
+argument, <em>flag</em>, if not specified&nbsp;sizes all edges&nbsp;by 
+<em>size</em>. If <em>flag</em>&nbsp;is set to 'vertical' then sizing is only 
+done in the vertical direction, if <em>flag</em>&nbsp;is set to 'horizontal' 
+then sizing is only done in the horizontal direction.</font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif" > </font> 
+</h4>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomTrapezoid(layer)</font> 
+</h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Converts <i>layer</i> 
+  to trapezoids. If layer has connectivity established via geomConnect(), the 
+  connectivity will be maintained in the trapezoids generated.</font></p>
+<p align="left"><font size="5" face="Arial"><strong> 
+</strong></font> </p>
+<p align="left"><font size="5" face="Arial"><strong>Selection 
+functions</strong></font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">select_layer = geomTouching(layer1, 
+  layer2, flag=layer2)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Select all shapes on 
+  <i>layer2</i> that touch <i>layer1</i>. Touching is defined as any&nbsp;edge of<i> 
+  layer2</i> polygons that touch an edge from a<i> layer1</i> polygon.</font> <em>flag</em> can be <strong>layer1</strong> or <strong>layer2</strong> (the default), and controls which of the two layers that meet the criteria are output to <em>touching_layer</em>.</p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif" >  
+  </font> </h4>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">select_layer = geomOverlapping(layer1, 
+  layer2, flag=layer2)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Select all shapes on 
+  <i>layer2</i> that touch <i>layer1</i>. Overlapping is defined as any edge of<i> 
+  layer2</i> polygons that intersects an edge from a<i> layer1</i> polygon, i.e. the layer2 polygon is part inside, 
+part outside layer1.</font> 
+  <em>flag</em> can be <strong>layer1</strong> or <strong>layer2</strong> (the default), and controls which of the two layers that meet the criteria are output to <em>overlapping_layer</em>.</p>
+<p align="left"></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>select_layer</strong></font><font face="Arial"><strong> = 
+  geomInside(layer1, layer2</strong></font><font face="Arial, Helvetica, sans-serif"><strong>, flag=layer2</strong></font><font face="Arial"><strong>)</strong></font> 
+</p>
+<p align="left"><font face="Arial">Select all shapes on <em>layer2</em> that are inside (enclosed by) <em>layer1</em>.</font> Shapes are considered as 'inside' if the shapes have common area. The <em>layer2</em> edges may be coincident with <em>layer1</em> edges. <em>flag</em> can be <strong>layer1</strong> or <strong>layer2</strong> (the default), and controls which of the two layers that meet the criteria are output to<em> inside_layer</em>.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>select_layer</strong></font><font face="Arial"><strong> = 
+geomContains(layer1, layer2</strong></font><font face="Arial, Helvetica, sans-serif"><strong>, flag=layer2</strong></font><font face="Arial"><strong>)</strong></font> 
+</p>
+<p align="left"><font face="Arial">Select all shapes on <em>layer2</em> that 
+are contained by shapes on <em>layer1</em>.</font> Shapes are considered as 'contained' if all of their vertices are inside <em>layer1</em> and do not touch <em>layer1</em>. <em>flag</em> can be <strong>layer1</strong> or <strong>layer2</strong> (the default), and controls which of the two layers that meet the criteria are output to <em>contains_layer</em>.</p>
+<p align="left"></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>select_layer</strong></font><font face="Arial"><strong> = 
+  geomOutside(layer1, layer2</strong></font><font face="Arial, Helvetica, sans-serif"><strong>, flag=layer2</strong></font><font face="Arial"><strong>)</strong></font> 
+</p>
+<p align="left"><font face="Arial">Select all shapes on <em>layer2</em> that are outside <em>layer1</em>.</font> <font face="Arial">The shapes 
+may touch or abut <em>layer1</em>.</font> <font 
+face=Arial>To make sure that shapes on <em>layer2</em> are completely&nbsp;'outside' 
+<em>layer1</em>, and get considered,&nbsp;the 'enclosing' shape should be 
+<em>layer1</em>.</font> 
+ <em>flag</em> can be <strong>layer1</strong> or <strong>layer2</strong> (the default), and controls which of the two layers that meet the criteria are output to <em>outside_layer</em>.</p>
+<p align="left"><font face="Arial">
+</font></p>
+<font face="Arial">
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>select_layer</strong></font><font face="Arial"><strong> = 
+geomAvoiding(layer1, layer2</strong></font><font face="Arial, Helvetica, sans-serif"><strong>, flag=layer2</strong></font><font face="Arial"><strong>)</strong></font> 
+</p>
+<p align="left">Select 
+all shapes on <em>layer2</em> that  avoid <em>layer1</em> and do 
+not touch or overlap. <em>flag</em> can be <strong>layer1</strong> or <strong>layer2</strong> (the default), and controls which of the two layers that meet the criteria are output to <em>avoiding_layer</em>.</p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>select_layer</strong></font><font face="Arial"><strong> = 
+  geomButting(layer1, layer2</strong></font><font face="Arial, Helvetica, sans-serif"><strong>, flag=layer2</strong></font><font face="Arial"><strong>)</strong></font> 
+</p>
+<p align="left"><font face="Arial"> Select 
+all shapes on layer2 that have outside edges that 
+abut layer1 outside edges.</font> <em>flag</em> can be <strong>layer1</strong> or <strong>layer2</strong> (the default), and controls which of the two layers that meet the criteria are output to <em>butting_layer</em>.</p>
+<p align="left">&nbsp; 
+   
+</p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>select_layer</strong></font><font face="Arial"><strong> = 
+geomCoincident(layer1, layer2</strong></font><font face="Arial, Helvetica, sans-serif"><strong>, flag=layer2</strong></font><font face="Arial"><strong>)</strong></font> 
+</p>
+</font>
+<p align="left"><font face="Arial">Select 
+all shapes on 
+    <em>layer2</em> that have edges coincident with 
+inside edges of <em>layer1</em>.</font> <font face="Arial"><em>flag</em> can be <strong>layer1</strong> or <strong>layer2</strong> (the default), and controls which of the two layers that meet the criteria are output to <em>coincident_layer</em>.</font></p>
+
+<p>&nbsp;</p>
+<p><strong><font face="Arial, Helvetica, sans-serif">select_layer</font> = geomInteracts(layer1, layer2, flag=layer2)</strong></p>
+<p>Select shapes on <em>layer2</em> that interact with shapes on <em>layer1</em>.<font face="Arial"> An interaction is defined as overlapping, abutting, coincident, or inside<em>. flag</em> can be <strong>layer1</strong> or <strong>layer2</strong> (the default), and controls which of the two layers that meet the criteria are output to <em>interacting_layer</em>.</font></p>
+<p>&nbsp;</p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomGetTexted(layer,'layerName', 
+purpose =  
+   'drawing', name=None)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Gets all shapes on 
+  <em>layer</em> that have text labels on the layer/purpose pair given by <em>layerName</em> 
+  / <em>purpose</em>. 
+<em>purpose</em> defaults to drawing if not given. Optionally a <em>name</em> can be supplied e.g. 'vdd', 
+  and then only shapes with text labels with that name are output to <em>out_layer</em> 
+  .</font> </p>
+<p align="left"></p>
+<h4><a name="_Toc30676276">out_layer =  geomGetNet(layer1, &lsquo;netName&rsquo;)</a></h4>
+<p>Gets all shapes on <em>layer1</em>&rsquo;s  layer (which must be an input or derived layer specified in geomConnect) that  are assigned to net with name &lsquo;<em>netName&rsquo;</em>.</p>
+<p>&nbsp;</p>
+<p align="left"> <font face="Arial"> <strong>out_layer = geomHoles(layer)</strong> 
+</font> </p>
+<p align="left"> <font face="Arial">Gets the holes in polygons on <em>layer</em> 
+  and outputs them to <em>out_layer. </em></font> </p>
+<p align="left"><em><font face="Arial"></font></em></p>
+<p align="left"> <font face="Arial"> <strong>out_layer = geomNoHoles(layer)</strong> 
+  </font> </p>
+<p align="left"> <font face="Arial">Gets the polygons on <em>layer</em> and outputs 
+  them, minus any holes, to <em>out_layer</em>. </font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>out_layer = geomGetHoles(layer, flag=greaterthan, count=0)</strong> </font></p>
+<p align="left"> <font face="Arial">Gets the holes on <em>layer</em> polygons and outputs them, to <em>out_layer.</em></font> <em>flag</em> and <em>count</em> set the criteria; for example <em>greaterthan, 1</em> will only output holes for polygons which have more than 1 hole.</p>
+<p align="left"><em><font face="Arial"></font></em></p>
+<p align="left"> <font face="Arial"> <strong>out_layer = geomGetHoled(layer, flag=greaterthan, count=0)</strong> </font></p>
+<p align="left"> <font face="Arial">Gets the polygons on <em>layer</em> that do not contain holes and outputs 
+  them, to <em>out_layer</em>. </font><em>flag</em> and <em>count</em> set the criteria; for example <em>equals, 2</em> will output original polygons (less their holes) for polygons with exactly 2 holes.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>out_layer = geomGetNon90(layer)</strong></font></p>
+<p align="left"><font face="Arial">Gets the polygons on <em>layer</em> and outputs ones that have one or more edges that are non 90 degrees to <em>out_layer</em>.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>out_layer = geomGetNon45(layer)</strong></font></p>
+<p align="left"><font face="Arial">Gets the polygons on <em>layer</em> and outputs ones that have one or more edges that are non 90 and non 45 degrees to <em>out_layer</em></font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>out_layer = geomGetRectangles(layer)</strong></font></p>
+<p align="left"><font face="Arial">Gets the shapes on <em>layer</em> and outputs ones that are rectangular, i.e. have 4 edges parallel to the X or Y axes</font>.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>out_layer = geomGetPolygons(layer)</strong></font></p>
+<p align="left"><font face="Arial">Gets the shapes on <em>layer</em> and outputs ones that are not rectangular, i.e. have at least one edge not parallel to the X or Y axes.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong><a name="_Toc30676284">out_layer = geomGetVertices(layer1, num, flags =  equal)</a></strong><a name="_Toc30676284"></a></p>
+<p>Get shapes on <em>layer1&rsquo;s</em> layer that have <em>num</em> vertices.  Optionally <em>flags</em> can be set to equal,  not_equal, greater, less.</p>
+<h2 align="left">&nbsp;</h2>
+<h2 align="left"><font face="Arial, Helvetica, sans-serif">DRC</font> 
+</h2>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">DRC functions, like 
+  boolean operations,&nbsp;are edge-based, using a Bentley-Ottman scanline algorithm. 
+  Edges are currently only considered in error if they project onto each other 
+  in the X or Y direction and the spacing between the edges is less than the specified 
+  rule. Perpendicular edges are not considered errors. The resulting error marker 
+  shapes are constructed from the four vertices of the error edges, and are copied 
+  to the output layer where they may be used for subsequent boolean operations.</font></p>
+<p align="left">&nbsp;</p>
+<h3 align="left">Flags</h3>
+<p>Many commands take a flags parameter. Flags can be bitwise  OR's together using the '|' operator, although some flags are mutually  independent: samenet/diffnet; equals/not_equal/greaterthan, greaterorequal,  lessthan, lessorequal; horizontal/vertical/diagonal; layer1/layer2;  butting/coincident/inside/outside/over/not_over.</p>
+<p align="left">The flags are:</p>
+<ul>
+  <li><strong>none</strong> - No flag bits set.</li>
+  <li><strong>samenet</strong> - Used for geomSpace checks, check only carried out if shapes are on the same net.</li>
+  <li><strong>diffnet</strong> - Used for geomSpace checks, check only carried out if shapes are on different nets.</li>
+  <li><strong>vertical</strong> - Only vertical edges are checked.</li>
+  <li><strong>horizontal</strong> - Only horizontal edges are checked.</li>
+  <li><strong>diagonal</strong> - Only diagonal (45 degree) edges are checked. </li>
+  <li><strong>project</strong> - The checked edges must project, i.e. be parallel and share a common parallel runlength.</li>
+  <li><strong>parallel</strong> - The checked edges must be parallel.</li>
+  <li><strong>abut</strong> - Used for geomSpace and geomEnclose checks. If set, abutting edges will flag the spacing check, else abutting is allowed.</li>
+  <li><strong>equal</strong> - If set, violations are created where the test result is equal to the rule, e.g. geomWidth(M1, 0.030, equal) will result in shapes with width equal to 30nm selected for error/output.</li>
+  <li><strong>not_equal</strong> - If set, violations are created where the test result is not equal to the rule, e.g. geomWidth(M1, 0.030, not_equal) will result in shapes with width not equal to 30nm selected for error/output.</li>
+  <li><strong>greater</strong> - If set, violations are created where the test result is greater than the rule, e.g. geomWidth(M1, 0.030, greater) will result in shapes with width greater than 30nm selected for error/output.</li>
+  <li><strong>greaterorequal</strong> - If set, violations are created where the test result is greater than or equal to the rule, e.g. geomWidth(M1, 0.030, greater) will result in shapes with width greater than or equal to 30nm selected for error/output.</li>
+  <li><strong>lessthan </strong>-  the default. Violations are created when the test result is less than the rule.</li>
+  <li><strong>lessorequal </strong>- Violations are created when the test result is less than or equal to the  rule.</li>
+  <li><strong>output_only</strong> - Do not flag a violation on the marker, used when a DRC check generates edge data to be further processed.</li>
+  <li><strong>opposite</strong> - Report violations with opposite lengths of the edges only. Else the full length of the edges are reported.</li>
+  <li><strong>layer1 </strong>-  layer1 is output in selection operations.</li>
+  <li><strong>layer2 </strong>-  layer2 is output in selection operations (the default).</li>
+  <li><strong>butting </strong>-  outside edges of layer1 that abut layer2 outside edges are checked.</li>
+  <li><strong>coincident </strong>- inside edges of layer1 that are coincident with outside edges of layer2  are checked.</li>
+  <li><strong>outside </strong>-  edges of layer1 that are outside layer2 shapes are checked.</li>
+  <li><strong>inside </strong>&nbsp;- edges of layer1 that are inside layer2  shapes are checked.</li>
+  <li><strong>over </strong>-  edges of layer1 that are coincident or inside layer2 shapes are checked.</li>
+  <li><strong>not_over </strong>-  edges of layer1 that abut or are outside layer2 shapes are checked.</li>
+  <li></li>
+</ul>
+<h3 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomWidth(layer, 
+  rule, message=None)</font> </h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Single  layer width check. Checks <i>layer</i> 
+  for minimum width violations i.e. widths less than <i>rule</i>. Error polygons 
+  are created on the drcMarker layer in the current cellView. The <i>rule</i> 
+  dimension must be specified in microns. </font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif">An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p align="left"></p>
+<h3 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomWidth(layer, rule,  int 
+  flags, message=None)</font> </h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer</i> 
+  for minimum width violations i.e. widths less than <i>rule</i>. Error polygons 
+  are created on the drcMarker layer in the current cellView. The <i>rule</i> dimension must be specified in microns.</font> </p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>horizontal</strong></li>
+  <li><strong>vertical</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>project</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equal</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>output_only</strong></li>
+  <li><strong>opposite</strong></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif"> 
+        An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p align="left">&nbsp;</p>
+<h3 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomAllowedWidths(layer, rules,   
+     flags, message=None)</font> </h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer</i> for width 
+violations. The widths must be discrete values specified in <em>rules</em>, 
+which is a python sequence. Error polygons 
+  are created on the drcMarker layer in the current cellView. The <i>rules</i>  must be specified in microns.</font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>horizontal</strong></li>
+  <li><strong>vertical</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>output_only</strong></li>
+  <li><strong>opposite</strong></li>
+</ul>
+<p align="left"><font face="Arial, Helvetica, sans-serif">An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p align="left"><font face="Arial">Example:</font> </p>
+<blockquote>
+  <pre>geomAllowedWidths(poly, [0.020, 0.022, 0.024], horizontal)</pre>
+</blockquote>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer<strong> = geomEdgeLength(layer1, layer2, rule,  int 
+  flags, message=</strong>None<strong>)</strong></font></h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer1</i> for edge length violations i.e. lengths less than <i>rule</i>, where edges of <em>layer1</em> related to shapes on <em>layer2</em> are checked. </font>The relation of layer1 edges to layer2 edges can be specified by flags. Possible checks are:</p>
+<ul>
+  <li>	butting - outside edges of <em>layer1</em> that abut <em>layer2</em> outside edges are checked.</li>
+  <li>coincident - inside edges of <em>layer1</em> that are coincident with outside edges of <em>layer2</em> are checked.</li>
+  <li>inside - edges of <em>layer1</em> that are inside <em>layer2</em> shapes are checked.</li>
+  <li>outside - edges of <em>layer1</em> that are outside <em>layer2</em> shapes are checked.</li>
+  <li>over - edges of <em>layer1</em> that are coincident or inside <em>layer2</em> shapes are checked.</li>
+  <li>not_over - edges of <em>layer1</em> that abut or are outside <em>layer2</em> shapes are checked.</li>
+</ul>
+<p align="left"><font face="Arial, Helvetica, sans-serif">Error polygons 
+  are created on the drcMarker layer in the current cellView. The <i>rule</i> dimension must be specified in microns.</font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>horizontal</strong></li>
+  <li><strong>vertical</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>butting</strong></li>
+  <li><strong>coincident</strong></li>
+  <li><strong>inside</strong></li>
+  <li><strong>outside</strong></li>
+  <li><strong>over</strong></li>
+  <li><strong>not_over </strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equal</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>output_only</strong></li>
+  <li><strong>opposite</strong></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif"> An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p align="left">Example:</p>
+<blockquote>
+  <pre align="left">geomEdgeLength(gate, active, 0.13, coincident, &quot;Gate length &lt; 0.13um&quot;)</pre></blockquote>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomSpace(layer, 
+  rule, message=None)</font></h3>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomSpace(layer, 
+  rule, int flags, message=None)</font> </h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer</i> 
+  for minimum spacing violations i.e. single layer spacings less than <i>rule</i>. 
+  Error polygons are created on the drcMarker layer in the current cellView. The 
+  <i>rule</i> dimension must be specified in microns. Note that spacing violations 
+  between edges of the <b>same</b> polygon are not reported; to detect these perform 
+  a geomNotch check. An optional <i>message</i> will be written to the error marker 
+  flag if specified. <i>flags</i> 
+can be used to control the spacing check. A flag of <em>samenet</em> applies the 
+check only if the two shapes are on the same physical net. <em>flags</em> can be used to control the spacing check. </font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>samenet</strong></li>
+  <li><strong>diffnet</strong></li>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>project</strong></li>
+  <li><strong>parallel</strong></li>
+  <li><strong>abut</strong></li>
+  <li><strong>not_equal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Example:</font> </p>
+<blockquote>
+  <pre>geomSpace(active, 0.2, samenet, "active space &lt; 0.2 for same net")</pre>
+  <pre>geomSpace(active, 0.3, diffnet, &quot;active space &lt; 0.3 for different nets&quot;)</pre>
+</blockquote>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomSpace(layer,  rule,&nbsp; 
+  width, length, int flags, message=None)</font> </h3>
+<p align="left"><font face="Arial">Checks layer for minimum 
+spacing violations i.e. single layer spacing less than <em>rule</em>, where <strong>one</strong>   
+  of the shapes has a width &gt; <em>width </em>and a parallel run length &gt;<em> length</em>. Error polygons are 
+created on the drcMarker layer in the current cellView. The <em>rule</em> and 
+<em>width</em> dimensions must be specified in microns. Note that spacing 
+violations between edges of the <strong>same</strong> polygon are not reported; 
+to detect these perform a geomNotch check. An optional <em>message</em> will be 
+written to the error marker flag if specified. </font><em>flags</em> can be used  to control the spacing check. </p>
+<p align="left"><br>
+  Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>samenet</strong></li>
+  <li><strong>diffnet</strong></li>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>project</strong></li>
+  <li><strong>parallel</strong></li>
+  <li><strong>abut</strong></li>
+  <li><strong>not_equal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left"><font face="Arial"> Example: </font> </p>
+<pre>	geomSpace(active, 0.2, 10.0, samenet, "active space &lt; 0.2 for same net with width &gt; 10.0")	         </pre>
+<pre>	geomSpace(active, 0.3, 10.0, diffnet, "active space &lt; 0.3 for different nets with width &gt; 10.0")</pre>
+<h3>&nbsp;</h3>
+<h3><strong><font face="Arial, Helvetica, sans-serif">out_layer =                 geomSpace2(layer,  rule,&nbsp; width, length, int flags=0, message =    
+  None)</font>&nbsp;
+  </strong> 
+</h3>
+<p align="left"><font face="Arial"><font >Checks layer for minimum 
+spacing violations i.e. single layer spacing less than <em>rule</em>, where <strong>both</strong> of the shapes has a width &gt; <em>width</em></font><font face="Arial"> and a parallel run length &gt;<em> length</em></font><font >. Error polygons are 
+created on the drcMarker layer in the current cellView. The <em>rule</em> and 
+<em>width</em> 
+dimensions must be specified in microns. Note that spacing violations between 
+edges of the <strong>same</strong> polygon are not reported; 
+to detect these perform a geomNotch check. An optional <em>message</em> will be 
+written to the error marker flag if specified. <em>flags</em> can be used to 
+control the spacing check. </font></font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>samenet</strong></li>
+  <li><strong>diffnet</strong></li>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>project</strong></li>
+  <li><strong>parallel</strong></li>
+  <li><strong>abut</strong></li>
+  <li><strong>not_equal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left"><font face="Arial">Example:   </font></p>
+<blockquote>
+  <pre>geomSpace2(active, 0.2, 10.0, samenet, "active space &lt; 0.2 for same net with width &gt; 10.0")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>
+  <pre>geomSpace2(active, 0.3, 10.0, diffnet, "active space &lt; 0.3 for different nets with width &gt; 10.0")	</pre>
+</blockquote>
+<p>&nbsp;</p>
+<h3 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomSpace(layer1, 
+    layer2, rule,  message=None)</font></h3>
+  <h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomSpace(layer1, 
+    layer2, rule, int flags, message=None)</font></h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer1</i> 
+  to <i>layer2</i> for minimum spacing violations i.e. two layer spacings less 
+  than rule. Error polygons are created on the drcMarker layer in the current 
+  cellView. The <i>rule</i> dimension must be specified in microns. An optional 
+  <i>message</i> will be written to the error marker flag if specified. <i>flags</i> 
+  can be used to control the spacing check. </font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>samenet</strong></li>
+  <li><strong>diffnet</strong></li>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>project</strong></li>
+  <li><strong>parallel</strong></li>
+  <li><strong>abut</strong></li>
+  <li><strong>not_equal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Example:</font></p>
+<pre><strong>	geomSpace(nwell, ndiff, 0.2, samenet, "nwell to n+ diff space &lt; 0.2 for same net")</strong>	             </pre>
+<pre><strong>	geomSpace(nwell, ndiff, 0.3, diffnet, "nwell to n+ diff space &lt; 0.3 for different nets</strong>&quot;)</pre>
+<h4 align="left">&nbsp;</h4>
+<h3>out_layer = geomSpace(layer1, rule, length, flags=0,  message = None)&nbsp;</h3>
+<p>Single layer length dependent spacing check. Checks <em>layer1</em> for minimum spacing violations  i.e. single layer spacing less than <em>rule</em>,  where the shapes have a parallel run length that can be lessthan, greaterthan,  equals not not_equal to <em>length, </em>according  to<em> flags</em>. Error polygons are created  on the drcMarker layer in the current cellView. The <em>rule</em> and <em>length</em> dimensions must be specified in microns as a float. Note that spacing  violations between edges of the same polygon are not reported; to detect these  perform a geomNotch check. An optional <em>message</em> will be written to the error marker flag if specified. <em>flags</em> can be used to control the runlength check. <br>
+  Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>not_equal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p>Example: </p>
+<pre>
+     geomSpace(active, 0.2, 10.0,  lessthan, &quot;active space &lt; 0.2 with runlength &lt;  10.0&quot;)</pre>
+<p align="left">&nbsp;</p>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomAllowedSpaces(layer, rules,   
+  flags, message=None)</font></h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer</i> for space 
+  violations. The spaces must be discrete values specified in <em>rules</em>, 
+  which is a python sequence. Spacing greater or equal to the last rule is allowed. Error polygons 
+  are created on the drcMarker layer in the current cellView. The <i>rules</i> must be specified in microns.</font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>project</strong></li>
+  <li><strong>abut</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left"><font face="Arial, Helvetica, sans-serif">An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p align="left"><font face="Arial">Example:</font></p>
+<blockquote>
+  <pre>geomAllowedSpaces(active, [0.020, 0.022, 0.024], horizontal)</pre>
+</blockquote>
+<p align="left">In the above, the layer 'active' must have spacing of either 20nm, 22nm or &gt;= 24nm.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong><font face="Arial, Helvetica, sans-serif">out_layer</font> = geom2DSpace(layer, rules, flags, message=<font face="Arial, Helvetica, sans-serif">None</font>)</strong></p>
+<p align="left">Checkes layer for spacing that is both length and width dependent. The rules consist of a 2D python array, of which row 0 defines the widths of the rules, and column 0 defines the lengths of the rules. The other entries are the rule values. <em>flags</em> are as defined above. <font face="Arial, Helvetica, sans-serif">An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p align="left">Example:</p>
+<blockquote>
+  <pre align="left"> geom2DSpace(m1,  [ [0.000, 0.028, 0.032, 0.040, 0.064, 0.120, 0.240, 0.320, 0.600],
+ [0.028, 0.036, 0.036, 0.036, 0.036, 0.036, 0.036, 0.036, 0.036],
+ [0.240, 0.036, 0.068, 0.076, 0.076, 0.076, 0.076, 0.076, 0.076],
+ [0.480, 0.036, 0.068, 0.076, 0.092, 0.092, 0.092, 0.092, 0.092],
+ [1.200, 0.036, 0.068, 0.076, 0.092, 0.120, 0.120, 0.120, 0.120],
+ [1.800, 0.036, 0.068, 0.076, 0.092, 0.120, 0.240, 0.240, 0.240],
+ [2.400, 0.036, 0.068, 0.076, 0.092, 0.120, 0.240, 0.320, 0.600]
+ ], 0, &quot;M1 Minimum spacing&quot;)
+</pre>
+  </blockquote>
+<p>The above defines a minimum rule of 28nm for normal metal. For metal wider than 240nm then if the width is wider than 32nm the rule is 68nm, if the width is wider than 40nm the rule is 76nm etc.</p>
+<p align="left"><font face="Arial"></font></p>
+<h3><a name="_Toc57032967">out_layer = geomNeighbours(layer1, dist, rule,  num = 2, message= None</a></h3>
+<p>Single layer nearest neighbour check. Checks <em>layer1</em> shapes for neighbouring shapes  within <em>dist</em>. If there are more than <em>num</em> shapes within <em>rule</em>, then an error is generated. This check is for contacts/vias  in e.g. 40nm or below processes; only rectangular shapes can be checked.<br>
+  Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p>Example:</p>
+<pre>
+   geomNeighbours(CO, 0.11, 0.10, 3,  &quot;CO Space to 3 neighbours &lt; 0.10 (CO.S.2)&quot;)
+   The above checks if there are 3 neighbouring CO shapes  within 0.11um of a CO shape. If so they have to be spaced by 0.10um.</pre>
+<p align="left">&nbsp;</p>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomNotch(layer1, 
+  rule, message=None)</font></h3>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer<strong> = geomNotch(layer1, 
+  rule, flags, message=</strong>None<strong>)</strong></font></h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer1</i> polygons for notch violations. Error polygons are created on the drcMarker layer 
+  in the current cellView. The <i>rule</i> dimension must be 
+  specified in microns. Note that notches are effectively spacing violations 
+  between edges of the same 
+  polygon. An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left">&nbsp;</p>
+<h3 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomLineEnd(layer1, rule, num_ends, 
+  min_adj_edge_length=0.0, flags=0, message=None)</font> </h3>
+<p align="left"><font face="Arial">Checks <em>layer1</em> for 
+minimum line end spacings. &nbsp;The spacing is from the line end edge to 
+another edge which is either a normal edge (if <em>num_ends</em>=1)&nbsp;or 
+another line end edge (if <em>num_ends</em> = 2). A line end edge is a 
+horizontal edge with two adjacent vertical edges, or a vertical edge with two 
+adjacent horizontal edges. The adjacent edge length must be greater than the 
+line end edge length, or <em>min_adj_edge_length</em>, whichever is the 
+greater.</font> The  <em>rule</em> dimension and the <em>min_adj_edge</em> must be specified in  microns.</p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>not_equal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left">&nbsp;</p>
+<h4 align="center"> <font face="Arial, Helvetica, sans-serif"><img border="0" hspace="0" src =  
+     "images/image.png"></font> </h4>
+<p align="left"><font face="Arial">In the above example, the 
+rules are as follows:</font></p>
+<blockquote style="MARGIN-RIGHT: 0px" dir="ltr">
+  <pre>geomSpace(metal1, 0.06) 
+geomLineEnd(metal1, 0.08, 1) 
+geomLineEnd(metal1, 0.07, 2)<strong></strong></pre>
+</blockquote>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomLineEnd(layer1, layer2, rule, num_ends, 
+  min_adj_edge_length=0.0, flags =  
+  0, message=None)</font></h3>
+<p align="left"><font face="Arial, Helvetica, sans-serif">As above but for two layer checking.</font></p>
+<p align="left">&nbsp;</p>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer =   geomPitch(layer1, 
+  rule, flags =  
+  0, message=None)</font></h3>
+<p align="left"><font face="Arial"><font >Checks that <em>layer1</em> is on a pitch greater than or 
+  equal to the <em>rule</em> specified. <em>flags</em> can be vertical 
+  or&nbsp;horizontal. </font><font face="Arial, Helvetica, sans-serif">An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equals</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left">&nbsp;</p>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomOverlap(layer1, 
+  layer2, rule, message=None)</font></h3>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer<strong> = geomOverlap(layer1, 
+  layer2, rule, flags, message=</strong>None<strong>)</strong></font></h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer1</i> to <i>layer2</i> for minimum overlap violations i.e. layer1 overlaps layer2 
+  by less than rule. Error polygons are created on the drcMarker layer in the 
+  current cellView. The <i>rule</i> dimension must be specified in microns. An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left">&nbsp;</p>
+<h3 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomEnclose(layer1, 
+  layer2, rule, message=None)</font></h3>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomEnclose(layer1, 
+  layer2, rule, flags, message=None)</font> </h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer1</i> 
+  to <i>layer2</i> for minimum enclosure violations i.e. layer1 encloses layer2 
+  by less than rule. Error polygons are created on the drcMarker layer in the 
+  current cellView. The <i>rule</i> dimension must be specified in microns. The optional <em>flags</em> can have the 'abut' flag set which considers abutting edges an error; otherwise abutting edges are allowed. An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font> 
+</p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<p align="left"></p>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer</font><font face="Arial"><strong> = geomEnclose2(layer1, layer2, rule1, rule2, 
+  rule3, edges, message=</strong></font><font face="Arial, Helvetica, sans-serif">None</font><font face="Arial"><strong>)</strong></font></h3>
+<p align="left"><font face="Arial">Checks <em>layer1</em> to <em>layer2</em> for 
+minimum enclosure violations. <em>layer1</em> should enclose <em>layer2</em> by 
+<em>rule1 </em>normally<em>.&nbsp;</em>&nbsp;However if there 1 or more edges of  &nbsp; 
+<em>layer2</em> with 
+enclosure greater than or equal to <em>rule2, </em>but less than <em>rule1</em>, and&nbsp;<em>edges (e.g. 2) 
+</em> 
+ perpendicular&nbsp;edges of 
+<em>layer1</em>   
+     &nbsp;enclose&nbsp;layer2&nbsp;by greater than or equal to <em>rule3</em>, then no 
+violation occurs. The rule* dimensions must be specified in microns. An optional 
+<em>message</em></font> <font face="Arial">will be written to the error marker flag if specified. Any 
+edge enclosure less than <em>rule2</em> will give an error. The parameter 
+<em>edges</em>     must be 
+1 or 2.</font></p>
+<p align="left"><font face="Arial">Example:</font></p>
+<blockquote style="MARGIN-RIGHT: 0px" dir="ltr">
+  <pre>geomEnclose2(nwell, active, 0.18, 0.08, 0.23, 2)</pre>
+</blockquote>
+<p align="left"><font face="Arial">Enclosure of active by nwell should be &gt;=       0.18um, 
+however if 2 parallel edges of active have a nwell enclosure&nbsp;of 0.08um 
+then the other two&nbsp;perpendicular edges&nbsp;should have a minimum enclosure of 0.23um.</font></p><font face="Arial">
+<blockquote style="MARGIN-RIGHT: 0px" dir="ltr">
+  <pre><font face="Arial">geomEnclose2(cont, metal, 0.15, 0.05, 0.30, 1)</font></pre>
+</blockquote></font><p dir="ltr"><font face="Arial">    Enclosure 
+of cont by metal should be 0.15um, however an edge can be enclosed by 0.05um 
+if&nbsp;one perpendicular edge&nbsp;is greater than or equal to 0.3um.</font></p>
+<p dir="ltr">&nbsp;</p>
+<h3 dir="ltr"><font face="Arial, Helvetica, sans-serif">out_layer</font><font face="Arial"><strong> = geomAllowedEncs(layer1, layer2, rules, message=</strong></font><font face="Arial, Helvetica, sans-serif">None</font><font face="Arial"><strong>)</strong></font></h3>
+<p dir="ltr"><font face="Arial">Checks <em>layer1</em> to <em>layer2</em> for minimum enclosure violations. <em>layer1</em> must enclose <em>layer2</em> according to <em>rules</em>, which is a list of triplets e.g. [ [0.010, 0.010, 4], [0.0, 0.032, 2], [0.002, 0.028, 2] ]. For each triplet, the first two numbers are allowed enclosures, and the third number is the number of sides that must obey the second rule. For example, in the first case [0.010, 0.010, 4] all 4 sides of layer2 can be enclosed by 10nm. In the second case [0.0, 0.032, 2] there can be 2 opposite sides with enclosure of 0nm, and the other two sides must have an enclosure of 32nm. Finally in the third case [0.002, 0.028, 2] there can be 2 opposite sides with enclosure of 2nm and the other two sides must have enclosure of 28nm. These are the only allowed enclosure values; anything else will give a violation. The rule dimensions must be specified in microns. </font><font face="Arial, Helvetica, sans-serif">An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<h4 align="left"> <font face =  
+    "Arial, Helvetica, sans-serif"></font></h4>
+<h3 align="left"> <font face="Arial, Helvetica, sans-serif">out_layer = geomExtension(layer1, 
+  layer2, rule, message=None)</font> </h3>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer<strong> = geomExtension(layer1, 
+  layer2, rule, flags, message=</strong>None<strong>)</strong></font></h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Checks <i>layer1</i> 
+  to <i>layer2</i> for minimum extension violations i.e. layer1 extends beyond 
+  layer2 by less than rule. Error polygons are created on the drcMarker layer 
+  in the current cellView. The <i>rule</i> dimension must be specified in microns. 
+  An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>vertical</strong></li>
+  <li><strong>horizontal</strong></li>
+  <li><strong>diagonal</strong></li>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+  <li><strong>opposite</strong></li>
+  <li><strong>output_only</strong></li>
+</ul>
+<h3 align="left">&nbsp;</h3>
+<h3 align="left"><font face="Arial, Helvetica, sans-serif">out_layer<strong> = </strong></font><strong>geomArea(layer1, minrule, maxrule=9e99, message=<font face="Arial, Helvetica, sans-serif">None</font>)</strong></h3>
+<p>Checks layer1 shapes for minimum area violations that meet  the condition (<em>minrule &lt; area) ||  (area &lt; maxrule)</em>. Error polygons are created on the drcMarker layer in  the current cellView. The minrule and optional maxrule dimensions must be  specified in microns. An optional message will be written as a property  'drcWhy' on the marker shape if specified. </p>
+<p>&nbsp;</p>
+<h3>out_layer = geomArea(layer1, minrule, flags=0, message=  None) </h3>
+<p>Single layer area check. Checks <em>layer1</em> shapes for minimum area violations that meet the condition <em>minrule op area</em>. Error polygons are  created on the drcMarker layer in the current cellView. The <em>minrule</em> dimension must be specified in  microns as a float. An optional <em>message</em> will be written as a property 'drcWhy' on the marker shape if specified. <br>
+  Allowable <em>flags</em> to  control <em>op</em> are:</p>
+<ul>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+</ul>
+<h3 align="left">&nbsp;</h3>
+<h3><font face="Arial, Helvetica, sans-serif">out_layer</font> = geomAreaIn(layer1, minrule, maxrule=9e99, message=<font face="Arial, Helvetica, sans-serif">None</font>) </h3>
+<p>Checks layer1 shapes and flags shapes that meet the  condition (<em>area &gt; minrule) &amp;&amp; (area  &lt; maxrule)</em>. Error polygons are created on the drcMarker layer in the  current cellView. The minrule and optional maxrule dimensions must be specified  in microns. An optional message will be written as a property 'drcWhy' on the  marker shape if specified. </p>
+<p>&nbsp;</p>
+<h3>out_layer = geomAreaIn(layer1, minrule, flags=0,  message= None) </h3>
+<p>Single layer internal (hole) area check. Checks <em>layer1</em> shapes and flags shapes that meet  the condition <em>area op minrule. </em>Error  polygons are created on the drcMarker layer in the current cellView. The <em>minrule</em> and optional <em>maxrule</em> dimensions must be specified in  microns as a float. An optional <em>message</em> will be written as a property 'drcWhy' on the marker shape if specified. <br>
+  Allowable <em>flags</em> to  control <em>op</em> are:</p>
+<ul>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+</ul>
+<p>&nbsp;</p>
+<h3><a name="_Toc57032983">area = geomMinDensity(layer1, rule, message= None)</a></h3>
+<p>Checks layer1 for minimum density of the layer, where rule  is the percentage of the layer area of the design bounding box. An optional  message will be written as a property 'drcWhy' on the marker shape if  specified. This function returns the area in square dbu of the layer.</p>
+<p>&nbsp;</p>
+<h3><a name="_Toc57032984">area = geomMaxDensity(layer1, rule, message= None</a>)</h3>
+<p>Checks layer1 for maximum density of the layer, where rule is the  percentage of the layer area of the design bounding box. An optional message  will be written as a property 'drcWhy' on the marker shape if specified. This  function returns the area in square dbu of the layer.</p>
+<p>&nbsp;</p>
+<h3><a name="_Toc57032985">geomDensity(layer1, window_x, window_y, step_x,  step_y, rule, flags, message= None)</a></h3>
+<p>Checks layer1 for density locally in a rectangle of size  given by <em>window_x</em> and window_y. The  window is stepped in increments of step_x and step_y over the design bounding  box. <em>Flags</em> will determine how the  area rule is applied (<em>rule</em> is a  percentage). An optional <em>message</em> will  be written as a property 'drcWhy' on the marker shape if specified.<br>
+  Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+</ul>
+<p>&nbsp;</p>
+<h3 align="left"><strong><font face="Arial, Helvetica, sans-serif">out_layer</font><font face="Arial"> = geomMargin(layer1, rule, message=</font><font face="Arial, Helvetica, sans-serif">None</font><font face="Arial">)</font> </strong> </h3>
+<p align="left"><font face="Arial">Checks <em>layer1</em> 
+shapes for minimum margin violations. A margin violation is the distance (typically greater than the normal minimum spacing), from 
+the vertex common to two adjacent concave edges of a polygon, to edge(s) 
+  of a nearby polygon. Error polygons are created on the drcMarker layer in the 
+  current cellView. The <i>rule</i> dimension must be specified in microns. </font><font face="Arial, Helvetica, sans-serif">An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font> </p>
+<p align="left"><font face="Arial"></font> </p>
+<p align="center"><strong><font face="Arial"><img border="0" hspace="0" 
+src="images/margin_error.png"></font> </strong> </p>
+<p align="left"><font face="Arial">In the above example, the 
+distance of the inner (concave) edge of the L shaped polygon vertex is less than 
+the specified rule to the nearest vertex of the rectangle. Two error flags are 
+created because there are two edges of the rectangle containing the vertex in 
+violation.</font> </p>
+<p align="left"></p>
+<h3 align="left"><strong><font face="Arial">num = geomOffGrid(layer1, grid, marker_size=0.1, message=</font><font face="Arial, Helvetica, sans-serif">None</font><font face="Arial">)</font> </strong> </h3>
+<p align="left"><font face="Arial">Checks all layer1 vertices of 
+edges to see if they are on a multiple of the grid specified in microns by grid. 
+marker_size is the size of the marker in microns (shown as a '+' centered on the 
+ offgrid vertex) on the drcMarker layer. An 
+  optional <i>message</i> will be written to the error marker flag if 
+specified.</font> <font face="Arial">The return value is the number of off-grid 
+vertices found.</font> </p>
+<p align="left"></p>
+<h3 align="left"><strong><font face="Arial, Helvetica, sans-serif">out_layer</font> = geomAdjLength(layer1, rule, length, flags, message=<font face="Arial, Helvetica, sans-serif">None</font>)</strong></h3>
+<p align="left">Checks vertices for adjacent edge length, If one edge has length less than <em>length</em>, the other edge must have length greater than <em>rule</em>.<font face="Arial, Helvetica, sans-serif">An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p>Allowable <em>flags</em> are:</p>
+<ul>
+  <li><strong>equals</strong></li>
+  <li><strong>not_equals</strong></li>
+  <li><strong>lessthan</strong></li>
+  <li><strong>lessorequal</strong></li>
+  <li><strong>greaterthan</strong></li>
+  <li><strong>greaterorequal</strong></li>
+</ul>
+<p align="left"></p>
+<h3 align="left"><strong><font face="Arial, Helvetica, sans-serif">out_layer</font> = geomAllowedSize(layer1, rule, message=<font face="Arial, Helvetica, sans-serif">None</font>)</strong></h3>
+<p align="left">Checks the size of rectangular shapes e.g. contacts or vias. <em>rule</em> specifies the permissible edge lengths as length/width pairs.<font face="Arial, Helvetica, sans-serif">An optional <i>message</i> will be written 
+  as a property 'drcWhy' on the marker shape if specified.</font></p>
+<p align="left">For example:</p>
+<blockquote>
+  <pre align="left">geomAllowedSize(via, [[0.028, 0.028],[0.028,0.056]], &quot;Via is rectangular 28x28 or 28x56nm&quot;)</pre>
+</blockquote>
+<p align="left">Checks shapes on the layer via which must be rectangles with either sides of 28nm or 2 sides of 28nm and 2 sides of 56nm.</p>
+<p align="left"></p>
+<h3 align="left"> <font face="Arial, Helvetica, sans-serif">num = geomGetCount()</font> 
+</h3>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Returns the number 
+  of errors detected in the most recent DRC check.</font></p>
+<p align="left"> </p><font size="2" face="Consolas"><font 
+size=3 face=Arial>
+<h3><strong>num =                 geomGetTotalCount()</strong></h3>
+<p>Returns the total number of DRC errors since the start of the run.</p>
+<p>&nbsp;</p></font></font>
+<p align="left"> </p>
+<p align="left"><font size="5" face="Arial"><strong>Extraction</strong></font></p>
+<p>Glade can trace connectivity in a layout and identify  devices such as resistors, capacitors, diodes, mos and bipolar transistors plus  parasitic capacitors. To extract a layout, a python script is used to form  derived layers, run connectivity tracing and extract devices. The results are  saved to a cellView with the viewName of &lsquo;extracted&rsquo; but this can be changed  using the setExtViewName command.<br>
+  Extraction rules consist of 4 steps:</p>
+<ol>
+  <li>Reading layer data and merging it</li>
+  <li>Forming derived layers</li>
+  <li>Extracting connectivity</li>
+  <li>Extracting devices</li>
+  <li>Saving interconnect layers</li>
+</ol>
+<p>Derived layers are used to identify devices and break  connecting layers such as poly or diffusion where they touch active devices.</p>
+<p>A MOS device is formed by diffusion and poly layers. Two derived layers are  generated; the recognition region, formed by using geomAnd() to produce the  intersection of the tow layers, and the S/D terminals, produced by using  geomAndNot() to subtract the poly area from the diffusion. This is necessary,  else connectivity tracing on the diffusion would see a short between the S and  D terminals. Connectivity tracing is performed using the geomConnect command.  This traces connectivity through specified layer-layer overlaps, for example  metal1 connectivity to poly though a contact layer. Device extraction is performed using the extract&hellip; commands.  When devices are extracted, an extraction PCell (e.g. nch_ex.py in the example  data) is used to form an instance in the extracted view which is connected via  the layers traced in geomConnect. The PCell is passed the coordinates of the  recognition region used to identify the device, along with any properties for  the particular type of device. Saving interconnect is done using the saveInterconnect()  function. This takes a derived layer and maps it back to a technology file  layer/purpose. The layers being saved should have been present in a  geomConnect() command previously. Parasitic extraction determines capacitance between connect  layers either using a simple area/perimeter calculation, or a more accurate  (but much slower) 3D field solver &lsquo;Fastcap&rsquo;.</p>
+<p>The extracted view can be netlisted to a  CDL/Spice file; there are two methods by which the netlister will format the  lines for each instance in the file. If a string property named  &lsquo;NLPDeviceFormat&rsquo; is present on the PCell master, this property allows user  defined netlisting. See &lsquo;NLP expressions&rsquo; for more details of the  NLPDeviceFormat syntax. If this property is not present, the netlister will  look for hardcoded property names on devices:</p>
+<ul>
+  <li>MOS/TFT : &lsquo;w&rsquo;, &lsquo;l&rsquo;, &lsquo;m&rsquo;, &lsquo;as&rsquo;, &lsquo;ad&rsquo;, &lsquo;ps&rsquo;, &lsquo;pd&rsquo; </li>
+  <li>Resistors : &lsquo;r&rsquo;, &lsquo;w&rsquo;, &lsquo;l&rsquo;</li>
+  <li>Capacitors : &lsquo;c&rsquo;, &lsquo;w&rsquo;, &lsquo;l&rsquo;</li>
+  <li>Inductors : &lsquo;l&rsquo;</li>
+  <li>Diodes : &lsquo;area&rsquo;, &lsquo;pj&rsquo; or &lsquo;perim&rsquo;</li>
+  <li>Bipolars : &lsquo;area&rsquo;, &lsquo;pj&rsquo; or &lsquo;perim&rsquo;</li>
+</ul>
+<p>The hardcoded netlister expects specific pin names on the extraction  PCell devices:</p>
+<ul>
+  <li>MOS : D, G, S, B</li>
+  <li>FET : D, G, S</li>
+  <li>Resistors : A, B</li>
+  <li>Capacitors : A, B</li>
+  <li>Inductors : A, B</li>
+  <li>Diodes : A, C</li>
+  <li>Bipolars : C, B, E</li>
+</ul>
+<p align="left">&nbsp;</p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">setExtViewName(name)</font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Sets the name of the 
+  extracted view. The default is "extracted", but for e.g. abstract 
+  generation you can set this to "abstract". Note this command should 
+  be given before any saveDerived / saveInterconnect commands.</font></p>
+<p align="left"></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">geomConnect( [ [viaLayer, 
+  bottomLayer, topLayer], [...] ])</font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Trace connectivity 
+  through layers. This function takes a list of lists of layers, where the layers 
+  are a via or contact layer and the  layers that are connected by it. For 
+  example:</font></p>
+<blockquote>
+  <pre>geomConnect( [
+    [cont, active, poly, metal1],
+    [via1, metal1, metal2]
+] )</pre>
+</blockquote>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The above will connect <em>active</em> and <em>metal1</em> by the <em>cont</em> layer, <em>poly</em> and <em>metal1</em> also by the <em>cont</em> layer, and <em>metal1</em> and <em>metal2</em> by the <em>via1</em> layer. There is no limit to the number 
+  of lists of layers, or to the number of layers connected by a contact layer. 
+  However the list of connected layers <strong>must</strong> have only one contact/via 
+  layer, and that layer <strong>must </strong>be the first layer in the list. 
+  If shapes already have net information (e.g. through the use of the geomLabel() 
+  command) then these shapes are used as initial tracing points, and net names 
+  are propagated to connected shapes. Other shapes are assigned automatically 
+  generated names (n0, n1, n2 etc). Shorts between shapes with assigned or traced 
+  net names that are different are reported.</font></p>
+<p align="left"><font face="Arial">The geomConnect() command is 
+  multithreaded in version 4.3.21 and beyond. This can be controlled by setting the environment variable 
+  GLADE_THREADED_EXTRACTION. The env var can take an optional value, being the 
+  maximum number of threads to run. For example on a Core i7 cpu with 4 physical 
+  cores each capable of running 2 threads, you could set 
+  GLADE_THREADED_EXTRACTION=8</font></p>
+<p align="left"><font face=""    
+             
+          
+           
+                
+          
+?Arial?>.</font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">geomLabel(layer, 'layerName', purpose = 'drawing', createPin =  
+  True)</font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Label a layer with existing 
+  text labels. If a text label with layer <i>layerName</i> and purpose <i>purpose</i> has its origin contained in a shape on <i>layer</i>, then the shape will have 
+  its net name set to the text label name. Note that labelling layers should be 
+  performed prior to connectivity extraction for net name propagation. Logical 
+  nets/pins will be created in the extracted view for all text labels that attach 
+  to shapes on <i>layer</i>. If not specified, <em>labelPurpose</em> defaults to "drawing" . Note that labels 
+  are only used for the top level of the design; in other words labels at lower 
+  levels of the layout hierarchy are ignored. For LVS purposes, labelling power, 
+  ground, clock and primary IOs is all that is usually necessary. <em>createPin</em> can be set to False (default is  True) to 
+  disable creating a pin - only a net will 
+  be created. </font></p>
+<h4 align="left">&nbsp;</h4>
+<p><font face="Arial, Helvetica, sans-serif"><strong>ok = geomSetText(layer, xcoord, ycoord, 'labelName', createPin = True)</strong></font></p>
+<p><font face="Arial, Helvetica, sans-serif">Labels <em>layer</em> with text label <em>labelName</em> at the coordinates given by <em>xcoord</em> and <em>ycoord</em> (in 
+  microns). &nbsp;Returns True if a shape on the layer was found at the given xy 
+  coordinates; False if no shape was found (i.e. the command failed). This is useful 
+  if you cannot modify the original layout and want to try and resolve LVS errors 
+  by forcing a shape to be a specified net name. <em>createPin</em> can be set to False (default is True) to disable creating a pin - only a net will be 
+  created.</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">saveDerived(layer, 'why', outLayer = 
+  TECH_DRCMARKER_LAYER)</font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Outputs layer geometries 
+  as polygons to the current cellView. The layer they are output to can be set 
+  by <i>outLayer,</i> which defaults to the drcMarker layer. Each polygon has 
+  a string property drcWhy with value set to the string <i>why</i>.</font></p>
+<h4 align="left"> <font face="" 
+  ?Arial, Helvetica, sans-serif?></font></h4>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">saveDerived(layer, 
+  'layerName', 'purpose', viewType='ext_view')</font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Outputs layer geometries 
+  as polygons to the current cellView. The layer they are output to can be set 
+  by <i>layerName</i> and <i>purpose</i>. If <i>viewType</i> is specified, the 
+  layer geometries are output to this view name rather than the default view name 
+  'extracted'.</font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif"> </font></h4>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">saveInterconnect( 
+  [layer1, layer2, ...] )</font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif"> Creates a new 
+  cellview with the same cell name as the current cell, and a view name of 
+  'extracted'. Shapes on layers specified are created in the extracted cellview. Shapes 
+  will have net information if they are on layers present in geomLabel and/or 
+  geomConnect() commands. Optionally instead of a layer name, a list of derived layer name,&nbsp;a 
+  techfile layer name and optionally a purpose can be specified, for example:</font> </p>
+<blockquote>
+  <pre>saveInterconnect( [
+	   poly,
+	   active,
+	   [ metal1, 'M1' ],
+	   [ metal2, 'M2', 'pin'] <br>] ) </pre>
+</blockquote>
+<p align="left"> <font face="Arial, Helvetica, sans-serif"> Original    
+  layers that are generated from geomGetShapes() do not need the techfile layer name/purpose 
+  specified, but derived layers MUST specify the target layer name, else they will be assigned a 
+  fake layer number which the LSW will not show.</font> <font face="Arial">It is often desirable to 
+    add dummy layers to the techfile and use these for saveInterconnect(). For 
+    example, when extracting a lateral PNP, derived layers for emitter, base and 
+    collector need to be generated for the extractBjt() terminals. In this case it's 
+    desirable to have dummy layers 'emitter', 'base' and 'collector' so that devices 
+    get extracted correctly.</font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">If an existing layer 
+  name is specified without a purpose name, the purpose name defaults to 'drawing'. 
+  There is no limit on the number of layers in the list. Note that any terminal 
+  layer used in subsequent 'extract...' commands should be saved.</font></p>
+<p align="left"></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">extractMOS('modelName', 
+  recLayer, gateLayer, diffLayer, bulkLayer=None)</font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Extracts MOS devices 
+  and creates instances of a cellView '<i>modelName</i> layout' in the extracted view. <i>recLayer</i> is the recognition layer of the gate region. <i>gateLayer</i> is the poly layer and <i>diffLayer</i> is the source/drain diffusion layer. <i>bulkLayer</i> is the optional well layer; if present the extracted instances 
+  have terminals D G S B, otherwise 3 terminal devices with terminals D G S are 
+  extracted. The layers <i>gateLayer</i>, <i>diffLayer</i> and <i>bulkLayer</i> must have previously been saved using the saveInterconnect command. </font> </p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The extracted instances 
+  have the property 'w' set to the <i>recLayer</i> shape width 
+  (length of gate recognition shape edge&nbsp;coincident with diffLayer) and 'l' set to the 
+  distance between the coincident diffLayer/gateLayer edges. Both manhattan and any-angle gates 
+  are supported. The <i>recLayer</i> shapes should be a simple polygon without 
+  holes.</font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The cellview '<i>modelName</i> layout' will be created if it does not already exist. If it does exist, it is 
+  assumed to be a PCell, and its <i>ptlist</i> property is set to the point list 
+  of the recognition region. Example nmos/pmos cells with parameterised point 
+  lists are nmos_ex.py and pmos_ex.py.</font></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif"> </font></h4>
+<h4>extractMOSDevice(modelName, recLayer,  [[gateLayer, termName],[S/DLayer, termName,termName],[bulkLayer, bulkTermName])</h4>
+<p>As above but allows the terminal names of the gate, source,  drain and bulk terminals to be specified.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>extractRes('modelName', recLayer, termLayer, 
+  bulkLayer=None)</strong></font> </p>
+<p align="left"><font face="Arial">Extracts a 2 terminal resistor 
+  and creates instances of a cellView '<i>modelName</i> layout' in the extracted 
+  view. <i>recLayer</i> is the recognition layer for the resistor. <i>termLayer</i> is the layer of the resistor terminals 
+  e.g. poly, and shapes on this layer should overlap or touch the recognition layer shape. The layer <i>termLayer</i> must have previously been 
+  saved using the saveInterconnect command. If the optional layer bulkLayer 
+  is specified, an additional bulk node is generated for the resistor 
+  model.</font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The extracted instances 
+  will have the properties <i>w</i> set the the <i>recLayer</i> width (length of recLayer edge coincident with termLayer edge) and <i>l</i> set to the <i>recLayer</i> length (total length of all recLayer edges minus twice the width, then divided 
+  by two), <em>nsquares</em> set to l/w, <em>nbends</em> to the number of bends. These properties can be accessed via an 
+  extraction PCell - see the example 'pres_ex.py' in the distribution.</font></p>
+<p align="left"><font face="Arial">The cellview '<i>modelName</i> layout' will be created if it does not already exist. If it does exist, it is 
+  assumed to be a PCell, and its <i>ptlist</i> property is set to the point list of the 
+  recognition region. If a PCell is used, its terminals are expected to be "A" 
+  and "B". </font>
+<p align="left">
+<h4>extractResDevice(modelName, recLayer,  [[termLayer, termName, termName],[bulkLayer, termName]])</h4>
+<p>As above but allows the terminal names of the term layer and  bulk layer(if used) to be specified.</p>
+<p align="left">
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>extractMosCap('modelName', recLayer, gateLayer, 
+  diffLayer, bulkLayer=None)</strong></font>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Extracts a 2 terminal capacitor 
+  and creates instances of a cellView '<i>modelName</i> layout'&nbsp; in the extracted 
+  view. <i>recLayer</i> is the recognition layer for the capacitor. <i>gateLayer</i> and <i>diffLayer</i> form the terminal layers of the capacitor, 
+  and these layers must have previously been saved using the saveInterconnect command.</font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The extracted instances 
+  will have the properties <i>area</i> set the the <i>recLayer</i> area and <i>perim</i> set to the <i>recLayer</i> perimeter.</font></p>
+<p align="left"><font face="Arial">The cellview '<i>modelName</i> layout' will be created if it does not already exist. If it does exist, it is 
+  assumed to be a PCell, and its <i>ptlist</i> property is set to the point list of the 
+  recognition region.&nbsp; If a PCell is used, its terminals are expected to be 
+  "G" for the gate layer and "S" for the 
+  diff layer. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4>extractMosCapDevice(modelName, recLayer, [[gateLayer,  termName],[S/DLayer, termName],[bulkLayer,termName]])</h4>
+<p>As above but allows the terminal names of the gate, S/D and  optional bulk layer to be specified.</p>
+<p align="left">&nbsp;</p>
+<h4 align="left"><font face="Arial, Helvetica, sans-serif">extractDio('modelName', 
+  recLayer, anodeLayer, cathodeLayer<strong>, bulkLayer=None)</strong></font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Extracts a 2 terminal diode and creates instances of a 
+  cellView <em>'modelName'</em> layout in the extracted 
+  view. <i>recLayer</i> is the recognition layer for the capacitor. <i>anodeLayer</i> and <i>cathodeLayer</i> form the terminal layers of the diode, and 
+  shapes on these layers should overlap or touch the recognition layer shape, and 
+  these layers must have previously been saved using the saveInterconnect 
+  command.<font face="Times New Roman"> </font> .</font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The extracted instances 
+  will have the properties <i>area</i> set the the <i>recLayer</i> area and <i>pj</i> set to the <i>recLayer</i> perimeter.</font></p>
+<p align="left"><font face="Arial">The cellview '<i>modelName</i> layout' will be created if it does not already exist. If it does exist, it is 
+  assumed to be a PCell, and its <i>ptlist</i> property is set to the point list of the 
+  recognition region. If a PCell is used, its terminals are expected to be "A" for the anode and "C" for 
+  the cathode. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4>extractDioDevice(modelName, recLayer,  [[anodeLayer, termName],[cathodeLayer,termName], bulkLayer,termName]])</h4>
+<p>As above but allows the terminal names of the anode, cathode  and optional bulk layer to be specified.</p>
+<p>&nbsp;</p>
+<h4 align="left"><font face="Arial, Helvetica, sans-serif">extractBjt('modelName', 
+  recLayer, emitLayer, baseLayer, collLayer<strong>, bulkLayer=None</strong>)</font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Extracts a 3 terminal 
+  bjt and creates instances of a cellView 'modelName layout in the extracted view. <i>recLayer</i> is the recognition layer for the bjt. <em>emitLayer, baseLayer</em> and <i>collLayer</i> form the 
+  terminal layers of the bjt, and shapes on these layers should overlap or touch 
+  the recognition layer shape, and these layers must have previously been saved 
+  using the saveInterconnect command.<font face="Times New Roman"> </font> .</font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The extracted instances 
+  will have the properties <i>area</i> set the the emitter <em>recLayer</em> area 
+  and <i>perim</i> set to the <i>recLayer</i> perimeter.</font></p>
+<p align="left"><font face="Arial">The cellview '<i>modelName</i> layout' will be created if it does not already exist. If it does exist, it is 
+  assumed to be a PCell, and its <i>ptlist</i> property is set to the point list of the 
+  recognition region.&nbsp; If a PCell is used, its terminals are expected to be 
+  "C" for the collector, "B" for the base and "E" for 
+  the emitter. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4>extractBjtDevice(modelName, recLayer,  [[emitLayer, termName],[baseLayer, termName],[collLayer, termName],[bulkLayer,  termName]])</h4>
+<p>As above but allows the terminal names of the emitter, base,  collector and optional bulk layer to be specified.</p>
+<p>&nbsp;</p>
+<h4 align="left"><font face="Arial, Helvetica, sans-serif">extractTFT('modelName', recLayer, gateLayer, diffLayer)</font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Extracts TFT (thin film) MOS devices 
+  and creates instances of a cellView '<i>modelName</i> layout' in the extracted view. <i>recLayer</i> is the recognition layer of the gate region. <i>gateLayer</i> is the poly layer and <i>diffLayer</i> is the source/drain 
+  diffusion layer.&nbsp;The layers <i>gateLayer and</i>&nbsp; <i>diffLayer</i> must have previously been saved using the 
+  saveInterconnect command. The gateLayer is normally the bottom 
+  metal1 plate and the diffLayer the top metal2 fingers. </font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The extracted instances 
+  have the property w set to the <i>recLayer</i> shape 
+  width (length of gate recognition shape coincident with diffLayer) and l set to 
+  the distance between the coincident edges. Both manhattan and any-angle gates 
+  are supported. The <i>recLayer</i> shapes should be simple polygons without 
+  holes.</font></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">The cellview '<i>modelName</i> layout' will be created if it does not already exist. If it does exist, it is 
+  assumed to be a PCell, and its <i>ptlist</i> property is set to the point 
+  list of the recognition region.</font>&nbsp;<font face="Arial"> If a PCell 
+    is used, its terminals are expected to be "D" for the drain, "S" for 
+    the&nbsp;source and "G" for the gate.</font></p>
+<p align="left">&nbsp;</p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">extractDevice('modelName', 
+  recLayer, [[termLayer1, 'term1', ...] [termLayer2, 'term2', 
+  ...]]</font></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Extracts a generic 
+  deviceand creates instances of a cellView '<i>modelName</i> layout' in the extracted view. 
+  The first letter of the <em>modelName</em> should correspond to 
+  the Spice device type e.g. R for a resistor, C for a capacitor (case insensitive) 
+  etc. <i>recLayer</i> is the device recognition layer. The <i>termLayer</i>(s) 
+  should be connection layers previously saved by the saveInterconnect command. 
+  Each terminal layer can have one of more terminal names. Shapes on the terminal 
+  layer(s) that touch or overlap the recognition layer will be created as terminals 
+  of the device. The <i>recLayer</i> shapes should be a simple polygon without 
+  holes.</font></p>
+<p align="left"><font face="Arial">The cellview '<i>modelName</i> layout' will be created if it does not already exist. If it does exist, it is 
+  assumed to be a PCell, and its <i>ptlist</i> property is set to the point list of the 
+  recognition region. </font>
+<p align="left">
+<p align="left"><font 
+face=Arial><strong>extractParasitic(metLayer, areaCap, perimCap, 
+  'gndNetName')</strong></font></p>
+<p align="left"><font face="Arial">Extracts the parasitic 
+  capacitance of net shapes on layer <em>metLayer</em>. <em>metLayer</em> can be 
+  any layer in the geomConnect() set of layers; for each (merged) shape on 
+  metLayer its area (in microns^2)&nbsp;and perimeter (in microns) are calculated 
+  and multiplied by the values of <em>areaCap</em> and <em>perimCap</em>. An 
+  instance of a capacitor is created (of size 100x100 database units so not 
+  normally visible) on one of the vertices of the shape, with property 'c' set to 
+  the area * <em>areaCap</em> + perimeter * <em>perimCap</em>. The capacitance 
+  will be connected to the shape's net and to the ground net specified by <em>gndNetName</em>.</font></p>
+<p align="left"> </p>
+<p align="left"><font face="Arial"><strong>extractParasitic2(metLayer1, met2Layer, 
+  areaCap, perimCap)</strong></font></p>
+<p align="left"><font face="Arial">Extracts the parasitic capacitance of net 
+  shapes&nbsp;between layers <em>met1Layer and met2Layer</em>.&nbsp;The two 
+  layers&nbsp;can be any layer in the geomConnect() set of layers; for 
+  each&nbsp;intersection of met1Layer and met2Layer&nbsp;the area (in 
+  microns^2)&nbsp;and perimeter (in microns) are calculated and multiplied by the 
+  values of <em>areaCap</em> and <em>perimCap</em>. An instance of a capacitor is 
+  created (of size 100x100 database units so not normally visible) on one of the 
+  vertices of the shape, with property 'c' set to the area * <em>areaCap</em> + 
+  perimeter * <em>perimCap</em>. The capacitance will be connected&nbsp;between 
+  the nets of the shapes of each metal layer.</font></p>
+<p align="left"></p>
+<p align="left"><font 
+face=Arial><strong>extractParasitic3(metLayer1, met2Layer, areaCap, perimCap, 
+  [layer1,...layerN])</strong></font></p>
+<p align="left"><font face="Arial">Only extracts capacitance 
+  between <em>metal1Layer</em> and <em>metal2Layer</em> if shield layer(s) <em>layer1</em>... <em>layerN</em> are not present between them. Note no 
+  checkinig is done for valid layers (yet). The two 
+  layers&nbsp;can be any layer in the geomConnect() set of layers; for 
+  each&nbsp;intersection of met1Layer and met2Layer&nbsp;the area (in 
+  microns^2)&nbsp;and perimeter (in microns) are calculated and multiplied by the 
+  values of <em>areaCap</em> and <em>perimCap</em>. An instance of a capacitor is 
+  created (of size 100x100 database units so not normally visible) on one of the 
+  vertices of the shape, with property 'c' set to the area * <em>areaCap</em> + 
+  perimeter * <em>perimCap</em>. The capacitance will be 
+  connected&nbsp;between the nets of the shapes of each metal layer.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>extractParasitic3D('subsNetName', 'refNetName', tol=0.01, order=-1, depth=-1)</strong></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif">Perform parasitic capacitance extraction using the Fastcap 3D field solver. <em>subsNetName</em> is the name of the silicon substrate net; capacitances from conductor layers to the substrate plane will have this net as one of their terminals. <em>tol</em> is an optional tolerance (fastcap -t option) and defaults to 0.01 i.e. 1%. <em>order</em> is an optional parameter and corresponds to the fastcap option -o. By default (-1) fastcap automatically sets this. A higher number e.g. 3 may be used e.g. if accuracy of net-net capacitance is small and fastcap gives warning about non-negative values of the capacitance matrix. <em>depth</em> is the partitioning depth and corresponds to the fastcap option -d. It defaults to fastcap automatically setting the value.</font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif">In order to extract parasitics for layers, they must be defined in the techfile with non-zero thickness. An example:<br>
+  <br>
+  METLYR metal1 drawing HEIGHT 0.890 THICKNESS 0.280 ;<br>
+  VIALYR via1 drawing HEIGHT 1.170 THICKNES 0.450 ;<br>
+  METLYR metal2 drawing HEIGHT 1.620 THICKNESS 0.370 ;<br>
+  <br>
+  In the above, HEIGHT specifies the conductor height above the silicon surface and THICKNESS the layer thickness. Dielectric constants are assumed to be 3.9 currently; the ability to set dielectric layer thickness/permittivity may be added in future. Automatic meshing is performed to generate fastcap compatible format input files. Each layer shape has conductors with a net name resulting from a geomConnect() connectivity extraction. Capacitances are calculated by Fastcap as a matrix in which the diagonal elements are the total capacitance for the conductor, and off-diagonal elements are the capacitances between conductors. Capacitances are backannotated to the extracted view as instances of a parasitic cap 'pcap'; netlisting the extracted view using File-&gt;Export CDL will allow a spice compatible netlist to be generated.<br>
+  <br>
+  In addition to the substrate net, a reference net <em>refNetName</em> is also created. Capacitances to this net represent field lines from a conductor to infinity. For most usage this can be lumped to the substrate net by a zero volt source connecting the two in your simulation testbench.<br>
+  <br>
+  The temporary files produced by Glade are in Fastcap2 format, so another extractor could be used that can read this format. Temp files are created in the current working directory, or in the directory specified by the env var GLADE_FASTCAP_WORK_DIR. Temp files are normally deleted after extraction is completed; the env var GLADE_NO_DELETE_TMPFILES can be set to keep them. Glade expects is to find an executable called 'fastcap.exe' (windows) or 'fastcap' (Linux) in the same directory as the glade executable.<br>
+  <br>
+  Note that Fastcap is a field solver - and as such is not designed to handle large problems. Typically cells with up to about 50 nets will extract in a resonable amount of time and memory </font><font face="Arial, Helvetica, sans-serif"> .</font></p>
+<p>&nbsp;</p>
+<h2 align="left"> <font face="Arial, Helvetica, sans-serif">Menu Commands</font> 
+</h2>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">Verify-&gt;Check...<a name="verify_check"></a></font> 
+</h4>
+<h4 align="center"><img src="images/check.png" width="301" height="209" alt="Check"></h4>
+<p align="left"><font face="Arial">Displays the Check dialog. 
+Width and spacing error checks can be performed if layer minWidth and minSpace 
+properties have been set in the techfile or via loading LEF.</font> </p>
+<p align="left">&nbsp;</p>
+
+<h4 align="left"><font face="Arial, Helvetica, sans-serif">Verify-&gt;Check Offgrid...<a name="check_offgrid"></a></font> </h4>
+<p align="center"><strong><img border="0" hspace="0" src="images/checkOffGrid.png"></font> </strong> </p>
+<p align="left"><font face="Arial">Displays the Check Offgrid 
+dialog. If <em>Non-Manhattan</em> is checked, it will check and select any paths 
+or polygons that contain non-manhattan edges. If <em>Shapes</em> is checked, it 
+will check if any shape vertices are not on the specified <em>Manufacturing 
+grid</em>. If <em>Instances</em> is checked, it will check if instance origins 
+are on grid, and in the case of arrays that the rowSpacing and columnSpacing 
+values are an integer multiple of the manufacturing grid. The command works on 
+the top level cell only currently.</font></p>
+<p align="left">&nbsp;</p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">Verify-&gt;DRC-&gt;Run...<a name="run_drc"></a></font> 
+</h4>
+<h4 align="center">&nbsp;<img border="0" hspace="0" 
+src="images/runDRC.png"> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Shows the Run DRC dialog. 
+  Choose a DRC file and run DRC. Any existing DRC violation markers are erased. 
+  If an environment variable GLADE_DRC_FILE is set, the DRC rules file will be 
+  set to the value of GLADE_DRC_FILE (which must be a full path name).</font> <font face="Arial">DRC file variables can be set using the <em>DRC 
+file&nbsp;variables</em> entry; both the name and value 
+are passed to Python as 
+          strings. Options should be in 
+the form of name=value, separated by a space.</font> <font face="Arial">If an 
+environment variable GLADE_DRC_VARS is set, the variables will be set to the 
+value of this env var.</font></p>
+<p align="left">&nbsp;</p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">Verify-&gt;DRC-&gt;View 
+  Errors...<a name="view_drc"></a></font> </h4>
+<h4 align="center"><img src="images/viewDRC.png" width="505" height="246" alt="View DRC"></h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Steps through DRC errors. 
+  Click on a rule violation in the left hand list box to select the type of violation 
+  you wish to view. The first violation marker will be selected and zoomed in 
+  on. Subsequently you can use the <i>Next</i> and <i>Prev</i> buttons to step 
+  through the list of violation markers, zooming in on each new marker. The <i>Delete 
+  Marker</i> button will delete the currently viewed error marker. <i>Viewed</i> 
+  is the number of violations viewed so far; <i>Remaining</i> is the total number 
+  of violations remaining (the starting number less the number deleted using <i>Delete 
+  Marker</i>). </font></p>
+<p align="left">&nbsp;</p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">Verify-&gt;DRC-&gt;Clear 
+  Errors<a name="clear_drc"></a></font> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Clears all errors on 
+  the drcMarker layer.</font> </p>
+<p align="left"></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">Verify-&gt;Extract-&gt;Run...<a name="run_lpe"></a></font> 
+</h4>
+<h4 align="center">&nbsp;<img border="0" hspace="0" 
+src="images/runLPE.png"> </h4>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Shows the Run Extract 
+  dialog. Choose an extraction file and run extraction. If an environment variable 
+  GLADE_EXT_FILE is set, the extraction rules file will be set to the value of 
+  GLADE_EXT_FILE (which must be a full path name).</font>&nbsp;<font face="Arial">Extrction file variables can be set using 
+the&nbsp;<em>Extraction file options entry</em>. Options should be in the form of name=value, seperated by a space; both the name and 
+value arepassed to Python as strings.</font>&nbsp; <font face="Arial"><em>Multithreaded</em> if checked runs 
+connectivity analysis in the number of threads specified in <em>Max number of 
+threads</em>, which defaults to the maximum number of logical cores the machine 
+can use.</font> <font face="Arial">If an environment variable GLADE_EXT_VARS is 
+set, the variables will be set to the value of this env var.</font> </p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>Verify-&gt;LVS-&gt;Run...</strong><a name="run_lvs"></a></font></p>
+<p align="center"><img src="images/runLVS1.png" width="664" height="657" alt="Run LVS"></p>
+<p align="center">&nbsp;</p>
+<p align="left">
+<font face="Arial, Helvetica, sans-serif">Shows the Run LVS dialog. Open an extracted view or specify the 
+  name of an existing extracted view in the <i>Library/CellName/ViewName</i> fields. 
+  If <em>Schematic source</em> is set to <em>netlist</em>, specify the name of the netlist in the <i>CDL Netlist</i> field. This can be preset via an enrionment 
+variable GLADE_NETLIST_FILE.         If the <em>Schematic source</em> is set to <em>schematic</em>, the <em>Schematic view</em> panel is enabled and you can specify a library/cell/view name that will be netlisted and flattenned automatically.
+<p align="left"><em>Global Nets</em> specifies global nets for the CDL netlist file. For a hierarchical netlist from a schematic, the <em>Switch List</em> and <em>Stop List</em> control the netlist hierarchy traversal. Switch/Stop/Globals lists are stored with a name tag, so multiple different switch/stop lists can be chosen from. The SwitchList name field is the name of the tag. You can edit this name to create a new tag, and the name and the switch/stop/globals lists will be stored in the gladerc.xml file so they can be recalled in future sessions. The <em>Switch List</em> is a list of view names that the netlister can descend into. The <em>Stop List</em> is a list of views that the netlister will stop descending into, and instead write the device to the netlist according to its NLPDeviceFormat property. If <em>Hierarchical netlist?</em> is checked, then a hierarchical netlist will be 
+flattened before passing to the LVS engine. Delimiter character 
+specifies the delimiter between hierarchical names of nets and instances. 
+    <em>Top Cell Name</em> must be specified for 
+a hierarchical netlist; it is the top level .subckt name that corresponds to the 
+design to be verified.           
+              
+    The netlister property name can be set in the <em>Netlisting property name</em> field. It is a space-delimited list of names of the property to be used for netlisting; the first found is used, else the property name 'NLPDeviceFormat' is used.</p>
+<p align="left">  
+      <em>Working Directory</em> specifies a directory where temporary files are written. The 
+extracted view is netlisted to a CDL file which is compared to the specified 
+schematic netlist. Match info and/or discrepancies are written to the log 
+file.</p>
+
+<p align="center"><img src="images/runLVS2.png" width="664" height="657" alt="Run LVS"></p>
+<p align="left">The 
+  Gemini Options tab allows specification of Gemini options. </p>
+</font>
+<ul>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Do not reduce different sized series transistors - Normally series MOS devices are merged; checking this option prevents the merge if they have different L/W.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Do not reduce parallel transistors - Parallel (or multi-fingered) MOS devices with the same S/D/G/B nets are normally collapsed into a single device whose width is the sum of the individual widths; checking this option prevents merging.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Do not reduce series transistor chains - This option prevents series MOS devices from being merged.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Warn for out-of-order chains - If series merged transistors match, but have different gate net order, then a warning will be issued.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Case insensitive net names - Normally net names are case sensitive i.e. clk and Clk are different nets; checking this option treat them as the same net.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Do not use local matching - this option stops Gemini from using the local matching algorithm to speed up checking. It is normally never required.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Match using properties - Gemini does not consider device properties (e.g. W, L) when matching devices. Checking this option can resolve some symmetric circuits which have different device properties. The Device Parameter Tolerance option must also be checked.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Use subckt ports as equivalent nodes - Gemini defaults to matching netlists without any initial equivalence points. If checked, then if both netlists have .subckt/.ends lines, the port names in the .subckt line will be used for equivalence. Errors will be generated if the number of ports is different, or if the port names do not match. This option can resolve some symmetric circuits where the difference is with the port names.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Do not optimise node labelling - Gemini will try and optimise node labelling to assist matches. This option is normally never required.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Warn for nets with zero connections - Gemini will report an error for nets with no connections. Not very useful.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Verbose mode - Gemini will generate extra information in the message window while running.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Error limit - Sets the allowed number of errors. The default is zero.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Net error size limit - Gemini will report this number of devices connected to unmatched nets. Typically if e.g. power/ground nets mismatch, a lot of errors can be generated. The default limit is to report 10.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">No progress limit - Sets the iteration limit if no progress is made relabelling nodes to try and find a match.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Suspect node limit - Sets the limit of suspect nodes allowed.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Device parameter tolerance - if checked, device properties e.g. W/L, R, C, L are checked according to the specified tolerance, else properties are not checked.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Write equivalence file - Writes a file containing equivalent net names between the layout and schematic. Each line has the format '= &lt;name1&gt; &lt;name2&gt;'.</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" align="left">Read equivalence file - Reads a equivalence file containing net names to be considered as initially matched in the format '= &lt;name1&gt; &lt;name2&gt;. This can sometimes help with circuits with symmetry, or many errors. Note that incorrectly specifying matched names can result in wrong results.</font></li>
+</ul>
+<font face="Arial, Helvetica, sans-serif">
+<p align="left">Gemini will write mismatch information to the message window, and to the open extracted view as error markers for nets/devices.</p>
+<p align="left">&nbsp;</p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">Verify-&gt;Import 
+  Hercules Errors<a name="import_hercules"></a></font> </h4>
+<p align="center"><img src="images/importHercules.png" width="330" height="107" alt="Import Hercules"></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Imports a Hercules 
+  error file. The DRC error viewer can then be used to step through the errors.</font> 
+</p>
+<p align="left"></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">Verify-&gt;Import 
+  Calibre Errors<a name="import_calibre"></a></font> </h4>
+<p align="center"><img src="images/importCalibre.png" width="341" height="107" alt="Import Calibre"></p>
+<p align="left"> <font face="Arial, Helvetica, sans-serif">Imports a Calibre error 
+  file. The DRC error viewer can then be used to step through the errors. Both 
+  flat and hierarchical Calibre error files are supported.</font> </p>
+<p align="left"></p>
+<h4> <font face="Arial, Helvetica, sans-serif">Verify-&gt;Compare Cells...<a name="verify_compare"></a></font> 
+</h4>
+<p> <font face="Arial, Helvetica, sans-serif">Allows comparison of layers from two different cellviews using 
+  a multithreaded&nbsp;XOR operation. This can be useful for checking the changes made between 
+  two different versions of a design.</font> </p>
+<h4 align="center"> <img border="0" hspace="0" src="images/compareCells.png" width="1" height="1"> 
+  <img border="0" hspace="0" src="images/compareCells.png"> </h4>
+<p> <font face="Arial, Helvetica, sans-serif">The data to be compared is specified 
+  by the&nbsp;<em>1st CellView</em> &nbsp;and&nbsp;<em>2nd CellView.</em> &nbsp;They 
+  are compared by the <i>Compare layer</i> using an XOR. If <i>Hierarchical</i> 
+  is checked, the cells are flattened for the compare, else only shapes on the 
+  <i>Compare layer</i> at the top level will be compared. If <i>All Layers</i> 
+  is checked, all the layers are compared, else just the <i>Compare Layer</i> 
+  .The results are output to the cellView specified in the <i>Output differences 
+    to</i> field. Results are written to the <i>Output layer</i> specified - 
+  if drcMarker is used (the default), then differences can be viewed using the   
+  <a 
+href="#view_drc">DRC-&gt;View 
+    Errors </a>command.    
+  
+</font> </p>
+<p> <font face="Arial">Comparison is done 
+  by multithreaded tiling of the original data to handle large designs. For 
+  setting tile sizes and multithreading options, see the   
+  
+  <a 
+href="edit_menu.htm#tiled_booleans">Tiled Boolean Operations 
+    </a>command.         
+  
+</font> </p>
+<p> <font face="Arial">Note: if 
+  you want to compare two cells&nbsp;by importing&nbsp;e.g. GDS2 or OASIS files, 
+  you MUST use import a techfile for each 
+  import with the same GDS layer/datatype to layer/purpose mapping. Failing to 
+  do this (e.g. importing two GDS2 files without importing any techfile) will 
+  most likely result in the GDS layer/datatype of one file being assigned to a 
+  different internal layer number from that of the second file. This is because 
+  internal layer numbers represent layer/datatype or layer/purpose pairs as a 
+  single number, and the mapping is assigned in the order the pairs are encountered.</font></p>
+<p></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">Verify-&gt;Trace Net<a name="trace_net"></a></font> 
+</h4>
+<p align="center"><img src="images/traceNet.png" width="442" height="567" alt="trace net"></p>
+<p align="left"></p>
+<p align="left"> <font face="Arial">Traces 
+  connectivity either from a start point or from a text label. To&nbsp;use the net 
+  tracer, the technology file must have layers with their CONNECT attributes 
+  defined. For example:</font> </p>
+                
+</font>
+<dl> 
+    <blockquote>
+      <pre><font face="Arial, Helvetica, sans-serif">
+   CONNECT poly drawing BY contact drawing TO metal1 drawing ;
+	CONNECT metal1 drawing BY via1 drawing TO metal2 drawing ;
+	CONNECT metal1 drawing TO metal1 drawing </font></pre></blockquote>
+</dl>
+
+<font face="Arial, Helvetica, sans-serif">
+
+<p> <font face="Arial">In the first two cases, connection of the poly layer to 
+  the&nbsp;metal1 layer is through a&nbsp;via layer. In the second case, the two 
+  layers connect without any via layer.</font>&nbsp;</p>
+<p> <font face="Arial">To use the net tracer to trace from a shape, click on the&nbsp;Trace 
+  from point/<em>Start&nbsp;Trace</em> button. Tracing will continue until no 
+  more connecting shapes are found. Tracing may be aborted by clicking on the 
+  red abort button&nbsp;next to the progress bar on the status bar.</font> </p>
+<p> <font face="Arial">To use the net tracer to trace from a text label, set the 
+  <em>Label Layer</em> and the&nbsp;<em>Attach Layer</em>&nbsp; (which can be 
+  the same layer). Enter the <em>Label Name</em> and click on Trace from label/<em>Start 
+  Trace</em>  
+  . Note that currently, only labels on the top level of the cellView hierarchy can 
+  be traced from.</font></p>
+<p><em>Mode</em> selects  whether traced shapes are highlighted (the default) or selected. Only shapes on  the top level (currently displayed) cellView can be selected. The third option, '<em>Save Shapes'</em>, writes all traced shapes to a cellview, given by <em>libName</em>/<em>cellName</em>/<em>viewName</em>.</p>
+<font face="Arial">If the checkbox <em>Add connectivity to traced 
+  shapes</em> is set, then a net with the name given by&nbsp; <em>Net Name</em> will 
+  be created it it does not already exist, and all traced shapes will be assigned 
+  to that net.</font> <font face="Arial">NB entering a <em>Label name</em> for tracing 
+from a text label will automatically set the <em>Net Name</em> field.</font>
+<p><font face="Arial">Clicking on <em>Highlight Colour</em> 
+  will alllow changing the highlight colour. <em>Clear highlight</em> clears all 
+  highlighted shapes.</font> <font face="Arial">Using the <a 
+href="view_menu.htm#selection_options">selection options</a> dialog to dim 
+  unhilited objects can make the trace result clearer.</font> </p>
+<p></p>
+<h4 align="left"> <font face="Arial, Helvetica, sans-serif">Verify-&gt;Set Layer 
+  Stack<a name="layer_stack"></a></font> </h4>
+<p align="center"><strong> <img border="0" hspace="0" src="images/layerStack.png"> 
+</strong> </p>
+<p align="left"></p>
+<p align="left"> <font face="Arial">Displays the layer connectivity used for the       <a 
+href="#trace_net">Trace Net 
+ </a>       
+    command (and also settable in the techfile as described above, or 
+  set during import of LEF/DEF). The dialog displays lower conducting layers, 
+  optional contact layers and upper conduction layers. So in the above dialog, 
+  poly connects to cont which connects to metal2. metal2 connects to metal, and 
+  metal also connects to metal3.<br>
+  <br>
+  To edit a layer, double click
+  on it and the icon will change to a combo box as shown in the second column, 
+  third row of the dialog above. You can set the layer to any layer including a special 
+  layer 'NONE' which when used for the contact layer means there is no explicit 
+  contact layer between the conducting layers.<br>
+  <br>
+  To add a row of connecting layers, 
+use the '+' buttton. To delete a row of layers, select the row by single 
+clicking on it, then use the '-' button. To move a row of layers up, select a 
+row and use the 'up' bottom. Similarly to move a row down, select the row and 
+use the 'down' button.
+              
+                
+                 
+             
+
+  </font></p>
+<p align="left">&nbsp;</p>
+<p> <font face="Arial"><strong>Verify-&gt;Short Tracer...</strong> <a 
+name=short_tracer></a> 
+  </font></p>
+<p align="center"><strong><img border="0" hspace="0" 
+src="images/shortTracer.png"></strong></p>
+<p> <font face="Arial">The Short Tracer 
+can be used for DEF or similar designs that have connectivity. Either 
+<em>Power/Ground nets</em>, or <em>All Nets</em> can be checked for 
+touch/overlap against shapes connected to a different net. The bounding box of 
+the shorting region is reported, and this bounding box is written to the 
+drcMarker layer so that the DRC-&gt;View Errors dialog can be used to step 
+through the errors, zooming to each short location. Currently only top level 
+nets are checked against other top level nets; in other words the check is done 
+flat.</font>    
+                     
+             
+           
+              
+             
+               
+           
+            
+ </p>
+<p> <font face="Arial">
+                   
+                  
+                  
+           <br>
+  <br><strong>&nbsp;</strong>    
+                     
+             
+           
+              
+             
+               
+           
+            
+ </p></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

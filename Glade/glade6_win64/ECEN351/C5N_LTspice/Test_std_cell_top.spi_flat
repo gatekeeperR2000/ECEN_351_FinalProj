@@ -1,0 +1,15 @@
+.SUBCKT test_std_cell inv_in inv_out vdd vss
+*.PININFO  vss:B vdd:B inv_out:B inv_in:B
+*
+*.SCALE METER
+*.GLOBAL
+*
+M2/XX4  inv_out inv3 vdd vdd C5NPMOS  l=0.6u w=3.6u m=8
+M1/XX4  inv_out inv3 vss vss C5NNMOS  l=0.6u w=1.8u m=8
+M2/XX1  inv1 inv_in vdd vdd C5NPMOS  l=0.6u w=3.6u m=1
+M1/XX1  inv1 inv_in vss vss C5NNMOS  l=0.6u w=3.8u m=1
+M2/XX3  inv3 inv2 vdd vdd C5NPMOS  l=0.6u w=3.6u m=4
+M1/XX3  inv3 inv2 vss vss C5NNMOS  l=0.6u w=1.8u m=4
+M2/XX2  inv2 inv1 vdd vdd C5NPMOS  l=0.6u w=3.6u m=2
+M1/XX2  inv2 inv1 vss vss C5NNMOS  l=0.6u w=1.8u m=2
+.ENDS

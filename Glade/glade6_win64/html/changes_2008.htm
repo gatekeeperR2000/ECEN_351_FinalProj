@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --><font face="Arial, Helvetica, sans-serif">
+<h4 align="left"><font face="Arial">
+<h2 align="left"><font face="Arial"><b>Change Log</b> 2008</font></h2> 
+    </font></h4>
+<h4 align="left"><font face="Arial" size="4"> 
+    Contents for 2007 can be found <a 
+href="changes_2007.htm">here</a> 
+    </font></h4>
+<h4 align="left"><font face="Arial">Version 
+4.0.18 release on 11/01/08 </font></h4>
+<p align="left"><font face="Arial">- fixed a 
+bug in polygon bounding box </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug that caused a crash during undo/redo after a copy </font></p>
+<p align="left"><font face="Arial">- Query 
+dialog now allows changing layer of different objects in common mode </font></p>
+<p align="left"><font face="Arial">- Added 
+Create Pins from Labels command </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.19 release on 08/03/08 </font></h4>
+<p align="left"><font face="Arial">- 
+GL_ARB_texture_rectangle now recognised in addition to GL_EXT_texture_rectangle 
+</font></p>
+<p align="left"><font face="Arial">- fixed a 
+small bug resizing application window </font></p>
+<p align="left"><font face="Arial">- Updated 
+to Qt 4.3.4 </font></p>
+<p align="left"><font face="Arial">- Added 
+progress bars to Import DEF </font></p>
+<p align="left"><font face="Arial">- change 
+site view type to 'site' to allow macro names the same as site names </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug where importing multiple LEFs with different UNITS gave incorrect cell sizes 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.20 release on 05/04/08 </font></h4>
+<p align="left"><font face="Arial">- fixed a 
+bug introduced in last release where LEF units other than 1000 were scaled 
+incorrectly. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.21 release on 05/05/08 </font></h4>
+<p align="left"><font face="Arial">- memory 
+usage improved for DEF designs </font></p>
+<p align="left"><font face="Arial">- Qt 4.4 
+porting </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.22 release on 21/05/08 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+ctrapezoid type 18 was being incorrectly read during OASIS import </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+zero length path type 0 (truncated) had incorrect bounding box set. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.23 release on 04/06/08 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+potential crash reading DEF with undefined macros fixed. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+polygonal pins in LEF were not handled correctly </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+opening a pcell caused a crash </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+an error in python pcell code would cause an exception </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+stretching a polygon sometimes gave incorrect bounding box, making some edges 
+unselectable </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+crash when trying to select hsegs/vsegs by edge/vertex </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.24 release on 13/07/08 </font></h4>
+<p align="left"><font face="Arial">- Added 
+capability for user-defined menus and bindkeys to invoke python functions. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.25 release on 08/08/08 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a problem reading OASIS files with CBLOCK records &gt; 64K </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+OASIS TEXTSTRING records were incorrectly read as n-strings </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+writing arrayed instances with negative row/col spacing in OASIS was incorrect 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+OASIS paths/polygons were always being written as type 4 pointlists, now an 
+optimisal pointlist is used </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a bug with type 0/1 pointlists revealed by fixing the above </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+OASIS type 3 deltas were incorrectly written </font></p>
+<p align="left"><font face="Arial">- OASIS 
+reader now performs CRC32 / CHECKSUM32 validation of OASIS files </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.26 release on 20/08/08 </font></h4>
+<p align="left"><font face="Arial">- 
+move/copy commands no longer allow moving of an object when a segment or vertex 
+of that object is selected. This prevents strange behaviour if more than one 
+segment/vertex is selected and a move/copy attempted. Objects to be moved or 
+copied should always be selected in full mode. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+create inst dialog for pcell trashed pcell property </font></p>
+<p align="left"><font face="Arial">- added 
+multifingered pcell example </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+editing pcell properties on instances did not correctly delete old inst master 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+pcell properties sometimes not shown in create inst dialog </font></p>
+<p align="left"><font face="Arial">- 
+extractMOS() command implemented. See extract.py file for example usage. 
+</font></p>
+<p align="left"><font face="Arial">- 
+geomLabel() command implemented. See extract.py file for example usage. 
+</font></p>
+<p align="left"><font face="Arial">- Export 
+CDL command implemented. This is initially only flat CDL from e.g. extracted 
+views. </font></p>
+<p align="left"><font face="Arial">- In 
+non-OpenGL mode, drawing circles and ellipses did not show any outline as the 
+mouse moved </font></p>
+<p align="left"><font face="Arial">- In 
+non-openGL mode, create command draws an outline rather than fill colour as 
+drawing the fill can be slow on Solaris. </font></p>
+<p align="left"><font face="Arial">- 
+Creating a polygon while in edit-in-place gave incorrect outline during drawing 
+</font></p>
+<p align="left"><font face="Arial">- Various 
+edit in place bugs fixed (stretch now displays correctly during mouse movement) 
+</font></p>
+<p align="left"><font face="Arial">- 
+Stretching diagonals now locks the diagonal angle. If edges adjacent to the 
+diagonal are stretched, the diagonal angle is maintained if the option 'Lock 
+diagonals' on the stretch dialog is checked (the default). </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.27 release on 28/08/08 </font></h4>
+<p align="left"><font face="Arial">- Added 
+ability to change layer display order. Left clicking on a layer in the LSW and 
+dragging will display a box round the layer; drag this to a target layer and the 
+layer clicked on will be moved to be above the target layer. Layers are drawn in 
+the order they are displayed in the LSW from the top down. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+caused by above change whereby saving and reloading a library or techfile would 
+cause incorrect layer order in the LSW </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+wiring paths with connectivity did not set via nets </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+changing the net name in the Create Path dialog did not change it </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+writing DEF twice for the same cellview could cause a crash </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+OASIS polygons with type 10/11 repetition were processed incorrectly </font></p>
+<p align="left"><font face="Arial">- Drawing 
+arrays when zoomed in is now faster </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.28 release on 27/09/08 </font></h4>
+<p align="left"><font face="Arial">- Several 
+minor memory leaks have been fixed </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+last multiple colinear point in path not removed </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+deleting lots of shapes was rather slow </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+toggling layer visibility in LSW did not redraw display </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+saving a library containing viaInsts with no net attributes caused a crash when 
+library was reloaded </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fix a potential crash closing a library with the LSW displayed </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.29 release on 12/10/08 </font></h4>
+<p align="left"><font face="Arial">- added 
+net browser (Tools-&gt;Net Browser) to display a cell's nets and allow selecting 
+a net by double clicking on its name </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+search dialog occasionally crashed when invalid inst/net names used </font></p>
+<p align="left"><font face="Arial">- added 
+option to choose nets that 'Add Filler Cells' command uses to connect filler 
+cells </font></p>
+<p align="left"><font face="Arial">- Query 
+inst/array now allows changing libraryName / cellName / viewName </font></p>
+<p align="left"><font face="Arial">- Added 
+File-&gt;Save Cell As... command which saves the current open cell to a new cell 
+in the library on disk </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+setting a layer fill to existing 'cross' fill would give incorrect fill in LSW 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+non-OpenGL display mode was reporting some debug info during repainting and 
+occasionally crashed </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+dragging a layer to move it in the LSW did not work correctly if the LSW layers 
+had been scrolled. </font></p>
+<p align="left"><font face="Arial">- LSW now 
+stretches the individual layer widgets if stretched itself </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+longstanding problem fixed where a toolbar/dock window popup is displayed when 
+the stipple edit dialog is closed. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed an exception when creating a new library with an existing cellview open 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a problem seeding the Create Instance dialog under certain circumstances 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.30 release on 25/10/08 </font></h4>
+<p align="left"><font face="Arial">- Made 
+the library browser a dockable widget </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+instancing a pcell from another library did not work correctly </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+connectivity extraction had been broken since version 4.0.27 </font></p>
+<p align="left"><font face="Arial">- added a 
+seperate Verify-&gt;Extract menu </font></p>
+<p align="left"><font face="Arial">- Verilog 
+reader now handles supply0 / supply1 keywords </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Verilog reader allows instances with no pin connections </font></p>
+<p align="left"><font face="Arial">- added a 
+ui().compareCells() function to compare two cells by exclusive OR of their 
+layers. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.31 release on 08/11/08 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+changing parameters of pcells and saving the library to disk did not always save 
+the pcell submasters </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+GDS with attributes changed instance master names resulting in corrupt design 
+data after stream in </font>
+<p align="left"><font face="Arial">- bugfix: 
+bindkey setup incorrect since lib browser made a dockable widget </font></p>
+<p align="left"><font face="Arial">- OpenGL 
+implementation uses framebuffer object in preference to pbuffers if 
+available</font></p>
+<p align="left"><font face="Arial">- some 
+drawing problems when using MDI windows fixed.</font></p>
+<p align="left"><font face="Arial">- pcell 
+instances now have their properties updated from the pcell master</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+multiple instances with the same inst name could cause a crash. Conflicting 
+instance names are renamed during data import now.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed some issues importing Cadence display.drf files</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.32 release on 23/12/08</font></h4>
+<p align="left"><font face="Arial">- 
+geomArea() check now takes a minrule and maxrule. So for example if you want to 
+check a contact is 0.16um per side, set a geomWidth check of 0.16um and a min 
+and max area rule of 0.0256; any contact that is not exactly 0.16um on each edge 
+will be flagged.</font></p></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

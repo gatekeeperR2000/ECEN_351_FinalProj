@@ -1,0 +1,68 @@
+.SUBCKT test_cell in2 in5 sel2 in6 in3 in1 in7 in4 in0 sel1 sel0 out
+*.PININFO  in2:B in5:I sel2:I in6:I in3:I in1:I in7:I in4:I out:O in0:I sel1:I
+*.PININFO  sel0:I
+*
+*.SCALE METER
+*.GLOBAL vss vdd
+*
+M10_21/X1  /X1/in23 /X1/sel0bb in7 vss C5NNMOS  w=1.8u l=0.6u m=1
+M28/X1  /X1/sel1bb /X1/sel1b vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M24/X1  /X1/sel1b sel1 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M20/X1  /X1/mout /X1/sel1bb /X1/in23 vss C5NNMOS  w=1.8u l=0.6u m=1
+M13/X1  /X1/in01 /X1/sel0bb in4 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M2/X1  /X1/sel0b sel0 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M3/X1  /X1/sel0bb /X1/sel0b vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M15/X1  /X1/in01 /X1/sel0b in5 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M14/X1  /X1/in01 /X1/sel0b in4 vss C5NNMOS  w=1.8u l=0.6u m=1
+M25/X1  /X1/mout /X1/sel1b /X1/in01 vss C5NNMOS  w=1.8u l=0.6u m=1
+M19/X1  /X1/in23 /X1/sel0b in6 vss C5NNMOS  w=1.8u l=0.6u m=1
+M17/X1  n1 /X1/moutb vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M18/X1  /X1/moutb /X1/mout vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M22/X1  /X1/moutb /X1/mout vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M29/X1  /X1/sel1bb /X1/sel1b vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M26_52/X1  /X1/mout /X1/sel1bb /X1/in01 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M16/X1  /X1/in01 /X1/sel0bb in5 vss C5NNMOS  w=1.8u l=0.6u m=1
+M18_46/X1  /X1/in23 /X1/sel0bb in6 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M1/X1  /X1/sel0bb /X1/sel0b vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M11/X1  /X1/in23 /X1/sel0b in7 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M23/X1  /X1/mout /X1/sel1b /X1/in23 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M26/X1  /X1/sel1b sel1 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M27/X1  n1 /X1/moutb vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M0/X1  /X1/sel0b sel0 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M10_21/X2  /X2/n2 /X2/selbb n1 vss C5NNMOS  w=1.8u l=0.6u m=1
+M9/X2  /X2/n6 /X2/n2 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M2/X2  /X2/selb sel2 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M8/X2  /X2/n6 /X2/n2 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M3/X2  /X2/selbb /X2/selb vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M19/X2  /X2/n2 /X2/selb n0 vss C5NNMOS  w=1.8u l=0.6u m=1
+M18/X2  /X2/n2 /X2/selbb n0 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M12/X2  out /X2/n6 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M10/X2  out /X2/n6 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M0/X2  /X2/selb sel2 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M11/X2  /X2/n2 /X2/selb n1 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M1/X2  /X2/selbb /X2/selb vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M10_21/X0  /X0/in23 /X0/sel0bb in3 vss C5NNMOS  w=1.8u l=0.6u m=1
+M28/X0  /X0/sel1bb /X0/sel1b vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M24/X0  /X0/sel1b sel1 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M20/X0  /X0/mout /X0/sel1bb /X0/in23 vss C5NNMOS  w=1.8u l=0.6u m=1
+M13/X0  /X0/in01 /X0/sel0bb in0 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M2/X0  /X0/sel0b sel0 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M3/X0  /X0/sel0bb /X0/sel0b vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M15/X0  /X0/in01 /X0/sel0b in1 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M14/X0  /X0/in01 /X0/sel0b in0 vss C5NNMOS  w=1.8u l=0.6u m=1
+M25/X0  /X0/mout /X0/sel1b /X0/in01 vss C5NNMOS  w=1.8u l=0.6u m=1
+M19/X0  /X0/in23 /X0/sel0b in2 vss C5NNMOS  w=1.8u l=0.6u m=1
+M17/X0  n0 /X0/moutb vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M18/X0  /X0/moutb /X0/mout vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M22/X0  /X0/moutb /X0/mout vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M29/X0  /X0/sel1bb /X0/sel1b vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M26_52/X0  /X0/mout /X0/sel1bb /X0/in01 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M16/X0  /X0/in01 /X0/sel0bb in1 vss C5NNMOS  w=1.8u l=0.6u m=1
+M18_46/X0  /X0/in23 /X0/sel0bb in2 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M1/X0  /X0/sel0bb /X0/sel0b vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M11/X0  /X0/in23 /X0/sel0b in3 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M23/X0  /X0/mout /X0/sel1b /X0/in23 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M26/X0  /X0/sel1b sel1 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M27/X0  n0 /X0/moutb vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M0/X0  /X0/sel0b sel0 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+.ENDS

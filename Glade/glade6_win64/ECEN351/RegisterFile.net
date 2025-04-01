@@ -1,0 +1,142 @@
+* C:\Users\jacol\OneDrive\Documents\Current_School\ECEN_351\Lab_10\LT_Spice\Top.asc
+XX1 Vdd Vss DataOut addr0 addr1 addr2 clk registerfile
+
+* block symbol definitions
+.subckt registerfile VDD Vss DataOut addr0 addr1 addr2 clk
+XX1 we0 we1 we2 we3 we4 we5 we6 we7 VDD Vss addr0 addr1 addr1 3_to_8_decoder
+XX3 addr1 DataOut I0 I1 I2 I3 I4 I5 I6 I7 VDD Vss addr2 addr0 mux
+XX10 we0 data clk I0 Vss VDD load_reg
+XX2 we1 data clk I1 Vss VDD load_reg
+XX4 we2 data clk I2 Vss VDD load_reg
+XX5 we3 data clk I3 Vss VDD load_reg
+XX6 we4 data clk I4 Vss VDD load_reg
+XX7 we5 data clk I5 Vss VDD load_reg
+XX8 we6 data clk I6 Vss VDD load_reg
+XX9 we7 data clk I7 Vss VDD load_reg
+V1 VDD 0 5
+V2 Vss 0 0
+vclk clk 0 pulse 0 3 10n 100p 100p 9.9n 20n
+vaddr0 addr0 0 pulse 0 3 20n 100p 100p 19.9n 40n
+vaddr1 addr1 0 pulse 0 3 40n 100p 100p 39.9n 80n
+vaddr2 addr2 0 pulse 0 3 80n 100p 100p 79.9n 160n
+Vwe we 0 3
+Vdata data 0 pwl 0n 3v 20n 3v 20.1n 0v 40n 0v 40.1n 3v 60n 3v 60.1n 0v
++ 100n 0v 100.1n 3v 120n 3v 120.1n 0v 140n 0v 140.1n 3v
+.include C5N_models_Glade.txt
+.ends registerfile
+
+.subckt 3_to_8_decoder O0 O1 O2 O3 O4 O5 O6 O7 WE VSS Addr0 Addr1 Addr2
+X0 N001 N002 N003 O0 WE Vss and3_1x
+XX2 Addr0 N002 N003 O1 WE Vss and3_1x
+XX3 N001 Addr1 N003 O2 WE Vss and3_1x
+XX4 Addr0 Addr1 N003 O3 WE Vss and3_1x
+XX5 N001 N002 Addr2 O4 WE Vss and3_1x
+XX6 Addr0 N002 Addr2 O5 WE Vss and3_1x
+XX7 N001 Addr1 Addr2 O6 WE Vss and3_1x
+XX8 Addr0 Addr1 Addr2 O7 WE Vss and3_1x
+XX9 Addr0 N001 WE Vss inv_1x
+XX1 Addr2 N003 WE Vss inv_1x
+XX10 Addr1 N002 WE Vss inv_1x
+.ends 3_to_8_decoder
+
+.subckt mux Addr1 DataOut I0 I1 I2 I3 I4 I5 I6 I7 Vdd Vss Addr0 Addr0
+XX1 I0 I1 I2 I3 Addr0 Addr1 N001 Vdd vss mux4to1_1x
+XX2 I4 I5 I6 I7 Addr0 Addr1 N002 Vdd vss mux4to1_1x
+XX3 N001 N002 Addr2 DataOut Vdd vss mux2to1_1x
+.ends mux
+
+.subckt load_reg Din Load Clk Q Vss Vdd
+XX1 N001 Clk Q NC_01 Vdd Vss d_flip_flop
+XX2 Q DIN LOAD N001 Vdd Vss mux2to1_1x
+.ends load_reg
+
+.subckt and3_1x A B C Y vdd vss
+M6 Y N001 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M5 Y N001 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M1 N001 A vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M2 N001 B vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M3 N001 A N002 vss C5NNMOS l=0.6u w=3.6u m=1
+M4 N002 B N003 vss C5NNMOS l=0.6u w=3.6u m=1
+M7 N003 C vss vss C5NNMOS l=0.6u w=3.6u m=1
+M8 N001 C vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends and3_1x
+
+.subckt inv_1x A Z vdd vss
+M1 Z A vss vss C5NNMOS l=0.6u w=1.8u m=1
+M2 Z A vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends inv_1x
+
+.subckt mux4to1_1x in0 in1 in2 in3 sel1 sel0 out vdd vss
+M8 out moutb vss vss C5NNMOS l=0.6u w=1.8u m=1
+M7 out moutb vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M6 moutb mout vss vss C5NNMOS l=0.6u w=1.8u m=1
+M5 moutb mout vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M2 mout sel1b in01 vss C5NNMOS l=0.6u w=1.8u m=1
+M1 mout sel1bb in01 vdd C5NPMOS l=0.6u w=3.6u m=1
+M4 mout sel1bb in23 vss C5NNMOS l=0.6u w=1.8u m=1
+M3 mout sel1b in23 vdd C5NPMOS l=0.6u w=3.6u m=1
+M9 sel0bb sel0b vss vss C5NNMOS l=0.6u w=1.8u m=1
+M10 sel0bb sel0b vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M11 sel0b sel0 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M12 sel0b sel0 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M13 in01 sel0b in0 vss C5NNMOS l=0.6u w=1.8u m=1
+M14 in01 sel0bb in0 vdd C5NPMOS l=0.6u w=3.6u m=1
+M15 in01 sel0bb in1 vss C5NNMOS l=0.6u w=1.8u m=1
+M16 in01 sel0b in1 vdd C5NPMOS l=0.6u w=3.6u m=1
+M17 in23 sel0b in2 vss C5NNMOS l=0.6u w=1.8u m=1
+M18 in23 sel0bb in2 vdd C5NPMOS l=0.6u w=3.6u m=1
+M19 in23 sel0bb in3 vss C5NNMOS l=0.6u w=1.8u m=1
+M20 in23 sel0b in3 vdd C5NPMOS l=0.6u w=3.6u m=1
+M21 sel1bb sel1b vss vss C5NNMOS l=0.6u w=1.8u m=1
+M22 sel1bb sel1b vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M23 sel1b sel1 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M24 sel1b sel1 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends mux4to1_1x
+
+.subckt mux2to1_1x in0 in1 sel out vdd vss
+M8 out N002 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M7 out N002 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M6 N002 N001 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M5 N002 N001 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M2 N001 selb in0 vss C5NNMOS l=0.6u w=1.8u m=1
+M1 N001 selbb in0 vdd C5NPMOS l=0.6u w=3.6u m=1
+M4 N001 selbb in1 vss C5NNMOS l=0.6u w=1.8u m=1
+M3 N001 selb in1 vdd C5NPMOS l=0.6u w=3.6u m=1
+M9 selbb selb vss vss C5NNMOS l=0.6u w=1.8u m=1
+M10 selbb selb vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M11 selb sel vss vss C5NNMOS l=0.6u w=1.8u m=1
+M12 selb sel vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends mux2to1_1x
+
+.subckt d_flip_flop D_in clk Q_out Qn_out vdd vss
+M8 Q_out Qn_out vss vss C5NNMOS l=0.6u w=1.8u m=1
+M7 Q_out Qn_out vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M6 Qn_out N002 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M5 Qn_out N002 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M9 clkbb clkb vss vss C5NNMOS l=0.6u w=1.8u m=1
+M10 clkbb clkb vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M11 clkb clk vss vss C5NNMOS l=0.6u w=1.8u m=1
+M12 clkb clk vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M13 N003 cklb D_in vss C5NNMOS l=0.6u w=1.8u m=1
+M14 N003 clkbb D_in vdd C5NPMOS l=0.6u w=3.6u m=1
+M15 N004 clkbb N003 vss C5NNMOS l=0.6u w=1.8u m=1
+M16 N004 clkb N003 vdd C5NPMOS l=0.6u w=3.6u m=1
+M21 N001 N003 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M22 N001 N003 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M23 N004 N001 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M24 N004 N001 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M1 N005 cklbb N001 vss C5NNMOS l=0.6u w=1.8u m=1
+M2 N005 clkb N001 vdd C5NPMOS l=0.6u w=3.6u m=1
+M3 N006 clkb N005 vss C5NNMOS l=0.6u w=1.8u m=1
+M4 N006 clkbb N005 vdd C5NPMOS l=0.6u w=3.6u m=1
+M25 N002 N005 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M26 N002 N005 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M27 N006 N002 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M28 N006 N002 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends d_flip_flop
+
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\jacol\OneDrive\Documents\LTspiceXVII\lib\cmp\standard.mos
+.backanno
+.end

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">
+      instPin class
+    </font></h2>
+
+    <p>
+      An instPin is not derived from a <a href="dbObj.htm">dbObj</a>, so it cannot have properties. An 
+      instPin represents the hierarchical crossing of a net at one level of hierarchy to a pin on the 
+      instance of a cell (the lower level of hierarchy). Thus an instPin needs a valid <a href="net.htm">net</a> 
+      and <a href="inst.htm">instance</a> whose master must have a pin of the given name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      instPin instPin::instPin(<a href="inst.htm">inst</a> *i, <a href="net.htm">net</a> *n, char *name)
+    </font></h4>
+
+    <p>
+      Create an instPin for inst<i> i </i>and net <i>n</i> with name <i>name</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      instPin::setInst(<a href="inst.htm">inst</a> * i)
+    </font></h4>
+
+    <p>
+      Set the instPin&#39;s instance to <i>i</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="inst.htm">inst</a> * instPin::getInst()
+    </font></h4>
+
+    <p>
+      Get the instance pin&#39;s inst.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      instPin::setName(char * name)
+    </font></h4>
+
+    <p>
+      Set the instance pin&#39;s name
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      char * instPin::getName()
+    </font></h4>
+
+    <p>
+      Get the instance pin&#39;s name
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      instPin::setNet(<a href="net.htm">net</a> * n)
+    </font></h4>
+
+    <p>
+      Set the instance pin&#39;s net
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="net.htm">net</a> * instPin::getNet()
+    </font></h4>
+
+    <p>
+      Get the instance pin&#39;s net
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      instPin::setPin(<a href="pin.htm">pin</a> *p)
+    </font></h4>
+
+    <p>
+      Set the instance master&#39;s pin
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="pin.htm">pin</a> * instPin::getPin()
+    </font></h4>
+
+    <p>
+      Get the instance master&#39;s pin
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      instPin::setSpecial(bool s)
+    </font></h4>
+
+    <p>
+      Set this instPin as special
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool instPin::isSpecial()
+    </font></h4>
+
+    <p>
+      Get the instPin&#39;s special status
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Point.htm">Point</a> instPin::getPortLoc()
+    </font></h4>
+
+    <p>
+      Get the centre of the bounding box of the instPin&#39;s port(s)
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool instPin::isSupplyPin()
+    </font></h4>
+
+    <p>
+      Returns true if this instPin is a supply pin.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t instPin::getNumPorts()
+    </font></h4>
+
+    <p>
+      Get the number of port shapes for this instPin.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

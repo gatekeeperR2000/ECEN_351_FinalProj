@@ -1,0 +1,512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+      <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">Instance class</font></h2>
+
+    <p>
+      An instance is a reference to a cellview, in another cellview. Instances correspond to GDS2 SREFs 
+      or DEF components. Instances are created using the cellView::dbCreateInst() function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t inst::left()
+    </font></h4>
+
+    <p>
+      Get the left edge of the instance&#39;s bounding box
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t inst::bottom()
+    </font></h4>
+
+    <p>
+      Get the bottom edge of the instance&#39;s bounding box
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t inst::right()
+    </font></h4>
+
+    <p>
+      Get the right edge of the instance&#39;s bounding box
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t inst::top()
+    </font></h4>
+
+    <p>
+      Get the top edge of the instance&#39;s bounding box
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool inst::offGrid(int32_t grid)
+    </font></h4>
+
+    <p>
+      Checks if an instance origin is on the grid <em>grid,</em> which is in database units.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::status(db_PlaceStatus s)
+    </h4>
+
+    <p>
+      Set the placement status of the instance. db_PlaceStatus can be one of: DB_UNPLACED, DB_PLACED, DB_FIXED, DB_COVER, DB_UNKNOWN.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_PlaceStatus inst::status()
+    </font></h4>
+
+    <p>
+      Get the placement status of the instance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * inst::getPlacementStatusStr()
+    </font></h4>
+
+    <p>
+      Get the placement status of the instance as a string.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::orient(orient_t o)
+    </font></h4>
+
+    <p>
+      Set the instance orientation. db_Orient can be one of: R0, R90, R180, R270, MX, MXR90, MY, MYR90.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      orient_t inst::orient ()
+    </font></h4>
+
+    <p>
+      Get the instance orientation.
+    </p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      i.source(db_SourceType s)
+    </font></h4>
+
+    <p>
+      Set the instance source type. db_SourceType can be one of: 
+      DB_SRC_NONE, DB_SRC_NETLIST, DB_SRC_DIST, DB_SRC_USER, DB_SRC_TIMING.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_SourceType&nbsp;&nbsp;i.source()
+    </font></h4>
+
+    <p>
+      Get the instance source type
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * inst::getPlacementSourceStr()
+    </font></h4>
+
+    <p>
+      Get the instance source type as a string
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::bound(bool b)
+    </font></h4>
+
+    <p>
+      Set the instance binding. This should probably not be set by the user.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool inst::bound()
+    </font></h4>
+
+    <p>
+      Get the instance binding status. An instance is bound if it references a valid master.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Point.htm">Point</a> inst::origin()
+    </font></h4>
+
+    <p>
+      Get the origin of the instance. Note that an instance&#39;s origin does not have to be e.g. 
+      the lower left of its bounding box - it can be anywhere.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::origin(const <a href="Point.htm">Point</a> &amp;p)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::origin(int32_t x, int32_t y)
+    </font></h4>
+
+    <p>
+      Set the origin of the instance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::orient(orient_t o)
+    </font></h4>
+
+    <p>
+      Set the instance&#39;s orientation. It can be one of R0, R90, R180, R270, MX, MXR90, MY, MYR90.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t inst::orient()
+    </font></h4>
+
+    <p>
+      Get the instance&#39;s orientation.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      i.mag(float64_t mag)
+    </font></h4>
+
+    <p>
+      Set the instance&#39;s magnification. Magnifications other than 1.0 are supported, 
+      but their use is strongly discouraged.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t inst::mag()
+    </font></h4>
+
+    <p>
+      Get the instance&#39;s magnification. Magnifications other than 1.0 are supported, 
+      but their use is strongly discouraged.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * inst::libName()
+    </font></h4>
+
+    <p>
+      Get the instance&#39;s lib name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="library.htm">library</a> * inst::lib()
+    </font></h4>
+
+    <p>
+      Get the instance&#39;s library.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * inst::cellName()
+    </font></h4>
+
+    <p>
+      Get the instances&#39;s cell name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      i.cellName(const char * s)
+    </font></h4>
+
+    <p>
+      Set the instance master&#39;s cellName.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * inst::viewName()
+    </font></h4>
+
+    <p>
+      Get the instance&#39;s view name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::instName(<a href="cellview.htm">cellView</a> * cv, const char * instName)
+    </font></h4>
+
+    <p>
+      Set the instance&#39;s <em>instName</em>. <em>cv</em> is the cellView containing the instance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * inst::instName()
+    </font></h4>
+
+    <p>
+      Get the instance&#39;s instName.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="cellview.htm">cellView</a> *  inst::getMaster()
+    </font></h4>
+
+    <p>
+      Get the cellview of the instance&#39;s master.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::setMaster(<a href="cellview.htm">cellView</a> * cv)
+    </font></h4>
+
+    <p>
+      Set the instance&#39;s master.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Rect.htm">Rect</a> box = i.bBox()
+    </font></h4>
+
+    <p>
+      Get the instance&#39;s bounding box.
+    </p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::updateBbox()
+    </font></h4>
+
+    <p>
+      Updates the instance bounding box after e.g. changing origin/orient/mag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Rect.htm">Rect</a> inst::getBoundary()
+    </font></h4>
+
+    <p>
+      Gets the instance&#39;s boundary rectangle. If the instance is e.g. a LEF macro then it will 
+      contain a shape on the TECH_PRBOUNDARY_LAYER, and the Rect representing this boundary shape 
+      will be returned.The shape is transformed according to the inst's origin, orientation 
+      and magnification. For symbols, the boundary layer defines a rectangle used in schematics 
+      for selection and dynamic highlighting, rather than the symbol's bounding box itself.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_Type inst::objType()
+    </font></h4>
+
+    <p>
+      Returns the objects type as INST
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char  * inst::objName()
+    </font></h4>
+
+    <p>
+      Returns the print name i.e. &quot;INST&quot;
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t inst::.getNearestEdge(<a href="Point.htm">Point</a> p, <a href="segment.htm">segment</a> &amp;edge)
+    </font></h4>
+
+    <p>
+      Get the nearest edge of this object.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::transform(<a href="transform.htm">transform</a> &amp;trans)
+    </font></h4>
+
+    <p>
+      Transform the instance by the given transform.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::scale(float64_t scalefactor, int32_t grid)
+    </font></h4>
+
+    <p>
+      Scale the instance origin coordinates by scalefactor, snapping to grid.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::Move(<a href="cellview.htm">cellView</a> * cv, <a href="Point.htm">Point</a> delta, bool opt = true)
+    </font></h4>
+
+    <p>
+      Move the instance origin by delta.&nbsp; If opt is True then the database is re-optimised for the new 
+      inst position. If there are a lot of objects to move it makes sense to turn this off and instead 
+      use the cellView update() function after moving them all.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj</a> * inst::Copy(<a href="cellview.htm">cellView</a> * cv, <a href="Point.htm">Point</a> delta)
+    </font></h4>
+
+    <p>
+      Copy the instance. <em>cv</em> is the destination cellview, <em>delta</em> is the offset from the current origin. 
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObjList&lt;dbObj&gt;</a> *  inst::Flatten(cellView * cv, <a href="transform.htm">transform</a> trans, bool hier = true)
+    </font></h4>
+
+    <p>
+      Flatten the instance into the cellView <em>cv</em>, with the given transform <em>trans</em>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::dbCreateInstPin(<a href="net.htm">net</a> *n, char *name)
+    </font></h4>
+
+    <p>
+      Create an instance pin on this instance for the net <em>n</em> and pin name <em>name</em>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::dbDeleteInstPin(<a href="instPin.htm">instPin</a> * ip)
+    </font></h4>
+
+    <p>
+      Delete the instPin <em>ip</em> from this instance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="instPin.htm">instPin</a> * inst::dbFindInstPinByName(const char * name)
+    </font></h4>
+
+    <p>
+      Find the inst pin with name <em>name</em> on this instance. Returns null if not found.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst::getInstPins()
+    </font></h4>
+
+    <p>
+      Get a python list of all instPins for this instance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int inst::getNumInstPins()
+    </font></h4>
+
+    <p>
+      Get the number of instPins for this instance.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

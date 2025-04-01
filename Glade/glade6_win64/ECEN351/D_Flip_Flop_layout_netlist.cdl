@@ -1,0 +1,47 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib
+* Top Cell Name: D_Flip_Flop
+* View Name: extracted
+* Netlist created: 04.Mar.2025 08:29:05
+*******************************************************************************
+
+*.SCALE METER
+.GLOBAL vdd
+.GLOBAL vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    D_Flip_Flop
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT D_Flip_Flop D_in clk Q_out Qn_out
+*.PININFO D_in:B clkb:B clk:B Q_out:B clkbb:B Qn_out:B
+
+MM437 n11 clkbb n12 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM436 n11 clkb n9 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM418 vss clk clkb vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM433 n10 clkb n13 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM434 n9 n13 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM421 n10 clkbb n13 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM423 n10 n9 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM419 vss clkb clkbb vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM430 vdd clk clkb vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM429 Q_out Qn_out vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM435 n10 n9 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM432 D_in clkbb n13 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM440 vdd n8 Qn_out vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM420 D_in clkb n13 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM441 vdd Qn_out Q_out vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM431 vdd clkb clkbb vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM422 n9 n13 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM439 vdd n8 n12 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM427 n12 n8 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM428 Qn_out n8 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM438 vdd n11 n8 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM426 n8 n11 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM425 n11 clkb n12 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM424 n11 clkbb n9 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+.ENDS

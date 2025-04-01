@@ -1,0 +1,161 @@
+* C:\Glade\glade5_win64\ECEN351\C5N_LTspice\FinalProject\registerFile_top.asc
+XX1 A B C WE In1 clk_in vdd vss out registerfile
+vss vss 0 0V
+vdd vdd 0 3V
+
+* block symbol definitions
+.subckt registerfile addr0 addr1 addr2 regWE data clk pos neg out
+Vpos neg 0 5V
+Vneg pos 0 0V
+Vaddr0 addr0 0 PULSE(0 3 20n 100p 100p 19.9n 40n)
+Vaddr1 addr1 0 PULSE(0 3 40n 100p 100p 39.9n 80n)
+Vaddr2 addr2 0 PULSE(0 3 80n 100p 100p 79.9n 160n)
+XX1 addr0 addr1 addr2 N001 N003 N005 N007 N009 N011 N013 N015 regWE pos neg writedecoder
+XX3 N002 N004 N006 N008 N010 N012 N014 N016 NC_01 NC_02 NC_03 NC_04 NC_05 NC_06 mux8to1
+XX2 data clk N015 N013 N011 N009 N007 N005 N003 N001 N004 N006 N008 N010 N012 N014 N016 N002 NC_07 NC_08 registerblock
+.include "C5N_models_Glade.txt"
+.ends registerfile
+
+.subckt writedecoder addr0 addr1 addr2 reg0_WE reg1_WE reg2_WE reg3_WE reg4_WE reg5_WE reg6_WE reg7_WE regWE pos neg
+XX4 addr0 N002 N004 N005 pos neg and3_1x
+XX5 N001 N002 N004 N003 pos neg and3_1x
+XX6 N001 addr1 N004 N006 pos neg and3_1x
+XX7 addr0 addr1 N004 N007 pos neg and3_1x
+XX8 N001 N002 addr2 N008 pos neg and3_1x
+XX9 addr0 N002 addr2 N009 pos neg and3_1x
+XX10 N001 addr1 addr2 N010 pos neg and3_1x
+XX11 addr0 addr1 addr2 N011 pos neg and3_1x
+XX12 N003 regWE reg0_WE pos neg and2_1x
+XX13 N005 regWE reg1_WE pos neg and2_1x
+XX14 N006 regWE reg2_WE pos neg and2_1x
+XX15 N007 regWE reg3_WE pos neg and2_1x
+XX16 N008 regWE reg4_WE pos neg and2_1x
+XX17 N009 regWE reg5_WE pos neg and2_1x
+XX18 N010 regWE reg6_WE pos neg and2_1x
+XX19 N011 regWE reg7_WE pos neg and2_1x
+XX1 addr0 N001 pos neg inv_4x
+XX2 addr1 N002 pos neg inv_4x
+XX3 addr2 N004 pos neg inv_4x
+.ends writedecoder
+
+.subckt mux8to1 in0 in1 in2 in3 in4 in5 in6 in7 out pos neg sel2 sel1 sel0
+XX1 in0 in1 in2 in3 sel1 sel0 N001 pos neg mux4to1_1x
+XX2 in4 in5 in6 in7 sel1 sel0 N002 pos neg mux4to1_1x
+XX3 N001 N002 sel2 out pos neg mux2to1_1x
+.ends mux8to1
+
+.subckt registerblock DataIn clk reg7_sel reg6_sel reg5_sel reg4_sel reg3_sel reg2_sel reg1_sel reg0_sel reg1_out reg2_out reg3_out reg4_out reg5_out reg6_out reg7_out reg0_out pos neg
+XX1 DataIn reg0_sel clk NC_01 reg0_out pos neg register1bit
+XX2 DataIn reg1_sel clk NC_02 reg1_out pos neg register1bit
+XX3 DataIn reg2_sel clk NC_03 reg2_out pos neg register1bit
+XX4 DataIn reg3_sel clk NC_04 reg3_out pos neg register1bit
+XX5 DataIn reg4_sel clk NC_05 reg4_out pos neg register1bit
+XX6 DataIn reg5_sel clk NC_06 reg5_out pos neg register1bit
+XX7 DataIn reg6_sel clk NC_07 reg6_out pos neg register1bit
+XX8 DataIn reg7_sel clk NC_08 reg7_out pos neg register1bit
+.ends registerblock
+
+.subckt and3_1x A B C Y vdd vss
+M6 Y N001 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M5 Y N001 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M1 N001 A vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M2 N001 B vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M3 N001 A N002 vss C5NNMOS l=0.6u w=3.6u m=1
+M4 N002 B N003 vss C5NNMOS l=0.6u w=3.6u m=1
+M7 N003 C vss vss C5NNMOS l=0.6u w=3.6u m=1
+M8 N001 C vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends and3_1x
+
+.subckt and2_1x A B Y vdd vss
+M6 Y N001 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M5 Y N001 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M1 N001 A vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M2 N001 B vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M3 N001 A N002 vss C5NNMOS l=0.6u w=3.6u m=1
+M4 N002 B vss vss C5NNMOS l=0.6u w=3.6u m=1
+.ends and2_1x
+
+.subckt inv_4x A Z vdd vss
+M1 Z A vss vss C5NNMOS l=0.6u w=1.8u m=4
+M2 Z A vdd vdd C5NPMOS l=0.6u w=3.6u m=4
+.ends inv_4x
+
+.subckt mux4to1_1x in0 in1 in2 in3 sel1 sel0 out vdd vss
+M8 out moutb vss vss C5NNMOS l=0.6u w=1.8u m=1
+M7 out moutb vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M6 moutb mout vss vss C5NNMOS l=0.6u w=1.8u m=1
+M5 moutb mout vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M2 mout sel1b in01 vss C5NNMOS l=0.6u w=1.8u m=1
+M1 mout sel1bb in01 vdd C5NPMOS l=0.6u w=3.6u m=1
+M4 mout sel1bb in23 vss C5NNMOS l=0.6u w=1.8u m=1
+M3 mout sel1b in23 vdd C5NPMOS l=0.6u w=3.6u m=1
+M9 sel0bb sel0b vss vss C5NNMOS l=0.6u w=1.8u m=1
+M10 sel0bb sel0b vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M11 sel0b sel0 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M12 sel0b sel0 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M13 in01 sel0b in0 vss C5NNMOS l=0.6u w=1.8u m=1
+M14 in01 sel0bb in0 vdd C5NPMOS l=0.6u w=3.6u m=1
+M15 in01 sel0bb in1 vss C5NNMOS l=0.6u w=1.8u m=1
+M16 in01 sel0b in1 vdd C5NPMOS l=0.6u w=3.6u m=1
+M17 in23 sel0b in2 vss C5NNMOS l=0.6u w=1.8u m=1
+M18 in23 sel0bb in2 vdd C5NPMOS l=0.6u w=3.6u m=1
+M19 in23 sel0bb in3 vss C5NNMOS l=0.6u w=1.8u m=1
+M20 in23 sel0b in3 vdd C5NPMOS l=0.6u w=3.6u m=1
+M21 sel1bb sel1b vss vss C5NNMOS l=0.6u w=1.8u m=1
+M22 sel1bb sel1b vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M23 sel1b sel1 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M24 sel1b sel1 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends mux4to1_1x
+
+.subckt mux2to1_1x in0 in1 sel out vdd vss
+M8 out N002 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M7 out N002 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M6 N002 N001 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M5 N002 N001 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M2 N001 selb in0 vss C5NNMOS l=0.6u w=1.8u m=1
+M1 N001 selbb in0 vdd C5NPMOS l=0.6u w=3.6u m=1
+M4 N001 selbb in1 vss C5NNMOS l=0.6u w=1.8u m=1
+M3 N001 selb in1 vdd C5NPMOS l=0.6u w=3.6u m=1
+M9 selbb selb vss vss C5NNMOS l=0.6u w=1.8u m=1
+M10 selbb selb vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M11 selb sel vss vss C5NNMOS l=0.6u w=1.8u m=1
+M12 selb sel vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends mux2to1_1x
+
+.subckt register1bit DataIn regSEL clk qn_out DataOut pos neg
+XX1 N001 clk DataOut NC_01 pos neg d_flip_flop
+XX9 DataOut DataIn regSEL N001 pos neg mux2to1_1x
+.ends register1bit
+
+.subckt d_flip_flop D_in clk Q_out Qn_out vdd vss
+M8 Q_out Qn_out vss vss C5NNMOS l=0.6u w=1.8u m=1
+M7 Q_out Qn_out vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M6 Qn_out N002 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M5 Qn_out N002 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M9 clkbb clkb vss vss C5NNMOS l=0.6u w=1.8u m=1
+M10 clkbb clkb vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M11 clkb clk vss vss C5NNMOS l=0.6u w=1.8u m=1
+M12 clkb clk vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M13 N003 cklb D_in vss C5NNMOS l=0.6u w=1.8u m=1
+M14 N003 clkbb D_in vdd C5NPMOS l=0.6u w=3.6u m=1
+M15 N004 clkbb N003 vss C5NNMOS l=0.6u w=1.8u m=1
+M16 N004 clkb N003 vdd C5NPMOS l=0.6u w=3.6u m=1
+M21 N001 N003 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M22 N001 N003 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M23 N004 N001 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M24 N004 N001 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M1 N005 cklbb N001 vss C5NNMOS l=0.6u w=1.8u m=1
+M2 N005 clkb N001 vdd C5NPMOS l=0.6u w=3.6u m=1
+M3 N006 clkb N005 vss C5NNMOS l=0.6u w=1.8u m=1
+M4 N006 clkbb N005 vdd C5NPMOS l=0.6u w=3.6u m=1
+M25 N002 N005 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M26 N002 N005 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+M27 N006 N002 vss vss C5NNMOS l=0.6u w=1.8u m=1
+M28 N006 N002 vdd vdd C5NPMOS l=0.6u w=3.6u m=1
+.ends d_flip_flop
+
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\HP\Documents\LTspiceXVII\lib\cmp\standard.mos
+.backanno
+.end

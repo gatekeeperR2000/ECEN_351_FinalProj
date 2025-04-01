@@ -1,0 +1,52 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 19:13:31 on Feb  9 2021 by Visual C++ 13.3
+-----------------------------------------------------------------------------
+
+Gemini started at 12:51:28 on 22/02/2022
+
+Command line:
+	-w 10.000000 -g C:\Users\Randall_Jack\Desktop\ECEN351_LTspice\Test_std_cell.err -S C:\Users\Randall_Jack\Desktop\ECEN351_LTspice\Test_std_cell_extracted.cdl C:\Users\Randall_Jack\Desktop\ECEN351_LTspice\Test_std_cell_top.spi_flat 
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : Test_std_cell_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       16
+  Number of nets    :       7
+  Number of ports   :       2
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : Test_std_cell_top.spi_flat
+-----------------------------------------------------------------------------
+  Number of devices :       8
+  Number of nets    :       7
+  Number of ports   :       4
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		Test_std_cell_extracted.cdl	Test_std_cell_top.spi_flat
+  Number of devices :       8			8
+  Number of nets    :       7			7
+  Number of ports   :       2			4
+
+
+The following transistors have property mismatches:
+
+           Test_std_cell_extracted.cdl       Test_std_cell_top.spi_flat
+(1) Device type:                 N                                N
+    Inst name  :               MM0                           M1/XX1
+    Model      :           C5NNMOS                          C5NNMOS
+    S:                         vss                              vss
+    D:                          n4                             inv1
+    G:                      inv_in                           inv_in
+    W/L:   (um)        1.800/0.600                      3.800/0.600
+1 device property error.
+11 (73%) matches were found by local matching.
+All nodes were matched in 5 passes.
+
+The netlists match.
+
+1 devices and 0 nets written to C:\Users\Randall_Jack\Desktop\ECEN351_LTspice\Test_std_cell.err
+
+Gemini completed at 12:51:28 on 22/02/2022
+

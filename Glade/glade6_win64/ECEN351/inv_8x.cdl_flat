@@ -1,0 +1,9 @@
+.SUBCKT inv_8x Z A
+*.PININFO  Z:B A:I
+*
+*.SCALE METER
+*.GLOBAL vss vdd
+*
+M4  Z A vss vss C5NNMOS  w=1.8u l=0.6u m=8
+M5  Z A vdd vdd C5NPMOS  w=3.6u l=0.6u m=8
+.ENDS

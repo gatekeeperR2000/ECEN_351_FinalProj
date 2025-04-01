@@ -1,0 +1,31 @@
+* C:\Users\Randall Jack\Desktop\D_Flip_Flop.asc
+M1 clkb clk vss vss C5NNMOS l=0.6u w=1.8u
+M2 clkb clk vdd vdd C5NPMOS l=0.6u w=3.6u
+M3 clkbb clkb vss vss C5NNMOS l=0.6u w=1.8u
+M4 clkbb clkb vdd vdd C5NPMOS l=0.6u w=3.6u
+M5 N003 N001 vss vss C5NNMOS l=0.6u w=1.8u
+M6 N003 N001 vdd vdd C5NPMOS l=0.6u w=3.6u
+M7 N001 clkb D_in vss C5NNMOS l=0.6u w=1.8u
+M8 N001 clkbb D_in vdd C5NPMOS l=0.6u w=3.6u
+M9 N002 N003 vss vss C5NNMOS l=0.6u w=1.8u
+M10 N002 N003 vdd vdd C5NPMOS l=0.6u w=3.6u
+M11 N001 clkbb N002 vss C5NNMOS l=0.6u w=1.8u
+M12 N001 clkb N002 vdd C5NPMOS l=0.6u w=3.6u
+M13 slave_out N004 vss vss C5NNMOS l=0.6u w=1.8u
+M14 slave_out N004 vdd vdd C5NPMOS l=0.6u w=3.6u
+M15 N004 clkbb N003 vss C5NNMOS l=0.6u w=1.8u
+M16 N004 clkb N003 vdd C5NPMOS l=0.6u w=3.6u
+M17 N005 slave_out vss vss C5NNMOS l=0.6u w=1.8u
+M18 N005 slave_out vdd vdd C5NPMOS l=0.6u w=3.6u
+M19 N004 clkb N005 vss C5NNMOS l=0.6u w=1.8u
+M20 N004 clkbb N005 vdd C5NPMOS l=0.6u w=3.6u
+M21 Qb_out slave_out vss vss C5NNMOS l=0.6u w=1.8u
+M22 Qb_out slave_out vdd vdd C5NPMOS l=0.6u w=3.6u
+M23 Q_out Qb_out vss vss C5NNMOS l=0.6u w=1.8u
+M24 Q_out Qb_out vdd vdd C5NPMOS l=0.6u w=3.6u
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\Randall Jack\Documents\LTspiceXVII\lib\cmp\standard.mos
+* All NMOS devices are 1.8u / 0.6u\nAll PMOS devices are 3.6u / 0.6u
+.backanno
+.end

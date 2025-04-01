@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --><font face="Arial, Helvetica, sans-serif">
+<h4 align="left"><font face="Arial">
+<h2 align="left"><font face="Arial"><b>Change Log</b> 2009</font></h2> 
+   </font></h4>
+<h4 align="left"><font face="Arial" size="4"> 
+   Contents for 2008 can be found <a 
+href="changes_2008.htm">here</a> 
+   </font></h4>
+<h4 align="left"><font face="Arial">Version 
+4.0.33 release on 01/02/09</font></h4>
+<p align="left"><font face="Arial">- Reading 
+complex vias speeded up. One some designs with via definitions with thousands of 
+cut shapes, speedups of 2-3x are seen.</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.34 release on 28/02/2009</font></h4>
+<p align="left"><font face="Arial">- LSW and 
+library browser window state preserved. So if the LSW was open the last time you 
+exited Glade, it will reopen again on startup. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.35 release on 24/03/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Edit-&gt;Merge Selected with no shapes selected caused a crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+delete arc did nothing.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+arcs had incorrect display for start/stop angles.</font></p>
+<p align="left"><font face="Arial">- Import 
+DXF now imports arc and ellipse objects.</font></p>
+<p align="left"><font face="Arial">- Import 
+DXF text alignment fixed.</font></p>
+<p align="left"><font face="Arial">- Via 
+table size increased from 1024 to 8192</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.36 release on 04/04/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+deselect edge(s) using ctrl + left mouse was not working</font></p>
+<p align="left"><font face="Arial">- default 
+path style for add path command changed to TRUNCATE</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+change all selected shapes by layer got incorrect destination layer</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+undo for delete shape in partial selection mode failed to undo</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Edit-&gt;Hierarchy-&gt;Create was not setting bbox of new cell instance making 
+it unselectable / invisible</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Edit-&gt;Merge Selected now has working undo/redo</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Edit-&gt;Chop now has working undo/redo</font></p>
+<p align="left"><font face="Arial">- Qt 
+version rolled back to 4.4.2 from 4.5.0 due to OpenGL bug when displaying 
+modeless dialogs on Win32 platform. This will be followed up with 
+Trolltech.</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.37 release on 07/04/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+strans bit on text labels not getting set during Import GDS2</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+text labels with non-R0 orientation displayed incorrectly or not at all in 
+OpenGL mode</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+bounding box of cells with text labels did not take into account text label 
+origins</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+major problems with the OpenGL renderer under Solaris have been fixed</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+flattening arrays was not working correctly</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.38 release on 18/04/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+adding a pcell instance did not clear existing parameter property list if the 
+pcell master was changed in the Create Instance dialog.</font></p>
+<p align="left"><font face="Arial">- Reshape 
+command added. Allows editing of shapes by selecting an edge, then entering new 
+vertices between the edge's endpoints. Currently only available for polygons and 
+paths, in future it will be extended to rectangles.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+switching between tiled windows caused screen flicker in OpenGL</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+middle mouse button drag now pans dynamically on both OpenGL and non-OpenGL 
+displays.</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.39 release on 17/05/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+axes were getting drawn in cursor box colour initially when a new cellview is 
+created.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+copy cell library browser command was not copying cells containing arrays 
+correctly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+export circle/ellipse objects to GSD2 caused an internal error</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+export DXF of arrays wrote incorrect row/col spacing</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+flatten ellipse/circle did not transform origin with respect to hierarchy 
+correctly</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+export DXF of circles/ellipses wrote incorrect radius</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+import DXF with polygons of &gt; 1024 vertices failed</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+occasional crash when closing libraries fixed</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+query ellipse/circle now allows changing layer</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+lsw/net/hierarchy browsers refreshed when a cellView is opened.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+changing common attributes for ellipses/arcs not supported</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+change layer for common objects did not set correct layer</font></p>
+<p align="left"><font face="Arial">- export 
+GDS2 can set number of segments to fracture an ellipse/circle into</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.40 release on 25/05/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+can now save system layers to library on disk and reload them, allowing changes 
+to their attributes to be permanent</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+query a square can now change it to a rectangle (i.e different 
+width/height)</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+deleting a cellView in the library browser doesn't crash if that cellView is 
+open. Also all referenced instances of the cell in the library are deleted 
+too.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Boolean ops work on selected shapes only if 'Hierarchical' is not selected. So 
+now if the selected shapes button is set, 'Hierarchical' is unchecked and grayed 
+out.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+renaming a library would trash the library name after saving and 
+reloading.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+renaming a library would give file permission errors after saving and 
+reloading.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+saving a library sometimes wrote incorrect cellview bounding boxes</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+saving an existing library with no cellview open failed to save</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+processing holes generated by boolean XOR could cause a crash</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+dock window status not set correctly for dock windows displayed at 
+startup</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.41 release on 13/06/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Replace Views cmd failed to replace view</font></p>
+<p align="left"><font face="Arial">- Replace 
+Views cmd now takes into account FOREIGN offset when replacing abstract views 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.42 release on 27/06/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Create Path cmd did not set the correct path width/extension when an existing 
+net is selected first.</font></p>
+<p align="left"><font face="Arial">- Added 
+Import Laker Techfile capability. This is currently beta code - example 
+techfiles appreciated for testing!</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.43 release on 03/08/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+create pins from labels caused a crash</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Outputting LEF without port info caused a crash</font></p>
+<p align="left"><font face="Arial">- warning 
+now issued if reading AREF with bad row/col data</font></p>
+<p align="left"><font face="Arial">- Linux 
+version gave errors loading ui module in python scripts</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.44 release on 13/09/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+handle paths with backtracks correctly</font></p>
+<p align="left"><font face="Arial">- Library 
+Browser now searches for cells when a key is pressed while the lib browser is in 
+focus. So for example pressing 'e' will search for all cells beginning with 'e', 
+pressing 's' will search for cells beginning with 'es' etc. If no match is found 
+for the current search string, the search string is cleared.</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.45 release on 03/10/2009</font></h4>
+<p align="left"><font face="Arial">- 
+significant changes to internal trees for storing spatial data. Reduced memory 
+usage and faster optimisation time</font></p>
+<p align="left"><font face="Arial">- Changes 
+rolled back until several crashes encountered by users are resolved</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.0.46 release on 17/10/2009</font></h4>
+<p align="left"><font face="Arial">- Create 
+Instance dialog now correctly remembers lib/cell/view name of previous created 
+inst</font></p>
+<p align="left"><font face="Arial">- Rename 
+library browser cell name now deletes old cell from disk</font></p>
+<p align="left"><font face="Arial">- Library 
+browser rename/delete cell now marks all cells containing this cell as edited, 
+so they will get saved to disk on exit</font></p>
+<p align="left"><font face="Arial">- Opacity 
+toolbar only shown for non-OpenGL display mode (as it does nothing in OpenGL 
+mode!)</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.0 release on 23/10/2009</font></h4>
+<p align="left"><font face="Arial">- New DB 
+tested and released</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+text in arrays drawn incorrectly in non-OpenGL mode</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+crash deleting a cellView in new DB fixed</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.1 release on 02/11/2009</font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+in non-OpenGL mode, coincident rectangles were drawn with bottom edge 1 pixel 
+off</font></p>
+<p align="left"><font face="Arial">- added 
+extractRes and extractMosCap extraction commands</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+library browser was not refreshed when opening a library</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+library browser was not refreshed after drc/extract</font></p>
+<p align="left"><font face="Arial">- F2 key 
+now toggles gravity</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+layerchooser widget was not setting layer stipple pattern </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+modifying a pcell's attributes caused a crash </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.2 release on 08/11/2009 </font></h4>
+<p align="left"><font face="Arial">- With 
+the new DB, the GDS reader has been made 1-pass. </font></p>
+<p align="left"><font face="Arial">- Python 
+interpreter now maintains global dictionary everywhere code can be evaluated. 
+This means that functions loaded through File-&gt;Run Script, for example, is 
+known to the command line interpreter. </font></p>
+<p align="left"><font face="Arial">- Python 
+bindings addSelected() and selectObj() added so you can select object in the gui 
+using Python code. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.3 release on 15/11/2009 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Import Cadence techfile now sets stipples correctly for non-square stipple 
+patterns. Same for Import Laker techfile. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import Cadence techfile occasionally crashed. Same for Import Laker techfile. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import Cadence layer spacing rules sometimes read incorrectly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+layer widget (used in e.g. LSW and query dialog) drew the stipple pattern 
+inverted compared to on the canvas </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+colinear first/last point in a polygon caused a crash in colinear point removal 
+code. </font></p>
+<p align="left"><font face="Arial">- 
+instance magnification supported in the database and for the GDS/Oasis 
+reader/writers. Note this is beta, so please report any bugs found when using 
+magnified instances. Also note that using magnification may give you all sorts 
+of problems with other tools so it really is not recommended! </font></p>
+<p align="left"><font face="Arial">- ~10% 
+memory usage reduction. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+array outlines sometimes drawn in incorrect position if array master/inst names 
+also displayed </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.4 release on 28/11/2009 </font></h4>
+<p align="left"><font face="Arial">- Various 
+improvements to LEF output and extraction for generating abstracts from GDS 
+views: </font></p>
+<p align="left"><font face="Arial">- 
+geomGetTexted() function added to get pin shapes, optionally of a specific text 
+label name </font></p>
+<p align="left"><font face="Arial">- 
+saveDerived() overloaded to provide capability of saving to a named layer 
+purpose pair, e.g. saving non-pin metal shapes to boundary purpose. </font></p>
+<p align="left"><font face="Arial">- Export 
+LEF now outputs shapes on boundary purpose to LEF OBS section, as well as any 
+layers with type BLOCKAGE as a layer property. </font></p>
+<p align="left"><font face="Arial">- Export 
+LEF now correctly outputs pin port shapes created by saveInterconnect() 
+</font></p>
+<p align="left"><font face="Arial">- 
+geomTrapezoid() passes net information to output trapezoids. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.5 release on 21/12/2009 </font></h4>
+<p align="left"><font face="Arial">- ui 
+function naming cleaned up and documentation updated </font></p>
+<p align="left"><font face="Arial">- Import 
+Cadence techfile now reads minArea spacing rule </font></p>
+<p align="left"><font face="Arial">- 
+Techfile reads/writes MINAREA rule </font></p>
+<p align="left"><font face="Arial">- 
+Verify-&gt;Check... supports min area check </font></p>
+<p align="left"><font face="Arial">- LSW now 
+has 2 memories to save layer selectability / visibility to. Clicking on M1 saves 
+all layer status to memory 1, clicking on R1 recalls layer status from memory1. 
+</font></p>
+<p align="left"><font face="Arial">- LSW 
+System/User buttons removed and relpaced by Display-&gt;Toggle User Layers and 
+Display-&gt;Toggle System Layers menu entries. These buttons were infrequently 
+used and the space is more efficiently used by the above layer memory buttons. 
+</font></p>
+<p align="left"><font face="Arial">- removed 
+flicker in dynamic highlight. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.6 release on 29/12/2009 </font></h4>
+<p align="left"><font face="Arial">- Create 
+Path command rewritten. Added capability of creating shielding to the side 
+and/or above and below the path. Can switch up/down routing layers during path 
+entry by pressing the 'u' and 'd' keys respectively. </font></p>
+<p align="left"><font face="Arial">- Cleaned 
+up path rendering code. Acute angles have their ends clipped to half the path 
+width. Coincident paths and backtracks now drawn correctly. </font></p></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

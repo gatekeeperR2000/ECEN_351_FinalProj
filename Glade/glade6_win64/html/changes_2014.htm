@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --><font face="Arial, Helvetica, sans-serif">
+<h2 align="left"><font face="Arial"><b>Change Log</b> 2014</font></h2>
+<p align="left"><strong><font size="4">Contents for 2013 can be 
+found <a href="changes_2013.htm">here</a></font></strong></p>
+<p align="left"><strong>Version 4.4.5 
+release on 02/01/2014</strong></p>
+<p align="left">- bugfix: fixed a bug in geomEnclose2</p>
+<p align="left">- bugfix: fixed another&nbsp;geomSpace bug for 
+non-projecting edges.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.6 
+release on 11/01/2014</strong></p>
+<p align="left">- bugfix:&nbsp;geomExtension could 
+occasionally miss a real violation.</p>
+<p align="left">- bugfix: geomEnclose2 further enhanced / 
+fixed.</p>
+<p align="left">- bugfix: fixed some geomLineEnd issues.</p>
+<p align="left">- bugfix: fixed a bug in geomExtension and 
+geomOverlap.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.7 
+release on 26/01/2014</strong></p>
+<p align="left">- bugfix: merge command and boolean OR1 
+operation sometimes did not process holes correctly.</p>
+<p align="left">- bugfix: fixed an error in geomEnclose2 where 
+more than 4 sides to the enclosing shape.</p>
+<p align="left">- bugfix: fixed some errors when toggling 
+between display layers in LSW-&gt;Display</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.8 
+release on 09/02/2014</strong></p>
+<p align="left">- geomExtension and geomEnclose both 
+extensively rewritten to handle several corner cases and TSMC rules.</p>
+<p align="left">- bugfix: draw ruler could draw using a 
+stipple pattern in some cases.</p>
+<p align="left">- enhancement: precision of area reporting in 
+Query dialog increased to 4 decimal places.</p>
+<p align="left">- bugfix: leaving and re-entering the 
+application caused the LSW 'Show Used Layers' and 'Show Viewport Layers' to be 
+reset to all layers.</p>
+<p align="left">- enhancement: geomSpace with width parameter 
+changed so only 1 shape must have a width greater than specified; geomSpace2 
+added with both shapes must have width greater than specified.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.9 
+release on 16/02/2014</strong></p>
+<p align="left">- fixed a bug where single vertex paths could 
+cause a crash in DRC/extraction.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.10 
+release on 09/03/2014</strong></p>
+<p align="left">- added geomAllowedWidths() DRC command. 
+Checks a layer is within a (user specified) set of valid widths. So for 
+example:</p><pre>	geomAllowedWidths(po, [0.020, 0.022, 0.024, 0.026, 0.028, 0.030, 0.036])</pre><font 
+face=Arial><font face="Arial">
+<p align="left">will allow poly widths only in the allowed 
+values given.</p>
+<p align="left">- fixed a bug that could occur when reading an 
+invalid stipple pattern.</p>
+<p align="left">- fixed a bug that could occur when importing 
+DXF solids.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.11 
+release on 14/03/2014</strong></p>
+<p align="left">- enhancement: Import Laker techfile now 
+correctly reads either layers defined in tfLayoutLayerTable using layer names 
+and colours, but also group names for layer groups defined in tfDisplayGroup. 
+</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.12 
+release on 22/03/2014</strong></p>
+<p align="left">- bugfix: geomLineEnd() caused a crash in 
+4.4.11</p>
+<p align="left">- bugfix: importing DXF with &gt; 4K vertices 
+on a polygon caused a crash</p>
+<p align="left">- enhancement: negative WIDTH values for GDS 
+PATH/TEXT elements are converted to positive ones. </p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.13 
+release on 29/3/2014</strong></p>
+<p align="left">- bugfix: fix a crash if a library was opened 
+with the same name as an existing library.</p>
+<p align="left">- bugfix: geomExtension sometimes gave false 
+positives.</p>
+<p align="left">- enhancement: geomPitch() command now allows 
+checking of e.g poly pitch (i.e. centreline to centreline of tracks). so for 
+example:</p></font></font><pre>	geomPitch(po, 0.070, vertical, "vertical poly pitch &lt; 0.70")</pre><font 
+face=Arial><font face="Arial">
+<p align="left">will flag any vertical poly that has a pitch 
+less than 70nm.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.14 
+release on 04/04/2014</strong></p>
+<p align="left">- bugfix: fixed a crash when some commands 
+were used e.g. while in the middle of a move/copy command.</p>
+<p align="left">- bugfix: fixed an occasional&nbsp;crash when 
+using the stretch command</p>
+<p align="left">- bugfix: extractTFT could generate devices 
+with too many instTerms in some cases.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.15 
+release on 13/04/2014</strong></p>
+<p align="left">- Corner rounding command implemented. Rounds 
+the corners of all vertices in the rectangle/polygon to some specified radius 
+and # of segments. Also allows snapping to manufacturing grid. Polygons must 
+currently be convex.</p>
+<p align="left">- Add marker command now has 'apply' button so 
+you can add multiple markers without re-invoking the command.</p>
+<p align="left">- Query Polygon was not allowing the polygon 
+coordinates to be changed via the dialog.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.16 
+release on 21/04/2014</strong></p>
+<p align="left">- bugfix: colinear point removal during 
+polygon/path entry could fail for corner cases</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.17 
+release on 27/04/2014</strong></p>
+<p align="left">- bugfix: boolean AND NOT operations could 
+sometimes result in a missing vertex in non-manhattan cases.</p>
+<p align="left">- bugfix: File-&gt;Save Cell was not saving to 
+the correct library path.</p>
+<p align="left">- bugfix: Togling user layers with no system 
+layers displayed could cause a crash.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.18 
+release on 11/05/2014</strong></p>
+<p align="left">- enhancement: corner rounding can handle 
+concave corners.</p>
+<p align="left">- bugfix: Create Rows created incorrectly 
+flipped rows if flip option was specified.</p>
+<p align="left">- bugfix: various gui-related bugfixes have 
+been fixed moving to Qt 5.2.1</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.19 
+release on 19/05/2014</strong></p>
+<p align="left">- enhancement: DRC runs can now be passed 
+variables from the DRC run dialog. They are of the form:</p></font></font><pre>name=value</pre><font face="Arial"><font face="Arial">
+<p align="left">and any number can be specified. They are 
+delimited by spaces (so don't have any spaces around the '='). The value type is 
+always a string - so if you want it as a number use the python int() or float() 
+to convert it.</p>
+<p align="left">- enhancement: A similar feature has been 
+added to the LPE run dialog.</p>
+<p align="left">- bugfix: fixed a minor bug that could cause a 
+crash when editing a path.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.20 
+release on 03/07/2014</strong></p>
+<p align="left">- bugfix: existing library cells not 
+overwritten if a duplicate is read.</p>
+<p align="left">- bugfix: Create Layer caused a crash if no 
+library open.</p>
+<p align="left">- bugfix: Instance magnification was not 
+written/read from a library. </p>
+<p align="left">- enhancement: made it an error to try and 
+extract an 'extracted' view. This is because (a) the extracted view already 
+contains extracted instances and (b) usually not all layers are written to the 
+extracted view.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.21 
+release on 18/07/2014</strong></p>
+<p align="left">- bugfix: extended memory of boolean processor 
+to handle more holes (there was a hard coded limit of 5000)</p>
+<p align="left">- bugfix: display engine can now handle 
+polygons with up to 65K vertices.</p>
+<p align="left">- bugfix: 'Create Layer' dialog changed to 
+allow GDS2 layer / datatypes &gt; 99 (in fact 9999).</p>
+<p align="left">- bugfix: the instIterator / netIterator / 
+pinIterator iterators were broken such that they skipped the first object. This 
+has been fixed.</p>
+<p align="left">- bugfix: the CDL flattener did not work 
+correctly if the hierarchical netlist did not have leaf cells first. Now it is 
+order independent.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.22 
+release on 03/08/2014</strong></p>
+<p align="left">- bugfix: geomEnclose2 sometimes failed to 
+flag errors.</p>
+<p align="left">- enhancement: support R, L, C elements during 
+CDL netlist flattening for LVS.</p>
+<p align="left">- added polygon::at(int index) API to get a 
+polygon's vertex. index is from 0&nbsp;to polygon::nPoints()-1. Returns a 
+Point.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.23 
+release on 17/08/2014</strong></p>
+<p align="left">- enhancement: added <strong>ui::setLayerVisible(const char *layerName, const char 
+*purpose, bool val)</strong> and similar function <strong>ui::setLayerSelectable(const char *layerName, const char 
+*purpose, bool val)</strong>. Both allow setting a layer's visibility in 
+the&nbsp;current cellView&nbsp;depending on the value of <em>'val'</em> - 1 sets layers visible, 0 sets them 
+invisible.</p>
+<p align="left">- enhancement: added <strong>ui::isLayerVisible(const char *layerName, const char 
+*purpose) </strong>and similar function <strong>ui::isLayerSelectable(const char *layerName, const char 
+*purpose) </strong>to check if a layer is visible or selectable in the current 
+cellView.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.24 
+release on 02/09/2014</strong></p>
+<p align="left">- bugfix: CDL flattener did not output top 
+level nets that did not connect to top level pins or were global nets.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.25 
+release on 04/09/2014</strong></p>
+<p align="left">- bugfix: corrected width calculation of bent 
+gate MOS devices</p>
+<p align="left">- bugfix: Corrected length calculation of bent 
+gate MOS devices</p>
+<p align="left">- bugfix: fixed a bug that was reported 
+as<font color="#000000"> # ERROR: Magnification expected, got 
+26</font></p>
+<p align="left"><font color="#990000"></font>&nbsp;</p>
+<p align="left"><font color="#000000"><strong>Version 4.4.26 release on 
+11/09/2014</strong></font></p>
+<p align="left"><font color="#000000">- 
+bugfix: copying a square failed.</font></p>
+<p align="left">- bugfix: dbCreateHole failed on octagonal 
+holes.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.27 
+release on 14/09/2014</strong></p>
+<p align="left">- bugfix: corrected snapping for e.g. snap 
+grid of 0.3um</p>
+<p align="left">- Added option to Export CDL to output in 
+'true spice' format.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.28 
+release on 21/09/2014</strong></p>
+<p align="left">- bugfix: fixed a problem on Mac where the 
+display options snap/grid values were being reset to 0.</p>
+<p align="left">- bugfix: geomOutside() caused a crash if 
+there there no shapes 'outside'</p>
+<p align="left"><font color="#000000">- 
+bugfix: fixed a few more small bugs in the geom... code.</font></p>
+<p align="left"><font color="#000000"></font>&nbsp;</p>
+<p align="left"><strong><font 
+color=#000000>Version 4.4.29 release on 
+04/10/2014</font></strong></p>
+<p align="left"><font color="#000000">- 
+bugfix: fixed several bugs with DRC layer relational selection functions e.g. 
+geomAvoiding, geomButting, geomCoincident etc.</font></p>
+<p align="left"><font color="#000000"></font>&nbsp;</p>
+<p align="left"><strong><font 
+color=#000000>Version 4.4.30 release on 
+16/10/2014</font></strong></p>
+<p align="left"><font color="#000000">- 
+bugfix: deleting an object using the Query dialog, then performing an undo 
+caused a crash.</font></p>
+<p align="left"><font color="#000000">- 
+enhancement: Gemini now can compare R, L and C&nbsp;values in a CDL netlist if 
+they have the format:</font></p>
+<p align="left"><font color="#000000" size="2">R1 net1 net2 R=100</font></p>
+<p align="left"><font color="#000000" size="2">or</font></p>
+<p align="left"><font color="#000000" size="2">R1 net1 net2 100</font></p>
+<p align="left"><font color="#000000" size="2">The tolerance setting used is currently the same as for MOS 
+transistors.</font></p>
+<p align="left"><font color="#000000">- 
+bugfix: issuing a create... command while still in a previous command would 
+cause a crash.</font></p>
+<p align="left"><font color="#000000"></font>&nbsp;</p>
+<p align="left"><strong><font 
+color=#000000>Version 4.4.31 release on 
+24/10/2014</font></strong></p>
+<p align="left"><font color="#000000">- 
+enhancement: can now merge ellipses and circles.</font></p>
+<p align="left"><font color="#000000">- 
+enhancement: can now chop ellipses and circles.</font></p>
+<p align="left"><font color="#000000">- 
+enhancement: File-&gt;New Library allows specification of the database units 
+(but it is strongly reminded that 1000, the default, should normally be 
+used)</font></p>
+<p align="left"><font color="#000000"></font>&nbsp;</p>
+<p align="left"><strong><font 
+color=#000000>Version 4.4.32 release on 
+31/11/2014</font></strong></p>
+<p align="left"><font color="#000000">- 
+bugfix: creating a polygon with less than 3 points (after automatic colinear 
+point removal) could cause a crash</font></p>
+<p align="left"><font color="#000000">- 
+bugfix:&nbsp;changed cellView::dbDeleteObject() so it cannot delete a cellView. 
+Only library::dbDeleteCellView() should be used to delete cellViews.</font></p>
+<p align="left"><font color="#000000">- 
+bugfix: added warning&nbsp; if X or Y snap grid (in display options form) is not 
+a multiple of the database units. Setting the snap grid to a value equal to the 
+database units (e.g. 0.001) is not recommended. A typical manufacturing grid 
+(even at TSMC 28nm process node) is 0.005um.</font></p>
+<p align="left">- bugfix: Create Circle was giving incorrect 
+info in the message window.</p>
+<p align="left">- bugfix: merging circles and 
+ellipses&nbsp;wasn't working correctly.</p>
+<p align="left">- bugfix: net tracer did not find shapes in 
+lower level cells as a starting point.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.33 
+release on 11/11/2014</strong></p>
+<p align="left">- enhancement: rulers now have a pop-up dialog 
+(F3 key) that allows you to change the snap angle for the ruler while creating 
+the ruler. This does not affect the default snap angle set in the display 
+options dialog. Also the ruler text labelling can be inverted i.e. displayed on 
+the opposite side of the ruler to normal.</p>
+<p align="left">- enhancement: Global Python variables defined 
+in the DRC/LPE run dialog are deleted after the run so&nbsp;they are no longer 
+persistent.</p>
+<p align="left">- bugfix: selecting all objects in a cellview 
+and using Edit-&gt;Hierarchy-&gt;Flatten sometimes would issue an error that no 
+objects were selected, if there were objects other than instances in the 
+selection.</p>
+<p align="left">- bugfix: fixed a bug where libraries created 
+on systems running Qt 4.x (Linux, Mac) could not be read on systems running Qt 
+5.x (Windows)</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.34 
+release on 15/11/2014</strong></p>
+<p align="left">- enhancement: merge selected now merges 
+shapes on multiple layers, with the merged results on the same layer as the 
+input shapes, rather than merging all shapes on all layers to a single 
+layer.</p>
+<p align="left">- bugfix: fixed a crash in the boolean 
+operations due to bad edges (zero length). Now they are detected and 
+ignored.</p>
+<p align="left">- enhancement: Added a 'deselect' button to 
+the query dialog. Allows you to selectively delete items from the selected 
+set.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.35 
+release on 21/11/2014</strong></p>
+<p align="left">- patch release for windows / windowsXP</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.36 
+release on 25/11/2014</strong></p>
+<p align="left">- bugfix: drawing rulers works correctly in 
+EIP now.</p>
+<p align="left">- bugfix: in OpenGL mode, dimming of non-EIP 
+cell data was not working.</p>
+<p align="left">- bugfix: fixed a recently introduced bug 
+where move/copy during EIP was not working correctly.</p>
+<p align="left">&nbsp;</p></font></font></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

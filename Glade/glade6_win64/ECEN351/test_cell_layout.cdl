@@ -1,0 +1,21 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : test_library
+* Top Cell Name: test_cell
+* View Name: layout
+* Netlist created: 02.Apr.2019 09:53:27
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: test_library
+* Cell Name:    test_cell
+* View Name:    layout
+*******************************************************************************
+
+.SUBCKT test_cell
+
+.ENDS

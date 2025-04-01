@@ -1,0 +1,114 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 12:52:04 on Feb  8 2019 by Visual C++ 13.2
+-----------------------------------------------------------------------------
+
+Gemini started at 10:08:32 on 21/03/2019
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : diffamp_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       19
+  Number of nets    :       8
+  Number of ports   :       5
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : diffamp_sch.spi
+-----------------------------------------------------------------------------
+  Number of devices :       6
+  Number of nets    :       8
+  Number of ports   :       0
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		diffamp_extracted.cdl	  diffamp_sch.spi
+  Number of devices :       7			6
+  Number of nets    :       8			8
+  Number of ports   :       5			0
+
+
+The circuits are different.
+
+These circuits contain some symmetry (40% nodes not yet matched).
+Gemini will attempt to find a valid match for symmetrical nodes.
+
+The following transistors have property mismatches:
+
+                 diffamp_extracted.cdl                  diffamp_sch.spi
+(1) Device type:                 N                                N
+    Inst name  :               MM3                               M3
+    Model      :           C5NNMOS                             NMOS
+    S:                         gnd                             N002
+    D:                          n6                             N001
+    G:                        vinp                             vinp
+    W/L:   (um)        39.600/2.100                      0.000/0.000
+(2) Device type:                 P                                P
+    Inst name  :              MM11                               M5
+    Model      :           C5NPMOS                             PMOS
+    S:                         vdd                              vdd
+    D:                          n6                             N001
+    G:                          n6                             N001
+    W/L:   (um)        39.600/2.100                      0.000/0.000
+(3) Device type:                 P                                P
+    Inst name  :              MM18                               M6
+    Model      :           C5NPMOS                             PMOS
+    S:                        vout                             vout
+    D:                         vdd                              vdd
+    G:                          n6                             N001
+    W/L:   (um)        39.600/2.100                      0.000/0.000
+(4) Device type:                 N                                N
+    Inst name  :              MM10                               M4
+    Model      :           C5NNMOS                             NMOS
+    S:                        vout                             vout
+    D:                         gnd                             N002
+    G:                        vinn                             vinn
+    W/L:   (um)        39.600/2.100                      0.000/0.000
+4 device property errors.
+6 (40%) matches were found by local matching.
+
+The following netlist mismatches occurred:
+
+-----------------------------------------------------------------------------
+	Netlist errors : diffamp_extracted.cdl 
+-----------------------------------------------------------------------------
+3 NETS do not match:
+NET "n7" 1 connections
+  N: (inst MM2) [g] ibias :: [s,d,sub] gnd, n7, gnd
+NET "ibias" 4 connections
+  N: (inst MM0) [g] ibias :: [s,d,sub] ibias, gnd, gnd
+  N: (inst MM2) [g] ibias :: [s,d,sub] gnd, n7, gnd
+  N: (inst MM1) [g] ibias :: [s,d,sub] gnd, gnd, gnd
+  N: (inst MM0) [g] ibias :: [s,d,sub] ibias, gnd, gnd
+NET "gnd" 11 connections
+3 DEVICES could not be matched, possibly because of other unmatched devices:
+DEVICE N: (inst MM2) [g] ibias :: [s,d,sub] gnd, n7, gnd
+DEVICE N: (inst MM1) [g] ibias :: [s,d,sub] gnd, gnd, gnd
+DEVICE N: (inst MM0) [g] ibias :: [s,d,sub] ibias, gnd, gnd
+
+-----------------------------------------------------------------------------
+	Netlist errors : diffamp_sch.spi 
+-----------------------------------------------------------------------------
+3 NETS do not match:
+NET "ibias" 3 connections
+  N: (inst M1) [g] ibias :: [s,d,sub] ibias, 0, 0
+  N: (inst M2) [g] ibias :: [s,d,sub] N002, 0, 0
+  N: (inst M1) [g] ibias :: [s,d,sub] ibias, 0, 0
+NET "0" 6 connections
+  N: (inst M2) [g] ibias :: [s,d,sub] N002, 0, 0
+  N: (inst M1) [g] ibias :: [s,d,sub] ibias, 0, 0
+  N: (inst M2) [g] ibias :: [s,d,sub] N002, 0, 0
+  N: (inst M1) [g] ibias :: [s,d,sub] ibias, 0, 0
+  N: (inst M3) [g] vinp :: [s,d,sub] N001, N002, 0
+  N: (inst M4) [g] vinn :: [s,d,sub] vout, N002, 0
+NET "N002" 3 connections
+  N: (inst M3) [g] vinp :: [s,d,sub] N001, N002, 0
+  N: (inst M2) [g] ibias :: [s,d,sub] N002, 0, 0
+  N: (inst M4) [g] vinn :: [s,d,sub] vout, N002, 0
+2 DEVICES could not be matched, possibly because of other unmatched devices:
+DEVICE N: (inst M1) [g] ibias :: [s,d,sub] ibias, 0, 0
+DEVICE N: 
+(inst M2) [g] ibias :: [s,d,sub] N002, 0, 0
+
+7 devices and 2 nets written to C:\Users\Randall Jack\Desktop\glade4_win64\ECEN351\diffamp.err
+
+Gemini completed at 10:08:32 on 21/03/2019

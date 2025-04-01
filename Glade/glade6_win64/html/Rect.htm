@@ -1,0 +1,518 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">Rect class</font></h2>
+
+      <p>
+        The Rect class is used to represent a rectangle comprising two coordinate pairs. 
+        Note that this is NOT the same as a <i>rectangle</i> object which is a database object instead.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::Rect()
+      </font></h4>
+
+      <p>
+        Creates a Rect object r. The rectangle coordinates are set to invalid i.e. 
+        llx = +infinity, urx = -infinity etc.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::Rect(const <a href="Point.htm">Point</a> &amp;ll, const <a href="Point.htm">Point</a> &amp;ur)
+      </font></h4>
+
+      <p>
+        Creates a Rect object r and initialises it with Point types ll, ur.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::Rect(int32_t llx, int32_t lly, int32_t urx, int32_t ury)
+      </font></h4>
+
+      <p>
+        Creates a Rect object and initialises its coordinates.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t Rect::left()
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t Rect::bottom()
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t Rect::right()
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t Rect::top()
+      </font></h4>
+
+      <p>
+        Get the specified Rect coordinate.
+      </p>
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::setLeft(int32_t x)
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::setBottom(int32_t y)
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::setRight(int32_t x)
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::setTop(int32_t y)
+      </font></h4>
+
+      <p>
+        Set the specified Rect coordinate.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a>  Rect::getLL()
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a>  Rect::getLR()
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a>  Rect::getUL()
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a>  Rect::getUR()
+      </font></h4>
+
+      <p>
+        Get the Rect coordinates as a Point.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::invalidate()
+      </font></h4>
+
+      <p>
+        Set the Rect to invalid, i.e. llx = +infinity, urx = -infinity etc.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::isNull()
+      </font></h4>
+
+      <p>
+        Returns true if the Rect is zero area.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a> Rect::at(int32_t idx) const
+      </font></h4>
+
+      <p>
+        Returns the Rect coordinate by index. Index must be from 0-3.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Edge.htm">Edge</a> Rect::Edge(int32_t idx) const
+      </font></h4>
+
+      <p>
+        Returns the Rect Edge by index. Index must be from 0-3.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::getEdge(const int32_t idx, <a href="Point.htm">Point</a> & p0, <a href="Point.htm">Point</a> & p1) const
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::getEdgeF(const int32_t idx, <a href="PointF.htm">PointF</a> &p0, <a href="PointF.htm">PointF</a> &p1) const
+      </font></h4>
+
+      <p>
+        Get the Rect edge points by index. Index must be from 0-3.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Edge.htm">Edge</a> Rect::getEdge(const int32_t idx) const
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="EdgeF.htm">EdgeF</a>  Rect::getEdgeF(const int32_t idx) const
+      </font></h4>
+
+      <p>
+        Get the Rect edges by index. Index must be from 0-3.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::operator == (const Rect &amp;other)
+      </font></h4>
+
+      <p>
+        Returns true if this Rect is equal to the other Rect.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::operator != (const Rect &amp;other)
+      </font></h4>
+
+      <p>
+        Returns true if this Rect is not equal to the other Rect.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::operator &lt; (const Rect &amp;other)
+      </font></h4>
+
+      <p>
+        Returns true if this Rect is less than the other Rect.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::operator &gt; (const Rect &amp;other)
+      </font></h4>
+
+      <p>
+        Returns true if this Rect is less than the other Rect.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::scale(float64_t s)</font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::scale(int32_t s)</font></h4>
+
+      <p>
+        Scale a Rect coordinates by dividing them by s.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect Rect::offset(int32_t x, int32_t y)
+      </font></h4>
+
+      <p>
+        Returns a Rect offset by the specified x and y distances.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect Rect::offset(const <a href="Point.htm">Point</a> &amp;p)
+      </font></h4>
+
+      <p>
+        Returns a Rect offset by the specified <a href="Point.htm">Point</a> p.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect Rect::MoveTo(const <a href="Point.htm">Point</a> &amp;p)
+      </font></h4>
+
+      <p>
+        Moves a Rect's lower left to the specified <a href="Point.htm">Point</a> p.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::width(int w)
+      </font></h4>
+
+      <p>
+        Set a Rect's width. The lower left of the Rect remains the same.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t  Rect::width()
+      </font></h4>
+
+      <p>
+        Get the width of a Rect.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::height(int32_t h)
+      </font></h4>
+
+      <p>
+        Set the height of a Rect. The lower left rof the Rect emains the same.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t Rect::height()
+      </font></h4>
+
+      <p>
+        Get the height of a Rect.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"><a href="Point.htm">
+        Point</a> Rect::centre()
+      </font></h4>
+
+      <p>
+        Get the centre point of a Rect.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::isSquare()
+      </font></h4>
+
+      <p>
+        Returns true is the rectangle is square. 
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::transform(orient_t orient, const <a href="Point.htm">Point</a> &amp;p)
+      </font></h4>
+
+      <p>
+        Transforms a Rect using Point <i>p</i> and orientation <i>orient</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::swapxy()
+      </font></h4>
+
+      <p>
+        Swaps the X and Y coordinates of a Rect.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::unionWith(<a href="Rect.htm">const Rect</a> &amp;p)
+        </font></h4>
+
+      <p>
+        Rect <i>r</i> is set to the union of the Rects <i>r</i> and <i>p</i>, i.e. the bounding box of both.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::unionWith(<a href="Rect.htm">const </a><a href="Point.htm">Point</a> &amp;p)
+      </font></h4>
+
+      <p>
+        Rect <i>r</i> is set to the union of itself and Point <i>p</i>, i.e. the bounding box of both.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::touchOrOverlaps(int32_t x, int32_t y)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect touches or overlaps the point x, y.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::touchOrOverlaps(int32_t xlo, int32_t ylo, int32_t xhi, int32_t yhi)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect touches or overlaps the rectangle formed by <i>xlo, ylo, xhi, yhi</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::touchOrOverlaps(<a href="Rect.htm">const Rect</a> &amp;r)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect touches or overlaps the Rect <i>r</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::touch(int32_t x, int32_t y)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect touches the point x, y.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::touch(int32_t xlo, int32_t ylo, int32_t xhi, int32_t yhi) 
+      </font></h4>
+
+      <p>
+        Returns true if the Rect touches the 
+        rectangle formed by <i>xlo, ylo, xhi, yhi</i>; returns false otherwise.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool  Rect::touch(<a href="Rect.htm">const </a> <a href="Rect.htm">Rect</a> &amp;r) 
+      </font></h4>
+
+      <p>
+        Returns true if the Rect touches the Rect <i>r</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::overlaps(int32_t x, int32_t y)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect overlaps  the point x, y.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::overlaps(int32_t xlo, int32_t ylo, int32_t xhi, int32_t yhi)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect overlaps the rectangle formed by <i>xlo, ylo, xhi, yhi</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::overlaps(<a href="Rect.htm">const </a><a href="Rect.htm">Rect</a> &amp;p)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect overlaps the Rect <i>p</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::contains(int32_t x, int32_t y)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect contains the point x, y.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::contains(int32_t xlo, int32_t ylo, int32_t xhi, int32_t yhi)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect contains the rectangle formed by <i>xlo, ylo, xhi, yhi</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool Rect::contains(<a href="Rect.htm">const </a><a href="Rect.htm">Rect</a> &amp;p)
+      </font></h4>
+
+      <p>
+        Returns true if the Rect contains the Rect <i>p</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect::intersectsWith(<a href="Rect.htm">const </a><a href="Rect.htm">Rect</a> &amp;p)
+      </font></h4>
+
+      <p>
+        Modifies this Rect to the intersection  of itself and Rect p.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect Rect::intersectsWith(<a href="Rect.htm">const </a> Rect &amp;r) const
+      </font></h4>
+
+      <p>
+        Returns a rectangle which is the  intersection of this Rect and r.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

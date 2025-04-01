@@ -1,0 +1,19 @@
+.SUBCKT mux2to1_1x sel in1 in0 out
+*.PININFO  in1:I sel:B in0:I out:O
+*
+*.SCALE METER
+*.GLOBAL vss vdd
+*
+M10_21  n2 selbb in1 vss C5NNMOS  w=1.8u l=0.6u m=1
+M9  n6 n2 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M2  selb sel vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M8  n6 n2 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M3  selbb selb vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M19  n2 selb in0 vss C5NNMOS  w=1.8u l=0.6u m=1
+M18  n2 selbb in0 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M12  out n6 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M1  selbb selb vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M11  n2 selb in1 vdd C5NPMOS  w=3.6u l=0.6u m=1
+M0  selb sel vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M10  out n6 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+.ENDS

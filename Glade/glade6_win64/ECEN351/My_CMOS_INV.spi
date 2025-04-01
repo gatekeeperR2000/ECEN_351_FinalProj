@@ -1,0 +1,34 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : hires_test
+* Top Cell Name: test_pcell
+* View Name: extracted
+* Netlist created: 17.Feb.2019 21:53:58
+*******************************************************************************
+
+*.SCALE MICRONS
+*.GLOBAL VDD VSS
+
+*******************************************************************************
+* Library Name: hires_test
+* Cell Name:    test_pcell
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT test_pcell Vout Vin
+*.PININFO Vout:B Vin:B
+
+MM20 VDD Vin Vout VDD C5NPMOS w=9.6 l=0.9 as=15.84 ps=22.5 ad=17.28 pd=22.8
+MM13 Vout Vin VSS VSS C5NNMOS w=4.8 l=0.9 as=7.92 ps=12.9 ad=8.64 pd=13.2
+MM15 Vout Vin VSS VSS C5NNMOS w=4.8 l=0.9 as=7.92 ps=12.9 ad=8.64 pd=13.2
+MM14 VSS Vin Vout VSS C5NNMOS w=4.8 l=0.9 as=7.92 ps=12.9 ad=8.64 pd=13.2
+MM21 Vout Vin VDD VDD C5NPMOS w=9.6 l=0.9 as=15.84 ps=22.5 ad=17.28 pd=22.8
+MM17 Vout Vin VSS VSS C5NNMOS w=4.8 l=0.9 as=7.92 ps=12.9 ad=8.64 pd=13.2
+MM19 Vout Vin VDD VDD C5NPMOS w=9.6 l=0.9 as=15.84 ps=22.5 ad=17.28 pd=22.8
+MM22 VDD Vin Vout VDD C5NPMOS w=9.6 l=0.9 as=15.84 ps=22.5 ad=17.28 pd=22.8
+MM18 VDD Vin Vout VDD C5NPMOS w=9.6 l=0.9 as=15.84 ps=22.5 ad=17.28 pd=22.8
+MM16 VSS Vin Vout VSS C5NNMOS w=4.8 l=0.9 as=7.92 ps=12.9 ad=8.64 pd=13.2
+MM12 VSS Vin Vout VSS C5NNMOS w=4.8 l=0.9 as=7.92 ps=12.9 ad=8.64 pd=13.2
+MM23 Vout Vin VDD VDD C5NPMOS w=9.6 l=0.9 as=15.84 ps=22.5 ad=17.28 pd=22.8
+.ENDS

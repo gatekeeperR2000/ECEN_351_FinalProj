@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">pointListclass</font></h2>
+
+      <p>
+        A pointList represents a list (actually an array) of points.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::pointlist()
+      </font></h4>
+
+      <p>     
+        Creates a pointList.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::pointList(<a href="Point.htm">Point</a> *pts, int32_t num, bool compress = true)
+      </font></h4>
+
+      <p>
+        Creates a pointListfrom the points specified by the array <em>pts</em> with size <em>num</em>. 
+        If compress is true, the points will be sorted counterclockwise and colinear points removed.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        PointList::pointList(int32_t *xpts, int32_t *ypts, int32_t num, bool compress = true)
+      </font></h4>
+
+      <p>
+        Creates a pointList from the points specified by the arrays 
+        x<em>pts and ypts</em>&nbsp;with size <em>num</em>. If compress is true, the 
+        points will be sorted counterclockwise and colinear 
+        points removed.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool pointList::operator ==
+      </font></h4>
+
+      <p>
+        Returns true if the two pointlists are equal.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool pointList::operator !=
+      </font></h4>
+
+      <p>
+        Returns true if the two pointlists are not equal.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool pointList::operator &lt;
+      </font></h4>
+
+      <p>
+        Returns true if one pointList is less than another. 'Less' is the case if any
+        vertex X or Y coordinate is less than the other vertex.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::setPtlist(<a href="Point.htm">Point</a> *pts, int32_t num, bool compress = true)
+      </font></h4>
+
+      <p>
+        Sets a pointList from the points specified by the array <em>pts</em> with size 
+        <em>num</em>. If compress is true, the points will be sorted counterclockwise and 
+        colinear points removed.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::setPtlist(int32_t *xpts, int32_t *ypts, int32_t num, bool compress = true)
+      </font></h4>
+
+      <p>
+        Sets a pointList from the points specified by the arrays x<em>pts</em> and 
+        <em>ypts</em> with size <em>num</em>. If compress is true, the points will be 
+        sorted counterclockwise and colinear points removed.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::setPtlist(<a href="Rect.htm">Rect</a> box)
+      </font></h4>
+
+      <p>
+        Sets a pointList with the 4 vertices of a rectangle (LL, LR, UR, UL).
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a> * pointList::points()
+      </font></h4>
+
+      <p>
+        Get the raw pointList as an array of Points.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::append(<a href="Point.htm">Point</a> p)
+      </font></h4>
+
+      <p>
+        Append the pointList with Point <em>p</em>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::append(pointList pl)
+      </font></h4>
+
+      <p>
+        Append the pointList with pointList <am>pl</am>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a> pointList::at(in32_t idx)
+      </font></h4>
+
+      <p>
+        Get the Point p given by the index idx.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t pointList::numPts()
+      </font></h4>
+
+      <p>
+        Get the number of points in the pointList.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Rect.htm">Rect</a> pointList::bBox()
+      </font></h4>
+
+      <p>
+        Get the bounding box of the pointList.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        float64_t pointList::area()
+      </font></h4>
+
+      <p>
+        Gets the area of the pointList. This assumes the pointListis closed, i.e. 
+        there is an edge between the last and first vertex.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t pointList::perimeter()
+      </font></h4>
+
+      <p>
+        Gets the perimeter of the pointList.This assumes the pointListis closed, i.e. there is 
+        an edge between the last and first vertex.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::transform(<a href="transform.htm">transform</a> trans)
+      </font></h4>
+
+      <p><font face="Arial">Transform all points in the pointListby <em>trans</em>.</font></p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::scale(float64_t factor, int32_t grid)</strong>
+      </font></h4>
+
+      <p>Scales all points in a pointList by <em>factor</em>, snapping them to a grid 
+        <em>grid</em> (in database units)
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        pointList::compressPoints(bool ortho, bool xfirst)
+      </font></h4>
+
+      <p>
+        Compresses all points in a pointList by removing all colinear points and ordering 
+        them counterclockwise. If ortho is true, points are assumed to be manhattan and are 
+        stored in a more compressed format. If xfirst is true, the pointList is ordered with 
+        the first point being least in X.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool b = pointList::isSelfIntersecting(bool isClosed = true)
+      </font></h4>
+
+      <p>
+        Returns true if the pointListis self intersecting.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool pointList::overlaps(pointList other, touching = false)
+      </font></h4>
+
+      <p>
+        Returns true if one pointList overlaps another. If touching is true, returns true if 
+        the pointlists touch.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool pointList::contains(<a href="Point.htm">Point</a> p, bool touching = true)
+      </font></h4>
+
+      <p><font face="Arial">
+        Returns true if the pointList contains Point <em>p</em>. If <em>touching</em> 
+        is true, returns true if Point <em>p</em> touches an edge of the pointList.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool pointList::contains(<a href="Rect.htm">Rect</a> r, bool touching = true)
+      </font></h4>
+
+      <p>
+        Returns true if the pointList contains Rect <em>r</em>. If <em>touching</em> 
+        is true, returns true if a vertex of Rect <em>r</em> touches an edge of the 
+        pointList.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool pointList::isOrthogonal(bool isClosed = true)
+      </font></h4>
+
+      <p>
+        Returns true if the pointList is orthogonal i.e. manhattan.
+      </p>
+
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop  Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

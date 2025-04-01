@@ -1,0 +1,38 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 11:58:51 on Apr  2 2019 by Visual C++ 13.2
+-----------------------------------------------------------------------------
+
+Gemini started at 21:37:41 on 09/04/2019
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : mux2to1_1x_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       12
+  Number of nets    :       10
+  Number of ports   :       4
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : mux2to1_1x.cdl_flat
+-----------------------------------------------------------------------------
+  Number of devices :       12
+  Number of nets    :       10
+  Number of ports   :       4
+
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		mux2to1_1x_extracted.cdl	mux2to1_1x.cdl_flat
+  Number of devices :       12			12
+  Number of nets    :       10			10
+  Number of ports   :       4			4
+
+There were no device property errors.
+17 (77%) matches were found by local matching.
+All nodes were matched in 4 passes.
+
+The netlists match.
+
+0 devices and 0 nets written to C:\Users\Randall Jack\Desktop\glade4_win64\ECEN351\mux2to1_1x.err
+
+Gemini completed at 21:37:41 on 09/04/2019

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" -->
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" -->
+  <h2 align="left"><font face="Arial, Helvetica, sans-serif"><font face="Arial"><b>Change
+    Log</b> 2022 </font></font></h2>
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><font size="4" face="Arial"><strong>Contents
+    for 2021 can be found <a href="changes_2021.htm">here</a></strong></font></font></p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.41 / 4.7.80 release on 05/01/2022</strong></p>
+  <p align="left">- enhancement: KDtree improvements to reduce memory usage / increase speed.</p>
+  <p align="left">- App sometimes lost focus (and needed clicking on e.g message window to regain it). Now regains focus automatically.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.42 / 4.7.81 release on 03/02/2022</strong></p>
+  <p align="left">- enhancement: Query dialog now shows both instance pin name and net name for instances/arrays that have instance pins.</p>
+  <p align="left">- bugfix: cmd line option -library will create the library of not found. Options -open and -libName are now obsolete.</p>
+  <p align="left">- bugfix: Bug introduced in 5.0.41 that could result in some shapes not visible at certain zoom levels fixed.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.43 / 4.7.82 release on 16/02/2022</strong></p>
+  <p align="left">- bugfix: Fixed a crash if shapes moved and changed layer.</p>
+  <p align="left">- enhancement: Improved query dialog display of MPPs and net instance pins.</p>
+  <p align="left">- enhancement: Preliminary DSPF reader.</p>
+  <p align="left">- enhancement: Changed default font for Mac from Helvetica to Helvetica Neue.</p>
+  <p align="left">- bugfix: Fixed crash when yanking/pasting instances with 'Use True Colour' display option on.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.44 / 4.7.83 release on 22/02/2022</strong></p>
+  <p align="left">- enhancement: Add ui::zoomToNets() and ui::zoomToNet() cmds to zoom to a list of nets or a single net.</p>
+  <p align="left">- enhancement: Command line args are run *after* the event loop is started. This makes sure e.g. python scripts function correctly for zooming, panning etc where having a running event loop is necessary.</p>
+  <p align="left">- enhancement: Improvements to DSPF reader.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.45 / 4.7.84 release on 02/03/2022</strong></p>
+  <p align="left">- enhancement: Export GDS2 can now export only shapes/vias on a specified net, or a space-delimited list of nets.</p>
+  <p align="left">- enhancement: ui::addHilite can hilight net by name</p>
+  <p align="left">- enhancement: ui::addHiliteByLayer can highlight parts of a net, specified by layer.</p>
+  <p align="left">- bugfix: fixed a crash querying objects.</p>
+  <p align="left">- enhancement: Added View-&gt;Zoom Hilited to zoom to highlighted objects/shapes.</p>
+  <p align="left">- enhancement: ui::addHilite can take a rectangle or (llx, lly, urx, ury) coords to be highlighted.</p>
+  <p align="left">- enhancement: Net browser can show subnets and their parasitic R/C values. Double clicking on a subnet hilights it in the layout and zooms to it.</p>
+  <p align="left">- enhancement: Import DSPF can read a space-delimited list of nets to read.</p>
+  <p align="left">- enhancement: IO redirection for stdin to Python using -redirectStdio cmd line option.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.46 / 4.7.85 release on 10/03/2022</strong></p>
+  <p align="left">- bugfix: Fixed incorrect calculation of cellView bounding box in certain cases.</p>
+  <p align="left">- bugfix: Autoraise/autofocus change works for all open canvases as intended.</p>
+  <p align="left">- enhancement: Hilight Net in net browser.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.47 / 4.7.86 release on 15/03/2022</strong></p>
+  <p align="left">- bugfix: Fixed issue with bounding box of 2 point MPPs</p>
+  <p align="left">- enhancement: Net Browser can now show/hide shapes by net. </p>
+  <p align="left">- enhancement: Net Browser can hilight a net in different colours, and with transparency.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.48 release on 18/03/2022</strong></p>
+  <p align="left">- Mac builds now include Python framework since Apple has dropped Python in Monterey 12.3. Both Python2 (glade4) and Python3 (glade5) builds are available, but Python2 will be discontinued in the near future so please move to Glade version 5.</p>
+  <p align="left">- bugfix: geomConnect() could crash if it reported connectivity errors in threaded mode.</p>
+  <p align="left">- bugfix: DRC error markers generated by geomConnect() for connectivity errors had invalid coordinates.</p>
+  <p align="left">- bugfix: Fixed a bug setting property lists that was introduced in 5.0.47.</p>
+  <p align="left">- enhancement: Added 'Zoom to Object' checkbox in query dialog. If checked, zooms to the current object (which can be changed using the next/prev buttons to cycle through all selected objects).</p>
+  <p align="left">- bugfix: Create Path in HV/VH mode adds intermediate point during enter.</p>
+  <p align="left">- enhancement: Create Path in autoroute mode snaps to start pin and and pin if present and handles offgrid pins.</p>
+  <p align="left">- bugfix: Fixed a crash if snap ruler mode was set and the user clicked in empty space.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.49 release on 20/04/2022</strong></p>
+  <p align="left">- bugfix: Fix an issue whereby deleted objects were not getting cleaned up in spatial tree and could cause a crash.</p>
+  <p align="left">- bugfix: Fix a rare issue where some GDS files had angle of +/- 360 degrees.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.50 release on 09/06/2022</strong></p>
+  <p align="left">- bugfix: Fixed possible crash in Verify-&gt;Check...</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.51 release on 17/06/2022</strong></p>
+  <p align="left">- bugfix: Fixed a bug whereby yank/paste would crash if an object was selected in partial mode was pasted.</p>
+  <p align="left">- bugfix: Fixed a bug in geomSetText() where the edgeFile was not updated on disk.</p>
+  <p align="left">- bugfix: Coupling cap layer was exported to techfile as it was not defined as a system layer.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.52 release on 09/08/2022</strong></p>
+  <p align="left">- enhancement: Made major/minor grids a default of lines, dotted, to improve visual impact.</p>
+  <p align="left">- enhancement: Create Library checks for whitespace in the library name which causes problems with Linux systems.</p>
+  <p align="left">- enhancement: Reordered some system layers.</p>
+  <p align="left">- enhancement: Added some extra default fillstyles.</p>
+  <p align="left">- bugfix: Fixed some DSPF reader bugs.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.53 release on 30/09/2022</strong></p>
+  <p align="left">- bugfix: various bugfixes for crashes.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.54 release on 17/11/2022</strong></p>
+  <p align="left">- bugfix: techfile syntax errors could cause a crash. Better error checking.</p>
+  <p align="left">- bugfix: Mac version had incorrect rpath for Python, this has been fixed.</p>
+  <p align="left">&nbsp;</p>
+  <p align="left"><strong>Version 5.0.55 release on 29/11/2022</strong></p>
+  <p align="left">- bugfix: Name table resize in import OASIS was slow.</p>
+  <p align="left">- bugfix: -oasis cmd line option gave error 'not an oasis file'</p>
+  <p align="left">- bugfix: bounding box of empty instances sometimes incorrect.</p>
+  <p align="left">- bugfix: OASIS import optimisation speedup.</p>
+  <p align="left">- bugfix: fixed a bug reading PROPNAME tables in OASIS strict mode.</p>
+  <p align="left">- enhancement: OASIS reader uses S_TOP_CELL property if present to open top cell.</p>
+  <p align="left">- enhancement: OASIS reader can read and write layer names now.</p>
+  <p align="left">- enhancement: OASIS reader can read net and instance name properties.</p>
+  <p align="left">- bugfix: Fixed a crash in OASIS reader with duplicate cell refs in input file.</p>
+  <p align="left">- enhancement: Hierarchy browser has a toggle visibility of cellViews. When hidden, instances of the cellView and their contents will not be displayed. This is useful e.g. if you have fill metal cells in your layout.</p>
+  <p align="left">- bugfix: Hierarchy browser was not toggling between instance name / master cell names</p>
+  <p align="left">- enhancement: Hierarchy browser has 'Properties' menu item on right click, to display proerties of cellViews or instances.</p>
+  <p align="left">&nbsp;</p>
+  <!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

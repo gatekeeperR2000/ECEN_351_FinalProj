@@ -1,0 +1,176 @@
+#------------------------------------------------------------------------------
+#
+# NMOS Pcell example. 
+#	    Create a Pcell with parameters w (width of gate),
+#	    l (length of gate), m (number of gates).
+#
+# Note: The first argument is always the cellView of the subMaster.
+#       All subsequent arguments should have default values and will
+#       be passed by name. Each argument should be seperated by a comma
+#	    and whitespace. 
+#       This Pcell uses w/l units of metres. This is compatible with schematics
+#       where the symbols have values of e.g. w=2u (spice syntax)
+#
+#------------------------------------------------------------------------------
+
+# Import the db wrappers
+from ui import *
+
+# The entry point. The function name *must* match the filename.
+def C5N_PMOS_GEN(cv, w=1.8, l=0.6, m=1, leftSub=1, rightSub=0) :
+	lib = cv.lib()
+	dbu = float(lib.dbuPerUU())
+	width = int(w*dbu )
+	length = int(l*dbu )
+	fingers = int(m)
+
+	# Some predefined rules
+	cut_width = int(0.6*dbu)
+	cut_space = int(0.9*dbu)
+	nwell_ovlp_active = int(1.8*dbu)
+	poly_to_cut = int(0.6*dbu)
+	active_ovlp_cut = int(0.45*dbu)
+	#active_ovlp_cut = int(0.6*dbu)
+	poly_ovlp_active = int(0.6*dbu)
+	poly_ovlp_cut = int(0.6*dbu)
+	select_ovlp_active = int(0.6*dbu)
+	metal_ovlp_cut = int(0.3*dbu)
+	poly_via_size = cut_width + 2*poly_ovlp_cut
+	poly_via_neck_offset = poly_via_size/2 - length/2
+
+	# Create active
+	tech = lib.tech()
+	layer = tech.getLayerNum("active", "drawing")
+	right_ext = (2*active_ovlp_cut + cut_width + int(0.6*dbu))*rightSub 
+	left_ext = (2*active_ovlp_cut + cut_width + int(0.6*dbu))*leftSub 
+	height = active_ovlp_cut*2 + cut_width*(fingers + 1) + poly_to_cut*2*fingers + length*fingers
+	r = Rect(int((-height/2) - left_ext), int(-width/2), int((height/2) + right_ext), int(width/2))
+	active = cv.dbCreateRect(r, layer);
+
+	# # Create nwell
+	nwell = tech.getLayerNum("nwell", "drawing")
+	r = Rect(int((-height/2) - left_ext - nwell_ovlp_active), 
+			int(-width/2 - nwell_ovlp_active), 
+			int((height/2) + right_ext + nwell_ovlp_active), 
+			int(width/2 + nwell_ovlp_active))
+	cv.dbCreateRect(r, nwell);
+
+	# Create pselect
+	pselect = tech.getLayerNum("pselect", "drawing")
+	if leftSub :
+		left_ext_sel = 0
+	else:
+		left_ext_sel = select_ovlp_active
+	if rightSub :
+		right_ext_sel = 0
+	else:
+		right_ext_sel = select_ovlp_active
+	r = Rect(int(-height/2 - left_ext_sel), 
+		 int(-width/2 - select_ovlp_active), 
+		 int(height/2 + right_ext_sel),
+		 int(width/2 + select_ovlp_active))
+	cv.dbCreateRect(r, pselect);
+	
+	# Create nselect
+	nselect = tech.getLayerNum("nselect", "drawing")
+	sub_sel_height = 2*active_ovlp_cut + cut_width + select_ovlp_active + int(0.6*dbu)
+	if leftSub :
+		r = Rect(int(-height/2 - sub_sel_height), 
+			 int(-width/2 - select_ovlp_active), 
+			 int(-height/2),
+			 int(width/2 + select_ovlp_active))
+		cv.dbCreateRect(r, nselect);
+	if rightSub :
+		r = Rect(int(height/2), 
+			 int(-width/2 - select_ovlp_active), 
+			 int(height/2 + sub_sel_height),
+			 int(width/2 + select_ovlp_active))
+		cv.dbCreateRect(r, nselect);
+
+	# Create poly fingers
+	poly = tech.getLayerNum("poly", "drawing")
+	metal1 = tech.getLayerNum("metal1", "drawing")
+	contact = tech.getLayerNum("contact", "drawing")
+	xoffset = active_ovlp_cut + cut_width + poly_to_cut - height/2
+	for i in range(fingers) :
+		p = Rect(int(xoffset), int(-width/2 - poly_ovlp_active), int(xoffset + length), int(width/2 + poly_ovlp_active))
+		gate = cv.dbCreateRect(p, poly)
+		net = cv.dbCreateNet("G")
+		pin = cv.dbCreatePin("G", net, DB_PIN_INPUT)
+		cv.dbCreatePort(pin, gate)
+		xoffset = xoffset + length + 2*poly_to_cut + cut_width
+
+	# Create S/D contacts
+	contact = tech.getLayerNum("contact", "drawing")
+	numCuts = int(width / (cut_width + cut_space))
+	yfudge = (width - numCuts * (cut_width + cut_space))/2
+	#yfudge = (width - int(0.3*dbu) - numCuts * (cut_width + cut_space))/2
+	xoffset = int(active_ovlp_cut - height/2)
+	for i in range(fingers + 1) :
+		yoffset = int(active_ovlp_cut + yfudge - width/2) 
+		for j in range(numCuts) :
+			cut = Rect(0, 0, cut_width, cut_width)
+			cut.offset(xoffset, yoffset)
+			cv.dbCreateRect(cut, contact)
+			yoffset = int(yoffset + cut_width + cut_space)
+		xoffset = int(xoffset + length + 2*poly_to_cut + cut_width)
+			
+	# Create Substrate Contacts
+	xoffsetL = int(-height/2 - cut_width - active_ovlp_cut - int(0.6*dbu))
+	xoffsetR = int(height/2 + active_ovlp_cut + int(0.6*dbu))
+	if (leftSub) :
+		yoffset = int(active_ovlp_cut + yfudge - width/2)
+		for j in range(numCuts) :
+			cut = Rect(0, 0, cut_width, cut_width)
+			cut.offset(xoffsetL, yoffset)
+			cv.dbCreateRect(cut, contact)
+			yoffset = int(yoffset + cut_width + cut_space)
+	if (rightSub) :
+		yoffset = int(active_ovlp_cut + yfudge - width/2)
+		for j in range(numCuts) :
+			cut = Rect(0, 0, cut_width, cut_width)
+			cut.offset(xoffsetR, yoffset)
+			cv.dbCreateRect(cut, contact)
+			yoffset = yoffset + cut_width + cut_space
+			
+	# Create metal
+	metal1 = tech.getLayerNum("metal1", "drawing")
+	xoffset = int(active_ovlp_cut - metal_ovlp_cut - height/2)
+	for i in range(fingers + 1) :
+		met = Rect(0, int(-width/2), int(cut_width + 2*metal_ovlp_cut), int(width/2))
+		met.offset(xoffset, 0)
+		if (i+1) % 2 :
+			source = cv.dbCreateRect(met, metal1)
+			net = cv.dbCreateNet("S")
+			pin = cv.dbCreatePin("S", net, DB_PIN_INOUT)
+			cv.dbCreatePort(pin, source)
+		else :
+			drain = cv.dbCreateRect(met, metal1)
+			net = cv.dbCreateNet("D")
+			pin = cv.dbCreatePin("D", net, DB_PIN_INOUT)
+			cv.dbCreatePort(pin, drain)
+		xoffset = xoffset + length + 2*poly_to_cut + cut_width
+	if leftSub :
+		met = Rect(int(-height/2 - active_ovlp_cut - cut_width - metal_ovlp_cut - int(0.6*dbu)),
+					int(-width/2),
+					int(-height/2 - active_ovlp_cut + metal_ovlp_cut - int(0.6*dbu)), 
+					int(width/2))
+		bulkl = cv.dbCreateRect(met, metal1);
+		net = cv.dbCreateNet("BL")
+		pin = cv.dbCreatePin("BL", net, DB_PIN_INOUT)
+		cv.dbCreatePort(pin, bulkl)
+	if rightSub :
+		met = Rect(int(height/2 + active_ovlp_cut - metal_ovlp_cut + int(0.6*dbu)),
+					int(-width/2),
+					int(height/2 + active_ovlp_cut + cut_width + metal_ovlp_cut + int(0.6*dbu)), 
+					int(width/2))
+		bulkr = cv.dbCreateRect(met, metal1);
+		net = cv.dbCreateNet("BR")
+		pin = cv.dbCreatePin("BR", net, DB_PIN_INOUT)
+		cv.dbCreatePort(pin, bulkr)
+	
+	# Device type
+	cv.dbAddProp("type", "mos")
+
+	# Update the bounding box
+	cv.update()

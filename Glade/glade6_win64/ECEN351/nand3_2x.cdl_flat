@@ -1,0 +1,13 @@
+.SUBCKT nand3_2x B Y C A
+*.PININFO  Y:B B:I A:I C:I
+*
+*.SCALE METER
+*.GLOBAL vss vdd
+*
+M3  n2 C vss vss C5NNMOS  w=5.4u l=0.6u m=2
+M4  Y B vdd vdd C5NPMOS  w=3.6u l=0.6u m=2
+M1  n4 B n2 vss C5NNMOS  w=5.4u l=0.6u m=2
+M2  Y A n4 vss C5NNMOS  w=5.4u l=0.6u m=2
+M0  Y A vdd vdd C5NPMOS  w=3.6u l=0.6u m=2
+M5  Y C vdd vdd C5NPMOS  w=3.6u l=0.6u m=2
+.ENDS

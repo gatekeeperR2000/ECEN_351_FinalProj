@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif">
+    <b><font size="4">
+      Glade Reference
+    </font></b>
+  </font></p>
+  <hr>
+
+  <!-- #BeginEditable "text" --> 
+  <h2><font face="Arial, Helvetica, sans-serif">Create Commands</font></h2>
+
+  <p>
+    Create commands for shapes (text, 
+    paths, polygons and rectangles) all work on the current layer as set in the 
+    <a href="theLSW.htm">LSW</a> by left mouse clicking on the layer box. All 
+    the create commands pop up a dialog box which can be shown or hidden by pressing 
+    the F3 bindkey. Create commands can be terminated by hitting the Escape bindkey. 
+    Zooming and panning is possible during Create commands.
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Circle...<a name="create_circle"></a>
+  </font></h4>
+
+  <p align="center">
+    <img src="images/createCircle.png" width="288" height="139" alt="Create Circle">
+  </p>
+
+  <p>
+    Creates a circle in the current cell on the <a href="theLSW.htm#set_current_layer">current layer</a>. 
+    Circles are entered using two left mouse clicks, or a single click if<a href="view_menu.htm#infix_mode"> 
+    Infix mode</a> is set. The first point (or the current cursor position if 
+    Infix mode is set) defines the centre of the circle, and the second point 
+    is a point on the circumference of the circle. <i>Radius snap grid</i> is 
+    the snap grid (usually the manufacturing grid) to snap the circle's radius 
+    to. <i>Number of segments</i> is the number of line segments used to represent 
+    the circle on export to GDS2 or OASIS.
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Inst...<a name="create_inst"></a>
+  </font></h4>
+
+  <p align="center"><img src="images/createInst.png" width="321" height="352" alt="Create Instance"></p>
+
+  <p>
+    Creates an instance or array in the current cell. An instance is entered using a single 
+    left mouse click,  which defines the origin of the instance. The instance master cell can be  
+    chosen from those present in the library using the <em>cellName</em> combo box and the <em>viewName</em> 
+    combo box. The instance's <em>InstName</em> is  auto generated but can be changed by the user 
+    if required in the <em>instName</em> field. <em>Orientation</em> can be one of 
+    R0, R90, R180, R270, MX, MXR90, MY,  MYR90. Arrays of instances can be generated if <em>Num Rows</em> 
+    and/or <em>Num Cols</em> is not 1; the spacing between rows and columns is set by <em>Row Spacing</em> 
+    and <em>Column  Spacing</em>, unless <em>Set Row/Col spacing  interactively</em> is checked. In that 
+    case, if <em>Num Rows</em> is greater than 1, the user is prompted for the location  of the first 
+    instance of the second row (setting the rowSpacing), and if <em>Num Cols</em> is greater than 1, 
+    the user is  prompted for the location of the first instance of the second column (setting  the colSpacing). 
+    The instance bounding box is displayed during the command to  assist in placement of the instance. 
+    <em>Rotate</em> (or the bindkey &lsquo;r&rsquo; during instance placement) rotates the instance counter  
+    clockwise. <em>Mirror Y</em> (or the &lsquo;y&rsquo;  bindkey during instance placement) mirrors the 
+    instance about the Y axis. <em>Mirror X</em> (or the &lsquo;x&rsquo; bindkey during  instance placement) 
+    mirrors the instance about the X axis.
+  </p>
+
+<p align="center"><img src="images/createInst2.png" width="431" height="376" alt="Create Inst Props"></p>
+
+  <p>
+    The <i>Instance Properties</i> tab can be used to set properties on the instance, e.g. if 
+    the master cell is a <a href="pcells.htm">pcell</a> or a symbol. The '+' button
+    adds a property row. The Property Name column allows the property name to be edited. Clicking on 
+    the Property Type will display a combo box with the possible property types, e.g. string, integer, 
+    float etc. The Property Value column contains the property values. 
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Label...<a name="create_label"></a>
+  </font></h4>
+
+  <p align="center"><img src="images/createLabel.png" width="274" height="335" alt="Create Label"></p>
+
+  <p>
+    Creates a label in the current cell on the <a href="theLSW.htm#set_current_layer">current layer</a> 
+    with name given by the Label Text field. A label is entered using a single left mouse click, which 
+    defines the label's origin.  <em>Height</em> defines the label's height. <em>Presentation</em> is 
+    the position of the origin relative to the text and can be one of topLeft, topCentre, topRight, 
+    centreLeft, centreCentre, centreRight, bottomLeft, bottomCentre or bottomRight.
+    <em>Orient</em> can be one of R0, R90, R180, R270, MX, MXR90, MY, MYR90.<em> Effects</em> 
+    sets label effects such as <em>Underline</em>, <em>Overline</em> and <em>Strikethru</em>. 
+    Note that label effects, although displayed visually, cannot be represented in e.g. GDS2 
+    or OASIS and so will be lost on export. 
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Path...<a name="create_path"></a>
+  </font></h4>
+
+  <p align="center"><img src="images/createPath.png" width="448" height="401" alt="Create Path"></p>
+
+  <p>
+    Creates a path in the current cell 
+    on the <a href="theLSW.htm#set_current_layer">current layer</a>. A path is 
+    entered using multiple left mouse clicks, with each click defining a path 
+    point. The path entry <i>Snap Angle</i> can be one of Any, 90 degrees or 45 
+    degrees. The path width can be set in the <i>Width</i> field, and the path 
+    style can be set to one of Truncate, Octagon, Extend or VarExtend. In the 
+    case of Extend, the path extent is set to half the path width. In the case 
+    of VarExtend, independent beginning and ending extensions can be set. Path 
+    entry is terminated by hitting the return key, or by double clicking on the 
+    final point required. Pressing the backspace key backs up the path by one 
+    vertex i.e. deletes the last entered point. If an existing routed path is 
+    selected before invoking Create Path, the form is seeded with the path's net 
+    name and the layer of the existing path.
+  </p>
+
+  <p>
+    If the layer is a routing layer 
+    (has its FUNCTION set in the techfile to ROUTING) then the 'u' and 'd' keys 
+    can be used to switch up or down to the next routing layer during path entry. 
+    A via will be placed if a valid via between the two layers exists. If an existing 
+    net shape is selected, the <i>Net</i> and <i>Layer</i> fields are pre-seeded 
+    based on the net shape, and the <i>Width</i> field is set to that layer's 
+    minimum width.
+  </p>
+
+  <p>
+    <i>Shield sides</i>, if checked, 
+    results in shield paths generated to the sides of the entered path, in the 
+    same layer as the path. The width of the side shield paths is set by <i>Side 
+    Width</i> and the spacing from the shield to the path is set by <i>Side Spacing</i>. 
+    <i>Shield top/bottom</i>, if checked, results in shield paths on top of and 
+    below the entered path, with the bottom shield on the next routing layer below 
+    the path, and the top shield on the next routing layer above the path. The 
+    routing order is as set in the techfile by the layer FUNCTION statements - 
+    the the first layer with a FUNCTION of ROUTING is the lowest layer. The widths 
+    of the top and bottom shields are set by <i>Top/Bottom Width</i>. If Shield 
+    Net is set then the shields will be assigned to the net name specified; if 
+    it does not exist it will be created.
+  </p>
+
+  <p>&nbsp;</p>
+  
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;MultPartPath...
+  </font></h4>
+
+  <p align="center"><img border="0" hspace="0" src="images/createMPP.png" alt=""Create MultipartPath></p>
+
+  <p>
+    Creates a Multi Part Path (MPP). A MPP is defined in the techfile e.g. as below:
+  </p>
+
+  <p>
+    //<br>
+    // MultiPartPath rules<br>
+    //<br>
+    MPP nguard LAYER nwell drawing WIDTH 1.80 BEGEXT 0.90 ENDEXT 0.9 ;<br>
+    MPP nguard LAYER od&nbsp;&nbsp;&nbsp;&nbsp; drawing WIDTH 1.18 BEGEXT 0.59 ENDEXT 0.59 ;<br>
+    MPP nguard LAYER nimp&nbsp;&nbsp; drawing WIDTH 1.54 BEGEXT 0.77 ENDEXT 0.77 ;<br>
+    MPP nguard LAYER cont&nbsp;&nbsp; drawing WIDTH 0.16 BEGEXT -0.08 ENDEXT 0.08 SPACE 0.18 LENGTH 0.16 ;<br>
+    MPP nguard LAYER metal1 drawing WIDTH 0.60 BEGEXT 0.30 ENDEXT 0.30 ;<br>
+  </p>
+
+  <p>
+    A MPP is like a path in that it is defined as a set of vertices. A MPP may contain several layers. 
+    Each layer must have a nonzero WIDTH and a BEGEXT and ENDEXT which may be 
+    negative, positive or zero. The layer is justified to the segments of connected 
+    vertices i.e. it extends a half width either side of the path. The BEGEXT is the 
+    distance past the first vertex of the path that the 
+    layer starts, the ENDEXT is the distance past the last vertex of the path that 
+    the layer stops. If the layer has a SPACE and a LENGTH then it is assumed to 
+    be a repetitive contact structure, i.e. rectangles with WIDTH and LENGTH 
+    seperated by SPACE are generated.
+  </p>
+
+  <p>
+    Currently MPP paths must be manhattan only. MPPs when exported to GDS / OASIS etc. 
+    are converted to polygons i.e. they are flattenned.
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Polygon<a name="create_polygon"></a>
+  </font></h4>
+
+  <p align="center"><img src="images/createPolygon.png" width="268" height="130" alt="Create Polygon"></p>
+
+  <p>
+    Creates a polygon in the current cell on the <a href="theLSW.htm#set_current_layer">current 
+    layer</a>. A polygon is entered using multiple left mouse clicks, with each click defining a 
+    vertex of the polygon. The polygon entry snap angle can be one of Any, 90 degrees 
+    or 45 degrees. After two points have been entered, a dotted blue 'closure 
+    line' is shown. Hitting return at this stage completes the polygon according 
+    to the closure line. Polygons can also be finished by double clicking on a 
+    point. Pressing the backspace key backs up the polygon by one vertex i.e. 
+    deletes the last entered point.
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Rectangle<a name="create_rectangle"></a>
+  </font></h4>
+
+  <p>
+    Creates a rectangle in the current 
+    cell on the <a href="theLSW.htm#set_current_layer">current layer</a>. A rectangle 
+    is entered using two left mouse clicks, or a single click if Infix Mode is 
+    set. The first point (or the current cursor position if Infix mode is set) 
+    defines a vertex of the rectangle. A rubber band box is drawn showing the 
+    extent of the rectangle during mouse movement. Clicking on the second point 
+    completes the rectangle.
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Via...<a name="create_via"></a>
+  </font></h4>
+
+  <h4 align="center"><img src="images/createVia.png" width="252" height="134"></h4>
+
+  <p>
+    Creates a via in the current cell.<i> 
+    Via Name</i> is the name of an existing via in the library. <i>Net </i>is 
+    the name of the net that this via is assigned to.
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Pin...<a name="create_pin"></a>
+  </font></h4>
+
+  <p align="center"><img src="images/createPin.png" width="274" height="231" alt="Create Pin"></p>
+
+  <p>
+    Creates a pin in the current cell. 
+    <i>Pin Name</i> is the name of the pin, <i>Net Name</i> is the name of the 
+    net that the pin belongs to. If the net does not exist it will be created. 
+    If an existing net shape is selected, <i>Net Name</i> is seeded with the selected 
+    net's name. <i>Use</i> determines the pin's type. <i>Direction </i>sets the 
+    pin's direction. The pin is created on the layer selected by the layer chooser 
+    field. Normally a pin purpose layer would be used.
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Ellipse...<a name="create_ellipse"></a>
+  </font></h4>
+
+  <p align="center"><img src="images/createEllipse.png" width="288" height="139" alt="Create Ellipse"></p>
+
+  <p>
+    Creates an ellipse in the current 
+    cell on the <a href="theLSW.htm#set_current_layer">current layer</a>. Ellipses 
+    are entered using two left mouse clicks, or a single click if<a href="view_menu.htm#infix_mode"> 
+    Infix mode</a> is set. The first point (or the current cursor position if 
+    Infix mode is set) defines one corner of the ellipse's bounding box, and the 
+    second point defines the opposite corner of the ellipse's bounding box. <i>Radius 
+    snap grid</i> is the snap grid (usually the manufacturing grid) to snap the 
+    ellipse's bounding box to. <i>Number of segments</i> is the number of line 
+    segments used to represent the circle on export to GDS2 or OASIS.
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Arc...<a name="create_arc"></a>
+  </font></h4>
+
+  <p>
+    Creates an arc in the current cell on the <a href="theLSW.htm#set_current_layer">current layer</a>. 
+    Arcs are entered using three left mouse clicks, or two clicks if<a href="view_menu.htm#infix_mode"> 
+    Infix mode</a> is set. The first click defines the centre of a circle that has the required arc on 
+    its circumference. 
+    The second click defines the radius of that circle, and the first point of the arc. The third click 
+    defines the span angle from the first point. The arc will be drawn clockwise or anticlockwise 
+    depending on the start angle and the stop angle. Note that arcs cannot be output to 
+    e.g. GDS2 or OASIS as they are line objects. They are intended for use with the symbol editor only.
+  </p>
+
+  <p>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">
+    Create-&gt;Group...</strong><a name="create_group"></a>
+  </font></h4>
+
+  <p align="center"><img src="images/creategroup.png" width="307" height="143"></p>
+
+  <p>
+    Creates a group of objects. If a group is moved, all the objects within the group are moved. 
+    Similarly if a group is copied or rotated, all the object in the group are copied or rotated. 
+    Groups behave like pseudo instances, but without any physical hierarchy.  
+  </p>
+
+  <p>
+    To create a group, either preselect objects; Create Group will create a group with name given by 
+    <em>Name</em>, and add the selected objects to the group. Or, if nothing is selected, the user 
+    is prompted to select objects to add to the group. Cancel or pressing ESC will cancel selecting 
+    objects to add. The group orientation is set by <em>Orientation</em>, and can subsequently be 
+    changed by selecting and querying the group.
+  </p>
+
+  <p>
+    Note that groups can contain other groups; a group cannot have itself as a member to avoid infinite recursion.
+  </p>
+
+  <p>
+    Groups are displayed as a rectangular shape on the <em>group</em> system layer, which is set to 
+    the bounding box of all the objects in the group. If the group's shape is selected it can be moved 
+    or copied.
+  </p>
+
+  <p>
+    To subsequently add or remove objects from a group, use the Edit-&gt;Add To Group or Edit-&gt;Remove From Group 
+    commands.
+  </p>
+
+  <p>
+    To ungroup objects, use the Edit-&gt;Ungroup command.
+  </p>
+
+  <p>
+    Groups can be transparent, in which case the group shape is not selectable but the objects in the group are, 
+    and can be moved independently. Transparency is set in the <em>View-&gt;Display Options</em> dialog. 
+    If transparency is disabled then individual group members are not selectable, only the group shape is.
+  </p>
+
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+
+  <!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop  Design 2024.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

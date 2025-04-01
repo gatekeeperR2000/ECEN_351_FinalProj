@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+    <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">db_Techfile</font></h2>
+
+    <p>
+      The techFile class contains technology related parameters, in particular the layers used in a design. A techfile object 
+      does not normally need to be created as creating a library will initialise a techfile associated with that library. For example:
+    </p>
+
+    <blockquote>
+      <pre>
+        lib = library(&quot;myLib&quot;)
+        tech = lib.tech()
+      </pre>
+    </blockquote>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool techFile::techLoad(const char *fileName)
+    </font></h4>
+
+    <p>
+      Loads a techfile specified by fileName. Returns true on success.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool techFile::techSave(const char *fileName)
+    </font></h4>
+
+    <p>
+      Saves a techfile to fileName. Returns true on success.
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <h2>Layer related operations</h2>
+
+    <p>
+      Layers are signed 16 bit integers and map to layer-purpose pairs. 
+      A layer number of -1 signifies an invalid layer.</font>
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool techFile::isSelectable(int16_t layer)
+    </font></h4>
+
+    <p>
+      Returns true if <i>layer</i> is selectable, else returns false.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::selectable(int16_t layer, bool sel)
+    </font></h4>
+
+    <p>
+      Sets a <i>layer</i> selectable is <i>sel</i> is nonzero.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool techFile::isVisible(int16_t layer)
+    </font></h4>
+
+    <p>
+      Returns true if <i>layer</i> is visible, else returns false.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::visible(int16_t layer, bool vis)
+    </font></h4>
+
+    <p>
+      Sets a <i>layer</i> visible is <i>vis</i> is nonzero.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::isUsed(int16_t layer)
+    </font></h4>
+
+    <p>
+      Returns true if <i>layer</i> is used, else returns false.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setUsed(int16_t layer, bool used)
+    </font></h4>
+
+    <p>
+      Sets a <i>layer</i> used if <i>used</i> is nonzero.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t techFile::color(int16_t layer)
+    </font></h4>
+
+    <p>
+      Returns a 32 bit int of the layer color in rgba format.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::color(int16_t layer, int32_t color)
+    </font></h4>
+
+    <p>
+      Sets a <i>layer</i> color. <i>color</i> is a 32 bit integer in rgba format.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerName(int16_t layer, const char *name)
+    </font></h4>
+
+    <p>
+      Sets a layer&#39;s name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * techFile::getLayerName(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer&#39;s name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerPurpose(int16_t layer, const char *name)
+    </font></h4>
+
+    <p>
+      Sets a layer&#39;s purpose.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * techFile::getLayerPurpose(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer&#39;s purpose.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * techFile::getLayerPurposePair(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer&#39;s layer-purpose pair name e.g. &quot;metal1 drawing&quot;.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerGdsLayer(int16_t layer, int16_t gdsNum)
+    </font></h4>
+
+    <p>
+      Sets a layer&#39;s GDS number to gdsNum.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int16_t techFile::getLayerGdsLayer(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets a layer&#39;s GDS number.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerDataType(int16_t layer, int16_t gdsNum)
+    </font></h4>
+
+    <p>
+      Sets a layer&#39;s GDS datatype to gdsNum.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int16_t techFile::getLayerDataType(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets a layer&#39;s GDS datatype.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int16_t techFile::getLayerNum(const char *name, const char *purpose, bool warn=true)
+    </font></h4>
+
+    <p>
+      Gets a layer number if one exists with the specified name and purpose. 
+      If it does not exist a warning is given unless warn is set to false.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int16_t techFile::createLayer(const char *name, const char *purpose)
+    </font></h4>
+
+    <p>
+      Creates a layer in the techfile with the specified name and purpose. 
+      Returns the layer number or -1 if the layer cannot be created.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerType(int16_t layer, lyrType type)
+    </font></h4>
+
+    <p>
+      Sets the layer type. type can be one of T_CUT, T_ROUTING, T_BLOCKAGE, T_PIN, T_OVERLAP, T_MASTERSLICE or T_NONE.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      lyrType techFile::getLayerType(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer type.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerWidth(int16_t layer, int32_t width)
+    </font></h4>
+
+    <p>
+      Sets the layer minWidth.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t techFile::getLayerWidth(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer minWidth.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerSpacing(int16_t layer, int32_t spacing)
+    </font></h4>
+
+    <p>
+      Sets the layer minSpace.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t techFile::getLayerSpacing(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer minSpacing.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerPitch(int16_t layer, int32_t pitch)
+    </font></h4>
+
+    <p>
+      Sets the layer pitch.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t techFile::getLayerPitch(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer pitch.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerDir(int16_t layer, db_RouteDir dir)
+    </font></h4>
+
+    <p>
+      Sets the layer routing direction. The routing direction can be LAYER_HORIZONTAL or LAYER_VERTICAL.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_RouteDir techFile::getLayerDir(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer routing direction.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * techFile::getLayerDirAsStr(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer routing direction as a string.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerResistance(int16_t layer, float64_t r)
+    </font></h4>
+
+    <p>
+      Sets the layer resistance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t techFile::getLayerResistance(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer resistance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerAreaCap(int16_t layer, float64_t c)
+    </font></h4>
+
+    <p>
+      Sets the layer area capacitance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t techFile::getLayerAreaCap(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer area capacitance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerEdgeCap(int16_t layer, float64_t c)
+    </font></h4>
+
+    <p>
+      Sets the layer edge capacitance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t techFile::getLayerEdgeCap(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer edge capacitance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLayerOrder(int16_t layer, int16_t order)
+    </font></h4>
+
+    <p>
+      Sets the layer order
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int16_t techFile::getLayerOrder(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer order.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLineStyle(int16_t layer, Qt::PenStyle style)
+    </font></h4>
+
+    <p>
+      Sets the layer linestyle
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      Qt::PenStyle techFile::getLineStyle(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer linestyle.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setLineWidth(int16_t layer, int32_t width)
+    </font></h4>
+
+    <p>
+      Sets the layer linewidth
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t techFile::getLineWidth(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer linewidth.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setFillPattern(int16_t layer, bits[128], bool exists=0, const char *name = NULL, int32_t xbits=16, int32_t ybits=16)
+    </font></h4>
+
+    <p>
+      Sets the layer fill pattern. The bit array is 128 bytes when using OpenGL, 32 bytes when not using OpenGL.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bits[128] techFile::getFillPattern(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer fill pattern as an array of bytes; 128 bytes when using OpenGL else 32 bytes.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      char * techFile::getFillName(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets a fill pattern name for the layer.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      techFile::setFillType(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer fill type. Can be one of F_HOLLOW, F_SOLID, F_CROSSED, F_STIPPLE.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int techFile::getFillType(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the layer fill type. Can be one of F_HOLLOW, F_SOLID, F_CROSSED, F_STIPPLE.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int16_t techFile::getCurrentLayer()
+    </font></h4>
+
+    <p>
+      Gets the current layer as set by the LSW.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

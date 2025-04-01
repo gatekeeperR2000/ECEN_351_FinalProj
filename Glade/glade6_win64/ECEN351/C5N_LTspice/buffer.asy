@@ -1,0 +1,21 @@
+Version 4
+SymbolType CELL
+LINE Normal -32 48 -32 -48
+LINE Normal 48 0 -32 48
+LINE Normal -32 -48 48 0
+LINE Normal -64 0 -32 0
+LINE Normal 80 0 48 0
+LINE Normal 0 -64 0 -29
+LINE Normal 0 64 0 29
+PIN -64 0 NONE 8
+PINATTR PinName IN
+PINATTR SpiceOrder 1
+PIN 80 0 NONE 8
+PINATTR PinName OUT
+PINATTR SpiceOrder 2
+PIN 0 -64 NONE 8
+PINATTR PinName POS
+PINATTR SpiceOrder 3
+PIN 0 64 NONE 8
+PINATTR PinName NEG
+PINATTR SpiceOrder 4

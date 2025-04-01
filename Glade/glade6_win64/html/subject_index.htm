@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+  <!-- #BeginEditable "doctitle" --> 
+  <title>Glade Reference Manual</title>
+  <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body bgcolor="#FFFFFF">
+  <div align="left">
+    <img src="images/canvasview" width="32" height="32" align="right"><br>
+  </div>
+  <div align="left">
+    <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+      Reference</font></b></font></p>
+    <hr>
+    <!-- #BeginEditable "text" --> 
+    <h2><font face="Arial, Helvetica, sans-serif">Index</font></h2>
+    <pre><a href="floorplan_menu.htm#add_fillers">Add Fillers</a>
+    <a href="edit_menu.htm#edit_add_vertex">Add Vertex</a>
+    <a href="edit_menu.htm#edit_align">Align</a>
+    <a href="edit_menu.htm">Ascend Hierarchy</a>
+
+    <a href="edit_menu.htm#edit_backspace">Backspace Key</a>
+    <a href="edit_menu.htm#edit_bias">Bias</a>
+    <a href="edit_menu.htm#booleans">Boolean Operations</a>
+
+    <a href="edit_menu.htm#edit_escape">Cancel command</a>
+    <a href="view_menu.htm#view_cancel">Cancel Redraw</a>
+    <a href="verify_menu.htm#verify_check">Check</a>
+    <a href="floorplan_menu.htm#check_overlaps">Check Overlaps</a>
+    <a href="edit_menu.htm#edit_chop">Chop</a>
+    <a href="verify_menu.htm#clear_drc">Clear DRC Errors</a>
+    <a href="file_menu.htm#file_closelib">Close Library</a>
+    <a href="edit_menu.htm#edit_compare">Compare Cells</a>
+    <a href="edit_menu.htm#edit_copy">Copy</a>
+    <a href="create_menu.htm#create_inst">Create Instance</a>
+    <a href="floorplan_menu.htm#create_groups">Create Groups</a>
+    <a href="edit_menu.htm#hierarchy_create">Create Hierarchy</a>
+    <a href="create_menu.htm#create_label">Create Label</a>
+    <a href="create_menu.htm#create_path">Create Path</a>
+    <a href="create_menu.htm#create_pin">Create Pin</a>
+    <a href="edit_menu.htm#create_pins_from_labels">Create Pins From Labels</a>
+    <a href="create_menu.htm#create_polygon">Create Polygon</a>
+    <a href="create_menu.htm#create_rectangle">Create Rectangle</a>
+    <a href="floorplan_menu.htm#create_region">Create Region</a>
+    <a href="floorplan_menu.htm#create_rows">Create Rows</a>
+    <a href="create_menu.htm#create_via">Create Via</a>
+
+    <a href="edit_menu.htm#edit_delete">Delete</a>
+    <a href="floorplan_menu.htm#delete_fillers">Delete Fillers</a>
+    <a href="view_menu.htm#view_delete_rulers">Delete Rulers</a>
+    <a href="edit_menu.htm#edit_backspace">Delete Vertex</a>
+    <a href="edit_menu.htm#hierarchy_descend">Descend Hierarchy</a>
+    <a href="edit_menu.htm#edit_deselectall">Deselect All</a>
+    <a href="view_menu.htm#view_displayopts">Display Options</a>
+    <a href="verify_menu.htm">DRC checking</a>
+    <a href="file_menu.htm#file_dumpgraphics">Dump Graphics</a>
+
+    <a href="edit_menu.htm#edit_bindkeys">Edit Bindkeys</a>
+    <a href="file_menu.htm#file_editfile">Edit File</a>
+    <a href="edit_menu.htm#edit_in_place">Edit In Place</a>
+    <a href="edit_menu.htm#edit_escape">Escape Key</a>
+    <a href="file_menu.htm#file_exit">Exit</a>
+    <a href="file_menu.htm#export_cdl">Export CDL</a>
+    <a href="file_menu.htm#export_def">Export DEF</a>
+    <a href="file_menu.htm#export_dxf">Export DXF</a>
+    <a href="file_menu.htm#export_gds2">Export GDS2</a>
+    <a href="file_menu.htm#export_lef">Export LEF</a>
+    <a href="file_menu.htm#export_oasis">Export Oasis</a>
+    <a href="file_menu.htm#export_verilog">Export Verilog</a>
+    <a href="file_menu.htm#export_tech">Export Techfile</a>
+
+    <a href="edit_menu.htm#edit_F1">F1 Key</a>
+    <a href="edit_menu.htm#edit_F3">F3 Key</a>
+    <a href="edit_menu.htm#edit_F4">F4 Key</a>
+    <a href="edit_menu.htm#edit_F5">F5 Key</a>
+    <a href="edit_menu.htm#find_object">Find</a>
+    <a href="view_menu.htm#view_fit">Fit</a>
+    <a href="view_menu.htm#view_fitplus">Fit+</a>
+    <a href="edit_menu.htm#hierachy_flatten">Flatten Hierarchy</a>
+
+    <a href="floorplan_menu.htm#groute">Global Route</a>
+    <a href="view_menu.htm#gravity">Gravity</a>
+
+    <a href="edit_menu.htm#edit_F1">Help</a>
+    <a href="tools_menu.htm#hierarchy_browser">Hierachy Browser</a>
+
+    <a href="file_menu.htm#import_cds">Import Cadence techfile</a>
+    <a href="verify_menu.htm#import_calibre">Import Calibre Errors</a>
+    <a href="file_menu.htm#import_def">Import DEF</a>
+    <a href="file_menu.htm#import_dxf">Import DXF</a>
+    <a href="file_menu.htm#import_eco">Import ECO</a>
+    <a href="file_menu.htm#import_gds2">Import GDS2</a>
+    <a href="verify_menu.htm#import_hercules">Import Hercules Errors</a>
+    <a href="file_menu.htm#import_lef">Import LEF</a>
+    <a href="file_menu.htm#import_oasis">Import Oasis</a>
+    <a href="file_menu.htm#import_verilog">Import Verilog</a>
+    <a href="file_menu.htm#import_tech">Import Techfile</a>
+    <a href="floorplan_menu.htm#init_floorplan">Initialise Floorplan</a>
+
+    <a href="tools_menu.htm#library_browser">Library Browser</a>
+    <a href="tools_menu.htm#tools_lsw">LSW</a>
+
+    <a href="edit_menu.htm#edit_merge">Merge Selected</a>
+    <a href="tools_menu.htm#tools_msg">Message Window</a>
+    <a href="edit_menu.htm#edit_move">Move</a>
+    <a href="edit_menu.htm#edit_move_origin">Move Origin</a>
+
+    <a href="tools_menu.htm#net_browser">Net Browser</a>
+    <a href="file_menu.htm#file_new">New Cell</a>
+    <a href="file_menu.htm#new_library">New Library</a>
+
+    <a href="file_menu.htm#file_opencell">Open Cell</a>
+    <a href="file_menu.htm#import_library">Open Library</a>
+
+    <a href="view_menu.htm#view_pan">Pan</a>
+    <a href="view_menu.htm#view_pantopoint">Pan To Point</a>
+    <a href="view_menu.htm#panzoom_options">Pan/Zoom options</a>
+    <a href="edit_menu.htm#edit_path_to_polygon">Path to Polygon</a>
+    <a href="floorplan_menu.htm#place">Place cells</a>
+    <a href="file_menu.htm#file_print">Print</a>
+    <a href="programming.htm">Programming in Python</a>
+
+    <a href="edit_menu.htm#query_object">Query</a>
+
+    <a href="edit_menu.htm#edit_redo">Redo</a>
+    <a href="view_menu.htm#view_redraw">Redraw</a>
+    <a href="floorplan_menu.htm#replace_views">Replace Views</a>
+    <a href="file_menu.htm#file_restorecell">Restore Cell</a>
+    <a href="edit_menu.htm#edit_return">Return from Edit In Place</a>
+    <a href="edit_menu.htm#edit_return">Return Key</a>
+    <a href="edit_menu.htm#edit_rotate">Rotate</a>
+    <a href="view_menu.htm#view_ruler">Ruler</a>
+    <a href="verify_menu.htm#run_drc">Run DRC</a>
+    <a href="file_menu.htm#file_runscript">Run Script</a>
+
+    <a href="file_menu.htm#export_cell">Save Cell</a>
+    <a href="file_menu.htm#export_library">Save Library</a>
+    <a href="edit_menu.htm#edit_scale">Scale</a>
+    <a href="edit_menu.htm#find_object">Search</a>
+    <a href="selection.htm">Selection</a>
+    <a href="view_menu.htm#view_selopts">Selection Options</a>
+    <a href="edit_menu.htm#edit_selectall">Select All</a>
+    <a href="edit_menu.htm#edit_select_inst">Select Instance</a>
+    <a href="edit_menu.htm#edit_select_net">Select Net</a>
+    <a href="edit_menu.htm#set_net">Set Net</a>
+    <a href="floorplan_menu.htm#show_groute">Show Global Route</a>
+    <a href="edit_menu.htm#edit_stretch">Stretch</a>
+
+    <a href="techFile.htm">Techfile</a>
+    <a href="floorplan_menu.htm#congestion_map">Toggle Congestion Map</a>
+    <a href="edit_menu.htm#edit_F4">Toggle Selection Mode</a>
+
+    <a href="edit_menu.htm#edit_undo">Undo</a>
+    <a href="floorplan_menu.htm#unplace_cells">Unplace Cells</a>
+
+    <a href="verify_menu.htm#view_drc">View DRC Errors</a>
+    <a href="view_menu.htm#view_view0">View Level 0</a>
+    <a href="view_menu.htm#view_view99">View Level 99</a>
+
+    <a href="view_menu.htm#view_zoomin">Zoom In</a>
+    <a href="view_menu.htm#view_zoomout">Zoom Out</a>
+    <a href="view_menu.htm#view_zoomselected">Zoom Selected</a>
+
+    </pre><!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+  </div>
+</body>
+<!-- #EndTemplate --></html>

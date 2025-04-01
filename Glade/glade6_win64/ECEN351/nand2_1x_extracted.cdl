@@ -1,0 +1,27 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib_bad
+* Top Cell Name: nand2_1x
+* View Name: extracted
+* Netlist created: 22.Feb.2025 10:42:40
+*******************************************************************************
+
+*.SCALE METER
+.GLOBAL vdd
+.GLOBAL vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib_bad
+* Cell Name:    nand2_1x
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT nand2_1x B Y A
+*.PININFO B:B Y:B A:B
+
+MM18 Y B vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=6.48e-12 ps=1.08e-05 ad=5.94e-12 pd=1.05e-05 $X=4.35e-06 $Y=1.53e-05
+MM19 vdd A Y vdd C5NPMOS w=3.6e-06 l=6e-07 as=6.48e-12 ps=1.08e-05 ad=5.94e-12 pd=1.05e-05 $X=6.75e-06 $Y=1.53e-05
+MM17 Y A n5 vss C5NNMOS w=3.6e-06 l=6e-07 as=6.48e-12 ps=1.08e-05 ad=5.94e-12 pd=1.05e-05 $X=6.75e-06 $Y=2.1e-06
+MM16 vss B n5 vss C5NNMOS w=3.6e-06 l=6e-07 as=6.48e-12 ps=1.08e-05 ad=5.94e-12 pd=1.05e-05 $X=4.35e-06 $Y=2.1e-06
+.ENDS

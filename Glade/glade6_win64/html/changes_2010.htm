@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --><font face="Arial, Helvetica, sans-serif">
+<h4 align="left"><font face="Arial">
+<h2 align="left"><font face="Arial"><b>Change Log</b> 2010</font></h2> 
+    </font></h4>
+<h4 align="left"><font face="Arial" size="4"> 
+    Contents for 2009 can be found <a 
+href="changes_2009.htm">here</a> 
+    </font></h4>
+<h4 align="left"><font face="Arial">Version 
+4.1.7 release on 09/01/2010 </font></h4>
+<p align="left"><font face="Arial">- fixed a 
+longstanding bug when displaying in non-OpenGL mode that could cause 
+path/polygon entry to have non -manhattan / non-diagonal entries. </font></p>
+<p align="left"><font face="Arial">- 
+Selection in non-OpenGL mode updates status bar and display immediately without 
+waiting for a mouse movement </font></p>
+<p align="left"><font face="Arial">- Create 
+path with shielded top/bottom layer picked incorrect top/bottom layers. 
+</font></p>
+<p align="left"><font face="Arial">- 
+Internal cleanup of non-OpenGL display mode. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+single point path caused a crash since 4.1.6 </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+varextend paths displayed incorrectly since 4.1.6 </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.8 release on 24/01/2010 </font></h4>
+<p align="left"><font face="Arial">- Various 
+export DXF bugs fixed. </font></p>
+<p align="left"><font face="Arial">- import 
+DXF snaps to dbu. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a crash when running boolean operations on shapes with colinear vertices. 
+</font></p>
+<p align="left"><font face="Arial">- 
+deselecting edge/vertex via ctrl-left mouse now working correctly. </font></p>
+<p align="left"><font face="Arial">- 
+previously, when gravity was enabled, selecting an object in FULL mode would 
+only select it if the cursor was within the gravity distance of one of its 
+edges. Now if the cursor is anywhere within the object it will be selected. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+when dynamic highlight is on, selection now always selects the highlighted 
+object in preference. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.9 release on 26/02/2010 </font></h4>
+<p align="left"><font face="Arial">- bug in 
+inserting large numbers of objects into tree fixed. </font></p>
+<p align="left"><font face="Arial">- boolean 
+ops now work with ellipse/circles </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.10 release on 04/03/2010 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+modifying pcell attributes caused a crash </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+modifying pcell attributes with dynamic hilight on could also cause a crash 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+saving/loading to a library did not save # segments for ellipse/circles 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+copying/flattening ellipses/circles did not maintain # segments </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+mirroring / rotating ellipses/circles did not work correctly </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.11 release on 19/03/2010 </font></h4>
+<p align="left"><font face="Arial">- Python 
+bindings updated to ActiveState 2.6.4.10 </font></p>
+<p align="left"><font face="Arial">- LEF/DEF 
+parsers do not abort if an error is encountered </font></p>
+<p align="left"><font face="Arial">- 
+Non-OpenGL display mode shows inst orientation and master name during Create 
+Instance </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+chop command failed if only one shape selected </font></p>
+<p align="left"><font face="Arial">- When 
+Pcells are created, the Pcell modules are reloaded so that any edits to the 
+original python code are reflected in the new Pcell. Previously one had to quit 
+and restart Glade to see the python Pcell code changes. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+closing a library that had previously been opened using File-&gt;Open Lib caused 
+a crash. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.12 release on 27/03/2010 </font></h4>
+<p align="left"><font face="Arial">- polygon 
+entry now does a self intersection check and warns the user if the resulting 
+polygon is self intersecting. </font></p>
+<p align="left"><font face="Arial">- 
+stretching a polygon will result in an error if it results in a self 
+intersecting polygon and the stretch will be aborted. </font></p>
+<p align="left"><font face="Arial">- 
+Attempting to merge selected instances will result in an error. </font></p>
+<p align="left"><font face="Arial">- 
+Attempting to chop selected instances will result in an error. </font></p>
+<p align="left"><font face="Arial">- Import 
+CDL now creates valid connectivity into netlist views. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+with bad data, showing connectivity flightlines could cause a crash. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.13 release on 11/04/2010 </font></h4>
+<p align="left"><font face="Arial">- Tile 
+&amp; Cascade of MDI windows now fit design to new window size </font></p>
+<p align="left"><font face="Arial">- Cascade 
+MDI windows sizes windows at 3/4 of the workspace size rather than minimising 
+them </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+with multiple MDI windows, OpenGL context was not getting set when moving mouse 
+between windows, producing strange results for dynamic highlight. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+sites were marked as edited during import LEF. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.14 release on 08/05/10 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+processing of path geometries in DRC/Extraction was incorrectly handled. 
+</font></p>
+<p align="left"><font face="Arial">- move 
+instance now shows top level shapes of the instance during move. </font></p>
+<p align="left"><font face="Arial">- tabbed 
+dock windows are restored as tabbed in new session. </font></p>
+<p align="left"><font face="Arial">- ui 
+Python function loadPCell() added to simplify loading a PCell library via a 
+Python script e.g. at startup. </font></p>
+<p align="left"><font face="Arial">- PCells 
+can now take a Python list as an argument. This is currently limited to a point 
+list i.e. a list of lists each holding exactly 2 integers, for example 
+[[0,0],[1000,0],[1000,1000],[0,1000]] </font></p>
+<p align="left"><font face="Arial">- The 
+extractMOS() command will look for the specified modelName cell, and if a PCell 
+with that name is found, it will pass it a parameterised list of the recognition 
+region points. Example PCells nmos_ex.py and pmos_ex.py are provided for using 
+with extractMOS(). </font></p>
+<p align="left"><font face="Arial">- 
+extractMOS() command now computes correct S/D areas for multifingered 
+transistors. </font></p>
+<p align="left"><font face="Arial">- added 
+extractDio() command to extract two terminal diodes. </font></p>
+<p align="left"><font face="Arial">- added 
+extractBjt() command to extract three terminal BJTs. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Importing Cadence techfiles gave incorrect stipple pattern if a 4 bit or 8 bit 
+stipple was used. </font></p>
+<p align="left"><font face="Arial">- Import 
+LEF now allows multiple LEF files to be specified. </font></p>
+<p align="left"><font face="Arial">- Windows 
+version now has IMAGE_FILE_LARGE_ADDRESS_AWARE flag set so that up to 3Gb 
+address space is supported for the Glade process. In order to utilise this on 
+your machine, type in a cmd.exe window <i>bcdedit /set 
+increaseuserva 3072 </i>which will set Windows to allow programs to access up to 
+3Gb memory. Then reboot your PC. Note that this will reduce kernel memory to 
+1Gb, which may not be appropriate for servers running many users and/or 
+processes. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.15 release on 10/06/10 </font></h4>
+<p align="left"><font face="Arial">- delta 
+XY coordinate display added during move/stretch/copy commands. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+solid stipple pattern system layers shown as empty if no techfile loaded 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+flattening instances from libraries other than that of the open cellView failed. 
+</font></p>
+<p align="left"><font face="Arial">- 
+undo/redo of flattenned objects now supported </font></p>
+<p align="left"><font face="Arial">- create 
+hierarchy cmd now accepts destination library name </font></p>
+<p align="left"><font face="Arial">- 
+undo/redo of aligned objects now supported </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.16 release on 20/06/10 </font></h4>
+<p align="left"><font face="Arial">- 
+Selection has been changed to have 2 modes rather than 3 to make it compatible 
+with Virtuoso. Full selection is as before and allows selection of complete 
+objects. Partial selection combines the previous Edge and Vertex modes. Clicking 
+near an edge will select an edge in partial mode; clicking near a vertex (where 
+'near' is defined as closer than 10% of the length of the nearest edge) will 
+select the vertex. </font></p>
+<p align="left"><font face="Arial">- Dynamic 
+highlight of edges/vertices highlights short lengths of adjacent edges to the 
+edge/vertex, to match the display after selection. </font></p>
+<p align="left"><font face="Arial">- Fixed a 
+small memory leak in selection and dynamic highlighting. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.17 release on 02/08/2010 </font></h4>
+<p align="left"><font face="Arial">- Windows 
+7 OS recognised in startup preamble </font></p>
+<p align="left"><font face="Arial">- some 
+tweaks to tree optimisation code resulting in faster tree build/optimise times 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+area of path was given as negative in query dialog </font></p>
+<p align="left"><font face="Arial">- Export 
+GDS2 writes correct datatype for text labels. Previously they were always 
+written with datatype 0. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.18 release on 27/08/2010 </font></h4>
+<p align="left"><font face="Arial">- Chop 
+path now preserves the paths. Previously they were converted to polygons. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+specifying a major grid value of 0 caused a divide by 0 crash. </font></p>
+<p align="left"><font face="Arial">- Message 
+window has a seperate line edit for entering commands now. Command line history 
+is stored, and can be cycled through using the up/down arrow keys. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a longstanding bug whereby nested indented blocks gave a python error when 
+typed into the cmd line. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.19 release on 30/08/2010 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+closing a library sometimes caused a crash </font></p>
+<p align="left"><font face="Arial">- 
+Importing Oasis data now shows progress bar while reading file. </font></p>
+<p align="left"><font face="Arial">- Added 
+an option to allow reading Oasis files with non-printing characters in strings. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+writing arrays in Oasis gave incorrect representation in some cases. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+changing a layer colour/fill with no cellView open caused a crash </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+writing Oasis rectangles with common widths gave incorrect representation. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+writing Oasis instances with magnification lost orientation. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Oasis writer could write zero length paths. These are now reported as errors and 
+dropped from output. </font></p>
+<p align="left"><font face="Arial">- Import 
+commands check path specified is a valid file (not e.g a directory) </font></p>
+<p align="left"><font face="Arial">- Unbound 
+instances are reported in import GDS / Import Oasis </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Export Oasis handles unbound instances </font></p>
+<p align="left"><font face="Arial">- added 
+cellView dbCreatePCellInst() function to create an instance of a pcell. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+modify properties form was not setting the property type of an existing property 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+writing Oasis files with CBLOCK data &gt; 64Kbytes was incorrect </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+When reading Oasis, some repetition modes could cause a crash. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+writing rectangles/squares in Oasis with common w/h occasionally incorrect 
+</font></p>
+<p align="left"><font face="Arial">- added 
+cellView dbUpdatePCell() function to update a PCell instance after changing its 
+properties </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.20 release on 06/09/2010 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Changing a PCell instance property, then trying to change the same property 
+again and cancelling caused a crash. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Export Oasis occasionally wrote incorrect data when using modal variables 
+</font></p>
+<p align="left"><font face="Arial">- Compare 
+Cells command now can check all layers of two cells </font></p>
+<p align="left"><font face="Arial">- gzipped 
+GDS2 export is now about 33% faster </font></p>
+<p align="left"><font face="Arial">- export 
+GDS2 drops zero length paths </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+LSW colour chooser was not getting alpha channel setting initialised correctly 
+</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.21 release on 11/09/2010 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Oasis reader crashed when reading large CBLOCK records </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+writing paths with colinear points to Oasis gave incorrect results </font></p>
+<p align="left"><font face="Arial">- logfile 
+written with a date/time stamp to make it unique. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+calling cellView::update() did not clear the dirty flag </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+colinear path point handling improved </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.22 release on 20/09/2010 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+writing Oasis with paths with variable length extensions sometimes incorrect 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+In a rare case the Oasis reader threw an exception when reading CBLOCK data 
+</font></p>
+<p align="left"><font face="Arial">- Added a 
+button to abort reading GDS2/Oasis. Note that the state of the library after an 
+abort is undefined; some instances may be unbound, and the last cell to be read 
+may be incomplete. It is safe to close the library after an abort. </font></p>
+<p align="left"><font face="Arial">- Added 
+two menu entries to the LSW under the 'Display' menu. 'Show Used Layers' 
+displays only the layers present in the currently opened cellView. 'Show All 
+Layers' displays all the techfile layers. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed an issue reading very large Oasis cblocks </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+LSW command 'Show Used Layers' caused a crash if no cellView open </font></p>
+<p align="left"><font face="Arial">- 
+Executing a python file from the menu/toolbar sets busy cursor and status bar 
+message while executing </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.23 release on 30/09/2010 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+modal Oasis properties caused an exception </font></p>
+<p align="left"><font face="Arial">- Reading 
+gzipped GDS shows progress bar </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.24 release on 15/10/2010 </font></h4>
+<p align="left"><font face="Arial">- 
+DRC/extraction caches temporary layer data to disk, reducing memory usage for 
+rulefiles with many temp layers. </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug where using -open to open a library at the command line did not allow -cell 
+to work correctly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import GDS assigned shapes to incorrect purpose occasionally as a result of a 
+change made in version 4.1.22 </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.25 release on 19/10/2010 </font></h4>
+<p align="left"><font face="Arial">- added 
+geomNot() command </font></p>
+<p align="left"><font face="Arial">- some 
+bugfixes for DRC tempfile caching </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+ui::compareCells() handled paths incorrectly, sometimes causing a crash 
+</font></p>
+<p align="left"><font face="Arial">- 
+geomConnect and geomLabel overhauled to give better connectivity tracing 
+</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.26 release on 02/11/2010 </font></h4>
+<div align="left"><font face="Arial">- 
+bugfix: 'Show Used Layers' only showed layers used in top cellview being 
+displayed. </font></div>
+<p align="left"><font face="Arial">- bugfix: 
+Edit Bindkeys did not handle deleting a bindkey entry correctly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import CDS/Laker/DXF/CDL dialogs did not allow editing library name </font></p>
+<p align="left"><font face="Arial">- program 
+now warns user to update version if more than 6 months old, but will not quit. 
+</font></p>
+<p align="left"><font face="Arial">- Save 
+Cells dialog allows user to cancel a File-&gt;Exit or window close event if 
+there are unsaved cells open. Previously you could either choose to save edited 
+cells or ignore saving them, but the program would always exit. Now a Cancel 
+button allows the close event to be ignored. Note that if there are no edited 
+cells, the Save Cells dialog is not displayed and the program will exit on a 
+close event or File-&gt;Exit. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.27 release on 07/11/2010 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+importing GDS2 with unbound cells could sometimes cause a crash. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+stretching path vertices in diagonal snap mode caused odd results. </font></p>
+<p align="left"><font face="Arial">- Partial 
+select removes duplicate vertices from selected set which caused odd stretch 
+results when using select by area. </font></p>
+<p align="left"><font face="Arial">- Added 
+capability to create toolbars and buttons associated with actions in the gui 
+through ui python bindings. Icons can now be created from image files and 
+associated with actions. </font></p>
+<p align="left"><font face="Arial">- Glade 
+now checks for a python file called '.glade.py' in the users home directory (as 
+found from the environment variable HOME). If this file exists, it is executed 
+at startup <b>before</b> any command line arguments. This 
+provides a means to load user-defined functions, menus etc. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+In non-OpenGL mode, stretch was not snapping the stretch point to the snap 
+angle. </font></p>
+<p align="left"><font face="Arial">- Stretch 
+command now has improved highlighting during the stretch operation </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Query path dialog now sets path style and extensions. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.28 release on 17/11/2010 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Glade does not crash if a LEF file is read in without any technology info or a 
+Glade techfile to define the layers. Instead it creates layers as encountered in 
+the LEF file. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Empty layer files in DRC operations would cause a crash. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+4.1.29 release on 25/11/2010 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Crash occasionally happened during boolean operations with paths that were 
+ill-formed. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import DXF resulted in unbound instances for a hierarchical DXF </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.30 release on 11/12/2010</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+DRC and extraction commands could crash with ill-formed paths </font></p>
+<p align="left"><font face="Arial">- some 
+memory leaks in DRC/extraction commands cleaned up </font></p>
+<p align="left"><font face="Arial">- Library 
+browser can now switch between tree view and flat view </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+polygons with holes caused a crash in extraction </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+drc edge files dropped data sometimes </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.31 release on 22/12/2010</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+using geomXXX boolean ops before a geomConnect could cause a crash </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geomGetTexted did not allocate an edgeLayer correctly </font></p></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

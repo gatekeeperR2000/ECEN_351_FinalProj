@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+  <!-- #BeginEditable "doctitle" -->
+  <title>Glade Reference Manual</title>
+  <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+        Reference</font></b></font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" -->
+      <h2><font face="Arial, Helvetica, sans-serif">Schematic Editing</font></h2>
+
+      <p>&nbsp;</p>
+
+      <p>
+        The Schematic Editor is activated when a cellView with viewType 'schematic' is opened. The viewType 
+        is set when the cellView is created, for example using the <a href="file_menu.htm" target="file_new">File-&gt;New Cell</a> 
+        command. The Schematic Editor is used to create and edit schematics. These can be netlisted for use in 
+        a simulator such as Spice, or to create layout in Glade. The formatting of the netlist is controlled by 
+        properties on the schematic symbol masters, using values from properties on the symbol instances.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">Schematic requirements</font></h4>
+
+      <p>
+        A library of symbols must exist in order to place and wire devices in the schematic. 
+        A library of simple pins and power/ground symbols is provided in the 'basic' library. 
+        This is automatically loaded when Glade starts. The 'basic' library is required by the 
+        Create Pin command in schematics.
+      </p>
+      <p>
+        Schematic entry and editing does not require any specific technology file information - 
+        schematics use predefined system layers. For portability, it is recommended that the user 
+        does not use non-system layers in schematics or symbols.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Creating a schematic</h4>
+
+      <p>
+        The typical steps involved in creating a schematic are as follows:
+      </p>
+      <ul>
+        <li>Enter devices using the <a href="#create_instance">Create-&gt;Instance</a> command.</li>
+        <li>Add pins for external connections using the <a href="#create_pin" target="create_pin">Create-&gt;Pin</a> command.</li>
+        <li>Add wires using the <a href="#create_wire">Create-&gt;Wire</a> command.</li>
+        <li>Add <a href="#create_dot">solder dots</a>, if required and not already added when creating wires.</li>
+        <li>Add <a href="#create_label">wire labels</a> if required.</li>
+        <li>Run the <a href="#check_cellview">Check</a> command to extract the circuit connectivity and check the schematic for connectivity errors.</li>
+        <li><a href="file_menu.htm" target="export_cdl">Output a (hierarchical) netlist</a> for simulation or LVS.</li>
+      </ul>
+
+      <p>&nbsp;</p>
+
+      <h2>Schematic menus</h2>
+
+      <p>
+        Schematic editing shares many common menu entries with layout and symbol editing. Those specific 
+        to schematic are listed below.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>Edit Menu</h2>
+
+      <p>&nbsp;</p>
+
+      <h4>Edit-&gt;Ignore Instances</h4>
+
+      <p>
+        Toggles the ignoring of selected schematic instances. The nlAction property is created and set to 
+        'ignore' if the property does not exist. If it does exist, the property is deleted. Instnaces 
+        with the nlAction property set are shown in the schematic editor with a red cross. 
+      </p>
+
+      <p align="center"><img src="images/ignore.png" width="309" height="224" alt="Ignore Instances"></p>
+
+      <p>
+        The netlisters will ignore any instances with this property set, so you can have e.g. dummy devices 
+        in the schematic that are not netlisted.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>Create Menu</h2>
+
+      <p>&nbsp;</p>
+
+      <h4><a name="create_instance"></a>Create-&gt;Create Instance</h4>
+
+      <p>
+        Displays the Create Instance dialog, which can be shown or hidden by the F3 key. An outline of 
+        the device instance is shown as the cursor is moved.
+      </p>
+
+      <p align="center"><img src="images/createInst.png" width="321" height="352" alt="Create Instance"></p>
+
+      <p>
+        The instance name (InstName) is auto generated. If the Display Options '<em>Force Spice Compatible</em>' 
+        radio button is checked, instance names are created using prefix characters suitable for Spice 
+        (M for mosfets, Q for bipolar devices, R for resistors etc). Otherwise instance name prefix is I 
+        followed by a number, or you can enter a more meaningful name. If you want to create an arrayed 
+        (bus) instance, use a suffix of &lt;start_bit:stop_bit&gt; where start_bit is the starting bit 
+        number and stop_bit is the stopping bit number, for example reg_array&lt;7:0&gt;
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p>
+        When an instance e.g. of an nmos device is entered, its properties such as W, L can be set using 
+        the <em>Instance Properties</em> tab on the dialog.
+      </p>
+
+      <p align="center"><img src="images/createInst2.png" width="431" height="376" alt="Create Inst"></p>
+
+      <p>&nbsp;</p>
+
+      <h4><a name="create_wire"></a>Create-&gt;Create Wire</h4>
+
+      <p>
+        Creates a wire, starting at the initial point (either the current cursor position, if infix mode 
+        is on) or by a first point entered by a left mouse click. Subsequent left mouse clicks add wire 
+        end points; use the backspace key to back up an entered point, and use the return key or double 
+        click to end a wire. If the wire starts or ends on another wire midpoint, a solder dot is 
+        automatically entered at the junction of the two wires. If the wire starts or ends on the 
+        endpoint of an existin wire, the two wires will be merged into a single continuous wire. If you 
+        click on a pin (either an IO pin or a device pin) or click on a wire, the wire entry is ended. 
+        The snap direction can be set in the Create Wire dialog.
+      </p>
+
+      <p align="center"><img src="images/createWire.png" width="444" height="162" alt="Create Wire"></p>
+
+      <p><em>Snap Angle</em> sets the snap direction when entering a wire. </p>
+
+      <ul>
+        <li><em>HV</em> means the wire will be created with a horizontal segment followed by a vertical segment. </li>
+        <li><em>VH</em> means the wire will be created with a vertical segment followed by a horizontal segment. </li>
+        <li><em>90</em> means the wire will snap to manhattan directions. </li>
+        <li><em>45</em> means the wire will snap to 45 degree directions. </li>
+        <li><em>Any</em> means the wire can have any direction. </li>
+        <li><em>Horiz</em> means the wire can only be entered in a horizontal direction. </li>
+        <li><em>Vert</em> means the wire can only be entered in a vertical direction. </li>
+        <li><em>Route</em> will use an autorouter to route a wire from the initial point to the current  cursor position. 
+          The routing avoids obstructions (symbol boundary shapes and  symbol pins); if the current cursor position 
+          is over an obstruction the routed  path is shown dashed as a straight line from initial to current point, 
+          else it  is shown in full as a solid line.</li>
+      </ul>
+
+      <p> 
+        <em>Wire Width</em> sets the display width of the wire. A value of 0 or 1 means 1 pixel wide. <em>Net</em> 
+        can be used to preset the net name for the wire; it is not necessary in most cases as subsequent Check
+        CellView command will extract connectivity.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><a name="create_dot"></a>Create-&gt;Create Solder Dot</h4>
+
+      <p>
+        Creates a solder dot at the point entered by the cursor. If you want to connect two crossing wires, use a 
+        solder dot, else they are assumed to be bridging and not connected. The size of the dot can be set from 
+        the Display Options dialog.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><a name="create_label"></a>Create-&gt;Create Wire Label</h4>
+
+      <p>
+        Creates a label for the wire. The Create Label dialog will be displayed.
+      </p>
+
+      <p align="center"><img src="images/createSchLabel.png" width="274" height="335" alt="Create Label"></p>
+
+      <p>
+        The Create Label dialog allows the name of the <em>Label Text </em>(i.e. net name) for the wire to be 
+        entered, along with <em>Height</em>, <em>Orientation</em>, <em>Presentation</em>. <em>Label Use</em> 
+        sets the use of the label; for layout and schematic views this should be 'normal label'. For symbols, 
+        choosing a different use sets the layer the label is created on. <em>Label Type</em> sets the label 
+        type. A normal type label displays its label text as is. A NLPLabel label has the label text evaluated 
+        as an NLP expression. A pyLabel has its text evaluated as a Python expression. <em>Effects</em> sets 
+        label effects such as <em>Underline</em>, <em>Overline</em> and <em>Strikethru</em>. Note that label 
+        effects, although displayed visually, cannot be represented in many external formats.They are mainly 
+        useful for schematics/symbols.
+      </p>
+
+      <p>
+        For bus wires, names are of the format name&lt;start_bit:stop_bit&gt;, where start_bit is the stating 
+        bit number and stop_bit is the stopping bit number, for example address&lt;15:0&gt;
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><a name="create_pin"></a>Create-&gt;Create Pin</h4>
+
+      <p>
+        Displays the Create Schematic Pin dialog. 
+      </p>
+
+      <p align="center"><img src="images/createSchPin.png" width="307" height="211" alt="Create Pin"></p>
+
+      <p>
+        A list of <em>Pin Name(s)</em> can be entered, separated by spaces. As each pin is positioned by left 
+        clicking, a pin of the first name in the pin name list is created, and that name is removed from the 
+        list of pin names. The pin <em>Direction</em> and pin <em>Use</em> can also be specified. Pins can be 
+        mirrored or rotated during entry. A pin is actually an instance of a pin from the 'basic' library; if 
+        this library cannot be opened when Glade starts an error will be reported and Create Pin will fail.
+      </p>
+
+      <p>
+        For bus pins, names are of the format name&lt;start_bit:stop_bit&gt;, where start_bit is the stating 
+        bit number and stop_bit is the stopping bit number, for example data&lt;0:7&gt;
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p><strong><a name="create_cellview"></a>Create-&gt;Create CellView from CellView</strong></p>
+
+      <p>
+        Displays the Create CellView dialog.
+      </p>
+
+      <p align="center"><img src="images/createCellView1.png" width="423" height="634" alt="Create CellView"></p>
+
+      <p>
+        The Create Cellview from Cellview command creates a symbol view from the existing schematic. This command 
+        creates a symbol view from the existing  schematic. <em>Symbol Shape</em> sets the  shape of the created 
+        symbol; valid options are <em>Rectangle</em>, <em>Triangle</em> and <em>Circle</em>. <em>Pins</em> shows 
+        the pins of the symbol by name,  derived from the schematic pins. The sides of the symbol the pins are 
+        placed on  are given by the <em>Pin Side</em> entry and can be left, right, top or bottom. The <em>Pin Style</em> 
+        entry determines if a pin has a special style such as a bubble for an inverted input, a triangle for a 
+        clock etc. <em>Wire stub length</em> is the length (in dbu) of the wires from the symbol body to the pins. 
+        <em>Pin Size</em> is the size of the pin rectangles in sbu and defaults to the same as the dot size used in 
+        schematics. <em>NLPDeviceFormat</em> and <em>defaultParams</em> are properties that are added to the symbol 
+        to  control netlisting.
+      </p>
+
+    <p align="center"><img src="images/createCellView.png" width="601" height="461" alt="Create CellView"></p>
+
+      <h2>&nbsp;</h2>
+      <h2>&nbsp;</h2>
+
+      <h2><strong>Check Menu</strong></h2>
+
+      <p>&nbsp;</p>
+
+      <h4><strong><a name="check_cellview"></a>Check-&gt;Check CellView</strong></h4>
+
+      <p>
+        The Check CellView command must be used after creating or editing a schematic to extract connectivity e.g. 
+        for netlisting. Various checks are performed including floating wires, floating pins and shorted wires, 
+        and the checks can be controlled using the Check Options dialog. If errors are found, the number is reported 
+        and markers are written on the marker layer to the cellview.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><strong><a name="view_errors"></a>Check-&gt;View Errors</strong></h4>
+
+      <p>
+        Displays the marker browser. Errors can be stepped through and are automatically zoomed to.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><strong><a name="clear_errors"></a>Check-&gt;Clear Errors</strong></h4>
+
+      <p>
+        Clears all marker errors.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><strong><a name="check_options"></a>Check-&gt;Check Options...</strong></h4>
+
+      <p>
+        Displays the Check Options dialog. 
+      </p>
+
+      <p align="center"><img src="images/checkOptions.png" width="352" height="513" alt="Check Options"></p>
+
+      <p>
+        The <em>Check Options</em> dialog sets the <em>Check CellView</em> options. For each option, you can set 
+        the check to either ignore the result, issue a warning or issue an error. <em>Floating wires/solder dots</em> 
+        checks for any wires or solder dots that are unconnected to device pins or external pins. 
+        <em>Floating Input Pins</em> checks for pins with direction Input that are not connected to device pins. 
+        <em>Floating Output Pins</em> checks for pins with direction Output that do not connect to device pins. 
+        And similarly <em>Floating IO Pins</em> checks for pins with direction Inout that are not connected to 
+        device pins. <em>Shorted Output Pins</em> checks for output pins of devices that share a net with other 
+        output pins of devices. <em>Duplicate Instance Names</em> checks for instances with the same name.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>Layout Menu</h2>
+
+      <p>&nbsp;</p>
+
+      <h4><strong><a name="device_mapping"></a>Layout-&gt;Map Devices</strong></h4>
+
+      <p>
+        The Map Devices menu allows mapping a cell in the schematic to a different named cell (usually pcell) in the layout.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p align="center"><img src="images/map_devices.png" width="680" height="382" alt="Map Devices"></p>
+
+      <p>
+        In the above dialog, the entries in the Device Name section of the table map a cell such as cnm25modn in the schematic  
+        to a cell called cnm25modn_m in the layout. Entries in the Instance Name section can map specific instances of a 
+        cell to a different layout cell.
+      </p>
+
+      <p>
+        Device mapping can be set up to pre-seed the dialog using entries in the Glade technology file:
+      </p>
+
+      <p>MAP cnm25modn TO cnm25modn_m layout ;<br>
+        MAP cnm25modp TO cnm25modp_m layout ;<br>
+        MAP cnm25cpoly TO cnm25cpoly_m layout ;<br>
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p><strong><a name="create_layout"></a>Layout-&gt;Create Layout</strong></p>
+
+      <p>
+        To create a layout view from a schematic, use the Create Layout command.
+      </p>
+
+      <p align="center"><img src="images/create_layout.png" width="539" height="738" alt="Create Layout"></p>
+
+      <p>
+        The target cellView is specified using the <em>Library Name</em> / <em>Cell Name</em> / <em>View Name</em> 
+        fields. If <em>Create m factor instances</em> is set, then if a schematic instance has an integer property 
+        'm', then multiple instances of the cell will be created in the layout based on the value of the property, 
+        and the m property is not passed to the layout pcell. If not checked, the m property is passed to the 
+        layout pcell, if the pcell is required to handle this itself.
+      </p>
+
+      <p>
+        <em>Scale Factor</em> is used when the placement method is <em>Schematic</em>. It scales the instance origin 
+        coordinates by the factor, so the resulting layout mimics the schematic. The actual value required will 
+        depend on the target library cells.
+      </p>
+
+      <p>
+        <em>Utilisation</em> is used to create the cell boundary layer in the resulting layout view. The area of all 
+        the layout instances is summed, and divided by 100/utilisation%. If <em>Width</em> is specified, the cell 
+        boundary will be rectangular with the specified width, and height will be computed from the area/width. 
+        If <em>Height</em> is specified, the cell boundary rectangle will have the specified height and the width 
+        will be computed from the area/height. If both <em>Width</em> and <em>Height</em> are speciified, then 
+        the cell boundary rectangle will use the specified width and height.
+      </p>
+
+      <p>
+        <em>Placement method</em> can be one of <em>Schematic</em>, <em>Area</em> or <em>Group</em>. <em>Schematic</em> 
+        placement uses the relative coordinates of the schematic instance origins to place the layout cells. 
+        <em>Area</em> arranges the layout cells by type (PMOS/NMOS/resistor/capacitor). <em>Group</em> will place 
+        cells according to group properties on the schematic.
+      </p>
+
+      <p>
+        The pin field allows pin width, side and layer to be specified for each pin. Pins are placed abutting the 
+        cell boundary rectangle according to their side.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><a name="add_group"></a>Layout-&gt;Create Group</h4>
+
+      <p>
+        <em>Create Group</em>  takes a selected set of instances and creates a group for group placement in Gen 
+        Layout. A property with name &quot;group&quot; and value given by the group name will be created on all 
+        the selected instances.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Layout-&gt;Add To Group</h4>
+
+      <p>
+        <em>Add to Group</em> will add selected instances to the specified group.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Layout-&gt;Remove from Group</h4>
+
+      <p>
+        <em>Remove from Group</em> will remove the selected instances from the specified group.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Layout-&gt;Delete Group</h4>
+
+      <p>
+        <em>Delete Group</em> will delete the specified group. All instances of that group will have the property 
+        named &quot;group&quot; removed.
+      </p>
+
+      <p>&nbsp; </p>
+
+      <p><strong>Layout-&gt;Rename Group</strong></p>
+
+      <p>
+        <em>Rename Group</em> will take an existing group and rename it. 
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p><strong><a name="group_editor"></a>Layout-&gt;Edit Group</strong></p>
+
+      <p>
+        <em>Edit Group</em> allows setting the pattern for the layout of the group's instances.
+      </p>
+
+      <p align="center"><img src="images/editGroup.png" width="500" height="552" alt="Edit Group"></p>
+
+      <p>
+        The instances of the group specified by <em>Group Name</em> are displayed as a grid, with different 
+        instance  basenames in different colours (an instance basename is the name as seen on the  schematic 
+        e.g. M6; the full name e.g. M6.0 consists of the basename and  optionally the individual instances 
+        expanded by m-factor as &lt;basename&gt;.0,  &lt;basename&gt;.1 etc). The <em>Rows</em> and <em>Cols</em> 
+        spinboxes can be used to change  the generated array of devices; the size of the array is always 
+        greater than  the number of actual instances. <em>Dummy  Name</em> is the name of the cellView to 
+        use for adding dummy cells. <em>Group Name</em> sets the current group to  edit. To change positions 
+        of instances, left click and drag an instance to a  new position; the source and destination instances 
+        are swapped.
+      </p>
+      <p>
+        <br>
+        For groups with more than one instance basename, the centre  of gravity of the instances are shown by a circle, 
+        coloured with the instance  colour. If all instances centres of gravity coincide, then the layout pattern  is 
+        shown as being common centroid with the label in green. If not, the label  indicator is red.
+      </p>
+      <p>
+        <br>
+        Right clicking on an instance displays a context menu with  options to mirror or rotate the device and to add 
+        dummies before or after the  current selected instance, and to delete a currently selected dummy. Dummies  are 
+        given the prefix IDMY to the instance name, followed by a period and a number  which is incremented for each 
+        dummy that is added. Dummy cells are generated as  instances of cells with the cell master specified by Dummy 
+        Name. Dummies are  not (yet) backannotated to the schematic and are not assigned connectivity.  Instance 
+        orientations are shown by the tab triangle which is in the top right  for orientation R0, top left for MY 
+        etc. <em>Rows</em> and <em>Cols</em> set the size of the group;  as one is altered the other is also so that 
+        the overall cell count is  approximately maintained. <em>Group  Orientation</em> is a global orientation of 
+        the group and takes effect as a  transformation of all instances after any instance-specific mirroring.
+        <br>
+        The group patterns are saved to the schematic cellView as a  property with name equal to the group name. The 
+        value of this property is a  string of the form &quot;I0.0_0_0_0,I0.1_0_1_6&quot; etc. where each field  
+        delimited by a comma represents the instance name, the row number and the  column number, finally the 
+        orientation as a digit, delimited by an underscore.
+      </p>
+    <p>&nbsp;</p>
+
+      <h4>Layouy-&gt;Link to Layout</h4>
+
+      <p>
+        <em>Link to Layout</em> sets the mapping from schematic to layout. If you have two windows open in MDI mode, 
+        one for the schematic and one for the layout, this allows cross probing between layout instances and schematic 
+        instances. The corresponding instances are selected in the linked cellview, and are highlighted. Note that 
+        layout linking is automatically carried out when <em>Gen Layout</em> is run.
+      </p>
+      <p>&nbsp;</p>
+
+      <h4>Layout-&gt;Clear Hilite</h4>
+
+      <p>
+        Clears highlighted instances.
+      </p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

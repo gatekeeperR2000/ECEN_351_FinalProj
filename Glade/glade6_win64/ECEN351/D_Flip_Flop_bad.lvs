@@ -1,0 +1,41 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 11:36:22 on Jan  9 2025 by Visual C++ 13.4
+-----------------------------------------------------------------------------
+
+Gemini started at 11:08:16 on 11/03/2025
+
+Command line:
+	-w 10.000000 -g C:\Users\rylan\School-Git\School-BYUI-BS-CE\ECEN\351_VLSI_System_Design\Glade\glade6_win64\ECEN351\D_Flip_Flop_bad.err -S C:\Users\rylan\School-Git\School-BYUI-BS-CE\ECEN\351_VLSI_System_Design\Glade\glade6_win64\ECEN351\D_Flip_Flop_bad_extracted.cdl C:\Users\rylan\School-Git\School-BYUI-BS-CE\ECEN\351_VLSI_System_Design\Glade\glade6_win64\ECEN351\D_Flip_Flop_bad.cdl_flat 
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : D_Flip_Flop_bad_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       24
+  Number of nets    :       14
+  Number of ports   :       6
+
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : D_Flip_Flop_bad.cdl_flat
+-----------------------------------------------------------------------------
+  Number of devices :       24
+  Number of nets    :       14
+  Number of ports   :       4
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		D_Flip_Flop_bad_extracted.cdl	D_Flip_Flop_bad.cdl_flat
+  Number of devices :       24			24
+  Number of nets    :       14			14
+  Number of ports   :       6			4
+
+There were no device property errors.
+33 (86%) matches were found by local matching.
+All nodes were matched in 11 passes.
+
+The netlists match.
+
+0 devices and 0 nets written to C:\Users\rylan\School-Git\School-BYUI-BS-CE\ECEN\351_VLSI_System_Design\Glade\glade6_win64\ECEN351\D_Flip_Flop_bad.err
+
+Gemini completed at 11:08:16 on 11/03/2025

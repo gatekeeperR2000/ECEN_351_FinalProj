@@ -1,0 +1,654 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --><font face="Arial, Helvetica, sans-serif"><font face="Arial">
+<h2 align="left"><font face="Arial"><b>Change Log</b> 2012</font></h2>
+<p align="left"><strong><font size="4">Contents for 2011 can be 
+found <a href="changes_2011.htm">here</a></font></strong></p></font>
+<p align="left"><font face="Arial"><strong>Version 4.1.77 release on 04/01/2012</strong></font></p>
+<p align="left"><font face="Arial">- Fixed a 
+bug where a crash would occur if a cellView was opened without the LSW already 
+displayed.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.78 release on 04/01/2012</strong></font></p>
+<p align="left"><font face="Arial">- Added 
+in crash handlers for Win64 and Linux32/64 bit versions, similar to the existing 
+Win32 one. </font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.79 release on 11/01/2012</strong></font></p>
+<p align="left"><font face="Arial">- OpenGL 
+changes to remove some false warning messages on Linux. </font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.80 release on 14/01/2012</strong></font></p>
+<p align="left"><font face="Arial">- LVS now 
+allows setting all Gemini options from the dialog.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Gemini was not reading the *.SCALE in a spice/cdl netlist and scaling the device 
+sizes accordingly.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Gemini w/l compare was not working correctly.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Gemini gave spurious warnings for syntactically correct netlists.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.81 release on 21/01/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+creating an arc needed the start and stop angles to be normalised.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+drawing an arc did not always draw correctly if the start to stop angle included 
+360 degrees.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: -dxf option added to cmd line options to specify a dxf file. DXF 
+top cell automatically opened on import.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: dropped export GDS2 objects referred to by name, not 
+number.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+angles in DXF are in radians, not degrees.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+some fundamental changes to saving/loading library data with respect to 
+connectivity.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: GDS2 can now output arcs and lines as zero width paths.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+deleting a view in the library browser did not remove the cellView from the 
+library browser</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+if a pcell is already loaded into a library, do not try and reload 
+it.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.82 release on 24/01/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Copy cellView in library browser hung if cellView contained 
+instances.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Closing a library occasionally caused a crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Copy cellView did not copy polygons to the correct layer.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.83 release on 28/1/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+saving a techfile did not save system layers. Added an option to the save dialog 
+to allow this.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+loading a library could duplicate linestyles.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+loading a library could duplicate vias.</font></p>
+<p align="left"><font face="Arial">-bugfix: 
+saving / loading a library did not save/load the layer stack for net 
+tracing.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.84 release on 18/02/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+creating an instance of a pcell and modifying pcell properties on the fly did 
+not set the property types correctly in the 'modify properties' form.</font></p>
+<p align="left"><font face="Arial">- polyres 
+pcell example enhanced to support resistors with bends.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+export DXF sometimes&nbsp; exported lines incorrectly.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+export DXF wrote arcs incorrectly.</font></p>
+<p align="left"><font face="Arial">- Added 
+mailto: to Help-&gt;About for easier emailing support.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.85 release on 06/03/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a tree insertion bug when the tree was optimised and contained only 1 
+object.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: new boolean operation geomInside() added.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: new boolean operation geomOutside() added.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: new boolean operation geomButting() added.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: new boolean operation geomCoincident() added.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: new boolean operation geomAvoiding() added.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: new boolean operation geomErase() added.</font></p>
+<p align="left"><font face="Arial">- boolean 
+operations geomSelectTouching and geomSelectOverlapping renamed geomTouching and 
+geomOverlapping for consistency.</font></p>
+<p align="left"><font face="Arial">- boolean 
+processor initialisation/end functions renamed to geomBegin(cellView *cv) and 
+geomEnd(). Old drcInit(cellView *cv) and drcUnInit() kept but 
+deprecated.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+dbCreateHole() made more robust.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Export Techfile was not exporting user-defined stipples.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+saveInterconnect() now creates specified layers in techfile for derived 
+layers.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+all extractXXX() commands could have buffer overflow causing a crash if terminal 
+shapes had many vertices.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+extractXXX() commands did not identify terminals when the recognition region was 
+completely enclosed by a terminal region.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.86 release on 21/03/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+updatePCell() crash occurred.</font></p>
+<p align="left"><font face="Arial">- 
+updatePcell() has been renamed to dbUpdatePCell() to make it more compatible 
+with other cellView db... functions.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+PCell parameter values that were strings were incorrectly being saved with their 
+quotes.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.2.0 release on 01/04/2012</strong></font></p>
+<p align="left"><font face="Arial">- First 
+Mac OSX version. Please note this is preliminary and not all functionality is 
+there. For example the dock windows e.g. LSW, Library Browser have menu bars in 
+the other platforms; this is not supported under OSX so an alternative means of 
+achieving the desired options will need to be enabled. Also the Capo placer is 
+not yet ported (although the Gemini LVS engine has).</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: added optional bulk node for extractRes command.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: zoom in/out by scrolling can centre the zoom on the current cursor 
+position instead of the centre of the current window. This behaviour is 
+controlled by an option in the display preferences Miscellaneous 
+options.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.2.1 release on 15/04/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import DXF was incorrectly setting the GDS layer number, and not using the one 
+defined in the techfile.</font></p>
+<p align="left"><font face="Arial">- OSX 
+version has Library browser menus replaced by popup menus enabled by 
+right-mouse-button clicking on the library item.</font></p>
+<p align="left"><font face="Arial">- Fixed a 
+bug in the Library browser where toggling tree view and case sensitivity didn't 
+work correctly.</font></p>
+<p align="left"><font face="Arial">- OSX 
+version LSW menu functionality replaced by new View-&gt;Layers and 
+Edit-&gt;Layers menus.</font></p>
+<p align="left"><font face="Arial">- OSX 
+version has the Capo placer ported.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.2.2 release on 22/04/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Writing DXF crashed if the design contained zero width paths.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Writing and reading instance orientations in DXF was incorrect.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.2.3 release on 28/04/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+If no technology file read, import DXF would fail to import named 
+layers.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Mac version sometimes showed incorrect layer order in LSW.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Mac buttons shown as square on some dialogs rather than with rounded 
+edges.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.2.4 release on 07/05/2012</strong></font></p>
+<p align="left"><font face="Arial">- Net 
+browser RMB allows selection of all insts connected to the net / driver inst / 
+load insts.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Double clicking on the root cellView in the net browser caused a 
+crash.</font></p>
+<p align="left"><font face="Arial">- Tiled 
+booleans has now added Size command.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+closing a library could cause a crash.</font></p>
+<p align="left"><font face="Arial">- Mac 
+version compiled with python 2.7. Please check your version of Python is up to 
+date on the Mac.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.2.5 release on 18/05/2012</strong></font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Edit-&gt;Bias can now bias selected shapes as well as&nbsp;all 
+shapes on the given layer.</font></p>
+<p align="left"><font face="Arial">- Memory 
+usage of net class improved for 64 bit versions.</font></p>
+<p align="left"><font face="Arial">- Query 
+dialog now shows a net's nondefault rule and use, if set from DEF.</font></p>
+<p align="left"><font face="Arial">- Query 
+dialog shows a hseg/vseg's taper rule, if set from DEF.</font></p>
+<p align="left"><font face="Arial">-&nbsp;bughfix: ui::compareCells()&nbsp; could cause an 
+exception in some cases.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geomOutside() incorrectly reported overlapping shapes.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geomButting() and geomTouching() could sometimes give incorrect 
+results.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+In Export LEF, blockage shapes were not written if they were outside the cell's 
+prBoundary. Now they are.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.2.6 release on 21/05/2012</strong></font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Added Floorplan-&gt;Highlight Net Types... command. This highlights 
+nets according to their DEF +USE. For example you can highlight all nets that 
+are defined as clock nets, or power, or ground.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+crash could occur running enclosure check in DRC.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.2.7 release on 25/05/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+writing instances to a library could write them as unbound</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Create Path checks if added points are truly manhattan, if snap 
+mode is set to manhattan.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Create Polygon checks if added points are truly manhattan, if snap 
+mode is set to manhattan.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Added a Check command to the Verify menu to check for offgrid 
+vertices in shapes, offgrid instance origins, and paths/polygons that are not 
+manhattan. Currently only works flat in the cellView that is opened.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Import GDS checks path/poly vertices are sensible i.e. &lt; INT_MAX 
+/ INT_MIN</font></p>
+<p align="left">&nbsp;</p>
+<h4 align="left"><font face="Arial">Version 
+4.3.0 release on&nbsp; 05/06/2012</font></h4>
+<p align="left"><font face="Arial">- 
+enhancement: multi part paths supported. These allow quick generation and 
+editing of guard rings. The implementation is preliminary and there may be a few 
+bugs at first so use with care!</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.1 release on 07/06/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+bad path creation introduced in 4.2.7 fixed.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.2 release on 15/06/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+DRC checking of complex merged polygons with &gt; 8192 vertices caused a crash. 
+Now merged polygons can have up to 4G vertices.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+DRC commands did not return a usable edgefile for further processing.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: geomEnclose() speed increased by orders of magnitude for checking 
+polygons with 1000's of vertices.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: added an option to set the pin&nbsp;text size create during Import 
+LEF</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: added a wide metal spacing rule. geomSpace() can take an extra 
+parameter 'width'; the spacing check is only carried out if one or more of the 
+shapes are greater than 'width'.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+zoom to a DRC error in the DRC errors viewer sometimes gave strange 
+results.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+zoom in to the db resolution (e.g. 0.001um) could lock up the display until a 
+window fit was given.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.3 release on 22/06/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+reading in a techfile into an existing lib could create duplicate vias. Now if a 
+via with the same name exists, an error is given and the via is not added to the 
+via table.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+reading in a techfile containing connect layers into an existing lib could 
+duplicate layers. Now duplicate layers are ignored.</font></p>
+<p align="left"><font face="Arial">- 
+Extraction rules file modified to demonstrate how to correctly save a derived 
+layer.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.4. release on</strong> <strong>01/07/2012</strong></font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Querying a MultiPartPath can now change the MPP rules. Just double 
+click on a layer&nbsp;parameter to change the parameter.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Added support for Edit-&gt;Chop to work with MPPs. Note that the 
+'convert to polygon' option does nothing; MPPs remain as MPPs when 
+chopped.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Display options dialog now allows a global text label scale factor. 
+Default is 1.0.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Import LEF not allows creating a text label for each pin shape, 
+rather than just 1. </font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Import LEF now allows creating text labels on same layer as the 
+pin, but purpose 'TXT' rather than on the TEXT layer.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.5 release on</strong> <strong>07/07/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+library browser 'View Tree View' and 'Case Sensitive' menu items were not 
+working.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Better checking for MOS devices with only 1 S/D terminal. A dummy D terminal is 
+created with the same net ID as the S terminal, else Gemini would 
+crash.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.6 release on 29/07/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+saveInterconnect() sometimes did not generate holes correctly for layers with 
+holes.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Create Layer would cause a crash if invoked without LSW open.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+in non-OpenGL mode, arrays could sometimes be drawn incorrectly.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.7 release on 05/08/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+reading a techfile CONNECT statement with a connection between 2 layers with no 
+via gave an error message and did not read that line.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+creating an instance of a pcell from e.g. lib1 in a cell in lib2 gave an 
+error.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+if a MOS transistor has multiple bulk terminal shapes during extraction, only 
+the first will be considered as a bulk pin.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+computing the bounding box of a polygon could result in an incorrect value, 
+which could cause problems in extraction.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: device bulk connections are checked against actual bulk polygon 
+shapes rather than (potentially inaccurate) bounding boxes.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.8 release on 07/08/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geomExtension() check was not working since version 4.3.2, this is now 
+fixed.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: LVS reporting has been improved by reporting device instance 
+names.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: LVS can correctly handle 3 terminal MOS devices (no bulk node) 
+without crashing.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.9 release on 24/08/2012</strong></font></p>
+<p align="left"><font face="Arial">- 
+enhancement: World View window tool. Allows navigation of larger designs by 
+showing the complete design in the window, with a yellow box representing the 
+main canvas view into the design. This can be zoomed into/out of (using the 
+scroll wheel), drag zoomed by pressing and holding the right mouse button while 
+dragging a zoom window, panning using the middle mouse button.</font></p>
+<p align="left"><font face="Arial">- DEF now 
+reads viarule options ORIGIN/OFFSET/ENCLOSURE and PATTERN.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.10 release on 02/09/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Gemini LVS crash when using 2 terminal devices e.g. resistor</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: paramerised PCells can compute a property per instance and pass it 
+back to the master for netlisting. See for example prex_ex.py and moscap_ex.py 
+which specify e.g. sheet resistance and calculate the total resistance, which is 
+written as a property named 'r'.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: CDL netlister outputs a choice of either the device model or a 
+resistance value from a device property computed from the above 
+pcell.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.11 release on 09/09/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+linker now exports python symbols for python shared libs, eliminating a bug e.g. 
+loading 'math' module on Linux.</font></p>
+<p align="left"><font face="Arial">- 
+bugfix:&nbsp;Loading a pcell will delete any existing cell with the same name as 
+the pcell master. Note that this implies you should never create non-pcell 
+cellviews with the same names as pcell masters!</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+If a cellview exists with the same name as a pcell submaster, the cellview will 
+be deleted and a pcell submaster of the same name created.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.12 release on 18/09/2012</strong></font></p>
+<p align="left"><font face="Arial">- 
+enhancement:&nbsp;Python's 'sys.path'&nbsp;set automatically to locate ui.py in 
+the installation hierarchy. Pcells also search python 'sys.path' list rather 
+than PYTHONPATH&nbsp;</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: CDL import had various bugs fixed. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+drawing of multi segment lines in OpenGL was incorrect.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Opening world view window without a design open caused a crash.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.13 release on 24/09/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+boolean operation merge could create spurious hole with a certain set of 
+geometries.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+When reading GDS files with multiple potential top cells, the largest one is 
+opened.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.14 release on 01/10/2012</strong></font></p>
+<p align="left"><font face="Arial">- 
+bugfix:&nbsp;prevent setting system layers&nbsp;as the current layer. This 
+prevents a crash e.g. if the user selects the&nbsp;MPP layer as the current 
+layer and tries to draw a shape on it.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+query dialog updated as current selection is set. Prevents a crash if e.g. a 
+rectangle was queried, then user deselected all with the query window open, then 
+tried to change the layer in the query window.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+the change in 4.3.13 would open an empty cell if there was only one top level 
+cell found.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+using 'Create MPP' in infix mode crashed if no MPP rules defined.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+When entering a polygon in any angle mode an extra colinear last point was 
+generated.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Gemini was not considering substrate (bulk) nodes of devices since version 
+4.3.8. Now fixed.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Querying pcell properties and changing them, then opening the query again showed 
+the default parameters, not those of the submaster.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.15 release on 11/10/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+various bugfixes for reported crashes.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Gemini reporting of unmatched transistor chains enhanced to add 
+instance names.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: 'Delete Layer' command implemented. Will prompt if there are 
+cellViews that contain data on that layer, allowing the user the choice of 
+cancelling or going ahead and deleting all data (and the layer 
+itself).</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Move &amp; Copy dialog had 'Change Layer' greyed out.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a crash when moving objects and changing layer.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Added Edit-&gt;MoveBy... command. Allows moving selected objects by 
+a user-specified delta.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.16 release on 14/10/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Don't allow stretch of rectangles or squares such that the resulting width or 
+height is zero.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Not specifying a cell name in File-&gt;New Cell gives an error rather than 
+create a cell with a null name.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Deleting a layer then saving the library caused library corruption.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.17 release on 20/10/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Trying to write a DEF file for a cellview with no instances caused a 
+crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+PCell not reloaded if the PCell had previously been loaded but had an 
+error.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Added Gemini options to read an equivalence file and to dump a file 
+of equivalenced nets.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+sometimes the ruler was not drawn according to the linewidth of the cursor 
+system layer.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Closing a library when in MDI mode was bypassing the check if any cellViews were 
+open, causing a crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import LEF of a duplicate macro could cause a crash.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.18 release on</strong> <strong>27/10/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Right clicking on a cell name in the library browser (rather than the cell's 
+view name) opened a popup menu, but the Delete Cell and Rename Cell items did 
+nothing.</font></p>
+<p align="left"><font face="Arial">- Added 
+support for hierarchical SPICE/CDL netlist input to LVS. A hierachical netlist 
+is flattened before input to Gemini (Gemini only supports flat netlists). The 
+flattenner supports global nets and parameter passing. The flattenner is beta 
+status at present, so real testcases and/or feedback are appreciated.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Running DRC could crash if the library browser was not open.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Don't even try to draw MPP objects if there are no MPP&nbsp; rules 
+defined.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.19 release on 03/11/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Net browser did not update correctly when changing windows. This could cause a 
+crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+potential crash in OpenGL mode if a window was closed with a pending 
+paintEvent.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+saveDerived() was not outputting holes correctly since version 4.3.2.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a nasty extraction bug that could cause incorrect connectivity or 
+shorts.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.20 release on 10/11/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Gemini now reads spice/CDL netlists with device dimensions in multiple units 
+e.g. 0.6u, 600n. Previously all units were assumed to be in microns</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+CDL netlist flattening did not write device properties (w/l etc) for all devices 
+in the hierarchy.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: ui::runLVS() function available to python for scripting 
+extraction/lvs (and for regression testing).</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a bug where drc check output polygons could be incorrectly set as 
+holes.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Some drc check output polygons could be missing.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geomButting/geomCoincident checks failed for horizontal edges.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.21 release on 11/11/2012</strong></font></p>
+<p align="left"><font face="Arial">- 
+enhancement: geomConnect can now be run multithreaded for speeding up 
+extraction. Set the env var GLADE_THREADED_EXTRACTION to turn this on. 
+Optionally the en var can be set to a number, and then this will control the 
+number of threads used, else the default is the maximum number of logical 
+threads that can be run by the CPU(s).</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+if more than one tabwidget of the same cellView was open, and the user deleted 
+the cellView, only one tabwidget of the cell was closed; clicking in the other 
+would cause a crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+crash in boolean operations for a specific case.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.22 release on 17/11/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Create Layer caused a crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+extractRes() command gave incorrect warnings about number of resistor terminals 
+for some layouts.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+extractBjt did not recognise terminals for some structures.</font></p>
+<p align="left"><font face="Arial">- updated 
+guiAppWindow to support QMdiArea / QMdiSubWindow ready for Qt 5.0 rather than 
+the deprecated QWorkSpace / QMdiWindow.</font></p>
+<p align="left"><font face="Arial">- 
+Edit-&gt;Path to Polygon renamed to Convert to Polygon, as the command will now 
+convert other shapes (e.g. rectangles) to polygons.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.23 release on 24/11/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+reshape could crash if points were backed off to start point.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+closure line for reshape set correctly to the further vertex of the selected 
+edge.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Reshape command now has functioning undo/redo.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+sometimes holes were not created in geometries after boolean processing or using 
+dbCreateHole.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.24 release on 08/12/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+crash could occur if dragging a layer in the LSW past the bottom of the 
+LSW.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+reading a Calibre error file that was not in fact a Calibre error file could 
+cause a crash. Now, an error message is given instead.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+crash could occur reading a DXF file when data is present in the top 
+cell.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Empty lines in display.drf file caused parser too abort early. Now empty lines 
+are ignored.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Fix a crash if cellView::instIterator is used with a cell containing no 
+instances</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Fix a crash if GDS has cellViews with names containing spaces.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Fix a potential crash when creating a via if no vias defined in 
+techfile.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Fix a crash if searching for instances using Edit-&gt;Search... but no instances 
+in design.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.25 release on 14/12/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+entering a polygon with a colinear point could cause a crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Qt gave warning on Mac about deprecated function on OS X 10.8.2&nbsp;- Qt patch 
+for this bug applied.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geom... selection functions returning incorrect polygons.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Fix a crash if in e.g. a move command and Edit-&gt;Query is used to display 
+properties.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: added ability to write net name of a shape as a text label in DXF 
+file output.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.26 release on 19/12/2012</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+With Query dialog displayed, decend edit/ascend edit then clicking on Query 
+dialog OK/Apply would cause a crash.</font></p>
+<p align="left"><font face="Arial">- 
+Embedded Python interpreter change from ActiveState one to the <a 
+href="http://www.python.org">www.python.org</a> version 2.7. 
+This should make maintaining compatibility between Glade and Python versions 
+simpler. The windows builds are linked to the pre-compiled versions of Python 
+libraries; the Linux builds are linked to libraries compiled from the source. 
+For Mac OS X Glade is linked to the OS X distributed 2.7 python libraries. Note 
+that in general, the Windows platforms do NOT come with Python installed so you 
+will need to visit <a href="http://www.python.org">www.python.org</a>, download the appropriate version of 
+python 2.7.4 and install it on your Windows PC. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+potential crash copying a cell fixed.</font></p></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --><font face="Arial, Helvetica, sans-serif">
+<h4 align="left"><font face="Arial">
+<h2 align="left"><font face="Arial"><b>Change Log</b> 2006</font></h2> 
+    </font></h4>
+<h4 align="left"><font face="Arial" size="4"> 
+    Contents for 2005 can be found <a 
+href="changes_2005.htm">here</a> 
+    </font></h4>
+<h4 align="left"><font face="Arial">Version 
+2.2.1 release on 1/1/2006 </font></h4>
+<p align="left"><font face="Arial">- fixed a 
+bug in Copy dialog (button signals not assigned) </font></p>
+<p align="left"><font face="Arial">- added 
+layer/purpose tooltips to LSW </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug when trying to undo moved object with changed layer </font></p>
+<p align="left"><font face="Arial">- move 
+with changed layer now shows moving object in new layer </font></p>
+<p align="left"><font face="Arial">- stretch 
+now shows full selected objects during move </font></p>
+<p align="left"><font face="Arial">- fixed 
+some bugs with creating text labels </font></p>
+<p align="left"><font face="Arial">- labels 
+now displayed according to their height in microns </font></p>
+<p align="left"><font face="Arial">- fixed 
+some bugs in geomWidth / geomSpace DRC checks </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.2 release on 7/1/2006 </font></h4>
+<p align="left"><font face="Arial">- rewrote 
+geomWidth / geomSpace checks </font></p>
+<p align="left"><font face="Arial">- added 
+geomEnclose / geomOverlap checks </font></p>
+<p align="left"><font face="Arial">- Added 
+Verify menu with DRC-&gt;Run..., DRC-&gt;View Errors..., DRC-&gt;Clear commands 
+</font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug where streamout did not output Hseg/Vseg objects </font></p>
+<p align="left"><font face="Arial">- DRC 
+commands now take units in microns, not database units. </font></p>
+<p align="left"><font face="Arial">- LSW was 
+not showing all user layers if a techfile had not been imported prior to 
+importing GDS2. </font></p>
+<p align="left"><font face="Arial">- System 
+layer fill patterns were not being correctly displayed in the LSW. </font></p>
+<p align="left"><font face="Arial">- 
+DRC-&gt;View Errors... now fully implemented. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.3 release on 15/1/2006 </font></h4>
+<p align="left"><font face="Arial">- fixed a 
+small bug reading GDS2 which could cause an assert on certain types of data. 
+</font></p>
+<p align="left"><font face="Arial">- added 
+ability to close/reopen the output message window </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug in LEF import that caused a crash if an obstruction had more than 1024 
+vertices </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug drawing the drag rectangle for selection/zooming </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.4 release on 22/1/2006 </font></h4>
+<p align="left"><font face="Arial">- fixed a 
+bug reading / writing GDS2 arrays with rotations </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug calculating bounding boxes of rotated arrays </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug where 'select all' was drawing selected set only on front buffer </font></p>
+<p align="left"><font face="Arial">- 
+Hierarchy browser made into a dockable window </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug where arrays were not getting flattenned or copied correctly </font></p>
+<p align="left"><font face="Arial">- mouse 
+wheel now allows zoom in/out. Forward rotation zooms in, reverse rotation zooms 
+out. </font></p>
+<p align="left"><font face="Arial">- added 
+ability to set gravity depth so that edges or vertices can be snapped to through 
+hierarchy. </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug in chop command that could cause an exception. </font></p>
+<p align="left"><font face="Arial">- fixed 
+drag rectangle when dragging after create rectangle. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.5 release on 29/1/2006 </font></h4>
+<p align="left"><font face="Arial">- 
+changing background colour now sets layer widget background colour. </font></p>
+<p align="left"><font face="Arial">- bugfix 
+to gravity (now works with any depth/orientation/array etc) </font></p>
+<p align="left"><font face="Arial">- LEF and 
+DEF parsers now output warning/error messages to message window, not just 
+lefRWarning.log/defRWarning.log files. </font></p>
+<p align="left"><font face="Arial">- LEF 
+reader will now read compressed (.gz) files. </font></p>
+<p align="left"><font face="Arial">- 
+Hierarchy browser now updates when changing active window to another design. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.6 release on 5/2/2006 </font></h4>
+<p align="left"><font face="Arial">- 
+Reorganised toolbars, updated icons. Linux build now with Xft support. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.7 release on 26/2/2006 </font></h4>
+<p align="left"><font face="Arial">- 
+Internal cleanup for Qt 4.1.1 porting, minor bugfixes, Solaris build with Xft 
+support. </font></p>
+<p align="left"><font face="Arial">- Bugfix 
+for Import Verilog </font></p>
+<p align="left"><font face="Arial">- 
+Bugfixes for import/export DEF </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.8 release on 11/3/2006 </font></h4>
+<p align="left"><font face="Arial">- Qt 
+3.3.6 update </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.9 release on 30/3/2006 </font></h4>
+<p align="left"><font face="Arial">- fixed 
+path begin/end extensions swapped </font></p>
+<p align="left"><font face="Arial">- fixed a 
+problem where negative array row/col spacings were not used correctly 
+</font></p>
+<p align="left"><font face="Arial">- fixed 
+problem importing paths / polygons in OASIS (x/y deltas were swapped) 
+</font></p>
+<p align="left"><font face="Arial">- fixed a 
+problem whereby truncated paths were being converted to extend style </font></p>
+<p align="left"><font face="Arial">- fixed a 
+problem with repetition type 8 in OASIS </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.10 release on 11/4/2006 </font></h4>
+<p align="left"><font face="Arial">- fixed a 
+bug allocating &gt; 64K objects per layer </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.11 release on 18/4/2006 </font></h4>
+<p align="left"><font face="Arial">- OASIS 
+reader now handles strict mode </font></p>
+<p align="left"><font face="Arial">- OASIS 
+reader now reads trapezoid / ctrapezoid elements </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.12 release on 29/4/2006 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Verilog parser more robust </font></p>
+<p align="left"><font face="Arial">- 
+bugfix:Verilog writer no longer writes power/ground instance pins </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.13 release on 21/5/2006 </font></h4>
+<p align="left"><font face="Arial">- Support 
+for OASIS CBLOCK compression added </font></p>
+<p align="left"><font face="Arial">- Support 
+for writing strict mode OASIS files added </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+OASIS reader wasn't parsing strict mode tables correctly </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+CTRAPEZOIDs had incorrect pointlist </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+OASIS property definition crash fixed </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+reading CBLOCK sometimes caused an exception </font></p>
+<p align="left"><font face="Arial">- LSW 
+Apply button removed. Now changes to the LSW that affect the display cause 
+automatic updates. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.14 release on 18/6/06 </font></h4>
+<p align="left"><font face="Arial">- Net 
+name of selected object displayed on status bar </font></p>
+<p align="left"><font face="Arial">- Import 
+DEF allows special/regular net routing to be ignored </font></p>
+<p align="left"><font face="Arial">- Import 
+DEF allows control of warning of unplaced components </font></p>
+<p align="left"><font face="Arial">- Fix bug 
+in import DEF for special net routing </font></p>
+<p align="left"><font face="Arial">- Add 
+Floorplan-&gt;Place-&gt;Unplace command </font></p>
+<p align="left"><font face="Arial">- Speeded 
+up delete filler cells command </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.15 release on 1/7/06 </font></h4>
+<p align="left"><font face="Arial">- New 
+high performance region query. Can produce over 6 million shapes/second. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+menu/toolbar Copy was not working </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+cursor box sometimes not erased correctly after selection </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+pCell evaluation broke moving from SWIG 1.3.27 to 1.3.29, so rolled back until 
+further investigation. </font></p>
+<p align="left"><font face="Arial">- LSW 
+layer names/purposes drawn in black rather than the layer colour for improved 
+readability of light coloured layers. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.16 release on 20/7/06 </font></h4>
+<p align="left"><font face="Arial">- triple 
+buffered graphics to reduce flicker </font></p>
+<p align="left"><font face="Arial">- pcells 
+read parameters from pcell script to seed create inst dialog </font></p>
+<p align="left"><font face="Arial">- added 
+file browser icon to file browser button on dialogs using it </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.17 release on 29/8/06 </font></h4>
+<p align="left"><font face="Arial">- Verilog 
+parser fix for bug reading escaped names </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a crash if Verilog top cell specified incorrectly </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+paths created by path::createPolygon could sometimes have 1dbu snap error 
+causing false DRCs </font></p>
+<p align="left"><font face="Arial">- 
+implemented min area DRC check </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.18 release on 16/9/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix 
+to DRC commands </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geomArea reporting holes as min area violations </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geomEnclose layers were reversed </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geomOverlap not working correctly </font></p>
+<p align="left"><font face="Arial">- added 
+geomNotch DRC command </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+angled tracks sometimes gave false DRC violations </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.19 release on 1/10/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+different LEF and DEF BUSBITCHARS resulted in connectivity error. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+LEF ORIGIN/SIZE/CLASS could be incorrect in some cases. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+move was not dynamically showing moving objects </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.20 release on 21/10/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+removing colinear points error when e.g. stretching a polygon </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+sometimes objects were not all displayed if gravity was enabled and the cursor 
+moved during redraw. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.3.0 release on 28/10/06 </font></h4>
+<p align="left"><font face="Arial">- Added 
+support for tabbed windows. You can switch between tab mode and MDI window mode. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.3.1 release on 4/11/06 </font></h4>
+<p align="left"><font face="Arial">- Fixed a 
+bug where spurious files in a library caused a crash on opening the library. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.0 release on 4/11/06 </font></h4>
+<p align="left"><font face="Arial">- 
+Graphics engine completely reimplemented using OpenGL rather than Qt's QPainter. 
+This uses hardware acceleration where possible and allows layer transparency. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+in tabbed window mode, maximising the application did not resize the canvas. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.1 release on 5/11/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+long layer names sometimes caused spurious characters in LSW </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+colinear point removal sometimes failed to work correctly on malformed polygons 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+added a tesselation combine function for handling self-intersecting polygons 
+</font></p>
+<p align="left"><font face="Arial">- 
+Background colour can now be changed from black in the LSW. </font></p>
+<p align="left"><font face="Arial">- System 
+layers (e.g. background colour) can be set in the techfile now. </font></p>
+<p align="left"><font face="Arial">- 
+printing now implemented from OpenGL rendering (best to set background colour to 
+white for printing!) </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+zoom selected broken in 3.0.0 </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.2 release on 19/11/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+If a techfile was not read, layers would have alpha values of 0 resulting in 
+them being not shown </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Save lib with no open design caused a crash </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+File-&gt;Print without an open cellview caused a crash </font></p>
+<p align="left"><font face="Arial">- Reduced 
+memory usage for OpenGL systems that support GL_TEXTURE_RECTANGLE_ARB 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+creating an inst from a different lib to the current cellview caused a crash 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+toolbar start/stop display hierarchy not getting set on opening cellview 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.3 release on 25/11/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+File-&gt;Dump Graphics caused a display problem which has now been fixed 
+</font></p>
+<p align="left"><font face="Arial">- Rename 
+Cell cmd in lib browser now remasters all instances in that library </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Deleting a cellview was trashing all layer names/purposes used by that cell 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a cause of unnecessary rendering </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+exporting GDS2 from a LEF/DEF design caused an exception </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Text labels were not drawn correct height </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.4 release on 2/12/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+selected net now displays net name on status bar </font></p>
+<p align="left"><font face="Arial">- 
+types.py added to distribution in case user does not have a Python installation 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+text labels were not transformed correctly </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+unplaced DEF components caused an exception </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.5 release on 6/12/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+File-&gt;Dump Image in OpenGL version made much faster </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+import GDS2 did not remove colinear path points </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.6 release on 12/12/06 </font></h4>
+<p align="left"><font face="Arial">- Error 
+messages during import DEF set to a max of 20. You can change this limit through 
+the ui().setMaxErrCount(num) python function. </font></p>
+<p align="left"><font face="Arial">- Import 
+DEF can import DEF to view types other than autoLayout. For example import a 
+hierarchical DEF design by importing lower level DEF designs to abstract views. 
+</font></p>
+<p align="left"><font face="Arial">- Export 
+GDS2 can specify a view list to export. By default only layout views are 
+exported </font></p>
+<p align="left"><font face="Arial">- Export 
+OASIS can specify a view list to export. By default only layout views are 
+exported </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+importing GDS2 with an unbound SREF caused a crash </font></p>
+<p align="left"><font face="Arial">- Import 
+LEF can turn on/off auto generation of pin text labels </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.7 release on 16/12/06 </font></h4>
+<p align="left"><font face="Arial">- added 
+capability of exporting gzip'd GDS2 </font></p>
+<p align="left"><font face="Arial">- 
+internal memory leak cleanup </font></p>
+<p align="left"><font face="Arial">- redraw 
+speed improvements </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+very long rulers could cause numerical overflow </font></p>
+<p align="left"><font face="Arial">- middle 
+mouse drag to pan in realtime now (re)implemented </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.8 release on 22/12/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+selection by point not functional with filter size of zero </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Linux/unix port had display problems when another window was overlapping 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+OpenGL state could sometimes mean the cursor box did not clear correctly 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+arrays with negative row/col spacing and rotation now drawn correctly 
+</font></p>
+<p align="left"><font face="Arial">- all 
+graphics transformations now implemented using hardware acceleration </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.9 release on 26/12/06 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+export GDS2 sometimes wrote incorrect AREF info </font></p>
+<p align="left"><font face="Arial">- Added 
+stencil buffer capability. If layer transparency is used and there are 
+overlapping shapes on the same layer, the result looks wrong. Enabling the use 
+of the stencil buffer (set in the display options dialog) improves this and is 
+most useful for viewing DEF design data. It is recommended that only the top 
+level of the hierarchy is viewed when using the stencil buffer. </font></p>
+<p align="left"><font face="Arial">- drawing 
+highlited objects now (re)implemented </font></p>
+<p align="left"><font face="Arial">- OpenGL 
+pbuffer support added </font></p>
+<p align="left"><font face="Arial">- Solaris 
+build now tested with an Expert3D-Lite card </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+3.0.10 release on 27/12/06 </font></h4>
+<p align="left"><font face="Arial">- more 
+drawing performance improvements </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+edit in place was dimming all cells, rather than all cells except the current 
+edit cell </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+edit in place was not using transformed coords </font></p>
+<p align="left"><font face="Arial">- 
+Edit-&gt;Boolean Operations can now output to a different cellview - either a 
+new or an existing one </font></p></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

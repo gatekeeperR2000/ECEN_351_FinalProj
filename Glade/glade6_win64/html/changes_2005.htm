@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" -->
+  <font face="Arial, Helvetica, sans-serif">
+<h4 align="left"><font face="Arial">
+<h2 align="left"><font face="Arial"><b>Change Log</b> 2005</font></h2> 
+    </font></h4>
+<h4 align="left"><font face="Arial" size="4"> 
+    Contents for 2004 can be found <a href="changes_2004.htm">here</a> 
+    </font></h4>
+<p align="left">&nbsp;</p>
+    
+<h4 align="left"><font face="Arial">Version 
+1.2.34 release on 15/1/2005 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+import Verilog bugfixes. </font></p>
+<p align="left"><font face="Arial">- Rulers 
+can now snap to 45 degrees or any angle. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.35 release on 20/2/2005 </font></h4>
+<p align="left"><font face="Arial">- DEF 
+reader now reads BLOCKAGE statements and creates boundary purpose rectangles for 
+any specified layers. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.36 release on 26/2/2005 </font></h4>
+<p align="left"><font face="Arial">- Added 
+the ability to dim other shapes when objects are selected, making it easier to 
+see selected items in a dense design. The layer dim factor is now 
+user-controllable and can be set from the display options form. </font></p>
+<p align="left"><font face="Arial">- Added 
+option to select all shapes of a net. This is controlled by the options in the 
+Selection Options dialog. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+raw insert into tree wasn't set by default, slowing lef/def/gds2 reading. This 
+is now fixed. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.37 release on 6/3/2005 </font></h4>
+<p align="left"><font face="Arial">- fixed 
+File-&gt;Restore Cell command </font></p>
+<p align="left"><font face="Arial">- fixed 
+biassing of polygons: positive bias now grows a polygon. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.38 release on 13/3/2005 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Colinear points at end of polygon now removed. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Creating a new cell and then adding a polygon made the polygon invisible due to 
+the tree being left in raw insert mode. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Create polygon command now snaps to grid during polygon entry correctly. 
+</font></p>
+<p align="left"><font face="Arial">- Create 
+path form now remembers previous width / style / begExtent / endExtent. 
+</font></p>
+<p align="left"><font face="Arial">- Option 
+forms for Create... commands can now be set to be hidden by default in the 
+display options form. They can be displayed by hitting F3. </font></p>
+<p align="left"><font face="Arial">- Double 
+clicking an object with the left mouse button now selects it and queries its 
+properties. </font></p>
+<p align="left"><font face="Arial">- The 
+zoom command (right mouse drag) now zooms in and out. To zoom in, drag the mouse 
+from the bottom of the screen towards the top of the screen over the area you 
+want to zoom into. To zoom out, drag the mouse from the top of the screen 
+towards the bottom; the zoom factor is equal to the size of the window divided 
+by the size of the drag rectangle, i.e. the smaller the drag rectangle the 
+greater the zoom out. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Create Polygon command - snapping sometimes was incorrect, the close line was 
+not always right, and deleting the last entered vertex (backspace key) didn't 
+work correctly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+deleting last vertex of a path (backspace key) had similar problems. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+copying and then moving shapes trashed the current cellview bounding box. 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.39 release on 20/3/2005 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+Import DEF does not crash if COMPONENTS section just has inst name/master name 
+and no origin/orientation. Cadence Encounter outputs this style DEF if 
+components are unplaced. </font></p>
+<p align="left"><font face="Arial">- Added 
+File-&gt;Exec... command to run a python script file. </font></p>
+<p align="left"><font face="Arial">- Added 
+-p command line option to run a Python script on startup. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.40 release on 3/4/2005 </font></h4>
+<p align="left"><font face="Arial">- fixed 
+some problems with Python wrappers in techfile. </font></p>
+<p align="left"><font face="Arial">- fixed a 
+crash when quitting after running a Python script. </font></p>
+<p align="left"><font face="Arial">- A 
+'background' system layer has been added. This is the colour the screen 
+background is drawn as; the default is black as before but you can change it 
+e.g. to white. Note that for a white background you will need to use a new 
+option on the Display Prefs form that allows you to change the display mode from 
+OR to COPY mode. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.41 release on 15/4/2005 </font></h4>
+<p align="left"><font face="Arial">- Cursor 
+box now snaps to grid correctly for all mouse movement. </font></p>
+<p align="left"><font face="Arial">- Gravity 
+is not automatically turned on when setting edge or vertex selection mode. 
+</font></p>
+<p align="left"><font face="Arial">- Added a 
+'merge selected' command. Selected shapes are merged into a single polygon. 
+Currently all shapes regardless of layer are merged, with the resulting layer 
+being that of the <i>last</i> shape selected. </font></p>
+<p align="left"><font face="Arial">- Added a 
+'chop' command. Chops a rectangle from a selected shape. </font></p>
+<p align="left"><font face="Arial">- Fixed 
+several minor bugs. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+1.2.42 release on 24/4/2005 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+move shapes was not correctly redrawing screen </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.0.1 release on 29/4/2005 </font></h4>
+<p align="left"><font face="Arial">- 
+Hierarchy browser sorting turned off by default (with large numbers of 
+instances, Qt's QListView thrashes memory sorting). </font></p>
+<p align="left"><font face="Arial">- Fixed 
+some bugs saving cells to libraries </font></p>
+<p align="left"><font face="Arial">- Fixed a 
+bug where the Tools-&gt;Library Browser menu item invoked the hierarchy browser 
+instead. </font></p>
+<p align="left"><font face="Arial">- Fixed 
+some bugs relating to creating instances of newly created cells not having their 
+bounding box set. </font></p>
+<p align="left"><font face="Arial">- Fixed a 
+bug where Export DEF could seg fault if used without importing DEF first. 
+</font></p>
+<p align="left"><font face="Arial">- Added a 
+'create' toolbar </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.0.2 release on 2/5/2005 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+redraw command wasn't working </font></p>
+<p align="left"><font face="Arial">- DEF 
+reader / writer now supports vertical rows </font></p>
+<p align="left"><font face="Arial">- LEF 
+reader accepts MAXIMUMDENSITY / MINIMUMDENSITY rules </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.0.3 release on 3/5/2005 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+vertical rows weren't getting drawn correctly </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import LEF was not resetting ORIGIN for each macro </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+setting focus on X11 windows was not implemented correctly. </font></p>
+<p align="left"><font face="Arial">- Moved 
+'dim unselected shapes' from display preferences for to selection options form. 
+</font></p>
+<p align="left"><font face="Arial">- Added a 
+'Limit number of instPins show during query net' option to the selection options 
+form. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.0.4 release on 8/5/2005 </font></h4>
+<p align="left"><font face="Arial">- 
+bugfixes to window autofocus </font></p>
+<p align="left"><font face="Arial">- 
+bugfixes to get query dialog / LSW to track multiple windows correctly 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+selection with gravity on was not selecting an object if the cursor was inside 
+it but not within gravity distance of one of its edges. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+set a timer on resize events so that paint events wait 20ms after resizing has 
+stopped. This prevents undesirable things happenning on large designs when the 
+canvas window is resized. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+stipple patterns and linestyles weren't getting correctly saved and reloaded to 
+libraries on disk. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.0.5 release on 9/5/2005 </font></h4>
+<p align="left"><font face="Arial">- minor 
+bugfix to drawing vertical rows </font></p>
+<p align="left"><font face="Arial">- added 
+orientation marker for rows </font></p>
+<p align="left"><font face="Arial">- 
+hierarchy browser now shows instance names rather than cell names </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+using a shift bindkey would leave point selection in add mode </font></p>
+<p align="left"><font face="Arial">- added 
+an option to turn off reporting unconnected special net instance pins during 
+import DEF. This is useful if you use regexp's in your SPECIALNETS section. This 
+does not affect checking of regular net instance pins. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+boolean operations were calling 'add vertex' action </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.0.6 release on 20/5/2005 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+opening LSW with no cellView open caused a crash </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+saving a cell with no cellView open caused a crash </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+selecting by edge or vertex and then querying properties caused a crash 
+</font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.0.7 release on 29/5/2005 </font></h4>
+<p align="left"><font face="Arial">- bugfix: 
+instance origins display preference was getting saved as text origins 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+moving objects did not update selected set bbox in some cases </font></p>
+<p align="left"><font face="Arial">- dump 
+graphics command can now dump jpeg as well as png formats. Note however that png 
+format gives superior image quality and smaller file size than jpeg. </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.1.0 release on 04/06/2005 </font></h4>
+<p align="left"><font face="Arial">- Pcell 
+capability implemented. Users can set up python scripts with parameters to 
+create programmable cells whose dimensions etc. can be modified by altering 
+properties on instances of those cells. Note this is an early release of this 
+capability and is subject to change and (probably) bugfixes. </font></p>
+<p align="left"><font face="Arial">- Glade 
+main window is centered on desktop on startup now. </font></p>
+<p align="left"><font face="Arial">- Added 
+preliminary Align command to align objects. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+using the query dialog to alter an object's dimensions did not updated selected 
+set bounding box. </font></p>
+<p align="left"><font face="Arial">- 
+Hierarchy browser now displays both instance name and cell/view name </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.1.1 release on 26/06/2005 </font></h4>
+<p align="left"><font face="Arial">- Pcell 
+supermasters are not shown in the library browser and are not referred to when 
+querying a Pcell's properties. </font></p>
+<p align="left"><font face="Arial">- Pcell 
+bounding box correctly redrawn after modifying Pcell's parameters. </font></p>
+<p align="left"><font face="Arial">- Library 
+browser Find... command implemented </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.1.2 release on 6/11/2005 </font></h4>
+<p align="left"><font face="Arial">- LEF/DEF 
+parsers updated to Cadence 5.6 (Si2) version </font></p>
+<p align="left"><font face="Arial">- updated 
+zlib library to latest version </font></p>
+<p align="left"><font face="Arial">- draw 
+rectangle now draws in layer colour/fill style </font></p>
+<p align="left"><font face="Arial">- draw 
+path now draws in layer colour/fill style </font></p>
+<p align="left"><font face="Arial">- Pcell 
+supermasters were not getting saved to disk by 'Save Library'. </font></p>
+<p align="left"><font face="Arial">- Support 
+DEF GROUPs and REGIONs in import/export DEF. </font></p>
+<p align="left"><font face="Arial">- bus 
+wires now correctly handled by Import Verilog. </font></p>
+<p align="left"><font face="Arial">- 
+Integrated Capo placer. </font></p>
+<p align="left"><font face="Arial">- fixed 
+some bugs in global router. </font></p>
+<p align="left"><font face="Arial">- rewrote 
+Add Fillers command. Now fills existing rows of cells with any orientation. 
+</font></p>
+<p align="left"><font face="Arial">- rewrote 
+Create Rows command. Now creates rows in the design boundary with control over 
+row margins, row utilisation or spacing, row orientation and row flipping. 
+</font></p>
+<p align="left"><font face="Arial">- added 
+Create Groups command </font></p>
+<p align="left"><font face="Arial">- added 
+Create Region command </font></p>
+<p align="left"><font face="Arial">- Import 
+Verilog supports basic ASSIGN statements </font></p>
+<p align="left"><font face="Arial">- GDS 
+path type 4 (VAREXTEND) now imported/exported correctly </font></p>
+<p align="left"><font face="Arial">- GDS 
+path type 1 drawn as octagonal wire extension </font></p>
+<p align="left"><font face="Arial">- Arrays 
+with negative row/column spacing supported </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.1.3 release on 4/12/2005 </font></h4>
+<p align="left"><font face="Arial">- 
+improved graphics operations. Some fairly major changes to allow panning/zooming 
+while in interactive commands e.g. move, stretch, create etc. Dynamic 
+highlighting improved. </font></p>
+<p align="left"><font face="Arial">- 
+colinear points generated during editing of paths and polygons deleted 
+</font></p>
+<p align="left"><font face="Arial">- crash 
+when querying an object with edge or vertex select mode fixed </font></p>
+<p align="left"><font face="Arial">- fixed a 
+linux bug where lots of warnings were output to stdout from guiLayerChooser 
+</font></p>
+<p align="left"><font face="Arial">- fixed a 
+linux bug drawing spurious lines during Create Path </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.1.4 release on 7/12/05 </font></h4>
+<p align="left"><font face="Arial">- Various 
+bugs in Edit In Place caused by graphics changes in 2.1.3 fixed. </font></p>
+<p align="left"><font face="Arial">- gravity 
+now works during Edit In Place. </font></p>
+<p align="left"><font face="Arial">- gravity 
+can be selected as either edge based or vertex based </font></p>
+<p align="left"><font face="Arial">- Basic 
+redo capability added </font></p>
+<p align="left"><font face="Arial"></font></p>
+<h4 align="left"><font face="Arial">Version 
+2.2.0 release on 18/12/2005 </font></h4>
+<p align="left"><font face="Arial">- DRC 
+checking primitives introduced. Python wrappings to basic boolean processing 
+implemented. Basic minWidth/minSpace checks implemented. </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug in dbCreateHole() </font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug where drag outlines weren't being drawn during e.g. move/copy insts 
+</font></p>
+<p align="left"><font face="Arial">- fixed a 
+bug where insts weren't being copied </font></p>
+<p align="left"><font face="Arial">- added 
+display of shape area/perimeter in query object dialog. </font></p>
+<p align="left"><font face="Arial">- ruler 
+snapping to snap angle bug fixed. </font></p>
+<!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

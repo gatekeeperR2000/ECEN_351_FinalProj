@@ -1,0 +1,38 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 12:52:04 on Feb  8 2019 by Visual C++ 13.2
+-----------------------------------------------------------------------------
+
+Gemini started at 20:46:56 on 22/03/2019
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : inv_4x_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       4
+  Number of nets    :       4
+  Number of ports   :       0
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : inv_4x.cdl_flat
+-----------------------------------------------------------------------------
+  Number of devices :       2
+  Number of nets    :       4
+  Number of ports   :       2
+
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		inv_4x_extracted.cdl	  inv_4x.cdl_flat
+  Number of devices :       2			2
+  Number of nets    :       4			4
+  Number of ports   :       0			2
+
+There were no device property errors.
+2 (33%) matches were found by local matching.
+All nodes were matched in 2 passes.
+
+The netlists match.
+
+0 devices and 0 nets written to C:\Users\Randall Jack\Desktop\glade4_win64\ECEN351\inv_4x.err
+
+Gemini completed at 20:46:56 on 22/03/2019

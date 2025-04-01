@@ -1,0 +1,82 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : test_library
+* Top Cell Name: test_cell
+* View Name: extracted
+* Netlist created: 11.Apr.2019 14:35:20
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: test_library
+* Cell Name:    test_cell
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT test_cell in5 sel2 in2 in6 in3 in1 in7 in4 out in0 sel1 sel0
+*.PININFO in5:B sel2:B in2:B in6:B in3:B in1:B in7:B in4:B out:B in0:B sel1:B sel0:B
+
+MM38 n20 n27 in2 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM37 n34 n33 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM29 out n21 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM2 n23 sel1 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM20 n15 n14 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM24 n32 sel2 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM39 n24 n17 in6 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM26 n35 n25 n18 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM27 n30 n32 n35 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM58 n21 n35 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM46 n22 n28 in1 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM43 n31 n33 n24 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM45 n16 n34 n31 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM22 n30 n15 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM0 n28 sel0 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM14 n22 n23 n14 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM55 n25 n32 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM48 in0 n27 n22 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM12 n14 n26 n20 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM4 n27 n28 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM18 in0 n28 n22 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM6 n26 n23 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM53 n18 n29 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM50 n15 n14 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM49 in4 n17 n16 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM51 n29 n31 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM41 in7 n19 n24 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM17 n16 n17 in5 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM52 n30 n15 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM23 n18 n29 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM28 n21 n35 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM19 in4 n19 n16 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM40 in3 n28 n20 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM11 in7 n17 n24 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM16 n22 n27 in1 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM9 n24 n19 in6 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM34 n27 n28 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM15 n16 n33 n31 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM47 n16 n19 in5 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM36 n26 n23 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM59 out n21 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM30 n28 sel0 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM25 n25 n32 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM56 n35 n32 n18 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM54 n32 sel2 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM35 n17 n19 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM5 n17 n19 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM3 n33 sel1 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM21 n29 n31 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM44 n22 n26 n14 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM32 n23 sel1 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM8 n20 n28 in2 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM7 n34 n33 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM57 n30 n25 n35 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM31 n19 sel0 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM42 n14 n23 n20 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM13 n31 n34 n24 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM1 n19 sel0 vss vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+MM33 n33 sel1 vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05
+MM10 in3 n27 n20 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06
+.ENDS

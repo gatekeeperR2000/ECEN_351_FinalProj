@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --><font face="Arial, Helvetica, sans-serif"><font face="Arial">
+<h2 align="left"><font face="Arial"><b>Change Log</b> 2013</font></h2></font>
+<p align="left"><font face="Arial" size="4"><strong>Contents for 2012 can be found <a 
+href="changes_2012.htm">here</a></strong></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.3.27 release on 06/01/2013</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a bug where entering a path with just 2 points would incorrectly state 
+only 1 point had been entered.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+sometimes stretching a path with 45 degree edges could cause a crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a bug drawing non-manhattan paths.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import DXF recognises POLYLINE/LWPOLYLINE with nonzero width as a 
+path.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.28 release on 11/01/2013</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+inst::Flatten(cellView *cv, transform &amp;trans) and array::Flatten(cellView 
+*cv, transform &amp;trans) now flatten the instance into the specified 
+cellView. The instance is NOT deleted by default, call cv.dbDeleteObj(inst) to 
+do this.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Fixed a potential crash if the net browser was used to show instances of a net / 
+drivers/loads when the cellView contains no instances.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Fixed a crash if the root cellView was double clicked on in the net 
+browser.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.29 release on 01/02/2013</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+various potential crashes fixed when menu items selected with no open 
+cellView.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+extractMOS made somewhat more robust in handling bad devices.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+When using tabbed windows, the last window did not close correctly and left the 
+tab&nbsp;in the MDI area.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.30 release on 07/02/2013</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+deleting a library in the library browser could cause a crash.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+various problems fixed in dbCreatePcellInst()</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+sometimes&nbsp; a crash when moving layer order in the LSW</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+deleting an object failed to delete the object if its tree was not yet 
+optimised.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.31 release on 13/02/2013</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a crash on partial select when in non-OpenGL mode.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed incorrect drawing of paths in non-OpenGL mode.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+removed an annoying message from the console about 'unexepected null 
+receiver'</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.3.32 release on 03/03/2013</strong> 
+<p align="left"><font face="Arial">- bugfix: 
+fixed a crash that could occur when using LMB on the LSW.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a crash reading a Calibre error file that contains no errors. 
+<p align="left"><font face="Arial">- bugfix: 
+incorrect coordinates reported when using Query dialog and 'change 
+common'.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+crash when exporting DXF with net names to text enabled.</font></p>
+<p align="left">- bugfix: Query dialog only showed 3 
+significant figures of floating point properties. Now shows all.</p>
+<p align="left">- bugfix: some properties assigned by 
+dbAddProp / dbReplaceProp were not shown in the query dialog.</p>
+<p align="left">- bugfix: geomSpace() drc check failed to find 
+some real errors. This is now fixed.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.33 
+release on 10/03/13</strong></p>
+<p align="left">- bugfix: fixed a crash when closing a library 
+with cellViews still open (this had been introduced in 4.3.22).</p>
+<p align="left">- enhancement: added a checkbox to Copy dialog 
+to control whether net info is copied to the new shape.</p>
+<p align="left">- bugfix: crash when copying a shape 
+sometimes.</p>
+<p align="left">- bugfix: fixed problem reading hierarchical 
+CDL netlists with dubious whitespace.</p>
+<p align="left">- bugfix: potential crash when instancing 
+Pcells which have corrupted/deleted supermasters fixed.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.34 
+release on 15/03/2013</strong></p>
+<p align="left">- bugfix: occasional crash on closing a 
+library on Linux.</p>
+<p align="left">- bugfix: occasional crash when updating the 
+LSW after closing a window.</p>
+<p align="left">- enhancement: creating a path will use the 
+width of an existing selected path, h/vseg or the minimum of the width or height 
+of a rectangle.</p>
+<p align="left">- enhancement: the create path dialog has a 
+'Keep width const' checkbox; selecting this before changing layer (using the 'u' 
+or 'd' bindkeys) will keep the path width the same, rather than revert to the 
+techfile minWidth for the layer.</p>
+<p align="left">- bugfix: shortcut keys were not functioning 
+in infix mode some/all of the time due to a change made in 4.3.22.</p>
+<p align="left">- bugfix: crash could occur if clearing DRC 
+marker errors after a LVS.</p>
+<p align="left">- bugfix: crash when running merge (or 
+geomGetShapes()) on data that had vertices close to database resolution.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.35 
+release on 18/03/2013</strong></p>
+<p align="left">- bugfix: fixed an error / crash in CDL 
+flattener for using hierarchical CDL netlists in LVS.</p>
+<p align="left">- bugfix: fixed an error in copy that could 
+cause a crash</p>
+<p align="left">- bugfix: discard zero area rectangles in 
+boolean operations, which could result in a crash.</p>
+<p align="left">- enhancement: LVS dialog now remembers values 
+of top cell and hierarchy fields from previous runs in the session.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.36 
+release on 30/03/2013</strong></p>
+<p align="left">- bugfix: fixed crash when cellView's 
+properties queried in the library browser with con design open.</p>
+<p align="left">- bugfix: cellView::dbUpdatePCell() function 
+was not updating the properties of the submaster, hence the pcell instance was 
+not changing if its property list was changed.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.37 
+release on 05/04/2013</strong></p>
+<p align="left">- enhancement: number of threads for running 
+connectivity extraction can be specified in Verify-&gt;Extract-&gt;Run... 
+dialog</p>
+<p align="left">- bugfix: fixed crash if library closed and 
+any key pressed while library browser in focus</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.38 
+release on 21/04/2013</strong></p>
+<p align="left">- bugfix: improved the robustness of the 
+Cadence techfile parser. </p>
+<p align="left">- bugfix: CDL import fixed some basic 
+bugs.</p>
+<p align="left">- bugfix: cellView::dbFindNetByName() does not 
+crash if passed a null string.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.39 
+release on 26/04/2013</strong></p>
+<p align="left">- bugfix: fixed crash is a cellView containing 
+via instances with no net names was copied.</p>
+<p align="left">- enhancement: extractParasitic and 
+extractParasitic2 commands added.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.40 
+release on 04/05/2013</strong></p>
+<p align="left">- bugfix: Opening the hierarchy browser would 
+crash if the current cellView contained unbound instances.</p>
+<p align="left">- bugfix: fixed a problem whereby if a 
+duplicate cell was found in a LEF file, all subsequent macros would be created 
+but no data read.</p>
+<p align="left">- bugfix: geomArea with just a minimum area 
+was not flagging errors.</p>
+<p align="left">- enhancement: DRC code has been significantly 
+rewritten to be more flexible to support new types of rules.</p>
+<p align="left">- bugfix: MPPs were being drawn incorrectly in 
+certain cases.</p>
+<p align="left">- enhancement: reloading a techfile now 
+overwrites via definitions rather than ignoring duplicate definitions.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.41 
+release on 06/05/2013</strong></p>
+<p align="left">- bugfix: crash on moving inst and snapping to 
+rows if rows did not exist in the design.</p>
+<p align="left">- enhancement: conditional DRC enclosure rule 
+added.</p>
+<p align="left">- bugfix: holes in device recognition region 
+during extraction caused an assert, now gives error message and does not create 
+the device in the extracted view.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.42 
+release on 19/05/2013</strong></p>
+<p align="left">- enhancement: OASIS names can be mapped to 
+upper or lower case, or have case preserved.</p>
+<p align="left">- bugfix: fixed a crash when deleting a cell 
+with instances with unbound masters.</p>
+<p align="left">- bugfix: fixed a couple of minor potential 
+crashes.</p>
+<p align="left">- bugfix: added Python27 libs to Windows 
+distribution and set PYTHONHOME to use this if a python installation is not 
+present on Windows.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.43 
+release on 27/05/2013</strong></p>
+<p align="left">- bugfix: stretching the end of a path segment 
+displayed incorrectly during stretch.</p>
+<p align="left">- bugfix: Chop command made more robust.</p>
+<p align="left">- bugfix: Net dock window now checks for a 
+valid canvas.</p>
+<p align="left">- bugfix: Export CDL does not crash if there 
+is an unbound master for instance(s) in the design.</p>
+<p align="left">- bugfix: fixed a potential crash when using 
+dynamic highlight on OpenGL.</p>
+<p align="left">- bugfix: fixed a potential crash displaying 
+LVS errors if nets were missing shapes.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.44 
+release on 16/06/2013</strong></p>
+<p align="left">- bugfix: loading a saved library containing 
+extracted views did not bind instances of extracted views.</p>
+<p align="left">- bugfix: fixed a potential crash in 
+Edit-&gt;Reshape cmd.</p>
+<p align="left">- bugfix: Create Instance form does not show 
+PCell submasters in Cell combo box now.</p>
+<p align="left">- enhancement: setting GLADE_LOGFILE_DIR env 
+var sets the directory in which the Glade logfiles are created.</p>
+<p align="left">- enhancement: Export CDL can now set pin 
+order of .subckt header pins.</p>
+<p align="left">- enhancement: Default path styles saved to 
+preferences file.</p>
+<p align="left">- bugfix: fixed a crash on Mac when running 
+multithreaded operations caused by a bug in QThreadPool.</p>
+<p align="left">- enhancement: extractTFT() function 
+implemented to extract 3 terminal TFT transistors (gate=metal1, S/D = metal2 
+fingers)</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.45 
+release on 20/06/2013</strong></p>
+<p align="left">- enhancement: implemented 'geomMargin()' DRC 
+check. This checks the spacing from the vertex of a pair of concave edges of a 
+polygon to an adjacent 'contained' rectangle's nearest vertex. The 
+(non-manhattan) distance is required to be larger than the square root of the 
+minimum spacing rule between the shapes due to lithography effects (e.g. ink 
+flow in a printed electronics design).</p>
+<p align="left">- bugfix: fixed a crash caused by 
+geomEnclose2()&nbsp;having&nbsp;a memory corruption issue.</p>
+<p align="left">- bugfix: dump graphics failed on some 
+platforms.</p>
+<p align="left">- bugfix: View-&gt;Layers-&gt;Show Layer 
+Properties crashed if no current layer.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.46 
+release on 28/06/2013</strong></p>
+<p align="left">- bugfix: undo/redo checks if undo step is the 
+current cellView and warns if not.</p>
+<p align="left">- bugfix: MPP sometimes drawn incorrectly or 
+crashes.</p>
+<p align="left">- enhancement: MPP contact filling algorithm 
+improved&nbsp;to meet DRC rules.</p>
+<p align="left">- enhancement: MPP dialog rulename/netname 
+settings saved during editing.</p>
+<p align="left">- enhancement: Edit-&gt;Booleans dialog 
+restructured and made possible boolean ops between shapes on different 
+cellViews.</p>
+<p align="left">- bugfix: Query MPP properties did not allow 
+the vertices of the MPP to be edited; this is now fixed.</p>
+<p align="left">- enhancement: Glade will read a local 
+.gladerc in the current directory if present after reading the $HOME/.gladerc. 
+It will always write preferences to the $HOME/.gladerc only.</p>
+<p align="left">- bugfix: MPP shapes were being ignored by 
+geomGetShapes for e.g. DRC. Bugs in DRC handling of MPPs fixed.</p>
+<p align="left">- enhancement:&nbsp;MPP object functions made 
+available to SWIG.</p>
+<p align="left">- bugfix: fixed a bug creating MPPs with just 
+2 points.</p>
+<p align="left">- enhancement: added options to geomLabel() 
+and geomSetTexted() to not create a pin if desired.</p>
+<p align="left">- enhancement: added a function 
+geomGetTotalCount() to get the total number of errors since geomBegin().</p>
+<p align="left">- enhancement: Edit-&gt;Convert to Polygon can 
+now 'smash' MPPs i.e. convert them to polygons.</p>
+<p align="left">- enhancement: geomOffGrid() command 
+implemented to check if vertices of polygons are on a user specified grid.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.47 
+release on 04/07/2013</strong></p>
+<p align="left">- bugfix: Import LEF not recognising .gz 
+files.</p>
+<p align="left">- bugfix: contact placement on MPP path 
+segments could give DRCs or missing contacts.</p>
+<p align="left">- bugfix: Export GDS did not export MPPs</p>
+<p align="left">- bugfix: In partial selection mode, it was 
+possible to select the outline of a path. Now only the centreline can be 
+selected. However, gravity still can be set to path outlines or centrelines.</p>
+<p align="left">- bugfix: in non-OpenGL mode, MPPs were not 
+being drawn correctly.</p>
+<p align="left">- enhancement: extractDevice() cmd updated to 
+use pcells like other extract... commands.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.48 
+release on 10/07/2013</strong></p>
+<p align="left">- bugfix: via instances now correctly handled 
+by geom... processing e.g. during extraction.</p>
+<p align="left">- enhancement: Edit-&gt;Convert to Polygon can 
+now convert vias to polygons.</p>
+<p align="left">- bugfix: CDL export ignores model name option 
+when writing parasitic capacitances</p>
+<p align="left">- enhancement: extractParasitic3(lowerLayer, 
+upperLayer, areaCap, perimCap, [layer1,layer2...]) only extracts capacitance 
+between lowerLayer and upperLayer if shield layer(s) layer1... layerN are not 
+present between them. Note no checkinig is done for valid layers (yet).</p>
+<p align="left">- enhancement: Importing a techfile now 
+deletes any existing MPP definitions in a library.</p>
+<p align="left">- bugfix: exporting a techfile writes correct 
+MPP syntax.</p>
+<p align="left">- bugfix: Using the middle mouse drag during 
+e.g. a move command to pan as you move now works as expected.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.49 
+release on 12/07/2013</strong></p>
+<p align="left">- bugfix: false DRC errors when using MPPs 
+fixed.</p>
+<p align="left">- enhancement: export CDL can now filter small 
+parasitic C's.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.50 
+release on 04/08/2013</strong></p>
+<p align="left">- bugfix: geomLabel(), geomSetText() handle 
+'holes' correctly now.</p>
+<p align="left">- bugfix: geomConnect() rewritten to handle 
+holes in connect layers correctly.</p>
+<p align="left">- bugfix: Trace Net broke in 4.3.49, fixed in 
+4.3.50.</p>
+<p align="left">- enhancement: Export CDL&nbsp;can lump small 
+parasitics on the same net together into a single parasitic.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.51 
+release on 19/08/2013</strong></p>
+<p align="left">- bugfix: Alpha blending was never working on 
+the non-OpenGL version of Glade; it was not properly supported in Qt 3.x, and in 
+Qt 4.x there is a problem if you store colours as QRgb values rather than as 
+QColours. This has been fixed, so the full power of alpha blending can be used 
+on non-OpenGL use. As a result, the 'Opacity' toolbar has been removed, as its 
+purpose is less than useful if you can set transparency by layer. Try changing 
+some of your layers e.g. poly and metal1 to have an alpha value of 128, and set 
+their fill patterns to be solid. </p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.52 
+release on 02/09/2013</strong></p>
+<p align="left">- bugfix: On the OpenGL version the colour of 
+the cursor, ruler, and moving instance box were not being shown due to a bug 
+introduced in 4.3.51.</p>
+<p align="left">- bugfix: Export CDL was giving a badly 
+formatted CDL file when using merged parasitics or parasitic filtering.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.53 
+release on 08/09/2013</strong></p>
+<p align="left">- bugfix: Export CDL bugs fixed.</p>
+<p align="left">- enhancement: Gemini LVS now allows 
+permutability of resistor &amp; capacitor terminals. Allows inductors. Does not 
+crash when merging parallel transistors without the -w option. Handles M factor 
+in CDL netlist.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.54 
+release on 27/09/2013</strong></p>
+<p align="left">- Improved bounding box calculation for 
+paths</p>
+<p align="left">- bugfix: Expanding an instance in the 
+hierachy browser with no master caused a crash</p>
+<p align="left">- bugfix: Fixed a potential crash in Create 
+Instance command.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.55 
+release on 30/09/2013</strong></p>
+<p align="left">- bugfix: Fixed several potential crashes in 
+gui commands</p>
+<p align="left">- bugfix: fixed path bbox calculation 
+bug&nbsp;introduced in 4.3.54</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.56 
+release on 04/10/2013</strong></p>
+<p align="left">- bugfix: Edit in place was not working 
+corrrectly on OpenGL version.</p>
+<p align="left">- bugfix: Drawing paths with 1 vertex was not 
+correct in non-OpenGL version.</p>
+<p align="left">- bugfix: fixed a crash entering a 0-point 
+polygon/path</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.57 
+release on 14/10/2013</strong></p>
+<p align="left">- bugfix: fixed a bug reading libraries with 
+instances which had non-standard view names. Now any view name can be 
+saved/read.</p>
+<p align="left">- bugfix: fixed incorrect reporting of width 
+in TFT device</p>
+<p align="left">- bugfix: allowed extraction of TFT device 
+with gate layer drawn between S/D layer</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.3.58 
+release on 18/10/2013</strong></p>
+<p align="left">- bugfix: extraction of TFT devices improved 
+to handle multiple device topologies.</p>
+<p align="left">- bugfix: ruler in OpenGL mode was being drawn 
+with a linewidth &gt; 1 </p>
+<p align="left">- bugfix: performance improvement in 
+extractMOS function.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.0 
+release on 28/10/2013</strong></p>
+<p align="left">- ported to Qt 5.1.1</p>
+<p align="left">- bugfix: with gravity on, unselected layers 
+could be selected.</p>
+<p align="left">- bugfix: for objects with large edges, 
+partial select could show incorrect selection 'handles'.</p>
+<p align="left">- bugfix: display viaInst as a box (like an 
+inst) if display stop level &lt; hierarchy level.</p>
+<p align="left">- bugfix: display viaInst via name if 
+displayed as a box.</p>
+<p align="left">- fixed a bug where setting a snap grid of 0 
+would cause a crash.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.1 
+release on 03/11/2013</strong></p>
+<p align="left">- bugfix: Crash when reading a 
+library&nbsp;saved by an earlier version of Glade, or when reading a library 
+saved by the 4.4.0 version of Glade.</p>
+<p align="left">- bugfix: Python interpreter gave an error for 
+the very first command typed at the command line due to a missing '&gt;&gt;&gt;' 
+initial prompt.</p>
+<p align="left">- Rolled back to Qt 4.8.5 for all platforms 
+due to a number of bugs in Qt 5.1.1</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.2 
+release on 17/11/2013</strong></p>
+<p align="left">- bugfix: Trace net did not always trace 
+connectivity of abutting shapes</p>
+<p align="left">- bugfix: Running a python script to create a 
+library, then closing that library and running the script again caused a 
+crash.</p>
+<p align="left">- bugfix: layers sorted in all cells so 
+drawing order matches LSW order.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.3 
+release on 08/12/2013</strong></p>
+<p align="left">- bugfix: fixed a potential crash when copying 
+a cellView</p>
+<p align="left">- enhancement: extraction of MOS devices will 
+try and connect the source of a device to a power/ground net (depending on 
+device type) rather than the drain.</p>
+<p align="left">- bugfix: fixed an issue where a spacing 
+violation&nbsp;should occur if two edges were perpendicular and were not 
+projecting, but had a pair of vertices within the minimum spacing rule.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.4 
+release on 17/12/2013</strong></p>
+<p align="left">- enhancement: End of line edge DRC spacing 
+rule implemented.</p>
+<p align="left">- enhancement: DRC width check can specify 
+horizontal/vertical/diagonal flags to check only edges of that orientation. 
+Similar flags apply to the DRC spacing check.</p>
+<p align="left">&nbsp;</p></font></font></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

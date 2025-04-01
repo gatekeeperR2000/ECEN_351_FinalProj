@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+      <!-- #BeginEditable "text" -->
+
+    <h2><font face="Arial, Helvetica, sans-serif">line class</font></h2>
+
+    <p>
+      The line class is derived from a shape. A line can be considered a zero width path, or wire.
+      This class is normally created in a cellView using the dbCreateLine() function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      line::line()</strong></p>
+    </font></h4>
+
+    <p>
+      Creates a new line object. 
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Rect.htm">Rect </a> line::bBox()
+    </font></h4>
+
+    <p>
+      Get the bounding box of this line. This is the convex hull of the points in the line.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      line::bBox(<a href="Rect.htm">Rect </a>b)
+      </font></h4>
+
+    <p>
+      Set the bounding box of this line. Not useful and will throw an exception if called.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_Type line::objType()
+    </font></h4>
+
+    <p>
+      Returns the object type of this line as LINE.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * line::objName()
+    </font></h4>
+
+    <p>
+      Returns the object name of this line as &quot;LINE&quot;.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t line::nPoints()
+    </font></h4>
+
+    <p>
+      Returns the number of points of the line.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Point.htm">Point </a> *  line::ptlist()
+    </font></h4>
+
+    <p>
+      Returns the point list of this line as a C array of Points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Point.htm">Point</a> line::at(index)
+    </font></h4>
+
+    <p>
+      Returns the Point <em>p</em> at the <em>index</em> into the list of points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool line::addPoint(<a href="Point.htm">Point</a> * p)
+    </font></h4>
+
+    <p>
+      Adds a Point to the end of this line. Returns true is sucessful.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool line::deletePoint(int32_t index)
+    </font></h4>
+
+    <p>
+      Deletes the vertex given by <em>index</em> for this line. Returns true is sucessful.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      line::setPoint(int index, <a href="Point.htm">Point</a> p)
+    </font></h4>
+
+    <p>
+      Sets the vertex <em>index</em> of the line to Point p.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      line::setPoint(int32_t <em>index</em>, int32_t x, int32_t y)
+    </font></h4>
+
+    <p>
+      Sets the vertex index of the line to the point given by x, y.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int  line::getNearestEdge(<a href="Point.htm">Point </a>p, <a href="segment.htm">segment </a>&amp;s)
+    </font></h4>
+
+    <p>
+      Get the distance of the nearest segment <i>s</i> of this line to the point <i>p</i>;
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t line::getNearestVertex(<a href="Point.htm">Point </a>p, <a href="vertex.htm">vertex </a>&amp;s)
+    </font></h4>
+
+    <p>
+      Get the distance of the nearest vertex <i>s</i> of this line to the point <i>p</i>;
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t  line::area()
+    </font></h4>
+
+    <p>
+      Get the area of this line.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t line::perimeter()
+    </font></h4>
+
+    <p>
+      Get the perimeter of this line.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int length = l.length()
+    </font></h4>
+
+    <p>
+      Get the length of this line.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      line::transform(<a href="transform.htm">transform</a> trans)
+    </font></h4>
+
+    <p>
+      Transform this line using <i>trans</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool b = l.ptInPoly(Point p, bool includeEnds = true)
+    </font></h4>
+
+    <p>
+      Returns true if the point p is on the line. If includeEnds is true, this includes 
+      the line start and end point.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool line::ptInRect(Rect r)
+    </font></h4>
+
+    <p>
+      Returns true if the line crosses (intersects) a rectangle r.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      line::Move(<a href="cellview.htm">cellView</a> *cv, <a href="Point.htm">Point</a> delta, bool opt = true)
+    </font></h4>
+
+    <p>
+      Move this line by distance <i>delta</i>.If opt is true then the database is 
+      re-optimised for the new line position. If there are a lot of objects to 
+      move it makes sense to turn this off and instead use the cellView update() 
+      function after moving them all.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj</a> *obj = l.Copy(<a href="cellview.htm">cellView</a> *cv, <a href="Point.htm">Point</a> delta, int layerNum = -1)
+    </font></h4>
+
+    <p>
+      Copy this line to cellView <i>cv</i>, with offset <i>delta</i>. If layerNum is non negative the line 
+      will be copied to the new layer number.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj</a> *obj = l.Flatten(<a href="cellview.htm">cellView</a> *cv, <a href="transform.htm">transform </a>trans)
+    </font></h4>
+
+    <p>
+      Flatten this line into cellView <i>cv</i> with transformation <i>trans</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      line::Stretch(<a href="Point.htm">Point</a> delta, <a href="segment.htm">segment</a> seg)
+    </font></h4>
+
+    <p>
+      Stretch a segment <i>seg</i> of this line by <i>delta</i>.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

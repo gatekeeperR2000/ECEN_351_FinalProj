@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+  <!-- #BeginEditable "doctitle" --> 
+  <title>Glade Reference Manual</title>
+  <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+
+      <h2 align="left"><font face="Arial, Helvetica, sans-serif">View commands</font></h2>
+
+      <h4>
+        View-&gt;Fit <a name="view_fit"></a>
+      </h4>
+
+      <p>
+        Zooms the display to fit the currently displayed cell's bounding box.
+      </p>
+
+      <h4>
+        View-&gt;Fit+<a name="view_fitplus"></a>
+      </h4>
+
+      <p>
+        Zooms to 10% bigger than the displayed cell's bounding box.
+      </p>
+
+      <h4>
+        View-&gt;Zoom In <a name="view_zoomin"></a>
+      </h4>
+
+      <p>
+        Zooms in on the current cell by 
+        a factor of two. You can also zoom in by rotating the mouse wheel forward, 
+        or by pressing the right mouse button and dragging an area from lower left 
+        to upper right you want to zoom in to.
+      </p>
+
+      <h4>
+        View-&gt;Zoom Out <a name="view_zoomout"></a>
+      </h4>
+
+      <p>
+        Zooms out on the current cell by 
+        a factor of two. You can also zoom out by rotating the mouse wheel backwards, 
+        or by pressing the right mouse button and dragging an area from upper right 
+        to lower left. The zoom factor is the current screen size divided by the drag 
+        rectangle size.
+      </p>
+
+      <h4>
+        View-&gt;Zoom Selected<a name="view_zoomselected"></a>
+      </h4>
+
+      <p>
+        Zooms to fit the window around the selected set.
+      </p>
+
+      <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+        View-&gt;Pan <a name="view_pan"></a>
+      </h4>
+
+      <p>
+        Moves the centre of the display 
+        to the entered point. Note that panning can also be achieved by dragging with 
+        the middle mouse button held down; the pan is done in real time.
+      </p>
+
+      <h4>
+        View-&gt;Pan  to Point <a name="view_pantopoint"></a>
+      </h4>
+
+      <p>
+        Brings up a dialog box in which 
+        the X and Y coordinates to pan to can be entered. The display is then centered 
+        on these coordinates.
+      </p>
+
+      <h4>
+        View-&gt;Redraw <a name="view_redraw"></a>
+      </h4>
+
+      <p>
+        Redraws the screen. The display 
+        in Glade is double buffered, so redrawing consists of copying the back buffer 
+        to the front. This is fast, and in the OpenGL version of Glade is done using 
+        texture mapping which is accelerated by hardware when using modern graphics 
+        cards.. If however the display changes (e.g. by changing the layers that are 
+        visible in the LSW) then the back buffer has to be drawn again. However, this 
+        is still pretty fast.
+      </p>
+
+      <h4>
+        View-&gt;Ruler
+      </h4>
+
+      <p align="center"><img border="0" hspace="0" src="images/createRuler.png"></p>
+
+      <p>
+        Draws a ruler. Manhattan, 45 degree and all angle rulers 
+        are supported. The popup dialog (toggle using F3 bindkey) allows the ruler 
+        <em>snap angle</em> to be changed while entering the ruler. Checking the 
+        <em>Invert text labelling</em> box puts the major/minor ticks on the opposite 
+        side of the ruler to normal. This can be useful when measuring edges of 
+        shapes with dense fills where the ruler text is not easily visible. To more accurately 
+        measure distances between shapes, you can turn <a href="#gravity">gravity</a> 
+        on, then the start and end points of the ruler can snap to the shape edges. 
+        You can zoom and pan while drawing rulers.
+      </p>
+
+      <h4>
+        View-&gt;Delete Rulers<a name="view_delete_rulers"></a>
+      </h4>
+
+      <p>
+        Deletes all rulers in the cellview.
+      </p>
+
+      <h4>
+        View-&gt;View level 0 <a name="view_view0"></a>
+      </h4>
+
+      <p>
+        Sets the display levels to 0. No contents of cells are visible.
+      </p>
+
+      <h4>
+        View-&gt;View level 99<a name="view_view99"></a>
+      </h4>
+
+      <p>
+        Sets the display levels to 99. 
+        Cells up to 99 levels of hierarchy will have their contents displayed.
+      </p>
+
+      <h4>
+        View-&gt;Previous View<a name="view_previous"></a>
+      </h4>
+
+      <p>
+        Sets the viewport to the last view before a pan/zoom/fit etc.
+      </p>
+
+      <h4>
+        View-&gt;Cancel Redraw <a name="view_cancel"></a>
+      </h4>
+
+      <p>
+        Cancels the current redraw. This can be useful on very large designs.
+      </p>
+
+      <h4>
+        View-&gt;Display Options<a name="display_preferences"></a><a name="view_displayopts"></a>
+      </h4>
+
+      <p>
+        Brings up the Display Preferences dialog.
+      </p>
+
+      <p align="center"><img src="images/displayPrefs1.png" width="501" height="468" alt="Display Options1"></p>
+
+      <p>
+        <em>Show Axes</em> shows the X=0 and Y=0 axes.
+      </p>
+
+      <p>
+        <em>Show Labels</em> toggles the 
+        display of text labels. By default, text label display is turned off as in 
+        non-OpenGL display mode, drawing text labels can be slow if there are many 
+        labels.
+      </p>
+
+      <p>
+        <em>Show Tracks</em> displays the track grid for each layer for DEF based designs.
+      </p>
+
+      <p>
+        <em>Display Path Centreline</em> shows the centreline of path objects<em>. 
+          Display Path Outline</em> draws the outline of the path, based on its real width<em>.</em>   
+      </p>
+
+      <p>
+        <em>Display Origins - Labels</em> shows the origin of text labels as a small cross<em>. 
+        Display Origins - Instances </em>  shows the origin of instances as a small cross. Note 
+        that instance origins are only displayed if their bounding box is shown, i.e. they are at the display 
+        stop level.
+      </p>
+
+      <p>
+        <em>Show Instance Names</em> can be set to <em>None, Master 
+        </em>or<em> Instance.</em> With Master, the instance's master cell 
+        name is shown inside the instance bounding box. With Instance, the instance 
+        name is shown inside the instance bounding box.
+      </p>
+
+      <p>
+        <em>Show Via Instance Names</em> can be set to <em>None</em> or <em>Master</em>. 
+        This toggles the display of the via instance master.
+      </p>
+
+      <p>
+        <em>Label Display</em> allows finer control of 
+        text labels. <em>Display Rotated Labels</em> if checked displays text rotated as 
+        per its database orientation e.g. from GDS2. When unchecked, labels are 
+        displayed with no rotation (horizontally). <em>Display top level labels</em> only if 
+        checked will only display labels at the top of the cell hierarchy. Labels 
+        contained in lower levels will not be shown.
+      </p>
+
+      <p>
+        <em>Label display scale factor</em>  will scale the displayed labels according to the scale 
+      factor set. 
+      </p>
+
+      <p>
+        <em>Transparent</em> controls group selection. When checked, group members are selectable 
+        (and the group bounding box shape is not). When unchecked, group members are unselectable, 
+        but the group bounding box is. In non-transparent mode groups can be moved, copied, rotated 
+        etc. using the group layer shape.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p align="center"><img src="images/displayPrefs2.png" width="501" height="468" alt="Display Options2"></p>
+
+      <p>&nbsp;</p>
+
+      <p>
+          <i>Display Levels</i> sets the levels 
+        of hierarchy that are displayed. A display level of 0, for example, means only 
+        display shapes and instance bounding boxes in the current cell. Although the 
+        view level 99 command turns on viewing of 99 levels of hierarchy, there's really 
+        no limit.
+      </p>
+
+      <p>
+        <i>Filter</i> controls filtering 
+        of objects to speed redraw. When zoomed out, it makes no sense drawing objects 
+        that are so small that they contribute nothing to the visible display. So 
+        with filtering enabled, objects with a size smaller than the threshold (in 
+        pixels) are not drawn. Turning filtering off is the same as setting the threshold 
+        to 0. Note that path outlines are also subject to filtering; if the path width 
+        is less than the threshold then only the path centerline is drawn. Filtering 
+        can have a vast effect on redraw speed on large designs! The default filter 
+        level is 5 which is a good compromise of detail versus performance. 
+      </p>
+      
+      <p>
+        <i>Display Grid </i> controls the display grid which 
+        can be one of None, Dotted or Line.
+      </p>
+
+      <p>
+        <em>Display Grid Settings</em>. The Minor X and Y values set the   
+        dot or line spacing and are drawn using 
+        the 'mingrid' layer. The Major grid spacing is the number of minor grids per 
+        major grid dot or line; it should be an integer, typically 5 or 10. The 
+        major grid is drawn using the 'majgrid' layer.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p align="center"><img src="images/displayPrefs3.png" width="501" height="468" alt="Display Options3"></p>
+
+      <p>
+        <i>Snap Grid</i> controls cursor 
+        snapping. The cursor is snapped to the values specified in X and Y. Snapping 
+        is modified by gravity; see the Selection Options dialog.
+      </p>
+
+      <p>
+        <i>Snap Angle</i> controls the 
+        angle that data can be entered for some shape creation and also for rulers. 
+        <i>Any</i> allows all angles; <i>45 degrees</i> and <i>90 degrees</i> snap 
+        accordingly.
+      </p>
+
+      <p align="center"><img src="images/displayPrefs4.png" width="501" height="468" alt="Display Options4"></p>
+
+      <p>
+        <em>Infix Mode</em> is used for commands which can take the current mouse position 
+        rather than relying on the user to click on the first point of the command.
+      </p>
+
+      <p align="left">
+        <em>Repeat commands</em> will keep repeating a command until the ESC key is pressed.
+      </p>            
+    
+      <p>
+        <i>Display coordinates in database 
+        units</i> shows coordinates in DB units, rather than microns. This can be 
+        useful when working with e.g. DEF files where the ascii coordinates in the 
+        file are in DB units.
+      </p>
+
+      <p>
+        <em>Always popup option dialogs</em> 
+        when checked will always show option dialogs for dialogs such as Create Path. 
+        These option dialogs can be shown and hidden by toggling the F3 key. If <i>Always 
+        popup option dialogs</i> is not checked, 
+        then the option forms will not be shown automatically (but can still be shown by 
+        pressing F3). This is useful when entering e.g. a lot of polygons.
+      </p>
+
+      <p>
+        <em>Immediate  move/stretch of selected objects</em> will let selected objects be 
+        moved by the  cursor without issuing a move/select command. The cursor changes 
+        according to  the object. To use, select an object in full mode, or an edge/vertex 
+        in partial  mode. The cursor will change to a 4-way arrow (for full mode select) or 
+        a 2-way  arrow (for partial mode select). Then left click and drag to move or stretch  
+        the object. The object is deselected afterwards (unless <em>Keep immediate move selected</em> 
+        is checked), so to repeat the command,  select another object.
+      </p>
+
+      <p>
+        <em>Keep immediate move  selected</em> will keep objects selected after an immediate 
+        move/stretch; otherwise  all objects will be deselected.  
+      </p>
+
+      <p>
+        <em>Zoom centred on cursor </em>will zoom around the cursor, rather than zooming the viewport.
+      </p>
+
+      <p>
+        <em>Auto focus</em> sets 
+        input focus to the canvas whenever the mouse moves over it. If this option is 
+        unchecked, then the user has to explicitly click on the main window in order to 
+        e.g. use bindkeys after any operation that transfers focus to another window. 
+        Some Window managers may override this operation because they provide control of 
+        focus directly.
+      </p>
+
+      <p>
+        <em>Auto raise</em> raises 
+        the canvas window the mouse is over automatically. If this option is not set, 
+        the canvas must be explicitly clicked on to make it the active window for 
+        accelerator key input.</font>
+      </p>
+
+      <p>
+        <em>Use True Layout Colour</em> will use the layer colour/fill for drawing during Create/Move
+        /Copy/Stretch commands, rather than a hollow fill in the cursor layer colour.
+      </p>
+
+      <p>
+        <em>Draw Moving Inst Contents</em> draws the contents of instances and vias while creating, 
+        moving or opying them. The contents are either shown with a hollow line fill in the cursor 
+        colour if <em>Use true layer colour</em> is not checked, or using the real layer colour and 
+        fill style if that option is checked.
+      </p>
+
+      <p>
+        <em>Use Design Rule Halo</em> will perform realtime DRC and highlight shapes that would give 
+        rise to DRC MINSPACE violations. The violating shapes have a halo drawn round them which is 
+        the MINSPACE distance away from their edges/vertices. Checking is done for shapes (not yet 
+        instances) that are created/moved/copied/stretched, against existing shapes either at the 
+        top level of the hierarchy or also lower levels. Hierarchy check depth is controlled by the 
+        display stop level, i.e. checking will be performed to the depth of hierarchy that is displayed. 
+        <em>DRD options</em> controls which rules are checked; <em>Width</em> if checked turns on width 
+        checking of shapes, using the MINWIDTH rule for the layer, <em>Two layer spacing</em> turns 
+        on spacing checks between two different layers, using two layer MINSPACE rules. <em>Enclosure</em> 
+        and <em>Extension</em> enable checking minimum enclosure/minimum extension rules using the 
+        techfile MINENC / MINEXT rules.
+      </p>
+
+      <p>
+        <em>Halo Colour</em> is the layer colour used to draw the DRC violation halo. 
+      </p>
+
+      <p>
+        <em>RMB mode</em> sets the 
+        operation of the right mouse button. It can be set to <em>Glade</em> mode 
+        (dragging the mouse down zooms in, dragging it up zooms out), <em>Virtuoso</em> 
+        mode (dragging the right mouse in any direction zooms in) or <em>Special</em> 
+        mode (dragging the right mouse down zooms in, dragging it up left zooms out, 
+        dragging it up right does a window fit).
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>
+        View-&gt;Selection  Options<a name="selection_options"></a>
+      </h4>
+
+      <p>  
+        Displays the Selection Options form.
+      </p>
+
+      <p align="center"><img src="images/selOptions.png" width="341" height="453" alt="Selection"></p>
+
+      <p>
+        <i>Selection Mode</i>  is set to Full or Partial. Bindkey F4 toggles between these modes. 
+        <i>Full </i>mode selects the entire object.&nbsp;Partial mode selects an edge or vertex of 
+        an object.&nbsp;Use&nbsp;Partial 
+        mode to select edges or vertices for subsequent stretch commands.
+      </p>
+      <p>
+        <i>Selection Type</i> can be either&nbsp; 
+        <i>object</i> mode or <i>net</i> mode. In&nbsp; <i>object</i> mode, only the object 
+        selected becomes part of the selected set. In <i>net</i> mode, if a selected 
+        object is part of a net then all shapes that are part of that net are selected.
+      </p>
+
+      <p>
+        <i><a name="show_connectivity"></a>Show 
+        connectivity</i> displays flightlines between instance pins that have connectivity. 
+        <i>Max pins</i> sets the limit to the number of pins that a connectivity flightline 
+        is drawn. <em>Show Inst Pins</em> shows instance pins as well as nets when <em>Show Connectivity</em> 
+        or <em>Show selected connectivity</em> is checked. <em>Show selected connectivity</em> 
+        shows connectivity flightlines when an object is selected that has net connectivity.
+      </p>
+
+      <p>
+        <i>Dim unselected objects</i> will 
+        dim all unselected objects if any object(s) are selected. Unselected objects 
+        will be dimmed according to the <i>Dim factor</i> specified. This 
+        is useful when selecting an object e.g. a net by name in a large design and you 
+        want to display 
+        the selected object clearly. Dim unhilited objects will dim all unhighlighted objects, if highlighting is used 
+        e.g. by the Trace Net command.
+      </p>
+
+      <p>
+        <i>Limit instPin query for net</i> 
+        will limit the number of instance pins shown in the Query Net dialog. This 
+        is useful when querying power/ground nets which may have hundreds of thousands 
+        of special net pins. Such a number of pins means the dialog is slow to build. 
+        Regular net pins are always shown.
+      </p>
+
+      <p>
+        <i><a name="gravity"></a>Gravity</i> 
+        when enabled will snap the cursor box to the nearest shape edge or vertex. 
+        The <i>Range</i> field determines how far an object edge can be from the current 
+        cursor position for gravity to take effect. Gravity works for all shapes and 
+        also the bounding boxes of instances at the current level of hierarchy only. 
+        <i>Depth</i> sets how far down the physical hierarchy shapes will be snapped 
+        to; for example with depth=0 only shapes in the current cell will be snapped 
+        to. Note that the grid snapping as set in the <a href="#display_preferences">display 
+        options dialog</a> overrides gravity snapping: in other words gravity snapping 
+        will snap to the nearest coordinate on grid if an object's edge is not on 
+        grid.
+      </p>
+
+      <p>
+        <i>Gravity snap to</i> sets whether 
+        snapping to edges or vertices is carried out when gravity is on.
+      </p>
+
+      <p>
+        <i>Gravity to Path</i> sets whether 
+        gravity snaps to path centrelines or edges.
+      </p>
+
+      <p>
+        <i>Display Cursor Box</i> shows 
+        a small square box in the LSW cursor colour, centered on the cursor, which 
+        is snapped to the current snap grid, or snapped to the nearest edge within 
+        gravity distance if gravity is on.
+      </p>
+
+      <p>
+        <i>Cross Cursor</i> when checked 
+        will display the cursor as a crosshair rather than as a box.
+      </p>
+
+      <p>
+        <i>Dynamic Highlight</i> 
+        highlights the object that will be selected if the left mouse button is clicked 
+        in Full selection mode. In Edge selection mode it highlights selectable edges, 
+        and in Vertex selection mode it highlights selectable vertices.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>
+        View-&gt;Pan/Zoom Options...<a name="panzoom_options"></a>
+      </h4>
+
+      <p align="center"><img src="images/panZoomOptions.png" width="301" height="195" alt="PanZoom"></p>
+
+      <p>
+        Displays the pan / zoom options 
+        dialog. <i>Zoom in %</i> sets the percentage that a zoom in changes the current 
+        magnification. For example 200% zooms in by a factor of two. <i>Zoom out %</i> 
+        sets the percentage that a zoom out changes the current magnification. For 
+        example 50% zooms out by a factor of two. <i>Pan %</i> sets the percentage 
+        of screen width that is panned by the pan keys (left/right/up/down keys). 
+        For example 50% means shift the viewport half of the current viewport width. 
+        <i>Fit %</i> sets the percentage of screen width occupied by the current cellview's 
+        bounding box when a Fit command is issued. It can be in the range 10%-100%.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

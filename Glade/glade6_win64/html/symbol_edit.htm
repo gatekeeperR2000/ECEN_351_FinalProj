@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+  <!-- #BeginEditable "doctitle" -->
+  <title>Glade Reference Manual</title>
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+  <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+      <!-- #BeginEditable "text" -->
+
+      <h2><font face="Arial, Helvetica, sans-serif">Symbol Editing</font></h2>
+
+      <p>&nbsp;</p>
+
+      <p>
+        The Symbol Editor is activated when a cellView with viewType 'symbol' is opened. The viewType 
+        is set when the cellView is created, for example using the 
+        <a href="file_menu.htm" target="file_new">File-&gt;New Cell</a> command. The Symbol Editor is 
+        used to edit symbol views used in schematics; a symbol is a device such as a mos transistor, 
+        logic gate or block. 
+      </p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Symbol requirements
+      </font></h4>
+
+      <ul>
+        <li>
+          Shapes on the layer 'device' which represent the object, for example a zigzag line for a resistor.
+        </li>
+        <li>
+          Shapes on the layer 'pin' to represent the object's pins. 
+          These shapes have net and pin information, giving the pin a name, a direction etc.
+        </li>
+        <li>
+          A shape on the 'boundary' layer to act as the selection box hotspot.
+        </li>
+        <li>
+          Labels. These can be further broken down into:
+        </li>
+      </ul>
+      <ol>
+        <ul>
+          <li>
+            instance name labels
+            <ul>
+              <li>
+                These are labels typically of the form [@instName] using <a href="#NLPsyntax">NLP expression syntax</a>. 
+                They are created on the 'annotate' 'drawing7' layer/purpose. They are of type 'NLPLabel'.
+              </li>
+            </ul>
+          </li>
+          <li>
+            cell name labels
+            <ul>
+              <li>
+                These are labels typically of the form [@cellName] using <a href="#NLPsyntax">NLP expression syntax</a>. 
+                They are created on the 'annotate' 'drawing4' layer/purpose. They are of type 'NLPLabel'.
+              </li>
+            </ul>
+          </li>
+          <li>
+            device property labels
+            <ul>
+              <li>
+                These are labels e.g. [@l:l=%:l=0.13u] using <a href="#NLPsyntax">NLP expression syntax</a>. They are 
+                created on the 'annotate' 'drawing' layer/purpose. They are of type 'NLPLabel'.
+              </li>
+            </ul>
+          </li>
+          <li>
+            pin instance labels
+            <ul>
+              <li>
+                These are labels typically of the form [@pinName] using <a href="#NLPsyntax">NLP expression syntax</a>. 
+                They are created on the 'annotate' 'drawing8' layer/purpose. They are of type 'NLPLabel'.
+              </li>
+            </ul>
+          </li>
+          <li>Other labels
+            <ul>
+              <li>These are of type 'normal' and can be used to represent any other textual information required.
+
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </ol>
+      <ul>
+        <li>
+          Properties on the cellView.
+          <ul>
+            <li>
+              &quot;type&quot; (string property), which can be one of the following:
+              <ul>
+                <li>
+                  &quot;mos&quot; : a MOS device (NMOS, PMOS etc) corresponding to a Spice M element.
+                </li>
+                <li>
+                  &quot;res&quot; : a resistor, corresponding to a Spice R element.
+                </li>
+                <li>
+                  &quot;cap&quot; : a capacitor, corresponding to a SPice C element.
+                </li>
+                <li>
+                  &quot;ind&quot; : an inductor, corresponding to a Spice L element.
+                </li>
+                <li>
+                  &quot;dio&quot; : a diode, corresponding to a Spice D element.
+                </li>
+                <li>
+                  &quot;bjt&quot; : a bipolar device (NPN, PNP) corresponding to a Spice Q element.
+                </li>
+                <li>
+                  &quot;fet&quot; : a jfet, corresponding to a Spice J element.
+                </li>
+                <li>
+                  &quot;pin&quot; : a pin. The device is a pin instance.
+                </li>
+              </ul>
+            </li>
+            <li>
+              If no &quot;type&quot; property is present, then the device is assumed to be a hierarchical element 
+              corresponding to a Spice X subcircuit call.
+            </li>
+            <li>
+              &quot;NLPDeviceFormat&quot; (string property).
+            </li>
+            
+            <ul>  
+              <li>
+                The <a href="#NLPDeviceFormat">NLPDeviceFormat</a> property is used to tell the CDL netlister how to netlist a device.
+              </li>
+              <li>
+                See below for <a href="#NLPsyntax">NLP expression syntax</a>.
+              </li>
+            </ul>
+            <li>&quot;defaultParams&quot; (string property) : default parameters that the netlister will add after pins in a .subckt header. 
+              For example &quot;wn=0.8u ln=0.13u&quot;</li>
+            <li>
+              &quot;modelName&quot; (string property) : a device model name associated with this device.      
+            </li>
+          </ul>
+        </li>
+        <li>Grid. Symbol pins and the boundary rectangle should be on the intended grid (the schematic snap grid). It is 
+          strongly recommended that you use a grid of 0.0625 as used in the 'example' library. Failure to do this will 
+          mean the autorouter will not be able to route to the offgrid pins.
+        </li>
+      </ul>
+
+      <p>&nbsp;</p>
+
+      <h4>Creating a symbol.</h4>
+
+      <p>
+        Use the Symbol editor Create menu commands to create shapes on the device layer to represent the symbol 
+        (line, rectangle, polygon, circle, ellipse, arc).
+      </p>
+      <p>
+        Next, create pins using the Create-&gt;Pin menu command. Pins require a name (e.g a mos transistor gate 
+        pin may be called 'G'), a use (e.g. SIGNAL, POWER etc) and a direction. A pin shape is automatically 
+        created according to the direction - NONE generates a square pin, INPUT, OUTPUT and INOUT create 
+        polygonal pins.
+      </p>
+      <p>
+        Then add device labels using the Create-&gt;Label menu command.
+      </p>
+      <p>
+        Add device properties to the symbol by using the Edit-&gt;Properties-&gt;Query CellView menu command 
+        or 'Q' bindkey to add or modify the symbol's properties.
+      </p>
+      <p>
+        Lastly a selection rectangle can be added by setting the current layer to 'boundary' in the LSW and 
+        creating a rectangle that covers the instance. This will then be used for dynamic highlighting and 
+        selection, rather than the instance bounding box (which can be extended due to labels etc).</p>
+      <p>It is advisable to run the Check-&gt;Check CellView command. This will clean up the symbol connectivity 
+        by deleting any non-shape nets, deleting non-shape pins and setting any shapes with net info to be pins.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><a name="NLPsyntax"></a>NLP Expressions</h4>
+
+      <p>
+        NLP (Net List Property) expressions are used for labels with type NLPLabel, and for the  netlister.  
+      </p>
+      <p>
+        An NLP expression is enclosed in square brackets. An NLP label can consist of multiple expressions 
+        and other text, which is copied literally. Expressions must be delimited by whitespace, but note 
+        that whitespace is allowed inside expressions. To add special characters into an NLP expression, 
+        use backquoting. Currently \[ (left square bracket), \] (right square bracket), \s (space) and \n 
+        (newline) are supported.
+      </p>
+      <p>
+        The @ character in an NLP expression indicates the following name will be evaluated as an attribute or property.
+      </p>
+
+      <blockquote>
+        <p>
+          <em>@instName</em> evaluates to the name of the instance.
+        </p>
+        <p>
+          <em>@libName</em> evaluates to the name of the instance library.
+        </p>
+        <p>
+          <em>@cellName</em> evaluates to the name of the instance cell master.
+        </p>
+        <p>
+          <em>@viewName</em> evaluates to the name of the instance master view.
+        </p>
+        <p>
+          <em>@modelName</em> evaluates to the value of the instance master property 'modelName'.
+        </p>
+        <p>
+          <em>@elementNum</em> evaluates to the number of the instance, if the instance name is of 
+          the form &lt;char&gt;&lt;digits&gt; (which is the default for instance creation)
+        </p>
+        <p>
+          <em>@propertyName</em> evaluates to the value of the property 'propertyName' on the 
+          instance. If the property is not found on the instance, then the instance master is 
+          checked for the property.
+        </p>
+      </blockquote>
+
+      <p>
+        An expression can have formatting information about the property. The syntax is 
+        [@&lt;propName&gt;:&lt;prefix&gt;%&lt;suffix&gt;:&lt;defaultValue&gt;]. For example 
+        [@w:w=%u] with an instance property w of value 1.0 will evaluate to 'w=1.0u'. 
+        [@w:w=%u:w=2.2u] with no property w will evaluate to 'w=2.2u'. If a defaultValue 
+        is not given then the property will evaluate to a null string.
+      </p>
+
+      <p>
+        A linefeed character can be inserted into a NLP label expression using the sequence \n. For example:
+      </p>
+
+      <blockquote>
+        <p>[@w:w=%u\n:] [@l:l=%u\n:]</p>
+      </blockquote>
+
+      <p>
+        If the instance has properties w, l e.g. w=6u l=1u then the resulting display will be:
+      </p>
+      <blockquote>
+        <p>w=6u <br>
+          l=6u </p>
+      </blockquote>
+
+      <p>
+        An expression can have pin information using the '|' character followed by a pin name.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><a name="NLPDeviceFormat"></a>NLPDeviceFormat properties</h4>
+
+      <p>
+        A property with the name NLPDeviceFormat is used to control the schematic netlister. 
+        A NLPDeviceFormat property on a symbol is a whitespace delimited sequence:
+      </p>
+      <blockquote>
+        <p><em>&lt;string&gt; &lt;expression&gt; &lt;string&gt; &lt;expression&gt;...</em></p>
+      </blockquote>
+
+      <p>
+        &lt;string&gt; is an arbitrary string of zero or more characters. Backquoted characters 
+        \n, \[, \] are treated as a newline character and literal [ or ].
+      </p>
+
+      <p>
+        &lt;expression&gt; is a <a href="#NLPsyntax">NLP expression</a> enclosed in square brackets 
+        and can be of the form:
+      </p>
+
+      <blockquote>
+        <p><em>[|&lt;pinName&gt;:%:&lt;default&gt;] </em></p>
+      </blockquote>
+
+      <p>
+        where &lt;pinName&gt; is replaced by the name of the net connecting to the instance pin of 
+        an instance of the symbol. If the instance does not have an instance pin, then the expression 
+        evaluates to &lt;default&gt;.
+      </p>
+
+      <blockquote>
+        <p><em>[@&lt;propName&gt;:&lt;string&gt;%:&lt;default&gt;] </em></p>
+      </blockquote>
+
+      <p>
+        as for NLP labels.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p
+      >For example a nmos device symbol may have a NLPDeviceFormat property of
+    </p>
+
+      <blockquote>
+        <p><em>M[@elementNum] [|D:%] [|G:%] [|S:%] [|B:%:gnd!] [@modelName] [@w:w=%u:w=2.0u] [@l:l=%u:l=0.13u] [@m:m=%]</em></p>
+      </blockquote>
+
+      <p>
+        A nmos extraction PCell may have a NLPDeviceFormat property of
+      </p>
+
+      <blockquote>
+        <p><em>M[@elementNum] [|D:%] [|G:%] [|S:%] [|B:%] [@modelName] [@w:w=%u] [@l:l=%u] [@as:as=%] [@ps:ps=%] [@ad:ad=%] [@pd:pd=%]</em></p>
+      </blockquote>
+
+      <p>
+        Note that for extraction, default values are not useful, as the PCell itself should provide default values.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

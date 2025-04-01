@@ -1,0 +1,543 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --><font face="Arial, Helvetica, sans-serif"><font face="Arial">
+<h2 align="left"><font face="Arial"><b>Change Log</b> 2011</font></h2> </font>
+<p align="left"><font face="Arial" size="4"><strong>Contents for 2010 can be found <a 
+href="changes_2010.htm">here</a></strong> </font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.32 release on 02/01/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+dbGetHierOverlaps python binding fixed </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+chop path command undo/redo was not working correctly when chopped paths were 
+maintained as paths </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.33 release on 07/01/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+use of geomLabel() followed by geomConnect() could cause a crash </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+extracting resistors/capacitors without a pcell for the master caused a crash 
+</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.34 release on 22/01/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+running a drc/extract script and calling drcUnInit() twice in a session caused a 
+crash. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+geomOverlaps() did not report enclosed shapes with coincident edges </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+The first time a pcell is placed, its property list was not being shown in the 
+'create instance' dialog. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.35 release on 24/02/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+stretch of a polygon with abutting edges no longer reports it as 
+self-intersecting. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Creating a via in non-OpenGL mode caused a crash. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.36 release on 10/03/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+loading a library with boolean properties dropped any properties after the first 
+boolean prop. </font></p>
+<p align="left"><font face="Arial">- 
+inst::dbCreateInstPin() now returns a pointer to the instPin if successful, or 
+NULL if it fails. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+fixed a crash that could occur when parsing DEF component SOURCE types. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+DEF export of special nets did not set SHAPE type of vias. </font></p>
+<p align="left"><font face="Arial">- New 
+option to disable label rotation. </font></p>
+<p align="left"><font face="Arial">- New 
+option to display top level labels only. </font></p>
+<p align="left"><font face="Arial">- Display 
+Options form made tabbed as it was getting too large. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.37 release on 22/03/2011</strong> </font></p>
+<p align="left"><font face="Arial">- 
+preliminary tiled boolean&nbsp; operations. Allows boolean ops on larger designs 
+where memory usage can be too great. Tile size can be user specified, or 
+automatically determined for low memory usage. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+in the above, data in lower hierarchy was not transformed. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.38 release on&nbsp; 27/03/11</strong> 
+</font></p>
+<p align="left"><font face="Arial">- export 
+GDS2 dialog allows control of exported layers </font></p>
+<p align="left"><font face="Arial">- speedup 
+for import GDS2 for some pathological cases </font></p>
+<p align="left"><font face="Arial">- Limit 
+the reporting of unbound instances during import gds2 </font></p>
+<p align="left"><font face="Arial">- 
+Significant bugfix for import DEF. In 5.7 DEF was dropping wire segments, this 
+is now fixed. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.39 release on 31/03/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Could not set system layers when importing a techfile </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Accept reading GDS files with database units below 1nm. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.40 release on 01/04/2011</strong> </font></p>
+<p align="left"><font face="Arial">- Tiled 
+booleans takes a tile manufacturing grid, so all tiles are rounded up to the 
+next grid multiple. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+auto tiling was slow due to a bug. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.41 release on 13/04/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Export GDS2 by layer did not write instances. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.42 release on 17/04/2011</strong> </font></p>
+<p align="left"><font face="Arial">- Mainly 
+a springcleaning version, with Qt version updated to 4.7.2 and compiled using VS 
+2010 for both 32 and 64 bit versions. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.43 release on 20/04/2011</strong> </font></p>
+<p align="left"><font face="Arial">- Tiled 
+boolean ops are multithreaded for speedup in performance. </font></p>
+<p align="left"><font face="Arial">- 
+Improvements to the heap cached memory managers to make them (a) thread safe and 
+(b) release memory back to the OS as necessary. At least on Windows... 
+</font></p>
+<p align="left"><font face="Arial">- 
+Edit-&gt;Compare Cells now runs in tiled mode to handle larger designs. 
+</font></p>
+<p align="left"><font face="Arial">- Export 
+GDS2 can control whether srefs are written for cells when 'All Cells' is not 
+used. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.44 release on 27/04/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Tiled boolean ops could crash on certain types of data. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Export Oasis would just hang since version 4.1.36 or thereabouts. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.45 release on 08/05/2011</strong> </font></p>
+<p align="left"><font face="Arial">- 
+path/polygon memory usage reduced. </font></p>
+<p align="left"><font face="Arial">- 
+cellView bounding boxes computed with text origins, rather than text bounding 
+boxes. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.46 release on 15/05/2011</strong> </font></p>
+<p align="left"><font face="Arial">- Import 
+GDS2 can convert 2 point paths to rectangles or H/VSegs. This can reduce memory 
+use for designs which use lots of 2 point paths for e.g. metal fill. </font></p>
+<p align="left"><font face="Arial">- Import 
+GDS dump text option now has file chooser to choose the text output file. 
+</font></p>
+<p align="left"><font face="Arial">- more 
+minor memory reductions. </font></p>
+<p align="left"><font face="Arial">- 
+bugfixes to clipping algorithm for tiled booleans. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.47 release on 19/05/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+tile clipping code improvements to handle 'awkward' polygons that cross tile 
+boundaries. </font></p>
+<p align="left"><font face="Arial">- 
+datatype field removed from query dialog. This had been redundant for a long 
+time. Some python calls are slightly different as a result (e.g. 
+dbCreatePath()). </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+importing two designs with similar hierarchy into two seperate libs could lead 
+to instances in lib2 with masters from lib 1 or vice versa. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.48 release on 20/05/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+badly formed paths could cause a crash in boolean operations. </font></p>
+<p align="left"><font face="Arial">- 
+varextend paths were not getting handled correctly, resulting in potential 
+differences in streamed out data. </font></p>
+<p align="left"><font face="Arial">- 
+colinear path code improvements. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.49 release on 24/05/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+potential crash reading a library </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+import GDS allows create of hseg/vseg objects, previously a warning was given 
+and a rectangle was created. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.50 release on 28/05/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+non-OpenGL display was incorrectly setting pen width for e.g. axes and grid, 
+resulting in Qt warnings about setting negative pen widths. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import DXF crashed if certain shapes were defined in the top cell. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Editing a system stipple pattern caused a crash. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+non-OpenGL display drew rectangles slightly incorrectly, and diffferently if 
+layer opacity was not 100%. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.51 release on 31/05/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+layer display order was not following layer priority attribute. Layer-purpose 
+pairs are now sorted accoring to priority. </font></p>
+<p align="left"><font face="Arial">- Library 
+browser can now sort in case-sensitive and case-insensitive modes. Use the 
+Library Browser View-&gt;Case Sensitive menu to toggle between modes. 
+</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.52 release on 10/06/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+shape::shapeToPoly() was missing cellView* arg </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+selecting a single shape (guiSelected::selectOne()) occasionally would hang. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+ui::compareCells() had incorrect count of # lpps for each cell due to changes 
+since version 4.1.45 </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.53 release on 13/06/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+hierarchy browser performance improved considerably. </font></p>
+<p align="left"><font face="Arial">- Added 
+option to automatically open GDS top cell(s) when importing GDS, and set it to 
+the default. </font></p>
+<p align="left"><font face="Arial">- Added 
+option to automatically open Oasis top cell(s) when importing Oasis, and set it 
+to the default. </font></p>
+<p align="left"><font face="Arial">- Added 
+option to automatically open GDS or Oasis files when they are double clicked on 
+in Windows, if file associations have been set. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.54 release on 18/06/2011</strong> </font></p>
+<p align="left"><font face="Arial">- Added 
+support for nondefault rules in LEF/DEF parsers. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+sometimes data was dropped on e.g. large P&amp;R designs. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.55 release on 19/06/2011</strong> </font></p>
+<p align="left"><font face="Arial">- 
+internal improvements in db </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.56 release on 25/06/2011</strong> </font></p>
+<p align="left"><font face="Arial">- Check 
+added to see if Oasis / GDS2 files are valid before reading. Else a crash could 
+occur. </font></p>
+<p align="left"><font face="Arial">- 
+improvements to display speed of polygons/paths. </font></p>
+<p align="left"><font face="Arial">- Loading 
+a LEF file without loading a techfile will now set up some fairly sensible 
+colours/fill patterns. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+ui().compareCells() ignores layers in cells to be compared that have 0 shapes in 
+both cells. Text labels are not considered as shapes. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.57 release on 30/06/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+OpenGL display on some variants of Linux failed to display dialog contents. 
+</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.58 release on 10/07/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Deleting objects could cause a crash due to some changes made in 4.1.55. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Various hierarchical search bugs fixed in dbGetHierOverlaps. dbHierObj moved 
+into seperate class files. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Crash occurred if a techfile layer function / spacing rule had an unknown layer 
+or purpose name. </font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Net tracer added. Trace from a net or from a text label. This is 
+preliminary and subject to improvements. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+querying an array and changing any of its attributes set its magnification to 0. 
+</font></p>
+<p align="left"><font face="Arial">- Added a 
+layer stack editor dialog to allow editing the connectivity of layers for net 
+tracing.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.59 release on 14/07/2011</strong> </font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Layer stack editor dialog added for setting up net tracer 
+connectivity. New construct added to techfile to support connectivity in an 
+improved manner. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Querying an array's attributes and changing anything set the array magnification 
+to 0. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+GDS files with version of 7 was being classed as a non-GDS file.. </font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Net tracer speedups. Still more can be done though. </font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Added the capability to dim non-hilighted shapes. Makes it easier 
+to see net tracer result. </font></p>
+<p align="left"><font face="Arial">- 
+Improvements to the hierarchical search engine. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.60 release on 22/07/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+status bar does not resize when a progress dialog is displayed any more. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+DEF nets using TAPERRULE were not displayed with the nondefault rule. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Polygons with solid fill pattern were showing as outlined only. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Extraction would sometimes report shorts and relabel labelled nets. Now shorts 
+are only reported when two differently labelled nets touch. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Export LEF/DEF with nondefault rules caused a crash. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.61 release on 30/07/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Progress bar text was getting overwritten occasionally during net tracing. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+In non-OpenGL mode, highlight data was not getting transformed correctly. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+In non-OpenGL mode, the canvas was not always drawn until the mouse was moved in 
+the canvas after a redraw. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+In non-OpenGL mode, the cursor box was not drawn after a redraw until the cursor 
+was moved. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.62 release on 16/08/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Create path defaulted to a width of -0.001um if layer MINWIDTH not specified in 
+techfile. Changed this to a default of 0.1um. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+DEF HSEG/VSEG default widths were sometimes set incorrectly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Changing height of multiple labels simultaneously caused the height to be 
+rounded down to an integer value. </font></p>
+<p align="left"><font face="Arial">- Export 
+CDL can write device XY origin. </font></p>
+<p align="left"><font face="Arial">- Export 
+CDL can write device parameters in microns or metres. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.63 release on 18/08/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Double clicking a cell in the hierarchy browser resulted in problems editing the 
+cell. </font></p>
+<p align="left"><font face="Arial">- 
+enhancement: LVS supported for MOS-only netlists. </font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Rotate dialog now allows rotating shapes by any angle. 
+Rectangles/Squares will be converted to polygons on rotation. Note that 
+instances cannot be rotated and a warning will be given. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.64 release on 20/08/2011</strong> </font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Query dialog now has a 'delete' button that will delete the current 
+queried object. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Fixed a bug eliminating colinear points in paths while reading GDS. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Fixed a bug drawing paths with colinear points that coould cause a crash. 
+</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.65 release on 01/09/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Search dialog crashed in recent builds. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Polygonal obstructions in DEF not scaled correctly. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Pcell instances in extracted view for resistors/capacitors/diodes/bjts were not 
+getting attributes added correctly. </font></p>
+<p align="left"><font face="Arial">- 
+enhancement: LVS errors in nets now highlight the nets in the extracted view. 
+</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Preliminary support in LVS for resistors, capacitors, diodes and 
+BJTs. </font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"></font></p>
+<p align="left"><font face="Arial"><strong>Version 4.1.66 release on 03/09/2011</strong> </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+GDS file version 610 not recognised as a valid GDS version. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import Laker did not set layer colour for some techfiles. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import Laker did not assign linestyles for some techfiles. </font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import Laker did not assign stream layer/datatype for some techfiles. 
+</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Crash if e.g. Toggle System Layers clicked in LSW when no cellView open. 
+</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.67 release on 25/09/2011</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Edit-&gt;Bias... command caused a crash</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: ui module api documentation for bias/scale/compare 
+updated</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Stretch command did not work correctly in Edit In Place mode.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Selected move capability added. If the "Allow immediate 
+move/stretch of selected objects" option in the display preferences dialog is 
+checked, left clicking on a selected object and dragging will move/stratch the 
+object or edge/vertex.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+selected vertices were not displayed correctly.</font></p>
+<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.68 release on 01/10/2011</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+LEF files sometimes not recognised if VERSION line had e.g. a tab between the 
+keyword and the version number.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: DEF shorts tracer. Preliminary version detects shorts between nets 
+in a design at the top level.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+DEF VIA definitions were sometimes read incorrectly.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+dump GDS to text was reporting some constructs as unknown, even though they were 
+being read correctly.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.69 release on 15/10/2011</strong></font></p>
+<p align="left"><font face="Arial">- 
+enhancement: support via rotation in DEF nets</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Query dialog rounded some entries to integers</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+nondefault rule nets were not set at nondefault width. They are now set 
+correctly and TAPER will taper nondefault widths to default widths for the 
+current wire only.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Export DEF&nbsp;broke due to some changes made in 4.1.68</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Export DEF now writes nondefault rules and TAPER / TAPERRULE 
+attributes.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: a few DEF reader speedups.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.70 release on 22/10/2011</strong></font></p>
+<p align="left"><font face="Arial">- 
+enhancement: to viaInsts to support viaInsts from another library. Required for 
+hierarchical DEF reading.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: to viaInst drawing to support hierarchical DEF viewing</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: added Tools-&gt;Add Marker and Tools-&gt;Clear Markers 
+commands.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+DEF NET/SPECIALNET RECT and POLYGON constructs now supported.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+flushpoint DEF SPECIALNETs were being dropped. SPECIALNETS now all imported as 
+Hseg/Vsegs</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+export DEF did not always write routing in the correct nets/specialnets 
+section</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+Import LEF checked for the presence of a valid VERSION and rejected the file if 
+it was missing. Some IP vendors don't write the lef VERSION, sigh, so this check 
+has been removed.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.71 release on 12/11/2011</strong></font></p>
+<p align="left"><font face="Arial">- net 
+tracer now correctly writes connectivity across the hierarchy</font></p>
+<p align="left"><font face="Arial">- 
+improvements to dbGetHierOverlaps for arrays.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.72 release on 22/11/2011</strong></font></p>
+<p align="left"><font face="Arial">- Cadence 
+techfile import handles missing system layer purposes.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+exporting GDS of a single layer exported all child cells. Now only child cells 
+containing insts or shapes on the layer are exported.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: LSW highlights active layers in viewport.</font></p>
+<p align="left"><font face="Arial">- 
+enhancement: Right mouse button action can be switched in the display options 
+form.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.73 release on 26/11/2011</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+move of std cells with 'snap to cell rows' did not snap during move 
+operation.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+In non-OpenGL mode, dimming layer colors e.g. during edit in place also dimmed 
+the LSW colors.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.74 release on 06/12/2011</strong></font></p>
+<p align="left"><font face="Arial">- bugfix: 
+crash occasionally while building tile data for tiled booleans / compare 
+cells.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+copying pcells did not copy their property list.</font></p>
+<p align="left"><font face="Arial">- bugfix: 
+changing a pcell inst's origin/orientation etc. made it lose its property 
+list.</font></p>
+<p align="left"><font face="Arial">-bugfix: 
+changing a pcell's parameters would delete the pcell instance master; if the 
+same master was used elsewhere, all its other instances were deleted! This has 
+been fixed.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.75 release on 19/12/2011</strong></font></p>
+<p align="left"><font face="Arial">- Qt 
+version 4.8.0 update</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial"><strong>Version 4.1.76 release on 22/12/2011</strong></font></p>
+<p align="left"><font face="Arial">- Fixed a 
+bug where the help system did not recognise certain local file paths for 
+GLADE_HOME</font></p></font><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

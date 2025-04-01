@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left">
+      <img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>
+        <font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+      
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">Introduction</font></h2>
+
+      <p>
+        Glade (<b>G</b>ds, <b>L</b>ef <b>A</b>nd <b>D</b>ef <b>E</b>ditor) is a freeware IC layout 
+        editor capable of reading GDS2, OASIS, LEF and DEF. It can load and display large design 
+        databases with its fast, lightweight object-oriented database - for example load a 677,000 
+        net / 482,000 special net / 1,210,000 instance DEF design in 880Mb memory in 72 seconds on 
+        a 3GHz PC. Or load a 270Mb GDS2 file in 5 seconds. Glade uses the 
+        <a href="http://www.trolltech.com">Qt </a>cross-platform GUI toolkit, and uses 
+        <a href="http://www.opengl.org">OpenGL</a> for graphics when available to give superior 
+        display speeds, falling back to software rendering only if you do not have suitable hardware. 
+        Glade is currently ported to Windows, Linux and Solaris, so unlike most commercial IC viewer/
+        editors it will run on your PC laptop. Glade is extendable using <a href="http://www.python.org">Python 
+        </a>scripting, allowing access to the database and gui via <a href="http://www.swig.org">SWIG</a> 
+        wrapping of C++ functions.
+      </p>
+
+      <p align="center"><img src="images/glade.png" width="1776" height="1407"></p>
+
+      <p>
+        Features include:
+      </p>
+
+      <ul>
+        <li>
+          Fast, hardware accelerated OpenGL graphics - e.g. 100,000 instance / 100,000 net design 
+          redrawn in under 0.1 seconds!
+        <li>
+          Import GDS2, OASIS, DXF, LEF,  DEF, Verilog, EDIF and CDL
+        <li>
+          Export GDS2, OASIS, DXF, LEF, DEF, Verilog, EDIF and CDL
+        <li>
+          Import Cadence display.drf / techfiles directly
+        <li>
+          Import Silicon Canvas Laker display.dsp / techfiles directly
+        <li>
+          Load/Save imported libraries in compact binary format
+        <li>
+          Save/Discard edits
+        <li>
+          Screen dump in PNG or JPEG image format
+        <li>
+          Print screen to printer
+        <li>
+          Window fit, pan, pan to point, zoom, zoom selected, redraw
+        <li>
+          Edit and display hierarchy from 0 to an unlimited number of levels
+        <li>
+          Edit in place with editable cell data shown bright against a dimmed background
+        <li>
+          Descend/Ascend hierarchy
+        <li>
+          Flatten and create new cell commands
+        <li>
+          Create instance, label, rectangle, path, polygon, via, pin commands with interactive 
+          display during enter
+        <li>
+          Automatic path shielding
+        <li>
+          Interactive &amp; permanent rulers (90/45/any angle) with no limit on the number of rulers drawn
+        <li>
+          Cursor box (like Virtuoso) or crosswire snaps to nearest object within specified distance and hierarchy 
+          level(s) and/or grid
+        <li>
+          Dynamic highlighting of selectable 
+          objects
+        <li>
+          Layer select window for setting layer visibility/selectability, current layer, choosing layer colour and 
+          transparency, fill pattern, line style/width and setting layer names.
+        <li>
+          Layers, colours, fill patterns etc. easily set up graphically including system colours like background 
+          colour, grids, axes etc
+        <li>
+          Powerful selection and querying commands (full / by edge / by vertex)
+        <li>
+          Select whole nets (i.e. all net shapes) or just single objects
+        <li>
+          Dim unselected items with variable dimming
+        <li>
+          All database objects can have any number of user-defined properties
+        <li>
+          Move, Copy, Delete, Rotate selected objects
+        <li>
+          Stretch edges or vertices, add vertex to polygon
+        <li>
+          Convert shapes to polygons.
+        <li>
+          Reshape polygons.
+        <li>
+          Boolean operations - AND, OR,  NOT, XOR, merge (single layer OR), sizing, selection, convert to trapezoids 
+          etc.
+        <li>
+          Compare two designs using tile-based  boolean XOR on one or all layers, flat or hierarchical.
+        <li>
+          Merge selected shapes
+        <li>
+          Chop a rectangle from a shape
+        <li>
+          Align objects by bounding box or by layer
+        <li>
+          Sizing and biassing of design data.
+        <li>
+          Search for instance, cell, net or labels.
+        <li>
+          Highlight nets either as shapes, minimum spanning tree or Steiner tree.
+        <li>
+          Create Floorplan command to initialise design size and create rows for cell placement
+        <li>
+          Create Rows, Groups and Regions
+        <li>
+          Place standard cells using the Capo placer
+        <li>
+          Global routing for congestion analysis
+        <li>
+          Import design ECO's
+        <li>
+          Add/Delete filler (or in fact  any type of ) cells
+        <li>
+          Replace views (e.g. switch abstract views for layout views prior to exporting GDS2)
+        <li>
+          Browse library with open/delete/rename/copy cells
+        <li>
+          Design hierarchy browser allows fast design navigation
+        <li>
+          Online HTML help
+        <li>
+          User definable bindkeys
+        <li>
+          Python scripting language with full ui and database access.
+        <li>
+          Parameterised Cells (PCells) implemented using Python scripting.
+        <li>
+          Fast DRC checking with interactive  error viewer
+        <li>
+          Fast and powerful connectivity and device extraction.
+        <li>
+          LVS using Gemini engine to compare  extracted netlists vs. Spice/CDL netlists
+        <li>
+          Read Calibre or Hercules error  results to step through and fix errors
+        <li>
+          Switchable Tab or MDI style window mode
+        <li>
+          User programmable menus and bindkeys
+        <li>
+          Net tracing from shapes or text labels
+        <li>
+          DEF short tracer
+        </li> 
+      </ul>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop  Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

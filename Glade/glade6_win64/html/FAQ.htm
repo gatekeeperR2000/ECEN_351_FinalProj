@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">Glade Reference
+
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">Glade FAQ</font></h2>
+
+      <h4><font face="Arial, Helvetica, sans-serif">Why is it called Glade?</font></h4>
+      <p>
+        Simple - Gds Lef And Def Editor. 
+        Ok, so it now supports a few more formats.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">Should I use the OpenGL version?</font></h4>
+
+      <p>
+        If you're running on Windows, the answer is most likely 
+        yes, unless you've got a very old  graphics card. On Linux the situation 
+        is a bit more complex but again if you've got a fairly recent 
+        graphics card and have installed the vendor's drivers AND set Linux to use 3D graphics 
+        acceleration, then you should be OK.   The big advantage of 
+        OpenGL is hardware accelerated graphics and support for transparency of layers.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">How do I turn off OpenGL?</font></h4>
+
+      <p>
+        Set the environment variable GLADE_USE_OPENGL 
+        to NO. On Windows, right click on My Computer and then select the 'Properties' 
+        item. In the dialog choose the 'Advanced' tab, then press the 'Environment 
+        Variables' button. Click 'New' on the User Variables section and enter the 
+        variable name and value as above. On Linux, set in your .bashrc
+      </p>
+      <p>
+        export GLADE_USE_OPENGL=NO
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">I have a design kit with a Cadence 
+        technology file / display resources file, can Glade read that directly?</font></h4>
+
+      <p>
+        In Version 4.0.6 and later it now 
+        can. Be aware that there are some limitations - it can only handle stipple 
+        patterns that are 32x32, 16x16, 8x8 or 4x4 bits; other sizes are rounded up 
+        to the next power of two. It may also fail to read hand-edited display.drf 
+        and techfiles, so make sure you've dumped the techfile from a Cadence technology 
+        library.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        I have a design kit with a Silicon Canvas technology file / display resources file, 
+        can Glade read that directly?
+      </font></h4>
+
+      <p>
+        In Version 4.0.42 and later it 
+        now can. Be aware that there are some limitations - it can only handle stipple 
+        patterns that are 32x32, 16x16, 8x8 or 4x4 bits; other sizes are rounded up 
+        to the next power of two. It may also fail to read hand-edited display.drf 
+        and techfiles, so make sure you've dumped the techfile from a Laker technology 
+        library.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Why don't you support non-orthogonal AREFs?
+      </font></h4>
+
+      <p>
+        The GDS2 spec is sometimes interpreted  as allowing non-orthogonal arrays (arrays where 
+        the row spacing and/or column spacings contain both X and Y components). Cadence, who 
+        'own' the GDS2 spec, do not allow non-orthogonal arrays in their translators. So to 
+        maintain interoperability, Glade does not either.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Why don't you support SREF/AREF magnification?
+      </font></h4>
+
+      <p>
+        As of version 4.1.2 Glade now supports 
+        magnification. With some trickery this comes at no memory or runtime overhead. 
+        However, it is almost never really needed and other tools may not support 
+        it, so beware.
+      </p>
+
+      <p>&nbsp;</p>
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Why don't you support all-angle SREF/AREF placement?
+      </font></h4>
+
+      <p>
+        Most people don't require it, Cadence Virtuoso does not 
+        support it. In theory it can be supported at no overhead but will require a lot 
+        of changes to the UI and careful testing. So if you really, really need it let 
+        us know and it could be added to the roadmap.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Why don't you support feature XYZ?
+      </font></h4>
+
+      <p>
+        Well, maybe we don't know about it. Mail support@peardrop.co.uk and tell us what you 
+        need. Nothing is promised, but your request may be (a) interesting or (b) simple to 
+        implement. So feel free to suggest.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        I've found a bug.
+      </font></h4>
+
+      <p>
+        Please email support@peardrop.co.uk and 
+        describe the problem as accurately as you can. Again we cannot promise to 
+        fix all bugs but so far all the reproducible ones that have been reported have 
+        been fixed. A small test case, if possible, greatly increases the chance 
+        of reproducing the problem.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        I tried to run LVS but get an error.
+      </font></h4>
+
+      <p>
+        You need to run extraction on a layout view before running LVS in order to identify 
+        devices (MOS, resistor etc) and generate connectivity info. 
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Can you read Calibre/Hercules/Assura/PVS DRC rules?
+      </font></h4>
+
+      <p>
+        No, sorry, not directly; the formats are proprietary. You may be able to translate rules 
+        into Glade's format, but there is no guarantee that all rules are supported. If there is 
+        a type of rule you need that is missing, let us know and it may be possible to implement it.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Do you support Cadence Skill / Cadence PCells?
+      </font></h4>
+
+      <p>
+        No, sorry, Skill is a Cadence proprietary language based on Lisp which was popular in the 1980's. 
+        Glade uses Python which is not proprietary and there are plenty of tools to help write and debug 
+        Python code. Cadence PCells can only be evaluated by Virtuoso, so they cannot be used outside the 
+        Cadence environment.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        I get a message 'Failed to import ui module - please check your PYTHONPATH environment variable!'
+      </font></h4>
+
+      <p>
+        Glade tries to import the Python wrappers for the gui and database from a file called ui.py, which 
+        is located in the distribution directory. Python import uses a search path, set in the environment 
+        variable PYTHONPATH, to look for this file (and python PCells, if you use them). See the platform 
+        installation instructions on how to set an environment variable.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">   
+        I'm trying to wire a schematic but nothing happens when I try and add a wire
+      </font></h4>
+
+      <p>
+        Check if you are using the autorouter (the 'route' option if you display the Create Wire dialog / 
+        hit F3 key). The autorouter obeys the schematic snap grid (Display Options-&gt;Snap Grid); if the 
+        pins of components in your schematic are not on the snap grid then it is unable to route. For 
+        the example library, a snap grid of 0.0625 (inch) is recommended.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">  
+        I netlist a design using  File-&gt;Export CDL... but all instances in the netlist are missing the 
+        connecting nets.
+      </font></h4>
+
+      <p>
+        The netlister uses the NLPDeviceFormat property on symbol instances when netlisting a schematic to 
+        format the entries in the netlist for each instance. If this is incorrect or missing, the netlist 
+        will have the instance name but the nets will be missing. See the section on symbol creation for 
+        the syntax and usage of the NLPDeviceFormat property.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+    <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">dbObj class</font></h2>
+
+    <p>
+      The dbObj class is the base class of Glade database objects (it is derived from a lower level memory 
+      allocation class which caches objects, but the user need not be concerned about that). A dbObj is 
+      never created directly. Most access to dbObjs is at the derived class level.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_Type  dbObj::objType()
+    </font></h4>
+
+    <p>
+      Get the type of the object.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * dbObj::objName()
+    </font></h4>
+
+    <p>
+      Get the print name of the object, e.g. &quot;POLYGON&quot;.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool .dbObj::isInst()
+    </font></h4>
+
+    <p>
+      Returns true if the object is an inst or an array.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool dbObj::isShape()
+    </font></h4>
+
+    <p>
+      Returns true if the object is a shape.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool dbObj::isViaInst()
+    </font></h4>
+
+    <p>
+      Returns true if the object is a viaInst.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool dbObj::isSeg()
+    </font></h4>
+
+    <p>
+      Returns true if the object is a segment of some shape.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool val = obj.isVertex()
+    </font></h4>
+
+    <p>
+      Returns true if the object is a vertex of some shape.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::setGroup(group *grp)
+    </font></h4>
+
+    <p>
+      Sets the object's group
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      group * dbObj::group()
+    </font></h4>
+
+    <p>
+      If the object is a member of a group, this returns the group, else returns null.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbAddProp(const char *propName, const char *propVal)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbAddProp(const char *propName, int propVal)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbAddProp(const char *propName, double propVal)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbAddProp(const char *propName, bool propVal)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbAddProp(const char *propName, db_Orient propVal)
+    </font></h4>
+
+    <p>
+      Add a property to a dbObject of the given type. If the property given by <em>propName</em> 
+      already exists, its value is updated to <em>propVal</em>.
+    </p>
+
+    <h4>&nbsp;</h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbReplaceProp(const char *propName, const char *propVal)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbReplaceProp(const char *propName, int propVal)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbReplaceProp(const char *propName, double propVal)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbReplaceProp(const char *propName, bool propVal)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObj::dbReplaceProp(const char *propName, db_Orient propVal)
+    </font></h4>
+
+    <p>
+      Replace an existing property with one with a new value of a given type.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * dbObj::dbGetStringProp(const char *name)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t dbObj::dbGetIntProp(const char *name)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t dbObj::dbGetFloatProp(const char *name)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool dbObj::dbGetBoolProp(const char *name)
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_Orient dbObj::dbGetOrientProp(const char *name)
+    </font></h4>
+
+    <p>
+      Get a property of a specified type by name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      propType dbObj::dbFindPropType(const char *name)
+    </font></h4>
+
+    <p>
+      Finds the type of a named property. propType is an enum with names stringType, integerType, 
+      floatType, booleanType, orientType.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+     obj.getPropList()
+    </font></h4>
+
+    <p>
+      Gets the object's property list as a Python list of <em>prop</em> objects. A <em>prop</em> 
+      object is a helper class with the following accessor methods:
+    </p>
+
+    <blockquote>
+      <p><strong>char * prop::name()</strong></p>
+      <p>
+        Returns the name of the property.
+      </p>
+
+      <p><strong>prop::setName(char *name)</strong></p>
+      <p>
+        Sets the name of the property.
+      </p>
+
+      <p><strong>propType prop::type()</strong></p>
+      <p>
+        Returns the type of the property. This can be stringType, booleanType, integerType, floatType, listType or unknownType.
+      </p>
+
+      <p><strong>prop::setType(propType type)</strong></p>
+      <p>
+        Sets the type of the property.
+      </p>
+
+      <p><strong>union prop::data()</strong></p>
+      <p>
+        Returns the property value. 
+        <li>value.s is the string data</li>
+        <li>value.i the integer data</li>
+        <li>value,f the float data</li>
+        <li>value.b the boolean data</li>
+      </p>
+
+      <p><strong>prop::setData(value)</strong></p>
+      <p>Sets the property value. The function is overloaded for the common propType types.</p>
+    </blockquote>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool dbObj::dbDeleteProp(char *name)
+    </font></h4>
+
+    <p>
+      Delete a property by name. Returns true if successful.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h2>
+      Casting a dbObj to a derived class
+    </h2>
+
+    <p>
+      In Python, there is no means of casting a base class to a derived class. So for example if you 
+      use the cellView::dbGetOverlaps() function to get a list of objects, these are returned as dbObj 
+      class. So to facilitate conversion, there are a set of functions that convert a dbObj to a 
+      derived class e.g. rectangle.
+    </p>
+
+    <p><a href="arc.htm">arc</a> * dbObj::toArc()</p>
+    <p><a href="array.htm">array</a> * dbObj::toArray()</p>
+    <p><a href="cell.htm">cell</a>  * dbObj::toCell()</p>
+    <p><a href="cellView.htm">cellView</a> * dbObj::toCellView()</p>
+    <p><a href="ellipse.htm">ellipse</a> * dbObj::toEllipse()</p>
+    <p><a href="group.htm">group</a> * dbObj::toGroup()</p>
+    <p><a href="HSeg.htm">HSeg</a> * dbObj::toHSeg()</p>
+    <p><a href="inst.htm">inst</a> * dbObj::toInst()</p>
+    <p><a href="label.htm">labe</a>l * dbObj::toLabel()</p>
+    <p><a href="line.htm">line</a>* dbObj::toLine()</p>
+    <p><a href="path.htm">path</a> * dbObj::toPath()</p>
+    <p><a href="polygon.htm">polygon</a> * dbObj::toPolygon()</p>
+    <p><a href="rectangle.htm">rectangle</a> * dbObj::toRectangle()</p>
+    <p><a href="segment.htm">segment</a> * dbObj::toSegment()</p>
+    <p><a href="shape.htm">shape</a> s = dbObj::toShape()</p>
+    <p><a href="viaInst.htm">viaInst</a> * dbObj::toViaInst()</p>
+    <p><a href="view.htm">view</a> * dbObj::toView()</p>
+    <p><a href="vertex.htm">vertex</a> * dbObj::.toVertex()</p>
+    <p><a href="VSeg.htm">VSeg</a> * dbObj::toVSeg()></p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      Getting bounding box coordinates. Note that you can only get the bounding box coordinates of shapes, insts or viaInsts.
+    </p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t  dbObj::left();
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t  dbObj::bottom();
+    </font></h4>
+
+    <p><h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t  dbObj::right();
+    </font></h4>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t  dbObj::top();font>
+    </font></h4>
+
+    <p>
+      Gets the specified bounding box coordinate.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

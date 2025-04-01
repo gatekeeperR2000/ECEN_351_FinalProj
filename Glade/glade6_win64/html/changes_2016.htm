@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" -->
+<h2 align="left"><font face="Arial, Helvetica, sans-serif"><font face="Arial"><b>Change Log</b> 2016 </font></font></h2>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><font face="Arial" size="4"><strong>Contents for 2015 can be found <a href="changes_2015.htm">here</a> </strong></font></font></p>
+<p align="left">&nbsp;</p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>Version 4.4.57 release on 23/01/2016</strong></font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- Added geomContains function. The first argument is e.g a via layer, the second a metal layer. If the metal contains the via, th metal shape(s) are returned.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">&nbsp;</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>Version 4.4.58 release on 31/01/2016</strong> </font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">-enhancement: instance names added to mosfets in extracted view</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: improved w/l extraction of MOS devices. Gates with jogs can still cause incorrect results however.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: if multiple pCells with the same parameters were placed, shapes in the pCells were being duplicated according to the number of placements.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">&nbsp;</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>Version 4.4.59 release on 07/02/2016</strong> </font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: Closing a window that was&nbsp; not the current window gave unpredicable results.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- enhancement: Flatten command can now be applied to selected instance(s) at the current level or at all levels for the instance(s).</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: fixed a bug in stretch where paths with diagonal segments at the start or end were not getting stretched correctly.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: bounding boxes of polygons and paths sometimes could be invalid, resulting them not being drawn.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: chop and stretch commands were not working correctly on non-openGL gui.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: gemini crashed when comparing parameters.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- enhancement: instance names added as text for other devicesin extracted view</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">&nbsp;</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>Version 4.4.60 release on 14/02/2016</strong> </font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: postprocessing of holes for non-manhattan shapes could produce incorrect results.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: handling extraction of devices with e.g. octagonal holes could sometimes result in wrong connectivity.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- change: Diodes when extracted now have terminals &#39;A&#39; and &#39;C&#39;. Previously they had been &#39;A&#39; and &#39;K&#39;.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: extracting layout with shapes with lots of holes caused connectivity problems sometimes.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: fixed a mainly irritating issue that the cursor changed to a horizontal splitter one when entering a lib browser dockwindow or a hier browser dockwindow.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: fixed a heap corruption bug in gemini which affected bipolar transistors only.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">&nbsp;</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>Version 4.4.61 release on 21/02/2016</strong></font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- enhancement: improved extraction accuracy of MOS devices W/L</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: rename cell/cellView in library browser did not replace cell correctly and did not mark cells containg instances of that cell as edited.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: PCell submaster properties preserved if properties set on submaster before dbCreatePCell called.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: improved example resistor extraction PCell to use L/W from submaster rather than calculate them in the PCell code, which was not always correct.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- enhancement: updated moscap_ex.py and polyres_ex.py extraction pcells to work with extracted area/perim and w/l/nbends</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">&nbsp;</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>Version 4.4.62 release on 25/02/2016</strong> </font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- enhancement: geomSize now supports a third optional parameter flags:</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">out_layer = geomSize(in_layer, size, flags)</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">If not specified it behaves as before i.e. all edges are sized by <em>size</em>. If <em>flags</em> are set to &#39;vertical&#39; then sizing is only done in the vertical direction, if <em>flags</em> are set to &#39;horizontal&#39; then sizing is only done in the horizontal direction.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: For Linux systems, fixed a bug where OpenGL use could cause glade to quit or crash.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">&nbsp;</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>Version 4.4.63 release on 02/03/2016</strong> </font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: reading a cellView with connectivity&nbsp;from a library did not set up instPins correctly</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: If an existing extracted view was present, running extraction would append to an existing cell. Now any existing extracted view is deleted and a new extracted view created.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: Qt bug generated 2 keyevents when a bindkey pressed; Qt version updated from 5.4.1 to 5.5.1 to fix this. Affects e.g. the &#39;move&#39; and &#39;copy&#39; commands where &#39;x&#39; flips the moving object in X, &#39;y&#39; flips it in Y, and &#39;r&#39; rotates it 90 degrees. Also if the techfile is set up correctly, &#39;u&#39; and &#39;d&#39; switch up/down a layer when entering a path.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: moving to Qt 5.5 broke reading library layer colors for non-openGL display.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: copying instances/arrays with magnification other than 1 set magnifiction of copied instance to 1.0</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: geomExtension rule failed for non-simple edge extensions.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">&nbsp;</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif" pbzloc="27"><strong>Version 4.4.64 release on 13/03/2016</strong> </font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: handle resistor extraction with &gt; 1 bend correctly</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- enhancement: Do not save extracted views or PCell submasters with cellnames &gt; 256 chars to library on disk. Avoids problems with long filenames.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: fixed pres_ex.py resistor extraction PCell to handle resistors with non-integer number of squares and/or &gt; 1 bend.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: Import GDS2 dump as text wrote incorrect library create/modified date to dump file.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">&nbsp;</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong pbzloc="25">Version 4.4.65 release on 27/03/2016</strong> </font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- enhancement: Added -ng command line option which allows running in non-graphics mode.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: Tiled boolean operations performance improvements - up to10x faster.</font></p>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif">- bugfix: Verify-&gt;Compare Cells / ui::compareCells2 also has similar performance improvements.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><strong>Version 4.4.66 release on 03/04/2016</strong></font></p>
+<p align="left"><font face="Arial, Helvetica, sans-serif">- enhancement: added geomGetNon90() and geomGetNon45() layer processing functions.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.67 release on 10/04/2016</strong></p>
+<p align="left">- bugfix: Deleting or renaming cells/cellViews from library browser when selected could cause a crash</p>
+<p align="left">- enhancement: Added geomGetRectangles() and geomGetPolygons() layer processing functions.</p>
+<p align="left">- enhancement: Added operator [] for path/polygon/line objects to get vertices by index, e.g. Point p0 = poly[0] </p>
+<p align="left">- bugfix: geomAllowedWidths() could give false errors. Now handles 'vertical' and 'horizontal' flags.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.68 release on 17/04/2016</strong></p>
+<p align="left">- enhancement: Added geomAllowedEncs() for allowed enclosure rules.</p>
+<p align="left">- bugfix: Fixed a bug in geom... selection functions which resulted in the output layer not correctly representing holes, if present.</p>
+<p align="left">- bugfix: Fixed a cursor position bug in OpenGL mode when editing in place.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.69 release on 01/05/2016</strong></p>
+<p align="left">- enhancement: first implementation of Fastcap integration for 3D capacitance extraction.</p>
+<p align="left">- bugfix: fixed some irritating Qt messages on OSX.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.70 release on 15/05/2016</strong></p>
+<p align="left">- bugfix: fixed a bug that caused an exception if minimum spanning tree of connectivity flightlines had duplicate points.</p>
+<p align="left">- bugfix: draw connectivity fixed for extracted views. Connectivity flightlines drawn to centre of pcell instances.</p>
+<p align="left">- enhancement: draw connectivity now draws instPins.</p>
+<p align="left">- bugfix: closing a lib now refreshes the hierarchy browser and the net browser.</p>
+<p align="left">- enhancement: extractParasitic3D() now takes 2 required arguments: the substrate net name and the reference ground name.</p>
+<p align="left">- enhancement: geomReportMarkers() function added. Takes a single boolean parameter (default true). If set to false, then DRC error markers are NOT reported for DRC functions that do not explicitly specify an error message. This allows them to be used to generate output layers without creating a violation marker.</p>
+<p align="left">- enhancement: Drawing a path will snap to instPins on starting and ending points; path net will be set to the instPin net and path width to the smaller side of the InstPin shape. Note that this will only work if the layer function of the instPin layer is set to ROUTING.</p>
+<p align="left">- bugfix: entering paths during edit in place gave incorrect coordinates.</p>
+<p align="left">- enhancement: First version of netlist driven layout enabled. Use the Tools-&gt;Netlist View to open a netlist window, then File-&gt;Open to read a Spice/CDL netlist. Privided PCells for the device names are loaded into a library, then you can create layout from the netlist, and cross-probe between netlist and layout views with full connectivity information. Full documentation will be added in the near future.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.71 release on 29/05/2016</strong></p>
+<p align="left">- bugfix: Netlist View-&gt;Gen Layout caused a seg fault if no library open.</p>
+<p align="left">- enhancement: hierarchy browser now has toolTips for items</p>
+<p align="left">- -enhancement: Import GDS2 can convert via cells to via objects. Warning: this can take a while for designs with a lot of via instances.</p>
+<p align="left"><font face="Arial, Helvetica, sans-serif">&nbsp;</font>- enhancement: Vias have orientation tab like instances.</p>
+<p align="left">- bugfix: reshape cmd in non-OpenGL mode created bad start point.</p>
+<p align="left">- bugfix: reshape undo failed.</p>
+<p align="left">- enhancement: if a lib is opened, check any existing libs for unbound instances and rebind them (to the new lib) if so.</p>
+<p align="left">- enhancement: PCell submasters now created in current cell's lib, not in the PCell master's lib if different.</p>
+<p align="left">- enhancement: File-&gt;New Lib now allows loading a techfile to the new lib, or attaching to an existing library's techfile to the new lib.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.72 release on 17/06/2016</strong></p>
+<p align="left">- bugfix: With gravity on, shift-LMB click to add an instance to the selected set didn't add. </p>
+<p align="left">- bugfix: Edit-&gt;Align had inconsistent behaviour. Now modes all work as intended.</p>
+<p align="left">- enhancement: toolbar/menu icons updated.</p>
+<p align="left">- enhancement: Added 'Link to Layout' menu in netlist view. Links a netlist to an existing layout view so that editing can be continued with cross-probing etc. between netlist and existing layout view.</p>
+<p align="left">- bugfix: sometimes Create Instance dialog was not seeding cellName correctly.</p>
+<p align="left">- enhancement: example nmos/pmos pcells now have origin set at centre of device. Makes it easier to flip/rotate instances of them.</p>
+<p align="left">- bugfix: opening a library set libName to library path, not library directory name.</p>
+<p align="left">- bugfix: Applying layer query dialog caused a crash.</p>
+<p align="left">- enhancement: Saving a library cleans up lib by deleting unused PCell submasters.</p>
+<p align="left">- bugfix: Create Instance dialog does not show PCell submasters in cell name combo box.</p>
+<p align="left">- enhancement: show via origins if inst origins display set in display options form.</p>
+<p align="left">- enhancement: show via origins during Create Via...</p>
+<p align="left">- enhancement: show via name during Create Via...</p>
+<p align="left">- enhancement: Create Via dialog chooses net name using a combo box.</p>
+<p align="left">- enhancement: show PCell master name rather than submaster name if Display Master Names set in display options form.</p>
+<p align="left">- copy dialog now has Copy Net Info set as default.</p>
+<p align="left">- Edit-&gt;Set Net adds shape to net; previously this did not occur.</p>
+<p align="left">- bugfix: Fixed a crash when exporting techfile if the techfile layer height/thickness was set.</p>
+<p align="left">- bugfix: Stretching a MPP caused a crash.</p>
+<p align="left">- bugfix: Gemini was not handling netlists with e.g. l=0.7u. Now handles multiplier units.</p>
+<p align="left">- bugfix: Gemini sometimes reported incorrect terminal names for e.g. R, C devices.</p>
+<p align="left">- -bugfix: Gemini device error markers written to extracted view needed instance transforms applied.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.73 release on 10/07/2016</strong></p>
+<p align="left">- bugfix: Closing tab windows did not remove tabs.</p>
+<p align="left">- update to Qt 5.7.0 supporting Windows display scaling. LSW widgets now scale accordingly.</p>
+<p align="left">- bugfix: Stretching a MPP could sometimes cause a crash.</p>
+<p align="left">- bugfix: MPP contacts not drawn with e.g. crossed fill pattern.</p>
+<p align="left">- bugfix: Linux builds had some windowing issues.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.74 release on 31/07/2016</strong></p>
+<p align="left">- bugfix: selecting objects in non-OpenGL mode drew selected objects incorrectly.</p>
+<p align="left">- bugfix: Flattening hierarchical cells could sometimes drop data.</p>
+<p align="left">- bugfix: Fixed a bug drawing arrays at top level in non-opengl mode.</p>
+<p align="left">- bugfix: Fixed a crash when switching to tab mode windows.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.4.75 release on 07/08/2016</strong></p>
+<p align="left">- enhancement: When reading a second GDS2 file into a library, existing cells were appended by duplicates. Now existing cells are cleared before reading the duplicates.</p>
+<p align="left">- enhancement: Deleting a selected object using the Query Selected dialog displays next selected object attributes rather than cellView attributes.</p>
+<p align="left">- bugfix: python getEditCellView() binding had been disabled, this has now been reinstalled.</p>
+<p align="left">- bugfix: cellView python iterators (lppIterator, instIterator, netIterator, pinIterator), dbObjList iterator (dbObjIterator) and lpp iterator (objIterator) cleaned up/fixed and docs updated.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.0 release on 15/08/2016</strong></p>
+<p align="left">- internal database reworked for C++11.</p>
+<p align="left">- <strong>dbLpp</strong> class renamed to <strong>lpp</strong>. Your python scripts will need updating - sorry.</p>
+<p align="left">- python casting functions removed and dbObj functions added to replace, e.g. toShape(), toInst() etc.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.1 release on 04/09/2016</strong></p>
+<p align="left">- bugfix: copying a library cell with duplicate instance names could result in instance 'disappearing'.</p>
+<p align="left">- bugfix: flattening a cell to level flattened one level further.</p>
+<p align="left">- bugfix: create instance dialog did not remember previous cell name.</p>
+<p align="left">- bugfix: creating temporary files failed on Mac when started as an icon, which caused geom... commands to crash.</p>
+<p align="left">- enhancement: If an old format library is encountered, try and read it using pre-Qt5 stream format.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.2 release on 14/09/2016</strong></p>
+<p align="left">- bugfix: Gemini LVS could mismatch symmetrical circuits.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.3 release on 16/09/2016</strong></p>
+<p align="left">- bugfix: Fixed a bug introduced in 4.5.0 that caused e.g. merging/chopping rectangles to give an exception.</p>
+<p align="left">- bugfix: Querying a net and double clicking on an instPin caused a crash if the instPin had no port shapes.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.4 release on 23/09/2016</strong></p>
+<p align="left">- enhancement: added library browser Copy Cell menu command.</p>
+<p align="left">- bugfix: Copy Cell / Copy CellView now allows copying to a new library.</p>
+<p align="left">- bugfix: Creating a new lib with an attached techfile did not initialise vias/layers correctly.</p>
+<p align="left">- bugfix: Various bugfixes to the DXF reader.</p>
+<p align="left">- bugfix: Fixed a crash when closing a library via the library browser with the LSW open.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.5 release on 30/09/2016</strong></p>
+<p align="left">- bugfix: fixed a crash saving a library</p>
+<p align="left">- enhancement: create instance dialog now sets view name to valid view for the cell.</p>
+<p align="left">- bugfix: fixed a bug on some platforms that caused temporary files to be written to &quot;/&quot;.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.6 release on 09/10/2016</strong></p>
+<p align="left">- bugfix: fixed a potential crash in geomConnect() when thread finished early.</p>
+<p align="left">- bugfix: added further checks for valid tempfile directory in geomGetShapes().</p>
+<p align="left">- bugfix: Changing an array's attributes in the query dialog set the mag to 0.</p>
+<p align="left">- enhancement: improved error checking on query dialog entries.</p>
+<p align="left">- enhancement: context-specific menus added. </p>
+<p align="left">-bugfix: fixed a crash when using dynamic highlighting with mpps.</p>
+<p align="left">-enhancement: speed up connectivity checking by eliminating duplicate layer/via pairs in geomConnect()</p>
+<p align="left">- unspecified design rules now set to 0.0. So e.g. creating a path will start with a width of 0.0 if no minwidth for that layer is defined in the techfile, not -0.001.</p>
+<p align="left">- Create Inst in non-OpenGL mode showed inst origin incorrectly.</p>
+<p align="left">- Selecting a line object could fail.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.7 release on 16/10/2016</strong></p>
+<p align="left">- bugfix: Gemini would fail to match last parameter on a line if the file was in Windows (CR/LF) format rather than Linux/OSX (LF) format.</p>
+<p align="left">- bugfix: Glade could not always find Gemini executable.</p>
+<p align="left">- enhancement: Gemini reporting of property mismatches improved.</p>
+<p align="left">- bugfix: Windows build sometimes crashed on startup.</p>
+<p align="left">- enhancement: Export CDL now exports from the current view by default.</p>
+<p align="left">- enhancement: Create Instance allows rotation and flipping in X/Y during mouse movement ('r', 'x', 'y' bindkeys during move).</p>
+<p align="left">- enhancement: Parsing e.g. Spice netlist for generating layout from netlist uses whitespace regexp rather than just spaces.</p>
+<p align="left">- bugfix: Closing an open window with a query dialog open could cause a crash. Query dialog now closed when window closes.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.8 release on 23/10/2016</strong></p>
+<p align="left">- bugfix: repeat command when entering circle switched to ellipse on repeat.</p>
+<p align="left">- bugfix: crash in hierarchy browser if clicked on when no cellView open.</p>
+<p align="left">- bugfix: menus set for viewType rather than view name when opening or creating new cellViews. The default layout menus are used if no viewType is found.</p>
+<p align="left">- bugfix: some parameter values for e.g. resistors in Netlist-&gt;Generate Layout were not passed to pcell instances created.</p>
+<p align="left">- bugfix: Creating a path could reset e.g. path width on dialog when first point entered and in non-infix mode.</p>
+<p align="left">- bugfix: Create path in non-OpenGL mode got incorrect path width from techfile minWidth for layer.</p>
+<p align="left">- bugfix: Renaming a cellView to a new view name deleted existing views of the cell.</p>
+<p align="left">- bugfix: If GDS read into lib with units less than GDS units, print error. Fixed a hang in this case.</p>
+<p align="left">- enhancement: viewType can be set in library browser now.</p>
+<p align="left">- bugfix: flatten vias did not flatten correctly.</p>
+<p align="left">- bugfix: flatten hierarchy did not flatten correctly.</p>
+<p align="left">- bugfix: undo/redo after flatten not working correctly or could crash..</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.9 release on 25/10/2016</strong></p>
+<p align="left">- bugfix: Gemini local matching aborted on unmatched queue depth.</p>
+<p align="left">- bugfix: geomSpace now considers coincident edges a violation.</p>
+<p align="left">- bugfix: geomEnclose now considers coincident edges a violation.</p>
+<p align="left">- bugfix: Fixed a fundamental bug in Gemini that would cause false mismatches on some circuits.</p>
+<p align="left">- enhancement: Generate Layout from netlist handles inductors (L element in spice netlist).</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.10 release on 06/11/2016</strong></p>
+<p align="left">- bugfix: crash in Generate Layout if pcell eval failed.</p>
+<p align="left">- enhancement: added system layers for schematics/symbols</p>
+<p align="left">- preliminary support for symbol and schematic editing. </p>
+<p align="left">- bugfix: creating an instance did not add properties if inst master was not a pcell.</p>
+<p align="left">- enhancement: Generate Layout handles arbitrary parameters; parameter names matching pcell argument names will be written as name/value properties to the pcell instance.</p>
+<p align="left">- bugfix: Moving an instance with connectivity display enabled could cause a crash if instance had no instPin shapes.</p>
+<p align="left">- enhancement: Gemini aborts if a netlist is empty (no devices or nets).</p>
+<p align="left">- bugfix: irritating resize bug caused windows to slightly change zoom/pan when changing from one active window to another.</p>
+<p align="left">- bugfix: fixed an issue with tiled windows in MDI mode 'flickering' due to Qt bug.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.11 release on 11/11/2016</strong></p>
+<p align="left">- bugfix: tile with 4 windows had one window incorrect size.</p>
+<p align="left">- bugfix: Window-&gt;Close didn't close MDI window.</p>
+<p align="left">- enhancement: Import GDS2 allows choice for duplicate cells of same name: Overwrite (existing cell will be deleted), Ignore (existing cell will remain, new cell ignored) or Merge (New cell data merged into existing cell).</p>
+<p align="left">- enhancement: Initial schematic netlister. Supports expressions on stop list views to control netlisting format. </p>
+<p align="left">- bugfix: saving/loading design with multiple views for inst masters did not save viewname for master.</p>
+<p align="left">- bugfix: Create Instance in schematics defaulted to layout view. Now made symbol view.</p>
+<p align="left">- enhancement: Create Instance now uses combo box for view name, shows list of available views in library.</p>
+<p align="left">- enhancement: Label NLP format accepts text after '%' e.g. l=%u for a property of 0.13 displays l=0.13u</p>
+<p align="left">- enhancement: Schematic-&gt;Check renames instances according to master 'type' property, e.g. mos type devices are renames from I0... to M0...</p>
+<p align="left">- enhancement: Added marker browser/clear menus cmds for schematic check.</p>
+<p align="left">- enhancement: Symbol labels rotate with orientation in schematic.</p>
+<p align="left">- bugfix: Copy an instance copies its properties.</p>
+<p align="left">- bugfix: Improved the Create Arc cmd so it is easier to use.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.12 release on 15/11/2016</strong></p>
+<p align="left">- enhancement: Export GDS2 supports cell mapping. Cells and instances with e.g. different view names but the same cell name can be mapped to a unique GDS2 STRUCT name (as GDS2 does not support cell/view names). Cell mapping can be saved and loaded from a map file.</p>
+<p align="left">- enhancement: Import GDS2 supports cell mapping. Cells and instances can be mapped from a GDS STRUCT name to a specific lib/cell/view name. Cell mapping can be saved and loaded from a map file.</p>
+<p align="left">- bugfix: fixed a crash if world view window open, but no design window open.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.13 release on 20/11/2016</strong></p>
+<p align="left">- bugfix: Create Label in schematic view caused a crash</p>
+<p align="left">- enhancement: Query Dialog now allows setting net name / pin name / pin direction for a shape. Also allows setting the shape as a pin shape.</p>
+<p align="left">- enhancement: Hierarchical netlister now working.</p>
+<p align="left">- enhancement: Schematic check / connectivity extraction improvements.</p>
+<p align="left">- enhancement: allowed net browser to be used in symbol editor.</p>
+<p align="left">- bugfix: Copy cellView did not copy instance properties.</p>
+<p align="left">- enhancement: Descend Hierarchy command dialog implemented. Allows specifying different view to descend into, and option to open a new window for cellView.</p>
+<p align="left">- bugfix: hierarical netlister outputted multiple .subckt definitions of same cell.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.14 release on 25/11/2016</strong></p>
+<p align="left">- bugfix: schematic connectivity extraction sometimes generated false nets.</p>
+<p align="left">- enhancement: Schematic Create-&gt;Pin allows a list of pin names to be specified. As each pin is placed, its name is removed from the beginning of the list. The Create Pin dialog remains open until all pins have been placed.</p>
+<p align="left">- bugfix: schematic instance names were being set during check, now set when instance is created accoring to inst master 'type' property.</p>
+<p align="left">- bugfix: crash if dumping a PNG from schematic editor or symbol editor when in OpenGL mode.</p>
+<p align="left">- enhancement: prettified label display for schematic and symbol editor for rotated labels/instances with labels.</p>
+<p align="left">- bugfix: Generate Layout allows case-insensitive scale factors e.g. u / U, k / K. Also now supports n / N.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.15 release on 04/12/2016</strong></p>
+<p align="left">- bugfix: fixed a memory heap error that could occur when reading geom... temp files with net info. Typically it caused Glade to give a Windows popup 'Glade.exe has stopped working'.</p>
+<p align="left">- bugfix: fixed a bug drawing moving labels in schematic/symbol editors.</p>
+<p align="left">- bugfix: Symbol editor Check-&gt;Check Current CellView deletes any nets without pin shapes in order to clean up symbols that have been copied, and rebuilds pin/net/shape connectivity.</p>
+<p align="left">- bugfix: Symbol/Schematic editor text bbox display vs text label incorrect.</p>
+<p align="left">- enhancement: hierarchical schematic netlister supports newlines (\n) and backquoted brackets (\[, \]) in NLPDeviceFormat expressions.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.16 release on 11/12/2016</strong></p>
+<p align="left">- enhancement: auto addition of solder dots on wire start/end points in schematic editor.</p>
+<p align="left">- enhancement: get top level subcircuit pin order from its symbol NLPDeviceFormat property, if a symbol view exists.</p>
+<p align="left">- bugfix: fixed a potential crash when displaying net connectivity flightlines.</p>
+<p align="left">- bugfix: fixed a crash if close window menu cmd given with no windows open.</p>
+<p align="left">-enhancement: added 'abut' flag for geomSpace() checks to turn on/off checking for abutting edges as errors.</p>
+<p align="left">- enhancement: added Edit-&gt;Properties menu with Object Properties (query selected object(s)) or CellView Properties (query the cellView's properties).</p>
+<p align="left">- bugfix: Changing a property name in Query dialog did not change it.</p>
+<p align="left">- bugfix: Creating the first wire in schematic caused a crash</p>
+<p align="left">- enhancement: Added Create-&gt;Create CellView to schematic editor to create a symbol view from a schematic.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.17 release on 18/12/2016</strong></p>
+<p align="left">- enhancement: symbols can now have a rectangle defined on the 'boundary' 'drawing' layer. This rectangle will be used as the selection rectangle for dynamic highlight and selection in the schematic editor.</p>
+<p align="left">- bugfix: fixed a bug when using non-infix mode commands with a modifier key (ctrl or shift), which would result in the command not completing on a mouse click.</p>
+<p align="left">- bugfix: Changing an instance orientation during Create Instance didn't change the orientation displayed.</p>
+<p align="left">- enhancement: ui.CDLFlatten() reads both *.global and .global keywords for global net declaration. It must still be given before any subcircuit declarations though.</p>
+<p align="left">- enhancement: Hierarchy browser will descend into a schematic if one exists when displaying a schematic hierarchy, else a symbol view.</p>
+<p align="left">- enhancement: Hierarchy browser will select all instances of a cell if viewing cell hierarchy (rather than instance hierarchy)</p>
+<p align="left">- bugfix: GDS import/export ignores empty lines in mapfile.</p>
+<p align="left">- bugfix: import/export GDS with mapfile could crash if map table had empty entry.</p>
+<p align="left">- enhancement: Flat CDL netlister enhanced to look for a property 'modelName' on the extracted PCell master, and if found, use that as the device modelname rather than the cell name.</p>
+<p align="left">- bugfix: fixed a bug where Create Instance dialog was getting duplicate cell names.</p>
+<p align="left">- bugfix: fixed a bug where Create Instance dialog was not updating default PCell properties when view name was changed.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.18 release on 23/12/2016</strong></p>
+<p align="left">- bugfix: copying a label failed to copy its type, resulting in the copied label being a 'normal' label.</p>
+<p align="left">- enhancement: Schematic Check-&gt;CellView writes a property 'lastExtracted' to the schematic. And Export Netlist now checks for this property, and if it doesn't exist, or if the lastExtracted date/time is less than the schematic's last modified date/time, then an error is given and the netlist will not be written.</p>
+<p align="left">- enhancement: Schematic Check-&gt;CellView checks for duplicate instance names.</p>
+<p align="left">- bugfix: Copying e.g. a symbol did not copy pin shape connectivity, resulting in shapes having net info but no longer being pins.</p>
+<p align="left">- enhancement: Exporting a hierarchical netlist checks the top level cellView to see if it has any pins; if not, then no .subckt preamble/postamble is written.</p>
+<p align="left">- enhancement: added control of axes to schematic/symbols, separately from layout axes.</p>
+<p align="left">- enhancement: For schematics, when creating an instance of a symbol the instance properties are found by copying the symbol master's properties as defined by its labels with NLP expressions (which must have a default value). The property is created with the name/value of the default in the expression. FOr example a label on a mos symbol of the form [@w:w=%u:w=2.2u] will create a string property w with value &quot;2.2u&quot;.</p>
+<p align="left">- enhancement: File-&gt;Export SVG command implemented for schematic/symbol editors. Dumps an SVG image of the display to a file. SVG (Scalable Vector Graphics) is, as its name implies, a vector format and so the image can be scaled without lines becoming 'fuzzy' due to pixel limitations of non-vector formats such as PNG, JPEG. SVG files can be viewed in most web browsers.</p>
+<p align="left">- enhancement: Property list editor for Create Instance and Query dialogs has been updated. Now  allows adding, deleting and editing  properties directly in the dialog.</p>
+<p align="left">- enhancement: Property list editor does basic type checking of values against property type and highlights errors.</p>
+<p align="left">- enhancement: Creating a wire in schematics will terminate wire if a subsequent click is on another wire, or on a pin.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.5.19 release on 30/12/2016</strong></p>
+<p align="left">- bugfix: Number of items selected shown in Query dialog sometimes did not reset to 0 if nothing selected.</p>
+<p align="left">- bugfix: When query dialog open and property or net tab displayed, keep that tab as the current tab when selecting other objects.</p>
+<p align="left">- bugfix: Symbol editor Check-&gt;Current CellView did not clean up pin shapes for net correctly.</p>
+<p align="left">- bugfix: Schematic editor Check-&gt;Current CellView did not clean up instance name table correctly.</p>
+<p align="left">- bugfix: Export SVG did not set viewBox to current zoom window.</p>
+<p align="left">- enhancement: Library browser Copy Cell and Copy CellView now allow hierarchical copying of cells.</p>
+<p align="left">- bugfix: Copying cellViews preserves pin/net shape info.</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+  <!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

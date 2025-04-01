@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+  <!-- #BeginEditable "doctitle" -->
+      <title>Glade Reference Manual</title>
+    <style type="text/css">
+    body,td,th {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+    <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+</head>
+<body bgcolor="#FFFFFF">
+
+<div align="left">
+  <img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif">
+    <b><font size="4">
+      Glade Reference
+    </font></b>
+  </font></p>
+  <hr>
+  <!-- #BeginEditable "text" -->
+  
+    <h2><font face="Arial, Helvetica, sans-serif">
+      Getting Started
+    </font></h2>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      Follow the instructions in the README file in the installation package - it may help to set the GLADE_HOME and optionally the LD_LIBRARY_PATH and PYTHONPATH environment variables.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      Start Glade either by clicking on the icon (Windows/Mac) or by typing <i>glade</i> at the command line (Unix / Linux).
+    </font></p>
+
+    <p></p>
+
+    <p><font face="Arial">
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif"><b>Command line options</b>                     
+    </font></p>
+    
+    <p><font face="Arial, Helvetica, sans-serif">        
+        From&nbsp;the command line, Glade can be invoked with a number of command line options:
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">glade [-ng] [ -nobasic ] [-library libname ] [-libName libname [-tech techfile] [[-map gdsmapfile] -drf displayfile -tf cdstechfile] [-gds gdsfile ] | [[-gdsout_viewlist ] -gdsout gdsfile ] |[ [-oasisout_viewlist] -oasis oasisfile ] | [-oasisout oasisfile ] | [-dxf dxffile] | [-lef leffile -def deffile ] | [ -defout cellname deffile ] | [-edif ediffile ] [ -dspf dspffile ]] [-cell cellname] [-script pythonfile] [-h] [-v]
+    </font></p>
+    
+    <p><font face="Arial">-<b>ng</b>: run in non-graphics mode. 
+      Note that this is really only meaningful with the -script option, 
+      and any python script must NOT call any gui functions e.g getEditCellView(), 
+      else an exception  will occur.
+    </font></p>
+
+    <p><font face="Arial"><b>-nobasic</b>: Do not load the basic library automatically on startup.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-library &lt;name&gt; </b>: a Glade library to open. If it does not already exist, it will be created. If the -library option is used, then options -libName, -tech, -gds, -oasis, -lef, -def, -dxf &nbsp;should not be used.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-libName &lt;name&gt; </b>: a library name to import GDS2 or LEF/DEF into. If not specified, the library name will be 'default'.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-tech &lt;filename&gt; </b>: An optional Glade technology file to read. Technology files define layer colors, line and fill patterns and are described in section 2, <a href="techFile.htm">Creating and using Technology Files</a>.
+    </font></p>
+
+    <p><b>-map &lt;filename&gt; </b>: An optional GDS2 layer map file, used only when the -drf option is specified. It must be specified before -drf.</p>
+    <p><b>-drf &lt;filename&gt; </b>: An optional Cadence display resource file. If specified, -tf must also be specified subsequently.</p>
+    <p><b>-tf &lt;filename&gt; </b>: An optional Cadence technology file (ascii Skill format). If specified, -drf must also be specified first.</p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+        <b>-gds &lt;filename&gt; </b>: the name of a GDS2 file to import. Multiple GDS2 files can be specified.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-gdsout_viewlist &lt;filename&gt; </b>: Set the export GDS switchlist, to pick which view is used for instance masters, in priority according to the order of the list. Must be specified before -gdsout. Default is "autoLayout abstract layout".
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-gdsout &lt;filename&gt; </b>: the name of a GDS2 file to export. The program will exit after the gds2 file is written.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+        <b>-oasis &lt;filename&gt; </b>: the name of an OASIS file to import. Multiple OASIS files can be specified.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-oasisout_viewlist &lt;filename&gt; </b>: Set the export OASIS switchlist, to pick which view is used for instance masters, in priority according to the order of the list. Must be specified before -oasisout. Default is "autoLayout abstract layout".
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+        <b>-oasisout &lt;filename&gt; </b>: the name of a OASIS file to export. The program will exit after the oasis file is written.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+        <b>-lef &lt;filename&gt; </b>: the name of a LEF file to import. Multiple LEF files can be imported, however duplicate definitions of SITEs and MACROs should be avoided as duplicate definitions will be ignored.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-def_view &lt;viewname&gt; </b>: Set the name of the view to import DEF into. The default is "autoLayout". Must come before -def.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-defin_switchlist</b>: Set the view switch list for resolving DEF instances. Instance views are picked in priority according to the order of the list. The default is "autoLayout abstract layout". Must come before -def.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-def_met_pins &lt;true | false&gt;</b>: If set to true, pin text for DEF pins is generated on the pin metal layer; else it is on the system TEXT layer. Must come before -def. The default is "true".
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+        <b>-def &lt;filename&gt; </b>: the name of a DEF file to import. A cell will be created according to the DEF DESIGN statement. Multiple DEF files can be specified.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-defout &lt;cellname&gt; &lt;filename&gt; </b>: the name of a DEF file to export. The DEF for the specified cell will be exported.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-dxf &lt;filename&gt; </b>: the name of a DXF file to import. The top level cell will be called 'top'.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-edif &lt;filename&gt; </b>: the name of an EDIF file to import.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-dspf &lt;filename&gt; </b>: the name of a DSPF file to import.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-cdl &lt;filename&gt; </b>: the name of a CDL file to import. Cells will be created with a view type of 'netlist' for each subcircuit in the CDL/Spice file.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+        <b>-cell &lt;name&gt; </b>: the name of a cell to open and display. Note that the viewtype is assumed to be "layout".
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      <b>-cellview &lt;cellname&gt; &lt;viewname&gt; </b>: the name of a cell and a view to open and display.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+        <b>-script &lt;filename&gt; </b>: the name of an optional Python script file to run at startup.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+        <b>-h</b>: prints usage info
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+        <b>-v</b>: prints the current version.
+    </font></p>
+      
+    <p></p>&nbsp;<p></p>
+
+    <p><b>Stylesheet file</b></p>
+
+    <p>
+      Glade will read a stylesheet file named glade.qss if found in the same directory as the executable. This can be used to e.g. 
+      set font size for the whole application, or for specific widgets. A guide to the file format is given in the <a href="http://doc.qt.io/qt-5/stylesheet-syntax.html">Qt documentation</a>.
+    </p>
+
+    <h4><font face="Arial, Helvetica, sans-serif">
+        Startup file
+    </font></h4>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      Glade can read a Python startup file if it exists, and execute the Python commands in it before processing command line arguments. 
+      The startup file must be called <i>.glade.py</i> (note the preceding dot) and must be in your home directory - for Windows users the 
+      environment variable HOME must be set to this directory. For Linux/Unix/OSX users the home directory is '~'.
+
+      A startup file is useful for loading e.g. a technology file, importing PCell libraries etc.
+    </font></p>
+
+    <h4><font face="Arial, Helvetica, sans-serif">Libraries, Cells, Views and CellViews
+    </font></h4>
+
+    <p><font face="Arial, Helvetica, sans-serif">Glade manages design data in <em>libraries</em>. 
+      You can create as many libraries as you need. For example, if you have a number of GDS2 
+      files, and want to use the design data in each in an overall top level design, 
+      you could import each GDS2 file into a unique library, then create a library to 
+      hold your top level&nbsp;cell which references cells from each of these 
+      libraries. A library is a collection of <em>cells</em>, where a cell is for 
+      example an inverter, a nand gate, a block or a complete top level design. Cells 
+      correspond to GDS2 STRUCT objects, or a DEF DESIGN, for example. A cell can have 
+      different <em>views</em>, a view being a representation of that cell. For 
+      example a view type of 'layout' is used to represent raw physical layout data 
+      e.g. the result of importing GDS2. A view type of 'abstract' is used for 
+      simplified layout data from importing LEF. A view type of 'extracted' is used 
+      when extracting layout connectivity and devices. The combination of a specific 
+      cell and a view for that cell is called a <em>cellView</em>.                                                                                                      
+      <p></p>
+      Views have a viewType, which determines which editor is used to open them. The viewType is specified 
+      when creating a cellView; an existing view's viewType can be set by right clicking on a view in the 
+      library browser.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">Before you can import design data, you need to create a library to hold that design data. 
+      You can use the New Library command for this, and then attach a technology file to the library using the Import Techfile command, 
+      or more simply just use the Import Techfile command, which allows you to enter a library name; the library will be created and the 
+      technology file attached to the library. As some people want to just read in a GDS file or LEF/DEF without bothering to create a 
+      technology file. the File-&gt;Import commands will generally allow you to create a library with a default technology file. 
+    </font></p>
+      
+    <p></p>
+
+    <h4><font face="Arial, Helvetica, sans-serif">
+      Importing a Technology File
+    </font></h4>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      When Glade starts, the main window will be displayed and you are now ready to import design data. If you are not reading an existing library, it is a good idea to import a technology file, which defines layer colours and fill patterns. However if you don't have a techfile, you can still import design data; layers will be created with random colours and empty fill patterns. The layer names will be Lxxx where xxx is the GDS2 or OASIS layer number, or the LEF layer name if importing LEF. If importing an existing techfile, use the <a href="file_menu.htm#import_tech">File-&gt;Techfile-&gt;Import </a>menu command or the Ctrl+L bindkey.Specify the name of the technology file, or use the directory browser (button with folder icon) to select your technology file. You also need to specify a library name you with to read technology file info into. This can be any name.
+    </font></p>
+
+    <p align="center">
+        <img src="images/importTech.png" width="299" height="165">
+    </p>
+
+    <p align="left">
+      Alternately, you can create a library using the File-&gt;New Lib command, which will allow you to specify the library name and techfile name (or no techfile).
+    </p>
+
+    <p align="center">
+      &nbsp;
+    </p>
+
+    <h4 align="left">
+      <font face="Arial, Helvetica, sans-serif">Reading design data
+    </font></h4>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      Next, read in the design data. For GDS2 data use the File-&gt;GDS2-&gt;Import GDS2 menu command or the Ctrl+I bindkey. This&nbsp;displays the <a href="file_menu.htm#import_gds2">Import GDS2</a> dialog. Enter your GDS2 file name as the input file, or use the directory browser (button with folder icon) to select a file. Other options on the form can be left as the defaults.
+    </font></p>
+
+    <p align="center">&nbsp;
+      <img border="0" hspace="0"  src="images/importGds2.png">
+    </p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      Alternatively you can import OASIS, DXF, EDIF, LEF and DEF or LEF and Verilog. 
+    </font></p>
+
+    <p>&nbsp;</p>
+
+    <h4>
+      <font face="Arial, Helvetica, sans-serif">Opening a design</font>
+    </h4>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      Once design data has been read in, you can then use the <a href="file_menu.htm#file_opencell">Open Cell</a> (ctrl-O) command which displays the library browser to select cells to display. You can quickly navigate to a cell name by typing the first letter of the name, or use the Edit-&gt;Find... command in the library browser. Note that Glade always reads a library called 'basic' which resides in the distribution directory.
+      The basic library is used for schematics and defines e.g. pins and power/ground symbols.
+    </font></p>
+
+    <p align="center">
+      <img src="images/libbrowser.png" width="195" height="1157">
+    </p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      Open a cell by expanding the cell to show its views, then double click on the view. Alternatively right clicking on the view and selecting 'Open' from the popup menu can be used.
+    </font></p>
+    
+    <p><font face="Arial, Helvetica, sans-serif">
+      Once a cell is open, you can zoom and pan using menu commands, toolbar buttons, or zoom in using the right mouse button to zoom into a particular area by holding down the right mouse button and dragging from lower left to upper right. Right mouse dragging from upper left to lower right zooms out. Zooming in/out can also be achieved by scrolling the mouse wheel, if you have one. You can pan (move the viewed area of the design) by using the arrow keys, or by clicking and holding down the middle mouse button and dragging the mouse.
+    </font></p>
+    
+    <p><font face="Arial, Helvetica, sans-serif">
+      Objects can be <a href="selection.htm">selected</a> using the left mouse button. Single clicking on an object will select one object, while holding down the left mouse button and dragging will select all objects enclosed by the drag area. Holding down the shift key while clicking on an object will add that object to the selected set; holding down the control key will remove the object from the selected set.
+    </font></p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      To control object selectability and visibility, use the layer select window (LSW) by choosing the Tools-&gt;LSW menu command. <a href="theLSW.htm">The LSW</a> is then displayed.
+    </font></p>
+      
+    <p align="center">
+      <img src="images/lsw.png" width="195" height="1158">
+    </p>
+
+    <p><font face="Arial, Helvetica, sans-serif">  
+      Each layer in the LSW has a colour box on the left, a layer name box in the centre, and a layer purpose box on the right. Left clicking on the colour box brings up the colour selection dialog which allows the layer's colour to be changed. Right clicking on the colour box displayed the stipple editor which allows the stipple pattern for the layer to be changed. Left clicking on the layer name box makes that layer the current drawing layer for 'Create' commands. Middle mouse clicking on the layer name box makes the layer unselectable, and grays out the layer name box. Right clicking on the layer name box makes the layer invisible, and grays out the colour box. Finally double clicking on the layer name box brings up a dialog which allows the layer name to be changed.</font>
+    </p>
+      
+    <p>&nbsp;</p>
+ 
+    <h4><font face="Arial, Helvetica, sans-serif">
+      Saving design libraries</font>
+    </h4>
+    
+    <p><font face="Arial, Helvetica, sans-serif">
+      If you want to save your work to disk, use the Save Library command. This will save the design to a directory, with subdirectories for the cells in the library. Each cell directory has a further subdirectory for views of that cell, and in these the actual layout data is stored as a binary file. The library also stores the technology file information (layer names, colours, stipples etc). 
+    </font></p>
+    
+    <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+    <!-- #EndEditable --> 
+
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a>
+    <font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font>
+  </p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font>
+  </p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

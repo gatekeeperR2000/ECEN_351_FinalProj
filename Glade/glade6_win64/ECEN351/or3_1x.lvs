@@ -1,0 +1,104 @@
+-----------------------------------------------------------------------------
+Gemini 2.7.4 (64 bit) Compiled at 11:36:22 on Jan  9 2025 by Visual C++ 13.4
+-----------------------------------------------------------------------------
+
+Gemini started at 09:30:50 on 22/02/2025
+
+Command line:
+	-w 10.000000 -g C:\Users\Randall\Desktop\glade6_win64\ECEN351\or3_1x.err -S C:\Users\Randall\Desktop\glade6_win64\ECEN351\or3_1x_extracted.cdl C:\Users\Randall\Desktop\glade6_win64\ECEN351\or3_1x.cdl_flat 
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : or3_1x_extracted.cdl
+-----------------------------------------------------------------------------
+  Number of devices :       11
+  Number of nets    :       9
+  Number of ports   :       4
+
+-----------------------------------------------------------------------------
+	Netlist summary before reduction : or3_1x.cdl_flat
+-----------------------------------------------------------------------------
+  Number of devices :       6
+  Number of nets    :       8
+  Number of ports   :       3
+
+
+-----------------------------------------------------------------------------
+	Netlist summary after reduction : 
+-----------------------------------------------------------------------------
+		or3_1x_extracted.cdl	  or3_1x.cdl_flat
+  Number of devices :       6			4
+  Number of nets    :       7			6
+  Number of ports   :       4			3
+
+
+The circuits are different.
+
+These circuits contain some symmetry (92% nodes not yet matched).
+Gemini will attempt to find a valid match for symmetrical nodes.
+M#M##A total of 2 transistor chains were out of order.
+
+There were no device property errors.
+3 (23%) matches were found by local matching.
+
+The following netlist mismatches occurred:
+
+-----------------------------------------------------------------------------
+	Netlist errors : or3_1x_extracted.cdl 
+-----------------------------------------------------------------------------
+4 NETS do not match:
+NET "vdd" 6 connections
+  P: (inst MM4) [g] A, B, C :: [s,d,sub] vdd, n6, vdd [l=0.6, w=10.8] (x=4.350, y=13.500)
+  P: (inst MM10) [g] n6 :: [s,d,sub] Y, vdd, vdd [l=0.6, w=3.6] (x=25.650, y=15.300)
+  P: (inst MM6) [g] C :: [s,d,sub] vss, n6, vdd [l=0.6, w=10.8] (x=9.150, y=13.500)
+  P: (inst MM4) [g] A, B, C :: [s,d,sub] vdd, n6, vdd [l=0.6, w=10.8] (x=4.350, y=13.500)
+  P: (inst MM10) [g] n6 :: [s,d,sub] Y, vdd, vdd [l=0.6, w=3.6] (x=25.650, y=15.300)
+  P: (inst MM5) [g] B :: [s,d,sub] vss, B, vdd [l=0.6, w=10.8] (x=6.750, y=13.500)
+NET "n6" 6 connections
+  N: (inst MM3) [g] n6 :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8] (x=25.650, y=2.100)
+  P: (inst MM10) [g] n6 :: [s,d,sub] Y, vdd, vdd [l=0.6, w=3.6] (x=25.650, y=15.300)
+  N: (inst MM2) [g] C :: [s,d,sub] vss, n6, vss [l=0.6, w=1.8] (x=9.150, y=2.100)
+  P: (inst MM4) [g] A, B, C :: [s,d,sub] vdd, n6, vdd [l=0.6, w=10.8] (x=4.350, y=13.500)
+  N: (inst MM1) [g] B :: [s,d,sub] vss, n6, vss [l=0.6, w=1.8] (x=6.750, y=2.100)
+  N: (inst MM0) [g] A :: [s,d,sub] vss, n6, vss [l=0.6, w=1.8] (x=4.350, y=2.100)
+NET "vss" 8 connections
+  N: (inst MM0) [g] A :: [s,d,sub] vss, n6, vss [l=0.6, w=1.8] (x=4.350, y=2.100)
+  N: (inst MM2) [g] C :: [s,d,sub] vss, n6, vss [l=0.6, w=1.8] (x=9.150, y=2.100)
+  N: (inst MM1) [g] B :: [s,d,sub] vss, n6, vss [l=0.6, w=1.8] (x=6.750, y=2.100)
+  N: (inst MM3) [g] n6 :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8] (x=25.650, y=2.100)
+  N: (inst MM2) [g] C :: [s,d,sub] vss, n6, vss [l=0.6, w=1.8] (x=9.150, y=2.100)
+  N: (inst MM3) [g] n6 :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8] (x=25.650, y=2.100)
+  N: (inst MM1) [g] B :: [s,d,sub] vss, n6, vss [l=0.6, w=1.8] (x=6.750, y=2.100)
+  N: (inst MM0) [g] A :: [s,d,sub] vss, n6, vss [l=0.6, w=1.8] (x=4.350, y=2.100)
+NET "Y" 2 connections
+  P: (inst MM10) [g] n6 :: [s,d,sub] Y, vdd, vdd [l=0.6, w=3.6] (x=25.650, y=15.300)
+  N: (inst MM3) [g] n6 :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8] (x=25.650, y=2.100)
+
+2 DEVICES do not match:
+DEVICE P: (inst MM10) [g] n6 :: [s,d,sub] Y, vdd, vdd [l=0.6, w=3.6] (x=25.650, y=15.300)
+DEVICE N: (inst MM3) [g] n6 :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8] (x=25.650, y=2.100)
+
+-----------------------------------------------------------------------------
+	Netlist errors : or3_1x.cdl_flat 
+-----------------------------------------------------------------------------
+3 NETS do not match:
+NET "vss" 6 connections
+  N: (inst M2) [g] B :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8]
+  N: (inst M1) [g] A :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8]
+  N: (inst M4) [g] C :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8]
+  N: (inst M4) [g] C :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8]
+  N: (inst M1) [g] A :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8]
+  N: (inst M2) [g] B :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8]
+NET "vdd" 4 connections
+  P: (inst M0) [g] C, B, A :: [s,d,sub] Y, vdd, vdd [l=0.6, w=10.8]
+  P: (inst M0) [g] C, B, A :: [s,d,sub] Y, vdd, vdd [l=0.6, w=10.8]
+  P: (inst M3) [g] B :: [s,d,sub] A, vss, vdd [l=0.6, w=10.8]
+  P: (inst M5) [g] C, B :: [s,d,sub] Y, vss, vdd [l=0.6, w=10.8]
+NET "Y" 4 connections
+  N: (inst M2) [g] B :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8]
+  N: (inst M1) [g] A :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8]
+  N: (inst M4) [g] C :: [s,d,sub] Y, vss, vss [l=0.6, w=1.8]
+  P: (inst M0) [g] C, B, A :: [s,d,sub] Y, vdd, vdd [l=0.6, w=10.8]
+
+2 devices and 4 nets written to C:\Users\Randall\Desktop\glade6_win64\ECEN351\or3_1x.err
+
+Gemini completed at 09:30:50 on 22/02/2025

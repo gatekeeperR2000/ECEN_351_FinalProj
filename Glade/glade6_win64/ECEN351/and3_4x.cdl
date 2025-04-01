@@ -1,0 +1,31 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib
+* Top Cell Name: and3_4x
+* View Name: schematic
+* Netlist created: 22.Mar.2019 20:32:32
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    and3_4x
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT and3_4x B Y A 
+*.PININFO Y:O B:I A:I C:I
+
+M6 Y n0 vdd vdd C5NPMOS w=3.6u l=0.6u m=4
+M4 n0 B vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M7 Y n0 vss vss C5NNMOS w=1.8u l=0.6u m=4
+M2 n0 A n5 vss C5NNMOS w=5.4u l=0.6u m=1
+M5 n0 C vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M3 n3 C vss vss C5NNMOS w=5.4u l=0.6u m=1
+M1 n5 B n3 vss C5NNMOS w=5.4u l=0.6u m=1
+M0 n0 A vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+.ENDS
+

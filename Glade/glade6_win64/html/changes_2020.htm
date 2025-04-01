@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" -->
+<h2 align="left"><font face="Arial, Helvetica, sans-serif"><font face="Arial"><b>Change Log</b> 2020 </font></font></h2>
+
+<p align="left"><font face="Arial, Helvetica, sans-serif"><font face="Arial" size="4"><strong>Contents for 2019 can be found <a href="changes_2019.htm">here</a></strong></font></font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.21 release on 18/01/2020</strong></p>
+<p align="left">- enhancement: Edit window has python syntax highlighting</p>
+<p align="left">- bugfix: Export CDL wrote incorrect XY coords when using metres as scale factor.</p>
+<p align="left">- bugfix: Gemini wrote incorrect units in .err file for glade.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.22 release on 22/01/2020</strong></p>
+<p align="left">- bugfix: Layer order now followed when drawing multiple layers. By default the layer order is as in the techfile/LSW, i.e. layers are drawn in order.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.23 release on 25/01/2020</strong></p>
+<p align="left">- bugfix: Fixed a bug in compressPoints that could cause incorrect polygons with holes from dbCreateHole()</p>
+<p align="left">- bugfix: Fixed a bug in Edit-&gt;Chop that caused undo to fail</p>
+<p align="left">- bugfix: Switched on fast triangulation algorithm for OpenGL. Please report any issues rendering polygons as a result.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.24 release on 28/01/2020</strong></p>
+<p align="left">- bugfix: Fixed a Python reference count issue in dbCreatePCell() that caused random instability, in particular in extraction.</p>
+<p align="left">- bugfix: Fixed a couple of memory leaks</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.25 release on 21/02/2020</strong></p>
+<p align="left">- enhancement: debugging using pdb no longer requires popup dialog for pdb commands; command can be typed directly into the message window cmd line.</p>
+<p align="left">- enhancement: enterprise version has file locking for multiuser environments.</p>
+<p align="left">- enhancement: dbCreateHole() has 2 new overloads:</p>
+<blockquote>
+  <p align="left">shape = cv.dbCreateHole(Point *pts, int nPoints, int layer, shape *hull=NULL)</p>
+  <p align="left">shape = cv.dbCreateHole(shape *hole, shape *hull = NULL)</p>
+</blockquote>
+<p align="left">- ellipse object has operator [], returning the point at index i</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.26 release on 01/03/2020</strong></p>
+<p align="left">- bugfix: layer valid attribute was not being saved/loaded to disk library.</p>
+<p align="left">- enhancement: new geomEdgeLength DRC check. Checks edges of one layer relative to edges of another layer, e.g.</p>
+<p align="left">	geomEdgeLength(gate, active, 0.13, coincident, &quot;Gate length &lt; 0.13u&quot;)</p>
+<p align="left">This will check gate length (as the edge of the gate derived layer coincident with active).</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.27 release on 09/03/2020</strong></p>
+<p align="left">- bugfix: Undo did not work on deleted MPP.</p>
+<p align="left">- bugfix: MPP contact spacing algorithm improved.</p>
+<p align="left">- bugfix: Create MPP using infix mode did not choose last MPP rule.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.28 release on 26/03/2020</strong></p>
+<p align="left">- bugfix: MPPs could have too many contacts in some situations</p>
+<p align="left">- enhancement: ui.addHilite() cmd now can take a net as its first argument. It then highlights all net shapes. This is for top level nets only i.e. no hierarchy tracing.</p>
+<p align="left">- enhancement: Added cv.dbFindInstsByRegExp(regexp), cv.dbFindNetsByRegExp(regexp) and cv.dbFindPinsByRegExp(regexp). These take a (string) regular expression as argument and find the objects matching the regExp.</p>
+<p align="left">- bugfix: Fixed a crash that could occur when adding a criteria to search dialog.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Verson 4.7.29 release on 16/04/2020</strong></p>
+<p align="left">- enhancement: Stipple patterns internally held as 32x32 bit, but stipple pattern editor can now handle 8x8, 16x16, 32x32 pattern doisplay and editing.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.30 release on 21/04/2020</strong></p>
+<p align="left">- bugfix: Issue reading fillstyles from old libraries caused by 4.7.29 bug.</p>
+<p align="left">- bugfix: Fixed some issues importing Cadence display.drf / techfile. Stipples 32x32 down to 4x4 supported (1 or 2 would be possible, but why...)</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.31 release on 22/04/2020</strong></p>
+<p align="left">- bugfix: layers with cross fill were not rendered as such in MPPs</p>
+<p align="left">- enhancement: Improved Cadence techfile parser for MPPs.</p>
+<p align="left">- enhancement: Support ordered spacing rules in Cadence techfiles.</p>
+<p align="left">- enhancement: Reuse linestyles. Previously reading a Cadence techfile could create 100's of (identical parameter) custom linestyles.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.32 release on 26/04/2020</strong></p>
+<p align="left">- bugfix: Fixed a bug whereby the Query dialog was not always shown withing the current application window coordinates.</p>
+<p align="left">- enhancement: Keep library browser open at the current item when refreshed.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.33 release on 04/05/2020</strong></p>
+<p align="left">- enhancement: Symbol editor Create Pin cmd can specify multiple pin names.</p>
+<p align="left">- bugfix: Export Verilog handles bus bit IOs from internal buses now using assign statements.</p>
+<p align="left">- bugfix: Crash occurred if a library was opened twice using dbOpenLib().</p>
+<p align="left">- bugfix: Changing an instance name to e.g. X0&lt;7:0&gt; when in spice compatible mode reverted to X0 during Create Instance. Now the bus info is retained.</p>
+<p align="left">- bugfix: Create Wire starting on a pin or instance pin did not snap to the origin or centre of the pin.</p>
+<p align="left">- bugfix: Fixed a bug where schematic check did not recognise buses with names containing e.g. numbers.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.34 release on 06/05/2020</strong></p>
+<p align="left">- bugfix: Minor bugfix - problem when saving a library or techfile that caused stipple pattern to subtly change.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.35 release on 19/05/2020</strong></p>
+<p align="left">- enhancement: -ng (no graphics) option uses QCoreApplication rather than QApplication so no widgets or gui stuff is created. All ui() cmds that require a gui will be ignored if in no graphics mode (e.g. selection, highlighting). All the File-&gt;Import and File-&gt;Export cmds can be used in no graphics mode.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.36 release on 25/05/2020</strong></p>
+<p align="left">- bugfix: addProp() with a boolean or list property did not copy name, which could end up trashed.</p>
+<p align="left">- bugfix: Boolean properties shown on Query dialog / Create Instance dialog as true/false, not 1/0. PCell generation properly supports boolean parameters now.</p>
+<p align="left">- enhancement: New extraction cmds extractMOSDevice(), extractResDevice(), extractMosCapDevice(), extractBjtDevice(), extractDioDevice(). Similar to extractDevice() in that they accept a list of terminal layers and terminal name(s), but also have parameter extraction like extractMOS() etc. The terminal layer order must be adhered to e.g. gate, S/D, [bulk] for mosfets; anode, cathode, [bulk] for diodes; emitter, base, collector, [bulk] for bipolars. Note this also allows variable number of terminals per terminal layer.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.6.37 release on 05/06/2020</strong></p>
+<p align="left">- bugfix: non-fatal exception was occurring while moving cursor over wires in schematic editor. </p>
+<p align="left">- bugfix: Crash in creating instance with DRD active in non-OpenGL mode.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.6.38 release on 16/06/2020</strong></p>
+<p align="left">- bugfix: Fixed a potential crash with cmd line arguments.</p>
+<p align="left">- enhancement: pyLabel type labels now functional.</p>
+<p align="left">- bugfix: Mac version updated to Qt 5.15.0 to fix annoying window update bug.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.6.39 release on 27/06/2020</strong></p>
+<p align="left">- bugfix: Various ui cmds failed in non-graphics mode.</p>
+<p align="left">- enhancement: ui cmds that do nothing / have no meaning in non-graphics mode issue an error message to the logfile.</p>
+<p align="left">- bugfix: Fixed various bugs in the DEF writer.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.40 release on 28/06/2020</strong></p>
+<p align="left">- bugfix: Compare cells failed on cellviews containing only viaInsts or MPPs.</p>
+<p align="left">- bugfix: MPPs with layers using offset did not have offset displayed in query dialog</p>
+<p align="left">- bugfix: MPPs with duplicate layer definitions could not have layers edited correctly in query dialog.</p>
+<p align="left">- bugfix: Mfg grid (as defined in techfile) was not saved/loaded to library. </p>
+<p align="left">- bugfix: Gemini was not handling .scale / *.scale and property (w/l) scale factors such as um correctly.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.41 release on 10/07/2020</strong></p>
+<p align="left">- bugfix: pyLabels could crash easily</p>
+<p align="left">- bugfix: pyLabels showed original, not evaluated test, when selected or highlighted.</p>
+<p align="left">- infrastructure: Glade moved to shared library model</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 4.7.42 release on 06/08/2020</strong></p>
+<p align="left">- bugfix: 5.0 bugfixes back ported to 4.x</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.0 release on 18/07/2020</strong></p>
+<p align="left">- Python3 support. Please note your PCells and/or Python code will need to be updated to python3 syntax. For example 'print x' becomes 'print(x)'. Python arithmetic changes mean that in the past, Rect(0, 3/2, 10, 5/2) will fail as 3/2 now returns a float (1.5) and the SWIG bindings are expecting an integer. </p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.1 release on 28/07/2020</strong></p>
+<p align="left">- enhancement: Autoroute on schematic move. With the option set (in display dialog), moving an instance will show flight lines from the instance pins to the existing wiring; on finishing the move the instance pins are autorouted. Note this uses the autorouter, which requires schematic inst pins on the schematic snap grid to work. A schematic grid snap spacing of 0.0625 is recommended.</p>
+<p align="left">- enhancement: Merge schematic wire segments on stretch.                    Colinear points are now removed.</p>
+<p align="left">- bugfix: Various issues with the schematic autorouter fixed/improved. Point to point router has option of merging routed wires or maintaining separate routed wires.</p>
+<p align="left">- bugfix: Arc selection was not easy as the bounding box (for Qt) was the whole of the associated ellipse. Now for selection the bounding box of the arc geometry is used.</p>
+<p align="left">- bugfix: Fixed an issue with text bbox for selection not dependent on dbu (which is different for layout and schematic/symbols).</p>
+<p align="left">- enhancement: Stretch dialog 'Locks Ends' maintained during edit session.</p>
+<p align="left">- enhancement: Stretching a wire that ends on a solder dot now selects the solder dot so it is moved with the wire end.</p>
+<p align="left">- enhancement: Partial selecton mode allows selection of instances. This is so it can be used as default in the schematic editor, where selection of wire segments (and not the whole wire) plus instances and pins is the primary requirement.</p>
+<p align="left">- bugfix: Schematic diamond / cursor box would 'disappear' in partial select mode when highlighting was on.</p>
+<p align="left">- bugfix: Create wire when starting on an existing wire end in route mode did not mark existing wire as blockage.</p>
+<p align="left">- bugfix: If creating colinear points on wires, automatic removal would sometimes remove both colinear points, not just one.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.2 release on 06/08/2020</strong></p>
+<p align="left">- bugfix: If PYTHONHOME was set, Glade would crash silently during python initialisation if the version set by PYTHONHOME was incorrect. Now a dialog box is shown to warn you if PYTHONHOME is set.</p>
+<p align="left">- enhancement: Various schematic router improvements to the obstacle model.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.3 release on 21/08/2020</strong></p>
+<p align="left">- bugfix: execPythonFile() prepended filename with './' which caused failure with e.g. Windows.</p>
+<p align="left">- enhancement: Wire entry mode in schematics separated from snap mode.</p>
+<p align="left">- enhancement: More tweaking of the schematic router costs to get good results.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.4 release on 21/09/2020</strong></p>
+<p align="left">- bugfix: schematic router would hang if source or target was offgrid. Now source / target can be offgrid.</p>
+<p align="left">- enhancement: NLP labels / expressions can have whitespace within [] i.e. within expression.</p>
+<p align="left">- enhancement: improved the symbol checker. Gives more info on warnings/errors, also doesn't mark the cellview as edited unless an error/warning is given.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.5 release on 29/09/2020</strong></p>
+<p align="left">- bugfix: hole generation for concentric circles could give rise to self-intersecting polygon if large number of vertices for circle.</p>
+<p align="left">- bugfix: When using middle mouse panning, moving cursor out of canvas could result in mode being locked in pan mode. Esc key can now quit this mode.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.6 / 4.7.45 release on 12/10/2020</strong></p>
+<p align="left">- bugfix: Fixed  an exception that could happen in a rare case.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.7 / 4.7.46 release on 26/10/2020</strong></p>
+<p align="left">- bugfix: Arcs imported into DXF were incorrect.</p>
+<p align="left">- enhancement: Drawing arcs made simpler. First coordinate is the arc centre; second is the first point of the arc; third is the last point of the arc that lies on the circumference of a circle centred on the first point.</p>
+<p align="left">- bugfix: Drawing HSEGs/VSEGs/PATHs in OpenGL did not draw edges of stipple fills, just the fill.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.8 / 4.7.47 release on 10/11/2020</strong></p>
+<p align="left">- bugfix: Import Verilog bus handling bugs fixed.</p>
+<p align="left">- bugfix: Export LEF would crash if a cellView was not open. Now if no cellView open, or ui::exportLEF() called with null cellName, all cells are output in LEF.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.9 / 4.7.48 release on 19/11/2020</strong></p>
+<p align="left">- enhancement: DB now supports Groups. A Group is a collection of dbObj, such that e.g. moving the Group moves all of its members. This provides a quick, non-hierarchical way of managing related objects. Groups can be created, added to, removed from, or ungroups using the gui or via Python.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.10 / 4.7.49 release on 25/11/2020</strong></p>
+<p align="left">- bugfix: Cadence techfile parser crashed if techParam() parameters specified. Now these are handled (for simple cases).</p>
+<p align="left">- bugfix: Cadence techfile parser did not translate via implant layers always.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.11 / 4.7.50 release on 05/12/20</strong></p>
+<p align="left">- enhancement: Ruler text now drawn agains a dark translucent background area for better readability.</p>
+<p align="left">- enhancement: Rulers can be multi-segment.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong>Version 5.0.12 / 4.7.51 release on 23/12/2020</strong></p>
+<p align="left">- Internal improvements to API</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+  <!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

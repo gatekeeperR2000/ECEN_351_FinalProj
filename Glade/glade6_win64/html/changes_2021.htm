@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" -->
+    <title>Glade Reference Manual</title>
+    <!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" -->
+      <h2 align="left"><font face="Arial, Helvetica, sans-serif"><font face="Arial"><b>Change
+              Log</b> 2021 </font></font></h2>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><font size="4" face="Arial"><strong>Contents
+              for 2020 can be found <a href="changes_2020.htm">here</a></strong></font></font></p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.13 / 4.7.52 release on 01/01/2021</strong></p>
+      <p align="left">- Update net browser after Edit-&gt;setNet cmd</p>
+      <p align="left">- bugfix: save changes to SDL map list after editing.</p>
+      <p align="left">- bugfix: schematic autorouter now routes correctly to
+        offgrid locations.</p>
+      <p align="left">- bugfix: Single segment rulers were not commited on 2nd
+        click/return.</p>
+      <p align="left">- bugfix: Clearing hilights caused possible memory
+        corruption issue.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.14 / 4.7.53 release on 18/01/2021</strong></p>
+      <p align="left">- Properties internal cleanup. Class 'proplist' renamed
+        'properties'. Class pListItem has private members and accessor
+        functions. orient_t type property removed (it was only used for DEF
+        ROWs, and an integer prop type used in replacement).</p>
+      <p align="left">- bugfix: stretch wire could remove extra vertices.</p>
+      <p align="left">- Callbacks implemented for properties.
+        dbSetPropCallback() and dbGetPropCallback() functions added. A Python
+        callback function registered to a property will be called when that
+        property is changed, e.g. in the query dialog of the Create Instance
+        dialog. This allows automatic updating e.g. changing the 'fins' property
+        on a mos device could alter the 'w' property via a callback.</p>
+      <blockquote>
+        <p align="left">To add a callback: Use the Query dialog to display
+          properties e.g of a symbol. Enter the name of the callback function in
+          the callback field. Only the function name is required. A python file
+          must exist in the paython path with the same name as the callback, and
+          extension .py (much the same as for PCells). The python function
+          should have a single argument, 'pyDBObject', which is the dbObj which
+          called the callback. See for example the FreePDK15 example PDK.</p>
+      </blockquote>
+      <p align="left">- Initial version of simulation environment. The current
+        supported simulator is Xyce from Sandia Labs (https://xyce.sandia.gov/).
+        And example PDK (XyceLib) is supplied with the Glade distribution.</p>
+      <p align="left">- Library rebinding did not rebind some unbound instances.
+        This has been fixed.</p>
+      <p align="left">- Stipple patterns were incorrectly copied in certain
+        cases from the techfile.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.15 / 4.7.54 release on 23/01/2021</strong></p>
+      <p align="left">- Internal memory manager improvements.</p>
+      <p align="left">- enhancement: various memory leaks cleaned up. This is
+        only likely to affect Glade API users.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.16/ 4.7.55 release on 23/01/2021</strong></p>
+      <p align="left">- enhancement: Via contents can now be shown, like
+        instances, when creating or moving vias if the 'Draw Moving Instance
+        Contents' option is on (Display Options Misc dialog). </p>
+      <p align="left">- enhancement: Runlength dependent spacing rule:</p>
+      <blockquote>
+        <p>geomSpace(layer, rule, runlength, flags, msg) </p>
+        <p>Checks the spacing of projecting edges of layer is not less than <em>rule</em>
+          (microns). <br>
+          The length of projecting edges is specified by <em>runlength</em>
+          (microns), and <em>flags</em> modifier for runlength can be lessthan,
+          greaterthan, equals, not_equals, as well as horizontal, vertical,
+          diagonal.</p>
+      </blockquote>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.17 release on 05/02/2021</strong></p>
+      <p align="left">- bugfix: Arcs drawn incorrectly when moving a symbol in a
+        schematic with rotation during move.</p>
+      <p align="left">- bugfix: Popup menus with Query item did not show query
+        dialog.</p>
+      <p align="left">- bugfix: Command line options were case sensitive; they
+        have now been made case insensitive.</p>
+      <p align="left">-enhancement: added ui::booleanOp() for layer based
+        booleans via Python without using geom... commands. This is compatible
+        with C++ API.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.18 release on 12/02/2021</strong></p>
+      <p align="left">- bugfix: Crash occasionally on closing a library.</p>
+      <p align="left">- bugfix: Various internal memory leaks fixed.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.19 release on 01/03/2021</strong></p>
+      <p align="left">- bugfix: Changing probe colour etc. in probe dock window
+        did not change colour of highlighted net/instance in schematic.</p>
+      <p align="left">- enhancement: Added X axis selection in plot window.</p>
+      <p align="left">- enhancement: Added greaterorequal and lessorequal flags
+        to DRC checks that supported greaterthan and lessthan flags.</p>
+      <p align="left">- bugfix: Callouts and XY coords on plot window were not
+        working correctly.</p>
+      <p align="left">- enhancement: geom... DRC functions flag coverage
+        extended.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.20 release on 05/03/2021</strong></p>
+      <p align="left">- bugfix: eliminate flicker for drawn rulers when dynamic
+        highlight is on.</p>
+      <p align="left">- enhancement: Ruler snap feature for layout. Set the
+        Display Options-&gt;Snap Settings-&gt;Snap to Edges and on giving the
+        Ruler cmd the cursor will highlight edges/centrelines/vertices to snap
+        the start and the stop of the ruler to.</p>
+      <p align="left">- bugfix: Stretching a HSeg edge caused a crash.</p>
+      <p align="left">- bugfix: HSeg/VSeg centreline drawn incorrectly when
+        selected/highlighted.</p>
+      <p align="left">- bugfix: Stretching a HSeg/VSeg did not lock ends.</p>
+      <p align="left">- bugfix: Display Options 'Show Via Instance Names' did
+        not control display of via names.</p>
+      <p align="left">- bugfix: Fixed a crash when using output_only flag with
+        spacing check.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.21 release on 12/03/2021</strong></p>
+      <p align="left">- bugfix: Occasional crash when using rulers in snap mode.</p>
+      <p align="left">- bugfix: Couldn't change properties of non-PCell
+        instances. This was a bug introduced in 5.0.14.</p>
+      <p align="left">- bugfix: Crash on close after deleting an empty LPP.</p>
+      <p align="left">- enhancement: geomSpace() now handles spacing between
+        manhattan and diagonal/any angle shapes.</p>
+      <p align="left">- bugfix: Simulation netlister didn't handle top level
+        cell with instances correctly in some cases.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.22 release on 26/03/2021</strong></p>
+      <p align="left">- enhancement: Supports spice3f5 simulator</p>
+      <p align="left">- bugfix: Fixed a crash if a plot expression was deleted
+        from the plot window and then added again.</p>
+      <p align="left">- enhancement: DC Operating point analysis added to
+        simulation menu. If the 'Backannotate to schematic' option is chosen,
+        then net voltages will be backannotated to the schematic as a property
+        on wires called 'voltage'. With highlighting on, tooltips will be shown
+        for wires that have the net property set.</p>
+      <p align="left">- enhancement: extractMOS() and extractMOSDevice() now
+        extract BSIM instance parameters SA, SB, (distance from diffusion edge
+        to gate) and SC (distance of well edge to gate) allowing more accurate
+        simulation of layout dependent effects (LDE).</p>
+      <p align="left">- enhancement: Schematic wiring improvement with better
+        snapping to offgrid pin centres.</p>
+      <p align="left">- bugfix: Removal of colinear start/end points of
+        Schematic wires improved.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.23 release on 05/04/2021</strong></p>
+      <p align="left">- bugfix: NLP escaped ] was not processed correctly.</p>
+      <p align="left">- bugfix: NLP netlisting added extra spaces after expression delimiters.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.24 release on 10/04/2021</strong></p>
+      <p align="left">- bugfix: geomEnclose with 2 shapes abutting but not overlapping gave error.</p>
+      <p align="left">- bugfix: opposite flag for drc checkes did not create error marker for non-manhattan edges.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.25 release on 24/05/2021</strong></p>
+      <p align="left">- enhancement: geomLength() check added</p>
+      <p align="left">- bugfix: msg dock window minimum size reduced to improve layout for small display sizes.</p>
+      <p align="left">- bugfix: geomExtension() very infrequently missed an error</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.26 release on 14/06/2021</strong></p>
+      <p align="left">- bugfix: Instance name/master text size adjusted to fit instance bounding box correctly.</p>
+      <p align="left">- bugfix: Changing PCell instance parameters using query dialog was failing to change them.</p>
+      <p align="left">- bugfix: Search dialog criteria that required floating point values rounded everything to integers.</p>
+      <p align="left">- bugfix: World View window drag/zoom etc was not working correctly.</p>
+      <p align="left">- bugfix: Drawing MPPs with OFFSET values was incorrect for selection/hilighting.</p>
+      <p align="left">- bugfix: Show cellView layers did not handle MPP layers.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.27 release on 21/06/2021</strong></p>
+      <p align="left">- bugfix: World View window not handling Edit In Place.</p>
+      <p align="left">- bugfix: Draw Ruler invert text option not working.</p>
+      <p align="left">- bugfix: Dynamic highlight flickered and did not retain last highlighted object.</p>
+      <p align="left">- bugfix: Draw Ruler in snap mode was flickering.</p>
+      <p align="left">- bugfix: Zoom to cursor not working correctly in Edit In Place mode.</p>
+      <p align="left">- bugfix: Crash when calling dbCreateHole() with a python list.</p>
+      <p align="left">- bugfix: MPP bBox() function returned incorrect value for MPPs with offsets.</p>
+      <p align="left">- bugfix: Rulers not working correctly in Edit in Place mode.</p>
+      <p align="left">- bugfix: Crash on exit if World View window was open.</p>
+      <p align="left">- bugfix: Gravity was not working in Edit In Place.</p>
+      <p align="left">- enhancement: Gravity now snaps to MPP outline(s) as well as centreline.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.28 release on 01/07/2021</strong></p>
+      <p align="left">- bugfix: Crash when highlighting a vertex (partial select mode, dynamic highlighting on).</p>
+      <p align="left">- bugfix: Crash when using World View window on non-WIN32 platforms</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.29 release on 06/07/2021</strong></p>
+      <p align="left">- bugfix: Fixed issues with geomPitch() and geomSpace() cmd when used with equals / not_equal modifiers.</p>
+      <p align="left">- bugfix: Netlisters write .GLOBAL instead of *.GLOBAL as Xyce didn't understand the former.</p>
+      <p align="left">- bugfix: Hierarchy browser ascend cmd did not ascend from a descended instance.</p>
+      <p align="left">- enhancement: Probe dock window can specify single or multiple plots for probes.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.30 release on 19/07/2021</strong></p>
+      <p align="left">- bugfix: PCells with string default args were not getting evaluated correctly.</p>
+      <p align="left">- enhancement: GDS2 reader/writer can write property for device recognition region shapes. Note that as a result, the ui::importGds2/exportGds2 function arg list has changed and existing scripts will need to be updated.</p>
+      <p align="left">- enhancement: DRC selection operations can have a count criteria i.e. report selection only if the number of interactions is &lt;,&lt;=,==,!=,&gt;,&gt;= some value.</p>
+      <p align="left">- bugfix: Edge projection (drc flag = opposite) sometimes was incorrect.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.31 release on 01/08/2021</strong></p>
+      <p align="left">- bugfix: Fixed an issue with saveInterconnect() where polygons-with-holes inside other polygons-with-holes were not getting processed correctly.</p>
+      <p align="left">- enhancement: extractMOS() now supports 5 terminal MOSFETs</p>
+      <p align="left">- bugfix: MPPs and viaInsts with connectivity did not create shapes with net info in the geometry engine.</p>
+      <p align="left">- enhancement: listType properties are now supported. These can be used in PCell arguments so that the property dialog will edit the property using a comboBox to choose from a value in the list. As part of this work, listType properties can have a 'choices' parameter set which is a list of the permitted values of the property. A side effect is the database version is updated to 660.</p>
+      <p align="left">- bugfix: A few cornder cases in dbCreateHole() have been fixed, in particular where polygons with non-manhattan edges were used.</p>
+      <p align="left">- enhancement: LSW 'None Visible' and 'None Selectable' buttons don't make system layers invisible/unselectable.</p>
+      <p align="left">- enhancement: LSW Show CellView Layers / Show Viewport Layers handles MPPs, viaInsts.</p>
+      <p align="left">- enhancement: LSW Show Viewport Layers is updated as viewport changes.</p>
+      <p align="left">- bugfix: Fixed a bug whereby closing a window could make an underlying window inoperative.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.32 release on 25/08/2021</strong></p>
+      <p align="left">- enhancement: cdb::pin::use() renames getUse() and cdb::pin::dir() renamed getDir() to avoid python reserved word clash.</p>
+      <p align="left">- bugfix: Schematic autorouter could hang when trying to route to solder dots.</p>
+      <p align="left">- bugfix: Create Instance dialog did not show cellViews with a $ in the name.</p>
+      <p align="left">- bugfix: Import GDS2 with duplicate cell names ignored gave a crash.</p>
+      <p align="left">- bugfix: Under certain circumstances, closing a library could cause a crash.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.33 release on 01/09/2021</strong></p>
+      <p align="left">- enhancement: Nudge command added. The selected set can be moved repetitiely by a small amount in the X or Y direction using the arrow keys rather than the mouse.</p>
+      <p align="left">- bugfix: Fixed a crash that could occur when creating an instance in a schematic.</p>
+      <p align="left">- bugfix: Fixed a crash when using ruler in snap mode and OpenGL.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.34 release on 16/09/2021</strong></p>
+      <p align="left">- enhancement: 'Ignore Instances' command in schematic editor. This toggles the 'nlAction' property on the selected instances causing them to be removed from the netlist when set. A cross is shown on any instances with this property set.</p>
+      <p align="left">- bugfix: Reading a GDS2 file with duplicate cells and using 'Duplicate Cells - Overwrite' could cause a crash.</p>
+      <p align="left">- bugfix: Fixed an issue in OpenGL mode where stipple patterns could be 'noisy'.</p>
+      <p align="left">- enhancement: Schematic autorouter improvement - giving less bends in route.</p>
+      <p align="left">- bugfix: In schematic editor, Cancel button in Move dialog didn't cancel cmd.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.35 release on 25/09/2021</strong></p>
+      <p align="left">- bugfix: Fixed locale issue for license check</p>
+      <p align="left">- bugfix: cdlFlatten did not handle model names for RLC elements correctly.</p>
+      <p align="left">- enhancement: around 10% reduction in memory usage for large designs.</p>
+      <p align="left">- bugfix: schematic autorouter cost functions were not passed from preferences file to canvas.</p>
+      <p align="left">- bugfix: Items smaller than the filter size for display weren't selected using area select.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.36 release on 03/10/2021</strong></p>
+      <p align="left">- bugfix: Tracks were not drawn for OpenGL canvas.</p>
+      <p align="left">- bugfix: geomLength() was not working correctly.</p>
+      <p align="left">- enhancement: Preliminary release of the layout point to point interactive router. This is a grid based router useful for LEF/DEF designs and it requires the routing grid to be defined (although will fall back to the layout X and Y snap grid if the grid is not defined). It is an option to the Create Path command with the same mode of operation. When starting or finishinga path it will snap to pin shape centres if within the routing grid. The 'U' (layer up) and 'D' (layer down) bindkeys work as before to drop a via and change layer to the above/below routing layer. Layers on type BLOCKAGE and other net/pin shapes not on the same net form obstructions for the router.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.37 release on 11/10/2021</strong></p>
+      <p align="left">- bugfix: geom&lt;selectionMode&gt; could miss shapes in certain conditions.</p>
+      <p align="left">- bugfix: canvas thread termination issue could cause a hang on some Linux platforms.</p>
+      <p align="left">- bugfix: when instances are present from another library, setting a layer invisible did not make layers of instances invisible.      </p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.38 release on 29/10/2021</strong></p>
+      <p align="left">- bugfix: geomGetVertices() caused a crash later during geomEnd()</p>
+      <p align="left">- bugfix: geomArea() did not honour lessthan flag</p>
+      <p align="left">- bugfix: Edit-&gt;Move Origin set bounding box to -infinity if an empty group was present in the cellView.</p>
+      <p align="left">- bugfix: Edit-&gt;Rotate did not undo correctly.</p>
+      <p align="left">- bugfix: Edit-&gt;Rotate dialog has OK button removed as it did not perform any useful action - the icon buttons do all the work.</p>
+      <p align="left">- bugfix: Create Path could delete a path point since 5.0.36</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.39 release on 03/12/2021</strong></p>
+      <p align="left">- bugfix: bounding box of MPPs was not calculated correctly.</p>
+      <p align="left">- bugfix: Snap/gravity to path centre/edge not set on canvas until selection options opened.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><strong>Version 5.0.40 release on 23/12/2021</strong></p>
+      <p align="left">- enhancement: Tools-&gt;Update PCell cmd updates all PCell master/submasters for a specified PCell name in a library.</p>
+      <p align="left">- bugfix: Fixed a bug introduced such that right mouse button zoom failed some of the time.</p>
+      <p align="left">- bugfix: Glade logfile now has PID as well as date and time so that every session has a unique logfile.</p>
+      <p align="left">- bugfix: Stopped setting stipple dialog from displaying query dialog.</p>
+      <p align="left">- bugfix: cdb::library::dbSaveLib() could create spurious directories if relative paths were given.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left">&nbsp;</p>
+      <!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

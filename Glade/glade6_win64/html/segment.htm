@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>
+        <font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">
+        Segment class
+      </font></h2>
+
+      <p>
+        A segment is an edge with two points. 
+        It is derived from a dbObj so it can be selectable; it also refers to a dbObj. 
+        Segments are used when selecting an edge of e.g. a rectangle or polygon.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        segment::segment(const <a href="Point.htm">Point</a> &amp;p0, const <a href="Point.htm">Point</a> &amp;p1)
+      </font></h4>
+
+      <p>
+        Creates a segment with coordinates p0 and p1.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        segment::segment(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
+      </font></h4>
+
+      <p>
+        Creates a segment with the specified xy coordinates.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Edge.htm">Edge</a> segment::getEdge()
+      </font></h4>
+
+      <p>
+        Returns an <a href="Edge.htm">Edge</a> from the segment's coordinates.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t segment::length()
+      </font></h4>
+
+      <p>
+        Get the euclidean length of the segment.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        float64_t segment::DistanceToPoint(const <a href="Point.htm"> &amp;Point</a> p)
+      </font></h4>
+
+      <p>
+        Get the distance from a point p to this segment.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a> segment::NearestPoint(const <a href="Point.htm">Point</a> &amp;p)
+      </font></h4>
+
+      <p>
+        Get the nearest point on a segment to another point.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        db_Type segment::objType()
+      </font></h4>
+
+      <p>
+        Returns the object's type, SEGMENT.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        const char * segment::objName()
+      </font></h4>
+
+      <p>
+        Returns the object's name, "SEGMENT".
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        segment::SetObj(<a href="dbObj.htm">dbObj</a> * obj)
+      </font></h4>
+
+      <p>
+        Sets the dbObj associated with this segment.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        dbObj * segment::GetObj()
+      </font></h4>
+
+      <p>
+        Gets the dbObj associated with this segment.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool segment::isXSeg()
+      </font></h4>
+
+      <p>
+        Returns true if this segment is horizontal.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool segment::isYSeg()
+      </font></h4>
+
+      <p>
+        Returns true if this segment is vertical.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool segment::isManhattan()
+      </font></h4>
+
+      <p>
+        Returns true if this segment is manhattan.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Rect.htm">Rect</a> segment::bBox()
+      </font></h4>
+
+      <p>
+        Returns a fake bounding box 10 dbu larger than the segment itself.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        segment::normalise()
+      </font></h4>
+
+      <p>
+        Normalise a segment, i.e. ensure coord p0 is the lower left compared to p1.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool segment::segInRect(const <a href="Rect.htm">Rect</a> &amp;r)
+      </font></h4>
+
+      <p>
+        Returns 1 if the segment is contained in Rect r.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        segment::transform(<a href="transform.htm">transform</a> trans)
+      </font></h4>
+
+      <p>
+        Transforms this segment according to <em>trans</em>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        segment::Move(<a href="cellview.htm">cellView</a> *cv, <a href="Point.htm">Point</a> delta, bool opt = true)
+      </font></h4>
+
+      <p>
+        Moves this segment by delta. If opt is true then the 
+        database is re-optimised for the new segment position. If there are a lot of 
+        objects to move it makes sense to turn this off and instead use the cellView 
+        update() function after moving them all.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a> segment::p0
+      </font></h4>
+
+      <p>
+        The first point of the segment.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a> segment::p1
+      </font></h4>
+
+      <p>
+        The last point of the segment.
+      </p>
+
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

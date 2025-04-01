@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">path class</font></h2>
+
+    <p>
+      The path class is derived from a shape. A path is represented by a list of vertices, plus a width, 
+      style, beginExtent and endExtent. This class is normally created in a cellView using the 
+      dbCreatePath() function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::width(int32_t w)
+    </font></h4>
+
+    <p>
+      Sets the path width to w.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t path::width()
+    </font></h4>
+
+    <p>
+      Gets the path width.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::style(int32_t s)
+    </font></h4>
+
+    <p>
+      Sets the path style, i.e. the type of the path end. The style can be one of: 
+      0 - truncate, 1 - round, 2 - extend, 4 - varextend, 8 - octagonal. 
+      Python global variables TRUNCATE, ROUND, EXTEND, VAREXTEND, OCTAGONAL are defined to these values.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t  path::style()
+    </font></h4>
+
+    <p>
+      Gets the path style.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::beginExt(int32_t e)
+    </h4>
+
+    <p>
+      Set the path begin extent. For a path style 2 (extend) or 4 (varextend) , this is the begin extent of the path.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t path::beginExt()
+    </font></h4>
+
+    <p>
+      Get the path begin extent. For a path style of 2 (extend) this is half the path&#39;s width.
+       For a path style 4 (varextend), this is the begin extent of the path.
+      </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::endExt(int32_t e)
+    </font></h4>
+
+    <p>
+      Set the path end extent. For a path style 2 (extend) or 4 (varextend), this is the end extent 
+      of the path.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t path::endExt()
+    </font></h4>
+
+    <p>
+      Get the path end extent. For a path style of 2 (extend) this is half the path&#39;s width. 
+      For a path style 4 (varextend), this is the end extent of the path.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Rect.htm">Rect </a> path::bBox()
+    </font></h4>
+
+    <p>
+      Get the bounding box of this path.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::bBox(<a href="Rect.htm">Rect </a>b)
+    </font></h4>
+
+    <p>
+      Set the bounding box of this path. Not useful and will throw an exception if called.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbtype_t path::objType()
+    </font></h4>
+
+    <p>
+      Returns the object type of this path as PATH.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      char * path::objName()
+    </font></h4>
+
+    <p>
+      Returns the object name of this path as &quot;PATH&quot;.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t n = path::nPoints()
+    </font></h4>
+
+    <p>
+      Returns the number of points of the path.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Point.htm">Point </a> *  path::ptlist()
+    </font></h4>
+
+    <p>
+      Returns the point list of this path as a C array of Points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Point.htm">Point</a> p[index]
+    </font></h4>
+
+    <p>
+      Returns the Point <em>p</em> at the <em>index</em> into the list of points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::bias(int32_t bias, double grid)
+    </font></h4>
+
+    <p>
+      Bias this path by <i>bias</i>, snapping to the grid <i>grid</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::scale(double scale, double grid)
+    </font></h4>
+
+    <p>
+      Scale this path by <i>scale</i>, snapping to the grid <i>grid</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t  path::getNearestEdge(<a href="Point.htm">Point </a>p, <a href="segment.htm">segment </a>&amp;s)
+    </font></h4>
+
+    <p>
+      Get the distance of the nearest segment <i>s</i> of this path to the point <i>p</i>;
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t d = path::getNearestVertex(<a href="Point.htm">Point </a>p, <a href="vertex.htm">vertex </a>&amp;s)
+    </font></h4>
+
+    <p>
+      Get the distance of the nearest vertex <i>s</i> of this path to the point <i>p</i>;
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      double a = path::area()
+    </font></h4>
+
+    <p>
+      Get the area of this path.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t p = path::perimeter()
+    </font></h4>
+
+    <p>
+      Get the perimeter of this path.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::transform(<a href="transform.htm">transform</a> trans)
+    </font></h4>
+
+    <p>
+      Transform this path using <i>trans</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool path::ptInPoly(<a href="Point.htm">Point </a> p)
+    </font></h4>
+
+    <p>
+      Returns true if the Point p is contained in the path or on its edges.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::Move(<a href="cellview.htm">cellView </a>*cv, <a href="Point.htm">Point </a>delta, bool opt = true)
+    </font></h4>
+
+    <p>
+      Move this path by distance <i>delta</i>. If opt is true then the database is re-optimised for the new 
+      path position. If there are a lot of objects to move it makes sense to turn this off and instead use 
+      the cellView update() function after moving them all.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj </a> * path::Copy(<a href="cellview.htm">cellView </a> *cv, <a href="Point.htm">Point </a> delta, int32_t layerNum = -1)
+    </font></h4>
+
+    <p>
+      Copy this path to cellView <i>cv</i>, with offset <i>delta</i>. If layerNum is a positive integer the path will be copied to the new layer number.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj </a> * path::Flatten(<a href="cellview.htm">cellView </a> *cv, <a href="transform.htm">transform</a> trans)
+    </font></h4>
+
+    <p>
+      Flatten this path into cellView <i>cv</i> with transformation <i>trans</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::Stretch(<a href="Point.htm">Point </a>delta, <a href="segment.htm">segment </a>seg)
+    </font></h4>
+
+    <p>
+      Stretch segment <i>seg</i> of this path by <i>delta</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      path::compressPoints()
+    </font></h4>
+
+    <p>
+      Removes colinear points from the path.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="polygon.htm">polygon </a>* path::shapeToPoly ()
+    </font></h4>
+
+    <p>
+      Converts this path to a polygon.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

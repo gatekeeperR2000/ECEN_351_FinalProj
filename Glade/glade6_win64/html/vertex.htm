@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade  Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">
+        vertex class</font>
+      </h2>
+
+      <p>
+        A vertex is a point. It is derived from a dbObj so it can be 
+        selectable; it also refers to a dbObj. Vertices 
+        are used when selecting a vertex of e.g. a rectangle or polygon.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        vertex::vertex(<a href="Point.htm">Point</a> p)
+      </font></h4>
+
+      <p>
+        Creates a vertex with coordinate p.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        vertex::vertex(int x, int y)
+      </font></h4>
+
+      <p>
+        Creates a vertex with the specified xy coordinates.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        db_Type vertex::objType()
+      </font></h4>
+
+      <p>
+        Returns the objects type - VERTEX.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        char * vertex::objName()
+      </font></h4>
+
+      <p>
+          Returns the print name i.e. "VERTEX"
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        operator ==
+      </font></h4>
+
+      <p>
+        Returns true if one vertex is equal to another by coordinates.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        operator !=
+      </font></h4>
+
+      <p>
+        Returns true if one vertex is not equal to another by coordinates.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        vertex::SetObj(<a href="dbObj.htm">dbObj</a> *obj)
+      </font></h4>
+
+      <p>
+        Sets the dbObj associated with this vertex.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="dbObj.htm">dbObj</a> * vertex::GetObj()
+      </font></h4>
+
+      <p>
+        Gets the dbObj associated with this vertex.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Rect.htm">Rect</a> vertex::bBox()
+      </font></h4>
+
+      <p>
+        Returns a fake bounding box 10 dbu larger than the vertex itself.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        vertex::transform(<a href="transform.htm">transform</a> trans)
+      </font></h4>
+
+      <p>
+        Transforms this vertex according to trans.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        vertex::Move(<a href="cellview.htm">cellView</a> *cv, <a href="Point.htm">Point</a> delta, bool opt = true)
+      </font></h4>
+
+      <p>
+        Moves this vertex by delta. If opt is true then the 
+        database is re-optimised for the new vertex position. If there are a lot of 
+        objects to move it makes sense to turn this off and instead use the cellView 
+        update() function after moving them all.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        dbObj * vertex::Copy(<a href="cellview.htm">cellView</a> *from, <a href="Point.htm">Point</a> delta)
+      </font></h4>
+
+      <p>
+        Copies the vertex. cv is the cellView 
+        containing the vertex, delta is the XY coordinate to move the vertex by during 
+        the copy.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t vertex::x()
+      </font></h4>
+
+      <p>
+        The x coordinate of the vertex.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t vertex::y()
+      </font></h4>
+
+      <p>
+          The y coordinate of the vertex.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        vert.setX(int32_t x)
+      </font></h4>
+
+      <p>
+        Set the X coordinate of the vertex.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        vertex::setY(int32_t y)
+      </font></h4>
+
+      <p>
+        Set the Y coordinate of the vertex.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

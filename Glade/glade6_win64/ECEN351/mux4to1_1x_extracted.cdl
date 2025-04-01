@@ -1,0 +1,46 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib
+* Top Cell Name: mux4to1_1x
+* View Name: extracted
+* Netlist created: 09.Apr.2019 20:36:04
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    mux4to1_1x
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT mux4to1_1x in1 sel1 in0 sel0 in2 in3 out
+*.PININFO in1:B sel1:B in0:B sel0:B in2:B in3:B out:B
+
+MM6 in23 sel1bb mout vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=34.35 $Y=2.1
+MM9 in01 sel0b in0 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=44.25 $Y=2.1
+MM4 in2 sel0b in23 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=26.85 $Y=2.1
+MM20 in1 sel0b in01 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=41.85 $Y=15.3
+MM7 mout sel1b in01 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=36.75 $Y=2.1
+MM13 vdd sel1 sel1b vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=9.45 $Y=15.3
+MM5 in23 sel0bb in3 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=29.25 $Y=2.1
+MM2 vss sel0b sel0bb vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=14.55 $Y=2.1
+MM21 in01 sel0bb in0 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=44.25 $Y=15.3
+MM15 vdd sel1b sel1bb vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=19.65 $Y=15.3
+MM14 vdd sel0b sel0bb vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=14.55 $Y=15.3
+MM8 in1 sel0bb in01 vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=41.85 $Y=2.1
+MM3 vss sel1b sel1bb vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=19.65 $Y=2.1
+MM22 vdd mout moutb vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=51.45 $Y=15.3
+MM19 mout sel1bb in01 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=36.75 $Y=15.3
+MM18 in23 sel1b mout vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=34.35 $Y=15.3
+MM17 in23 sel0b in3 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=29.25 $Y=15.3
+MM16 in2 sel0bb in23 vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=26.85 $Y=15.3
+MM12 vdd sel0 sel0b vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=4.35 $Y=15.3
+MM23 vdd moutb out vdd C5NPMOS w=3.6e-06 l=6e-07 as=5.94e-12 ps=1.05e-05 ad=5.94e-12 pd=1.05e-05 $X=56.55 $Y=15.3
+MM11 vss moutb out vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=56.55 $Y=2.1
+MM0 vss sel0 sel0b vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=4.35 $Y=2.1
+MM1 vss sel1 sel1b vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=9.45 $Y=2.1
+MM10 vss mout moutb vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=51.45 $Y=2.1
+.ENDS

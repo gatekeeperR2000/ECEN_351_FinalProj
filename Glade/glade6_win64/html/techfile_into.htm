@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Glade Reference Manual</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+</div>
+<div align="left">
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+    Reference</font></b></font></p>
+  <hr>
+  <!-- #BeginEditable "text" --> 
+  <h2><font face="Arial, Helvetica, sans-serif">Creating and Using Technology 
+    Files</font></h2>
+  <p><font face="Arial, Helvetica, sans-serif">A techfile can be created using 
+    a text editor or by importing GDS2 or LEF and then exporting the techfile 
+    created, and subsequently editing the exported file to set colors, fill styles 
+    etc.</font> Layer colours, stipples, linestyles can all be edited directly using the <a href="theLSW.htm">LSW</a>.</p>
+  <p>&nbsp;</p>
+  <h4><font face="Arial, Helvetica, sans-serif">Layer definitions</font></h4>
+  <p><font face="Arial, Helvetica, sans-serif">The layers section comprises lines 
+    beginning with a LAYER keyword and 9 parameters:</font></p>
+  <p>// Technology file example<br>
+    //<br>
+    // Name Type Number dtype RGB sel? vis? fillstyle linestyle<br>
+    LAYER pwell drawing 1 0 (150,150,217,255) t t empty plain ;<br>
+    LAYER nwell drawing 2 0 (170,0,255,255) t t empty plain ;<br>
+    LAYER diff drawing 3 0 (0,204,0,255) t t dots2 plain ;<br>
+    LAYER od2 drawing 4 0 (217,204,0,255) t t dots2 plain ;<br>
+    LAYER poly1 drawing 13 0 (255,0,0,255) t t zagr1 plain ;</p>
+  <p><font face="Arial, Helvetica, sans-serif">The first parameter is the layer 
+    name, the second its purpose. The default purpose for drawing layers is 'drawing'. 
+    When reading LEF/DEF 3 other purposes are required - 'pin' for port shapes, 
+    'boundary' for obstructions (blockages), and 'net' for routing shapes. The 
+    combination of layer name and layer purpose uniquely defines a layer-purpose 
+    pair, thus it is not permitted to use the same layer name and purpose more 
+    than once.</font></p>
+  <p><font face="Arial, Helvetica, sans-serif">Parameters 3 and 4 are the GDS2 
+    layer number and datatype. These are used in importing and exporting GDS2 
+    to map a layer-purpose pair to a GDS layer and datatype.</font></p>
+  <p><font face="Arial, Helvetica, sans-serif">The fifth parameter is the layer 
+    color expressed in RGBA (red-green-blue-alpha) terms. Values for R, G, B and 
+    A can range from 0 to 255. Thus (255,0,0) defines bright red and (255,255,0) 
+    defines yellow, etc. The RGBA values should be delimited by commas and surrounded 
+    by brackets as shown. No spaces or tab characters are permitted in a RGBA 
+    value.</font></p>
+  <p><font face="Arial, Helvetica, sans-serif"><a name="transparancy"></a>The 
+    alpha channel (A), the fourth component of the RGBA value represents the transparency 
+    of the layer, with 255 being opaque and 0 fully transparent.</font> Alpha blending is supported for both OpenGL mode and software rasterisation mode.</p>
+  <p><font face="Arial, Helvetica, sans-serif">The sixth and seventh parameters 
+    define whether the layer is selectable and/or visible. Permissable values 
+    are 't' for true and 'f' for false.</font></p>
+  <p><font face="Arial, Helvetica, sans-serif">The eighth and ninth parameters 
+    define the fillstyle and linestyle for the layer. These are defined by name 
+    and reference fill and line styles as described below.</font></p>
+  <p><font face="Arial, Helvetica, sans-serif">Note that technology file lines 
+    end in a ';' character. This defines the logical line end and must be present. 
+    Carriage returns and line feeds are ignored and a '//' defines a comment line 
+    which is also ignored.</font></p>
+  <p><font face="Arial, Helvetica, sans-serif">The order of the layer lines in 
+    the techfile controls the drawing order of the layers. To draw a layer 'on 
+    top' of another it should follow the other layer.</font></p>
+  <p>&nbsp;</p>
+  <h4><font face="Arial, Helvetica, sans-serif">Line Styles</font></h4>
+  <p>// Line Styles.<br>
+    //<br>
+    // Name Width Style<br>
+    LINE plain 0 SOLID ;<br>
+    LINE thicksolid 4 SOLID ;<br>
+    LINE thick 2 SOLID;<br>
+    LINE dashed2 2 DASH ;<br>
+    LINE dotted 0 DOT ;<br>
+    LINE dashdot 0 DASHDOT ;<br>
+    LINE dashdotdot 0 DASHDOTDOT ;</p>
+  <p><font face="Arial, Helvetica, sans-serif">Line styles start with the LINE 
+    keyword followed by 3 parameters: the linestyle name, the line width and the 
+    line style. Line widths should normally be set to 0 for a minimum width line as this gives slightly better rendering performance than a linewidth of 1 (which otherwise will display the same). 
+    Line styles can be one of the following: SOLID, DASH, DOT, DASHDOT or DASHDOTDOT.</font></p>
+  <p>&nbsp;</p>
+  <h4><font face="Arial, Helvetica, sans-serif">Stipple Patterns</font></h4>
+  <p>//<br>
+    // Stipple Patterns.<br>
+    //<br>
+    // Name Type Fill pattern<br>
+    STIPPLE patt1 STIPPLE<br>
+    0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 <br>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 <br>
+    0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 <br>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 <br>
+    0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 <br>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 <br>
+    0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 <br>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 <br>
+    0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 <br>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 <br>
+    0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 <br>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 <br>
+    0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 <br>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 <br>
+    0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 <br>
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 <br>
+    ;</p>
+  <p>STIPPLE empty HOLLOW ;<br>
+    STIPPLE solid SOLID ;<br>
+    STIPPLE cross CROSSED ;</p>
+  <p><font face="Arial, Helvetica, sans-serif">Stipple patterns begin with a STIPPLE 
+    keyword followed by a stipple name. The second parameter can be one of HOLLOW, 
+    SOLID, CROSSED or STIPPLE, which define the kind of stipple pattern. In the 
+    case of a STIPPLE fill pattern a 16 by 16 bit stipple pattern comprised of 
+    1's and 0's follows which defines the fill pattern.</font> Stipple patterns can be 8x8, 16x16, 32x32. Other sizes will get 'filled' to the nearest greater bit width/height.</p>
+  <p>&nbsp;</p>
+  <h4><font face="Arial, Helvetica, sans-serif">Via Definitions</font></h4>
+  <p><font face="Arial, Helvetica, sans-serif">Vias can be defined by the VIA 
+    keyword.</font></p>
+  // 
+  <div align="left"> // Via rules.</div>
+  <div align="left"> VIA P_M1</div>
+  <div align="left"> poly drawing -0.5 -0.5 0.5 0.5</div>
+  <div align="left"> cont drawing -0.2 -0.2 0.2 0.2</div>
+  <div align="left"> metal drawing -0.5 -0.5 0.5 0.5 ;</div>
+  <p><font face="Arial, Helvetica, sans-serif">A via has a name then a list of 
+    via layers comprising a layer/purpose pair name and coordinates of the layer 
+    rectangle. The list of via layers should normally be in order from lowest processed 
+    layer up, starting with a routing layer, then a cut layer, then a routing 
+    layer.</font> Multiple shapes can be defined for each layer e.g. cut layer (for multi cut vias).</p>
+  <p>&nbsp;</p>
+  <h4><font face="Arial, Helvetica, sans-serif">Width and Spacing rules</font></h4>
+  <p><font face="Arial, Helvetica, sans-serif">Each layer can have a minimum width 
+    and minimum space rule that can be used for basic rules checks. The syntax 
+    is as follows:</font></p>
+  <p>//<br>
+  // Spacing rules.<br>
+  //<br>
+  // Minimum Width of the layer
+  <br>
+    MINWIDTH poly drawing 0.25 ;<br>
+    //
+    <br>
+    // Minimum Spacing of the layer
+    <br>
+    MINSPACE poly drawing 0.30 ;<br>
+    //
+    <br>
+    // Minimum Spacing of the layer to another layer
+    <br>
+  MINSPACE poly drawing active drawing 0.07 ;<br>
+  //
+  <br>
+  // Minimum Enclosure
+  (first layer must enclose second by rule)<br>
+  MINENC active drawing pimp drawing 0.24 ;<br>
+  //
+  <br>
+  // Minimum Extension (first layer must extend beyond second layer by rule)
+  <br>
+  MINEXT poly drawing active drawing 0.18 ;<br>
+  //
+  <br>
+    // Minimum Area
+    of the layer<br>
+  MINAREA active drawing 0.122 ;  </p>
+  <p>&nbsp;</p>
+  <h4><font face="Arial, Helvetica, sans-serif">Layer Function</font></h4>
+  <p><font face="Arial, Helvetica, sans-serif">Layers can have a FUNCTION defined 
+    which indicates their usage. This is mainly for LEF/DEF applications but also
+    used by the Create Path command to define via layers between routing layers. 
+    Without this information, the change layer up/down feature of Create Path will 
+    not work.</font></p>
+  <p>//<br>
+    // Layer Function.<br>
+  FUNCTION metal1 net ROUTING ;<br>
+  FUNCTION metal1 boundary BLOCKAGE ;  
+  <p><font face="Arial, Helvetica, sans-serif">Valid function keywords are CUT, 
+    MASTERSLICE, ROUTING, BLOCKAGE, PIN, OVERLAP</font> </p>
+  <h4>&nbsp;</h4>
+  <h4><font face="Arial, Helvetica, sans-serif">Layer Connectivity</font></h4>
+  <p><font face="Arial, Helvetica, sans-serif">The Trace Net command requires
+  layer connectivity information in order to trace connection through vias etc.
+  The format of this is as follows:
+  </font></p>
+  <p>//<br>
+// Layer Connections.<br>
+CONNECT metal1 drawing BY via1 drawing TO metal2 drawing ;<br>
+CONNECT metal1 drawing TO metal1a drawing ;  
+  <p><font face="Arial, Helvetica, sans-serif">The first form connects two
+    routing layers by a via layer; the second format connects two routing layers
+  directly.</font> </p>
+  <h4>&nbsp;</h4>
+  <p><font 
+face=Arial><strong>MultiPartPaths</strong></font></p>
+  <p><font face="Arial">MultiPartPath (MPP) definitions can be 
+defined in the techfile. A MPP is a path that can have multiple layers, 
+including cut layers, but can be entered and edited just like a normal 
+path.</font></p>
+  <p>//<br>
+    // MultiPartPath rules.<br>
+    MPP nguard LAYER NTUB&nbsp; drawing WIDTH 14.5 BEGEXT 
+7.25 ENDEXT 7.25 ;<br>
+MPP nguard LAYER GASAD drawing WIDTH 4.5 BEGEXT 2.25 
+ENDEXT 2.25 ;<br>MPP nguard LAYER NPLUS drawing WIDTH 9.5 BEGEXT 4.75 ENDEXT 
+4.75 ;<br>MPP nguard LAYER WINDOW drawing WIDTH 2.5 BEGEXT -1.25 ENDEXT 1.25 
+SPACE 3 LENGTH 2.5 ;<br>MPP nguard LAYER METAL drawing WIDTH 5.0 BEGEXT 2.5 
+ENDEXT 2.5 ;</p>
+  <p><font face="Arial">Here nguard is the name of the MPP; 
+    following the LAYER keyword is the layer and purpose; then a WIDTH defining the 
+    width of the layer. For normal layers, BEGEXT defines the extension of the layer away from the 
+    first vertex, ENDEXT defining the extension of the layer away from the last 
+  vertex. For contact layers with SPACE/LENGTH, BEGEXT is the offset of contacts from the start vertex of the MPP, ENDEXT is the offset of contacts from the end vertex of the MPP. </font></p>
+  <p>// With offset<br>
+    MPP nguard LAYER METAL drawing WIDTH 5.0 BEGEXT 2.5 
+ENDEXT 2.5 OFFSET 0.5 ;<br>
+MPP nguard LAYER WINDOW drawing WIDTH 2.5 BEGEXT -1.25 ENDEXT 1.25 
+  SPACE 3 LENGTH 2.5 OFFSET -0.75 ;  </p>
+  <p><font face="Arial">Optionally if SPACE and LENGTH keywords are present the layer is assumed 
+    to be a cut layer and will have square cuts of size LENGTH spaced SPACE 
+    apart. </font></p>
+  <p><font face="Arial">Optionally the keyword OFFSET can be used after either ENDEXT (for a normal path) or LENGTH (for a contact path) and defines an offset of that layer's centreline to the MPP centreline. A negative OFFSET shifts the points of that layer to the inside (the left of a directed segment), a positive OFFSET shifts the points</font> of that layer to the outside (the right of a directed segment). Note the keywords and values must be in the order given above.</p>
+  <p><font face="Arial"></font>&nbsp;</p>
+
+  <h4><font face="Arial, Helvetica, sans-serif">Techfile limits</font></h4>
+  <p><font face="Arial, Helvetica, sans-serif">Currently 4096 layer-purpose pairs 
+    are supported, of which 24 are system-defined. The maximum logical line 
+    length in the techfile is limited to 32768 characters. There are no limits 
+    to the number of line and fill styles that can be defined.</font><br>
+  </p>
+  <p>&nbsp;</p><!-- #EndEditable --> 
+  <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop 
+    Design 2023.</font></p>
+</div>
+</body>
+<!-- #EndTemplate --></html>

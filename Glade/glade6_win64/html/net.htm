@@ -1,0 +1,543 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>
+        <font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">
+      net class
+    </font></h2>
+
+
+    <p>
+      The net class is normally created in a <a href="cellview.htm">cellView</a> using the dbCreateNet() 
+      function. A net is not derived from a <a href="dbObj.htm">dbObj</a>, so it cannot have properties. 
+      Nets have <a href="pin.htm">pins</a> (which represent connections at this level of hierarchy with 
+      upper levels of hierarchy) and <a href="instPin.htm">instPins</a> (which represent connections with 
+      instances, i.e. lower levels of hierarchy). These provide a means for hierarchical connectivity from 
+      the pins on an instance of the cellView to the instPins on instances in the cellView.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::name(char *name)
+    </font></h4>
+
+    <p>
+      Sets the name of the net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      char *name = net::name()
+    </font></h4>
+
+    <p>
+      Gets the net name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbtype_t net::objType()
+    </font></h4>
+
+    <p>
+      Gets the net object type as NET
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      char * net::objName()
+    </font></h4>
+
+    <p>
+      Gets the net object name as &quot;NET&quot;.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::setCapacitance(float32_t val)
+    </font></h4>
+
+    <p>
+      Sets the net capacitance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::capacitance()
+    </font></h4>
+
+    <p>
+      Gets the net capacitance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="cellView.htm">cellView</a> * net::cellView()
+    </font></h4>
+
+    <p>
+      Gets the cellView this net is contained in.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="instPin.htm">instPin</a> * net::dbCreateInstPin(char *instName, char *pinName)
+    </font></h4>
+
+    <p>
+      Creates an inst pin for this net with <i>instName</i> as the instance name and <i>pinName</i> 
+      as the name of the pin.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="instPin.htm">instPin</a> * net::dbCreateInstPin(<a href=""inst.htm">inst</a> * inst, char *pinName)
+    </font></h4>
+
+    <p>
+      Creates an inst pin for this net with <i>inst</i> as the instance and <i>pinName</i> 
+      as the name of the pin.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::dbDeleteInstPin(<a href="instPin.htm">instPin</a> * ip)
+    </font></h4>
+
+    <p>
+      Deletes an inst pin <em>ip</em> of this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::dbDeleteinstPin(char *instname, char * pinname)
+    </font></h4>
+
+    <p>
+      Deletes an inst pin given by <em>instname</em> and <em>pinname</em> of this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::dbDeleteinstPin(<a href=""inst.htm">inst</a> * inst, char * pinname)
+    </font></h4>
+
+    <p>
+      Deletes an inst pin given by <em>inst</em> and <em>pinname</em> of this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      float64_t net::getHPWL(double &amp;x, double &amp;y)
+    </font></h4>
+
+    <p>
+      Gets the half perimeter wirelength of this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::setUse(db_NetUse use)
+    </font></h4>
+
+    <p>
+      Sets the net's use.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_NetUse net::use()
+    </font></h4>
+
+    <p>
+      Gets the net's use.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * net::getUseStr()
+    </font></h4>
+
+    <p>
+      Gets the net's use as a string.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::setSource(db_NetSource src)
+    </font></h4>
+
+    <p>
+      Sets the net's source type.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_NetSource net::source()
+    </font></h4>
+
+    <p>
+      Gets the net's source type.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * net::getSourceStr()
+    </font></h4>
+
+    <p>
+      Gets the net's source type as a string.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::setPattern(db_NetPattern pat)
+    </font></h4>
+
+    <p>
+      Sets the net's pattern type.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_NetPattern net::pattern()
+    </font></h4>
+
+    <p>
+      Gets the net's pattern type.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * net::getPatternStr()
+    </font></h4>
+
+    <p>
+      Gets the net's pattern type as a string.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::setGlobal(bool flag)
+    </font></h4>
+
+    <p>
+      Sets the net global flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool net::isGlobal()
+    </font></h4>
+
+    <p>
+      Gets the net global flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::setSpecial(bool flag)
+    </font></h4>
+
+    <p>
+      Sets the net special flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool net::isSpecial()
+    </font></h4>
+
+    <p>
+      Gets the net special flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::setNonDefRule(int16_t index)
+    </font></h4>
+
+    <p>
+      Sets the net&#39;s nondefault rule index.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int16_t net::getNonDefRule()
+    </font></h4>
+
+    <p>
+      Gets the net&#39;s nondefault rule index.
+    </p>
+
+    <p>&nbsp;</p>
+
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::setPins(<a href="dbObjList.htm">dbObjList</a>&lt;<a href="pin.htm">pin</a>&gt; *pins)
+    </font></h4>
+
+    <p>
+      Set the net&#39;s pin list.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::getPins()
+    </font></h4>
+
+    <p>
+      Gets the net&#39;s pins as a python list.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::addPin(<a href="pin.htm">pin </a>*p)
+    </font></h4>
+
+    <p>
+      Add a pin to this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::deletePin(<a href="pin.htm">pin </a>*p)
+    </font></h4>
+
+    <p>
+      Delete a pin from this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::addShape(<a href="dbObj.htm">dbObj </a>*shp)
+    </font></h4>
+
+    <p>
+      Add a shape to the net&#39;s shape list.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::deleteShape(<a href="dbObj.htm">dbObj </a>*shp)
+    </font></h4>
+
+    <p>
+      Delete a shape from the net&#39;s shape list.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::setShapes(<a href="dbObjList.htm">dbObjList</a>&lt;<a href="shape.htm">shape</a>&gt; *shapes)
+    </font></h4>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      Sets the net&#39;s shape list.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::getShapes()
+    </font></h4>
+
+    <p>
+      Gets the net&#39;s shapes as a python list.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1" pbzloc="217"><font face="Arial, Helvetica, sans-serif">
+      int32_t net::getNumShapes()
+    </font></h4>
+
+    <p>
+      Get the number of shapes associated with this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t net::getNumInstPins()
+    </font></h4>
+
+    <p>
+      Gets the number of inst pins for this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::addInstPin(<a href="instPin.htm">instPin </a>*ip)
+    </font></h4>
+
+    <p>
+      Add an inst pin for this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      net::getInstPins()
+    </font></h4>
+
+    <p>
+      Get the net&#39;s inst pins as a python list.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      dbObjList&lt;signal&gt; * net::getSignals()
+    </font></h4>
+
+    <p>
+      Get the signals for this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int16_t net::numBits()
+    </font></h4>
+
+    <p>
+      Get the number of bits in this net. For example out&lt;0:3&gt; returns 4.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * net::baseName()
+    </font></h4>
+
+    <p>
+      Get the net&#39;s base name. For example out&lt;0:3&gt; returns out.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"></font>
+      net::addSubNet(uint32_t idx, subnet * node)
+    </font></h4>
+
+    <p>
+      Add a subnet <em>node</em> with given index <em>idx</em> to this net.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"></font>
+      net::deleteSubnet(uint32_t idx)
+    </font></h4>
+
+    <p>
+      Delete a subnet with given index <em>idx</em> from this net.
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"></font>
+      int32_t net::getNumSubnets()
+    </font></h4>
+
+    <p>
+      Get the number of subnets for this net.
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"></font>
+      subnet * net::createSubNet(const char *name, int32_t x, int32_t y)
+    </font></h4>
+
+    <p>
+      Create a subnet with name <em>name</em> and coords <em>x</em> and <em>y</em>.
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"></font>
+      subnet * net::getSubNet(const char *name, int32_t &amp;idx)
+    </font></h4>
+
+    <p>
+      Get a subnet given its name <em>name</em> and return it and its index <em>idx</em>.
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"></font>
+      subnet * net::getSubNet(int32_t idx)
+    </font></h4>
+
+    <p>
+      Get a subnet given its index <em>idx</em>.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

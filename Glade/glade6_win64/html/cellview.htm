@@ -1,0 +1,1615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+<head>
+  <!-- #BeginEditable "doctitle" -->
+  <title>Glade Reference Manual</title>
+  <style type="text/css"></style>
+  <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+  <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div 
+  align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+  </div>
+  <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>
+        <font size="4">Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">
+      cellView class
+    </font></h2>
+
+    <p>
+      A <a href="cellview.htm">cellView</a> stores design data. It is a unique combination of 
+      a <a href="cell.htm">cell </a>and a <a href="view.htm">view</a>. 
+      A <a href="cellview.htm">cellView</a> corresponds to GDS2 STRUCTs, 
+      LEF MACROs or a DEF DESIGN. A <a href="cellview.htm">cellView</a> is stored in a 
+      <a href="library.htm">library</a>. The <a href="cellview.htm">cellView</a> access functions 
+      are as follows. Note that all coordinate values are expected in database units. To find the 
+      number of database units per micron, use the <a href="library.htm">library</a> dbuPerUU() 
+      function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      <u><b>Creating or opening cellViews</b></u>
+    </p>
+
+    <p>
+      A <a href="cellview.htm">cellView</a> is created using a <a href="library.htm">library</a> object.
+    </p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="cellview.htm">cellView</a> * library::dbOpenCellView(char *cellName, char *viewName, char mode)
+    </font></h4>
+
+    <p>
+      Create a cellView in an existing library <i>lib</i> with cell <i>cellName</i> and view <i>viewName</i>. 
+      The function returns a <a href="cellview.htm">cellView</a><i>. mode</i> is a single character denoting 
+      the access mode; &#39;r&#39; signifies readonly access, &#39;w&#39; signifies write access 
+      (the cellview should not already exist and will be created), and &#39;a&#39; signifies append access 
+      (the cellview already exists and is opened for modification). Note that <b>after</b> creating a new 
+      <a href="cellview.htm">cellView</a> and any objects in it, <i>update()</i> <b>must</b> 
+      be called to build the data structures before editing/viewing/querying.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      <b><u>Creating objects in a cellView</u></b>
+    </p>
+
+    <p>
+      A cellView contains <a href="shape.htm">shape</a> and <a href="inst.htm">instance</a>/array objects. 
+      Shape objects are created on a specified layer number, which is internally represented by a signed 
+      16 bit integer value. To get a layer number given a layer name and purpose, you can use the 
+      <a href="techFile.htm">techfile</a> class functions to get and manipulate layers.
+    </p>
+
+    <pre align="left"><font face="Courier New, Courier, mono">
+      layer = tech.getLayerNum(layerName, purposeName)
+    </font></pre>
+
+    <p>&nbsp;</p>
+  
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="arc.htm">arc</a> * cellView::dbCreateArc(const <a href="Point.htm">Point</a> &amp;origin, 
+        int32_t xRadius, int32_t yRadius, float64_t startAngle, float64_t spanAngle, int16_t layer)
+    </font></h4>
+
+    <p>
+      Create an <a href="arc.htm">arc</a> with the specified origin, X and Y radius. 
+      The arc is part of an ellipse with the specified <em>startAngle</em> and 
+      <em>spanAngle</em>.</font></font> Angles are referenced from the 3pm position, with positive 
+      angles going anticlockwise.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="array.htm">array</a> * ; cellView::dbCreateArray(const char *libName, const char *cellName, 
+      const char *viewName, const <a href="Point.htm">Point</a> &amp;origin, orient_t orient, float64_t mag, int16_t numRows, 
+      int16_t numCols, int32_t rowSpacing, int32_t colSpacing, const char *instName=null) 
+    </font></h4>
+    
+    <p>
+      Create an array in the cellView and returns the array created. The array master cellView is specified by 
+      <i>libName, cellName </i>and<i> viewName</i>. The array&#39;s origin is given by <i>origin</i> and its 
+      orientation by <i>orient</i>. The enumerations R0, R90, R180, R270, MX, MXR90, MY, MYR90 can be used to
+       specify the orientation. Orientations other than variants of 90 degrees are not supported. The magnification 
+       is specified by <i>mag</i>. If specified, <i>instName</i> is used to name the instance; else the instance 
+       name is autogenerated with the first being I0, then I1, I2 etc. <i>numRows</i> specifies the number of 
+       rows and must be greater than 0. <i>numCols</i> specifies the number of columns and must be greater than 
+       0. <i>rowSpacing</i> is the spacing between rows and can be negative or positive, as can <i>colSpacing</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="array.htm">array</a> * cellView::dbCreateArray(<a href="library.htm">library</a> *lib, 
+      const char *cellName, const char *viewName, const <a href="Point.htm">Point</a> &amp;origin, orient_t orient, 
+      float64_t mag, int16_t numRows, int16_t numCols, int32_t rowSpacing, int32_t colSpacing, const char *instName=null)
+     </font></h4>
+
+    <p>
+      Create an array in the cellView and returns the array created. This is identical to the above but 
+      takes a library *, rather than a library name, as argument. The array master cellView is specified 
+      by <i>libName, cellName </i>and<i> viewName</i>. The array&#39;s origin is given by <i>origin</i> 
+      and its orientation by <i>orient</i>. The enumerations R0, R90, R180, R270, MX, MXR90, MY, MYR90 
+      can be used tp specify the orientation. Orientations other than variants of 90 degrees are not 
+      supported. The magnification is specified by <i>mag</i>. If specified, <i>instName</i> is used 
+      to name the instance; else the instance name is autogenerated with the first being I0, then I1, 
+      I2 etc. <i>numRows</i> specifies the number of rows and must be greater than 0. <i>numCols</i> 
+      specifies the number of columns and must be greater than 0. <i>rowSpacing</i> is the spacing 
+      between rows and can be negative or positive, as can <i>colSpacing</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="ellipse.htm">ellipse</a> *e&nbsp; = cv.dbCreateCircle(const <a href="Point.htm">
+        Point</a> &amp; origin, int32_t radius, int16_t layer)
+    </font></h4>
+
+    <p>
+      Create a circular <a href="ellipse.htm">ellipse</a>, i.e. one with the same X and Y radius.
+    </p>
+    
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="ellipse.htm">ellipse</a> * cellView::dbCreateEllipse(const <a href="Point.htm">Point</a> &amp; origin, int32_t xRadius, int32_t yRadius, int16_t layer)
+    </font></h4>
+
+    <p>
+      Create an ellipse with given origin (the centre of the ellipse), xRadius, yRadius and layer number
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="group.htm">group</a> * cellView::dbCreateGroup(const char *name, const <a href="Point.htm">Point</a> &amp; origin, orient_t orient)
+    </font></h4>
+
+    <p>
+      Creates a <a href="group.htm">group</a> with name <em>name</em>, origin at <em>origin</em>, and orientation <em>orient</em>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="polygon.htm">polygon</a> * cellView::dbCreateHole(int32_t *xpts, int32_t *ypts, uint32_t nPoints, int16_t lyr, shape *obj=nullptr)
+    </font></h4>
+
+    <p>
+      Creates a hole in a <a href="polygon.htm">polygon</a> . The hole to be &#39;cut&#39; is represented by the 
+      polygon defined by xpts, ypts, nPoints. The polygon and hole are on layer <em>lyr</em>. 
+      If <em>obj </em>is non-null, it is assumed to be the polygon to cut the hole in; if non-null, the largest 
+      polygon that overlaps the hole will be cut. In general, it is better to use the boolean operations to cut 
+      holes in polygons as they are more robust.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="polygon.htm">polygon</a> * cellView::dbCreateHole(
+        <a href="Point.htm">Point</a> *pts, uint32_t nPoints, int lyr, shape *obj=nullptr)
+    </font></h4>
+    
+    <p>
+      Similar to above but uses a Point *
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="polygon.htm">polygon</a> * cellView::dbCreateHole(<a href="shape.htm">shape</a> *shp, <a href="shape.htm">shape</a> *obj=nullptr)
+    </font></h4>
+
+    <p>
+      Similar to above but uses a shape to cut a hole in this polygon. The shape acts like a 'cookie-cutter' to create the hole.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="HSeg.htm">HSeg</a> * cellView::dbCreateHSeg(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int16_t layer, 
+      <a href="net.htm">net</a> *n, int32_t width=0, db_PathStyle style=DB_TRUNCATED)
+    </font></h4>
+
+    <p>
+      A <a href="HSeg.htm">HSeg</a> is a horizontal track segment. HSegs are a memory efficient way of representing 
+      a two point path with a given layer that has a fixed width and style, and as such are used in representing 
+      DEF regular net routing. This function creates a <a href="HSeg.htm">HSeg</a> object in the cellView 
+      and returns the <a href="HSeg.htm">HSeg</a> created. (x1, y1) is the first point of the HSeg, (x2, y2) is 
+      the second point. <em>layer</em> is the layer the <a href="HSeg.htm">HSeg</a> is created on. <em>width</em> 
+      is the <a href="HSeg.htm">HSeg</a> width (defaults to 0) and <em>style</em> is the HSeg&#39;s path style 
+      (defaults to truncated). If the cellView&#39;s library does not contain a segparam index for the 
+      <a href="HSeg.htm">HSeg</a> with matching layer and width/style, one is created.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="inst.htm">inst</a> * cellView::dbCreateInst(const char *libName, const char *cellName, 
+      const char *viewName, const <a href="Point.htm">Point</a> &amp;origin, orient_t orient, float64_t mag=1.0, 
+      const char *instName=null) 
+    </font></h4>
+
+    <p>
+      Create an <a href="inst.htm">inst </a>in the cellView and returns the instance created. 
+      The instance master <a href="cellview.htm">cellView </a>is specified by <i>libName</i>/<i>cellName</i>/<i>viewName</i>. 
+      The instance&#39;s origin is given by <i>origin</i> and its orientation by <i>orient</i>. 
+      The enumerations R0, R90, R180, R270, MX, MXR90, MY, MYR90 can be used to specify the orientation. 
+      Orientations other than variants of 90 degrees are not currently supported. The magnification is 
+      specified by <i>mag</i>. If specified, <i>instName</i> is used to name the instance; else the 
+      instance name is autogenerated with the first being I0, then I1, I2 etc.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="inst.htm">inst</a> * cellView::dbCreateInst(<a href="library.htm">library </a>
+      *lib, char *cellName, char *viewName, const <a href="Point.htm">Point</a> &amp;origin, 
+      orient_t orient, float64_t mag=1.0, const char *instName=null) 
+    </font></h4>
+
+    <p>
+      Create an <a href="inst.htm">inst </a>in the cellView and returns the instance created. 
+      This is identical to the above but takes a library *, rather than a library name, as 
+      argument. The instance master <a href="cellview.htm">cellView </a>is specified by<i>cellName</i>/<i>viewName</i>. 
+      The instance&#39;s origin is given by <i>origin</i> and its orientation by <i>orient</i>. 
+      The enumerations R0, R90, R180, R270, MX, MXR90, MY, MYR90 can be used to specify the orientation. 
+      Orientations other than variants of 90 degrees are not currently supported. The magnification 
+      is specified by <i>mag</i>. If specified, <i>instName</i> is used to name the instance; 
+      else the instance name is autogenerated with the first being I0, then I1, I2 etc.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="label.htm">label</a> * cellView::dbCreateLabel(const <a href="Point.htm">Point</a> &amp;origin, 
+      const char *name, orient_t orient, float64_t height, db_TectAlign presentation, int16_t layer)
+    </font></h4>
+    
+    <p>
+      Creates a <a href="label.htm">label</a> in the cellView at location <i>origin</i> with 
+      text <i>name</i> and returns the label created. The orientation of the label is given by 
+      <i>orient</i> and the label height by <i>height</i>. <i>presentation</i> is the alignment 
+      of the text label and <i>layer</i> is the label&#39;s layer.
+    </p>
+    
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="line.htm">line</a> *  cellView::dbCreateLine(const <a href="Point.htm">Point</a> 
+      &amp; p1, const <a href="Point.htm">Point</a> &amp; p2, int16_t layer)
+    </font></h4>
+
+    <p>
+      Creates a wire in the cellView with vertices defined by points <em>p1</em> 
+      and <em>p2</em> on layer <i>layer </i>and returns the line created.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="line.htm">line</a> * cellView::dbCreateLine(int32_t *x, int32_t *y, uint32_t numPoints, int16_t layer)
+    </font></h4>
+
+    <p>
+      Creates a wire in the cellView with vertices defined by integer arrays <em>x</em> and <em>y
+      </em>with size <em>numPoints</em> on layer <i>layer </i>and returns the line created.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="line.htm">line</a> * cellView::dbCreateLine(&lt;list&gt;, uint32_t numPoints, int16_t layer)
+    </font></h4>
+
+    <p>
+      Creates a wire in the cellView with vertices defined by the python list of <a href="Point.htm">Point</a>
+      s <em>list</em>. <em>numPoints</em> is the number of points. The line is created on layer <i>layer.</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="lpp.htm">lpp</a> * cellView::dbCreateLpp(int16_t layer)
+    </font></h4>
+
+    <p>
+      Creates a lpp in the cellView. 
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="mpp.htm">mpp</a> * cellView::dbCreateMPP(const char *ruleName, int32_t *xpts, int32_t *ypts, uint32_t nPoints)
+    </font></h4>
+
+    <p>
+      Creates a MPP (MultiPartPath) in the cellView and returns the mpp created. <em>ruleName</em> is the name 
+      of the MPP rule. The array <i>xpts</i> and <i>ypts</i> are the X and Y coordinates of the path. 
+      <i>nPoints</i> specifies the number of points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="mpp.htm">mpp</a> * cellView::dbCreateMPP(const char *ruleName, <a href="Point.htm">Point</a> *pts, uint32_t nPoints)
+    </font></h4>
+
+    <p>
+      Similar to above but uses a Point *
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="mpp.htm">mpp</a>* cellView::dbCreateMPP(const char *ruleName, &lt;list&gt;,  uint32_t nPoints)
+    </font></h4>
+
+    <p>
+      Creates a MPP (MultiPartPath) in the cellView and returns the mpp created. The python <em>list</em> 
+      the coordinates of the path. <em>ruleName</em> is the name of the MPP rule. <i>nPoints</i> specifies the number of points.
+    </p>
+
+    <pre align="left"><font face="Courier New, Courier, mono"> 
+      myguard = cv.dbCreateMPP('pguard', [[0,0],[1000,0],[1000,1000],[0,1000]], 4)
+    </font></pre>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="mpp.htm">mpp</a> * cellView::dbCreateMPP(const char *ruleName, Point *pts,  uint32_t nPoints)
+    </font></h4>
+
+    <p>
+      Creates a MPP (MultiPartPath) in the cellView using the specified rule <em>ruleName</em> and returns 
+      the mpp created. The pts are the coordinates of the path. <i>nPoints</i> specifies the number of points.
+      ruleName is the name of the (existing) mpp rule, as defined in the techfile.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="mpp.htm">mpp</a> * cellView::dbCreateMPP(mppRule *rule, int32_t *xpts, int32_t *ypts, uint32_t nPoints)
+    </font></h4>
+
+    <p>
+      Creates a MPP (MultiPartPath) in the cellView using the specified <em>rule</em> and returns the mpp created. 
+      The array <i>xpts</i> and <i>ypts</i> are the X and Y coordinates of the path. <i>numPoints</i> specifies 
+      the number of points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="mpp.htm">mpp</a> * cellView::dbCreateMPP(mppRule *rule, Point *pts,  uint32_t nPoints)
+    </font></h4>
+
+    <p>
+      Creates a MPP (MultiPartPath) in the cellView using the specified rule <em>rule</em> and 
+      returns the mpp created. The pts are the coordinates of the path. <i>nPoints</i> specifies 
+      the number of points. ruleName is the name of the (existing) mpp rule, as defined in the techfile.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="mpp.htm">mpp</a> * cellView::dbCreateMPP(mppRule *rule, &lt;list&gt;,  uint32_t nPoints)
+    </font></h4>
+
+    <p>
+      Creates a MPP (MultiPartPath) in the cellView using the specified rule <em>rule</em> and 
+      returns the mpp created. The python <em>list</em> the coordinates of the path.<em> </em><i>nPoints</i> 
+      specifies the number of points.
+    </p>
+
+    <pre><font face="Courier New, Courier, mono"> 
+      poly = cv.dbCreateMPP(rule, [[0,0],[1000,0],[1000,1000],[0,1000]], 4)
+    </font></pre>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="path.htm">path</a> * cellView::dbCreatePath(int32_t *xpts, int32_t *ypts, 
+      uint32_t numPoints, int16_t layer, int32_t width, db_PathStyle style, int32_t beginExtent, int32_t endExtent)
+    </font></h4>
+
+    <p>
+      Create a <a href="path.htm">path</a> object in the cellView and returns the path created. 
+      The array <i>xpts</i> and <i>ypts</i> are the X and Y coordinates of the path. <i>numPoints</i> 
+      specifies the number of points and <i>layer</i> the layer the polygon is created on. <i>width</i> 
+      is the width of the path and <i>style</i> the path style (0 = TRUNCATE, 1 = ROUND, 2 = EXTEND, 
+      4 = VAREXTEND, 8 = OCTAGONAL). If the path style is type 4, varExtend, then <i>beginExtent</i> 
+      and <i>endExtent</i> specify the path extension beyond the beginning and ending points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="path.htm">path</a> * cellView::dbCreatePath(Point *pts, uint32_t numPoints, 
+      int16_t layer, int32_t width, db_PathStyle style, int32_t beginExtent, int32_t endExtent)
+    </font></h4>
+
+    <p>
+      Similar to above but uses a Point *
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="path.htm">path</a> * cellView::dbCreatePath(&lt;list&gt;, uint32_t numPoints, 
+      int16_t layer, int32_t width, db_PathStyle style, int32_t beginExtent, int32_t endExtent)
+    </font></h4>
+
+    <p>
+      Create a <a href="path.htm">path</a> object in the cellView and returns the path created. 
+      The python <em>list</em> is a list of points, each of which is a list of x and y coordinates 
+      of the point. <i>numPoints</i> specifies the number of points and <i>layer</i> the layer 
+      the polygon is created on. <i>width</i> is the width of the path and <i>style</i> the path 
+      style (0 = TRUNCATE, 1 = ROUND, 2 = EXTEND, 4 = VAREXTEND, 8 = OCTAGONAL). If the path 
+      style is type 4, varExtend, then <i>beginExtent</i> and <i>endExtent</i> specify the path 
+      extension beyond the beginning and ending points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"">
+      <a href="polygon.htm">polygon *</a>  cellView::dbCreatePolygon(int32_t * xpts, int32_t *ypts, int32_r numPoints, 
+      int16_t layer, bool use_poly = false)
+    </font></h4>
+
+    <p>
+      Create a <a href="polygon.htm">polygon</a> object in the cellView and returns the polygon created. 
+      The array <i>xpts</i> and <i>ypts</i> are the X and Y coordinates of the polygon and should be 
+      created in python using the intarray() function. <i>numPoints</i> specifies the number of points 
+      and <i>layer</i> the layer the polygon is created on. If <em>use_poly</em> is false (the default), 
+      a rectangle will be created instead of a polygon if possible.
+    </p>
+
+    <p>
+      For example to create a triangle on layer 3 in python:
+    </p>
+
+    <blockquote>
+      <pre><font face="Courier New, Courier, mono">
+        numPoints = 3
+        x = intarray(numPoints)
+        y = intarray(numPoints)
+        x[0] = 0
+        y[0] = 0
+        x[1] = 2000
+        y[1] = 0
+        x[2] = 0
+        y[2] = 2000
+        layer = 3
+        poly = cv.dbCreatePolygon(x, y, numPoints, layer)
+      </font></pre>
+    </blockquote>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="polygon.htm">polygon *</a> = cellView::dbCreatePolygon(<a href="Point.htm">Point</a> * pts, uint32_t 
+      numPoints, int16_t layer,&nbsp;bool use_poly = false)
+    </font></h4>
+
+    <p>Similar to above but uses a Point*</p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="polygon.htm">polygon </a> * cellView::dbCreatePolygon(&lt;list&gt;, uint32_t numPoints, 
+      int16_t layer, bool use_poly = false)
+    </font></h4>
+
+    <p>
+      Similar to the above, but uses a python list of points, each of which is a list of x and y coordinates of the point.
+    </p>
+
+    <blockquote>
+      <pre><font face="Courier New, Courier, mono"> 
+        poly = cv.dbCreatePolygon([[0,0],[1000,0],[1000,1000],[0,1000]], 4, 3)
+      </font></pre>
+    </blockquote>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="rectangle.htm">rectangle</a> * cellView::dbCreateRect(const 
+      <a href="Rect.htm">Rect</a> &amp; box, int16_t layer, bool use_rect = false)
+    </font></h4>
+
+    <p>
+      Creates a <a href="rectangle.htm">rectangle</a> object in the cellView with bounding box <i>box</i> and 
+      on layer <i>laye</i>r and returns the created rectangle. If use_rect is false (the default), 
+      a square will be created instead of a rectangle if the box width equals the box height.
+    </p>
+
+    <p>
+      For example to create a rectangle on layer 3 in python:
+    </p>
+    
+    <blockquote>
+      <pre>
+      <font face="Courier New, Courier, mono">
+        box = Rect(0, 0, 1000, 2000)
+        layer = 3
+        cv.dbCreateRect(box, layer)
+      </font></pre>
+    </blockquote>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="viaInst.htm" >viaInst</a> * cellView::dbCreateViaInst(const char *name, 
+      const <a href="Point.htm">Point</a> &amp;origin, orient_t orient = R0)
+    </font></h4>
+
+    <p>
+      Creates an&nbsp;<a href="viaInst.htm">viaInst</a> of a <a href="via.htm">via</a> 
+      with master <i>name,</i> origin <i>origin</i> and orient <em>orient</em> and returns the viaInst created.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="VSeg.htm">VSeg</a> * cellView::dbCreateVSeg(int32_t x1, int32_t y1, int32_t x2, 
+      int32_t y2, int16_t layer, <a href="net.htm">net</a> *n, int32_t width=0, db_PathStyle style=DB_TRUNCATED)
+    </font></h4>
+
+    <p>
+      A <a href="VSeg.htm">VSeg</a> is a vertical track segment. VSegs are a memory efficient way of 
+      representing a two point path with a given layer that has a fixed width and style, and as such are 
+      used in representing DEF regular net routing. This function creates a <a href="VSeg.htm">VSeg</a> 
+      object in the cellView and returns the <a href="VSeg.htm">VSeg</a> created. (x1, y1) is the first 
+      point of the <a href="VSeg.htm">VSeg</a>, (x2, y2) is the second point. <em>layer</em> is the 
+      layer the <a href="VSeg.htm">VSeg</a> is created on. <em>width</em> is the <a href="VSeg.htm">VSeg</a> 
+      width (defaults to 0) and <em>style</em> is the VSeg&#39;s path style (defaults to truncated). 
+      If the cellView&#39;s library does not contain a segparam entry for the <a href="VSeg.htm">VSeg</a>, 
+      one will be created with matching layer and width/style, one is created.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="group.htm">group</a> * cellView::dbFindGroupByName(const char* name)
+    </h4>
+
+    <p>
+      Gets a <a href="group.htm">group</a> with name name if it exists, or nullptr if it is not found.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="inst.htm">inst</a> * cellView::dbFindInstByName(const char *name)
+    </font></h4>
+
+    <p>
+      Finds the instance with name <i>name</i> in the cellView and returns it, or null if not found.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial"><font face="Arial, Helvetica, sans-serif">
+      <a href="inst.htm">inst</a> * cellView::dbFindInstByNameNoCase(const char *name)
+    </font></h4>
+
+    <p>
+      Finds the instance with case-insensitive name <i>name</i> in the cellView and returns it, 
+      or null if not found.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="inst.htm">inst</a> * cellView::dbFindInstByRegExp(const char *expr)
+    </font></h4>
+
+    <p>
+      Finds the instance with name given by regular expression<i> expr </i>in the cellView and returns it, or null if not found.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      <u><b>Creating connectivity in a cellView</b></u>
+    </p>
+
+    <p>
+      A cellView can also contain connectivity, such as nets, pins and ports (physical pin shapes).
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="net.htm">net</a> * cellView::dbCreateNet(const char *name)
+    </font></h4>
+
+    <p>
+      Creates a <a href="net.htm">net</a> in the cellView with name <i>name </i>and returns 
+      the net created. If the net already exists in the cellView, the net is not created 
+      and the net given by <em>name</em> is returned.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="net.htm">net</a> * cellView::dbFindNetByName(const char *name)
+    </font></h4>
+
+    <p>
+      Finds the <a href="net.htm">net</a> with name <i>name</i> in the cellView and returns it, or null if not found.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4  class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="pin.htm">pin</a> * cellView::dbCreatePin(const char *name, <a href="net.htm">net </a>*n, db_PinDirection dir)
+    </font></h4>
+
+    <p>
+      Creates a logical<a href="pin.htm">pin</a> in the cellView with name <i>name</i> 
+      and db_PinDirection <i>dir</i> for the net<i> n</i> and returns the pin created. 
+      The net <em>n</em> must exist in the cellView.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="pin.htm" >pin</a> * cellView::dbFindPinByName(const char *name)
+    </font></h4>
+
+    <p>
+      Finds the <a href="pin.htm">pin</a> with name <i>name</i> in the cellView and returns it, or null if not found.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::dbCreatePort(<a href="pin.htm">pin </a>*p, <a href="shape.htm">shape </a> *s)
+    </font></h4>
+
+    <p>
+      Creates a port for pin <i>p</i> . A port is a physical representation of a pin so a valid shape <i>s</i> must be specified.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::dbDeleteObj(<a href="dbObj.htm">dbObj</a> *object, bool reallyDelete=true, bool opt=true)
+    </font></h4>
+
+    <p>
+      Delete the database object <i>object</i>. If <em>reallyDelete</em> is true, the object is deleted, 
+      else it is just removed from the object trees (and hence undoing the delete is possible). 
+      If <em>opt</em> is true, the tree is (re)optimised after the delete.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::dbDeleteObj(<a href="pin.htm">pin</a> *object, bool reallyDelete=true)
+    </font></h4>
+
+    <p>
+      Delete the pin <i>object</i>. If <em>reallyDelete</em> is true, the object is deleted, 
+      else it is just removed from the object trees (and hence undoing the delete is possible). 
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::dbDeleteObj(<a href="net.htm">net</a> *object, bool reallyDelete=true)
+    </font></h4>
+
+    <p>
+      Delete the net <i>object</i>. If <em>reallyDelete</em> is true, the object is deleted, 
+      else it is just removed from the object trees (and hence undoing the delete is possible). 
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::dbMergeNet(<a href="#_net__class_1">net</a> * from, <a href="#_net__class_2">net</a> * to)
+    </font></h4>
+
+    <p>
+      Merges the net <em>from</em> into net <em>to</em>. All shapes have their  connectivity 
+      reassigned to the <em>to</em> net; the <em>from</em> net is deleted from the  cellView.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      <u><b>Creating and updating PCell instances in a cellView</b>b></u>
+    </p>
+
+    <p>
+      <a href="pcells.htm">PCell </a>(programmable cell) instances can be created in a cellView. See also <a href="ui.htm">loadPCell</a>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst * cellView::dbCreatePCellInst(const char *libName, const char *cellName, const char *viewName, 
+      const <a href="Point.htm">Point </a>&amp; origin, orient_t orient=R0, int16_t numRows=1, int16_t 
+      numCols=1, int32_t rowSpacing=0, int32_t colSpacing=0)
+    </font></h4>
+
+    <p>
+      Create an instance of a <a href="pcells.htm">PCell</a> in the cellView and returns the instance created. 
+      The PCell master must have been previously created e.g. by a call to ui::loadPCell(). <i>libName</i> is 
+      the library name containing the pcell, <i>cellName</i> is the cellView name of the PCell and <i>viewName</i> 
+      is the view type of the PCell. <i>origin</i> is the instance&#39;s origin. If specified, <i>orient</i> 
+      is the instance&#39;s orientation, otherwise defaulting to R0. If <i>numRows</i> or <i>numCols</i> are 
+      not 1, an array is created of PCells.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      inst * cellView::dbUpdatePCell(<a href="inst.htm">inst</a> * originalInst)
+    </font></h4>
+
+    <p>
+      Updates a <a href="pcells.htm">PCell</a> instance after any of its properties have been changed. 
+      This is equivalent to querying the PCell instance properties in the GUI and changing them. Note 
+      that the <em>originalInst</em> is destroyed, and <em>newInst</em> is created.
+    </p>
+
+    <p>
+      If you change your PCell python code and wish to update all  existing instances of the PCell in a cellView, you can use this function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::setPCell(bool flag)
+    </h4>
+
+    <p>
+      Sets this cellView to be a PCell superMaster.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool  cellView::isPCell()
+    </font></h4>
+
+    <p>
+      returns true if the cellView is a PCell superMaster.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::isSubMaster(bool flag)
+    </font></h4>
+
+    <p>
+      Sets this cellView to be a PCell subMaster.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool  cellView::isSubMaster()
+    </font></h4>
+
+    <p>
+      Returns true if the cellView is a PCell subMaster.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::setPCellName(const char *name)
+    </font></h4>
+
+    <p>
+      Sets the name of the PCell.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      char * cellView::getPCellName()
+    </font></h4>
+
+    <p>
+      Gets the PCell name.
+
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::setPCellFile(const char *name)
+    </font></h4>
+
+    <p>
+      Sets the PCell filename.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      char *cellView::getPCellFile()
+    </font></h4>
+
+    <p>
+      Gets the PCell filename.
+    </p>
+
+    <p>&nbsp;</p>
+
+
+    <p>
+      <u><b></b>Searching for objects in a cellView</b></u>
+    </p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObjList.htm">dbObjList</a>&lt;dbObj&gt; * cellView::dbGetOverlaps( const <a href="Rect.htm">Rect</a> &amp;box, 
+      int16_t layer, bool allLayers=false, bool instsToo=, bool viaInstsToo=false)
+    </font></h4>
+
+    <p>
+      Searches the area given by <i>box</i> for any objects whose bounding boxes overlap the area. 
+      If <i>allLayers</i> is 0, then shapes on only the specified <i>layer</i> are returned. 
+      If <i>allLayers</i> is 1, shapes on all layers are searched. If instsToo is 1, any instances 
+      whose bounding box overlaps the area are returned in addition to any valid shapes, similarly 
+      is viaInstsToo is 1 then any via insts that overlap are also checked.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t cellView::dbGetOverlaps(<a href="dbObjList.htm">dbObjList</a>&lt;dbObj&gt; &amp; list, 
+      const <a href="Rect.htm">Rect</a> &amp; box, int16_t layer, bool allLayers=false, bool instsToo=false, bool viaInstsToo=false)
+    </font></h4>
+    
+    <p>
+      As dbGetOverlaps, but appends objects found to<i pbzloc="308"> list.</i>
+      The number of objects found is returned.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      &lt;list&gt; cellView::dbGetOverlaps(const <a href="Rect.htm">Rect</a> &amp;box, int layer, bool 
+      allLayers=false, bool instsToo=false, bool viaInstsToo=false)
+    </font></h4>
+
+    <p>
+      As above, but returns a Python list of dbObj. 
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t cellView::dbGetHierOverlaps(<a href="dbObjList.htm">dbObjList</a>&lt;<a href="dbHierObj.htm">
+        dbHierObj</a>&gt; &amp;list , const <a href="Rect.htm">Rect</a> &amp;box, int16_t layer, bool 
+        allLayers = false, int level = 99)
+    </font></h4>
+
+    <p>
+      Searches the are given by <i>box</i> for any objects whose bounding boxes overlap the area. If 
+      <i>allLayers</i> is 0, only the shapes on the specified <i>layer</i> are returned. If <i>allLayers</i> 
+      is 1, shapes on all layers are searched. The search is carried out hierarchically up to <i>level</i> 
+      levels deep. The number of objects found is returned.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObjList.htm">dbObjList</a>&lt;dbHierObj&gt; * cellView::dbGetHierOverlaps(const 
+      <a href="Rect.htm">Rect</a> &amp;box, int16_t layer, bool allLayers = false, int level = 99)
+    </font></h4>
+
+    <p>
+      Searches the are given by <i>box</i> for any objects whose bounding boxes overlap the area. 
+      If <i>allLayers</i> is 0, only the shapes on the specified <i>layer</i> are returned. 
+      If <i>allLayers</i> is 1, shapes on all layers are searched. The search is carried out 
+      hierarchically up to <i>level</i> levels deep.The number of objects found is returned.
+    </p>
+
+    <p>
+      A <a href="dbHierObj.htm">dbHierObj</a> is a simple class containing the object itself, 
+      the cellView containing the object and the transform of the object relative to the top 
+      level.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      &lt;list&gt; cellView::getHierOverlaps(const <a href="Rect.htm">Rect</a> &amp;box, int16_t layer, bool allLayers = false, int level = 99)
+    </font></h4>
+
+    <p>
+      As above, but returns a Python list of <a href="dbHierObj.htm">dbHierObj</a>s.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      <u><b>cellView utility functions</b></u>
+    </p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      UserUnits units =  cellView::userUnits()
+    </font></h4>
+
+    <p>
+      Returns the user units as <em>inches</em> or <em>microns</em>.
+    </p>
+
+    <p>&nbsp;</p>
+      
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::userUnits(UserUnits units)
+    </font></h4>
+
+    <p>
+      Sets the user units. <em>units</em> can be either <em>inches</em> or <em>microns</em>.
+    </p>
+      
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t cellView::dbuPerUU()
+    </font></h4>
+
+    <p>
+      Returns the number of database units per user unit. The  default number of dbu is 1000 
+      if user units are <em>microns</em>, and 160 if user units are <em>inches</em>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::dbuPerUU(int32_t dbu)
+    </font></h4>
+
+    <p>
+      Sets the database units per user unit.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::updateBbox()
+    </font></h4>
+
+    <p>
+      Updates the cellView&#39;s bounding box to enclose all objects it contains. 
+      This function is deprecated and update() should be used.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::optimiseTrees()
+    </font></h4>
+
+    <p>
+      Build the internal data structures for the cellView. This <b>must</b> be called after creating 
+      any objects in a new cellView, but before viewing / editing / querying the cellView. 
+      This function is deprecated and update() should be used.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::setEditable(bool flag)
+    </font></h4>
+
+    <p>
+      Sets the cellView editable flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool cellView::editable()
+    </font></h4>
+
+    <p>
+      Gets the cellView editable flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::setEdited(bool flag)
+    </font></h4>
+
+    <p>
+      Sets the cellView edited flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool cellView::isEdited()
+    </font></h4>
+
+    <p>
+      Gets the cellView edited flag.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::update()
+    </font></h4>
+
+    <p>
+      Calls updateBbox(), optimiseTrees(), sets the cellView as edited and sets the modification date. 
+      This should be called after a modification, or a set of modifications, to the cellView. 
+      For perfomance reasons it is better to call this after a set of operations rather 
+      than for each operation.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Rect.htm">Rect </a>  cellView::bBox()
+    </font></h4>
+
+    <p>
+      Get the bounding box of the cellView as a Rect.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      QRect  cellView::bBox()
+    </font></h4>
+
+    <p>
+      Get the bounding box of the cellView as a QRect.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::clearBbox()
+    </font></h4>
+
+    <p>
+      Resets the cellView&#39;s bounding box to (0,0) (0,0).
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::bBox(<a href="Rect.htm">Rect </a>  &amp;box)
+    </font></h4>
+
+    <p>
+      The existing cellView&#39;s bounding box becomes the union of the current bounding box and <i>box</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Rect.htm">Rect</a>  cellView::getBoundary()
+    </font></h4>
+
+    <p>
+      Gets the cellView's boundary rectangle, if such a shape exists on the boundary drawing layer.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::dbDeleteObj(<a href="dbObj.htm">dbObj</a> *object, bool reallyDelete=true, bool opt=true)
+    </font></h4>
+
+    <p>
+      Delete the database object <i>object</i>. If <em>reallyDelete</em> is true, the object is deleted, 
+      else it is just removed from the object trees (and hence undoing the delete is possible). 
+      If <em>opt</em> is true, the tree is (re)optimised after the delete.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t cellView::getNumShapes()
+    </font></h4>
+
+    <p>
+      Get the number of shapes in the cellview.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t  cellView::getNumShapes(int16_t layer)
+    </font></h4>
+
+    <p>
+      Gets the number of shapes on a specific layer, where <em>lyr</em> is the layer number.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t  cellView::getNumInsts()
+    </font></h4>
+
+    <p>
+      Get the number of instances in the cellview.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t cellView::getNumViaInsts()
+    </font></h4>
+
+    <p>
+      Get the number of viaInsts in the cellview
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t cellView::getNumNets()
+    </font></h4>
+
+    <p>
+      Get the number of nets in the cellview.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t cellView::getNumPins()
+    </font></h4>
+
+    <p>
+      Get the number of pins in the cellview. 
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="library.htm">library</a> * cellView::lib()
+    </font></h4>
+
+    <p>
+      Get the cellview&#39;s library.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::lib(<a href="library.htm">library</a> *lib)
+    </font></h4>
+
+    <p>
+      Sets the cellView's library.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * cellView::cellName()
+    </font></h4>
+
+    <p>
+      Get the cellview&#39;s name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::cellName(const char *name)
+    </font></h4>
+
+    <p>
+      Sets the cellView's cell name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char * cellView::viewName()
+    </font></h4>
+
+    <p>
+      Get the cellview&#39;s viewname.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::viewName(const char *name)
+    </font></h4>
+
+    <p>
+      Sets the cellView's view name.
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::createDate(uint8_t *c)
+    </font></h4>
+
+    <p>
+      Sets the cellView's create date. This is a  6 byte array of the form YY-MM-DD-HH-MM-SS
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      uint8_t * cellView::createDate()
+    </font></h4>
+
+    <p>
+      Gets the cellView's create date. 
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::modDate(uint8 *c)
+    </font></h4>
+
+    <p >
+      Sets the cellView's modification date. This is a 6 byte array of the form YY-MM-DD-HH-MM-SS
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      uint8_t * cellView::modDate()
+    </font></h4>
+
+    <p>
+      Gets the cellView's modification date.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::incModCount()
+    </font></h4>
+
+    <p>
+      Increment the cellView's edit/modification count.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      cellView::decModCount()
+    </font></h4>
+
+    <p>
+      Decrement the cellView's modification count.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int16_t cellView::modCount()
+    </font></h4>
+
+    <p>
+      Get the cellView's modification count; if zero the cell has not been edited.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t cellView::getNearestEdge(const <a href="Point.htm">Point </a> &amp;p, <a href="segment.htm">segment</a> &amp;edge, int32_t dist)
+    </font></h4>
+
+    <p>
+      Get the nearest segment (object edge) to a point <i>p</i> in the cellview, up to a maximum distance <i>dist</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj</a> * cellView::getNearestObj(const <a href="Point.htm">Point </a> &amp;p, int32_t dist)
+    </font></h4>
+
+    <p>
+      Get the nearest object to a point <i>p</i> in the cellview, up to a maximum distance <i>dist</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      LppLayerMap &amp; cellView::getLppList()
+    </font></h4>
+
+    <p>
+      Get the lpp list for this cellView as a std::map
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="lpp.htm">dbLpp</a> * cellView::getLpp(int16_t layer)
+    </font></h4>
+
+    <p>
+      Get the layer-purpose pair with layer number <i>layer</i> in this cellview.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="lpp.htm">dbLpp</a> * cellView::getLpp(const char *layerName, const char *purposeName)
+    </font></h4>
+
+    <p>
+      Get the layer-purpose pair with layer <em>layerName</em> and purpose <em>purposeName</em> in this cellview.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1" ><font face="Arial, Helvetica, sans-serif">
+      bool  cellView::deleteLpp(<a href="lpp.htm">lpp </a>*lpp)
+    </font></h4>
+
+    <p>
+      Delete the layer-purpose pair <i>lpp</i> in this cellview. 
+      All objects (shapes, insts and viaInsts) on that lpp will be deleted.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      &lt;list&gt; cellView::getLpps()
+    </font></h4>
+
+    <p>
+      Returns a&nbsp;Python list of all layer-purpose pairs in the cellview. 
+      This is a python wrapper created using the SWIG %extend function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t cellView::getNumLpps()
+    </font></h4>
+
+    <p>
+      Get the number of lpps in the cellview
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      &lt;list&gt;&nbsp; cellView::getInsts()
+    </font></h4>
+
+    <p>
+      Returns a Python list of all instances in the cellView. 
+      This is a python wrapper created using the SWIG %extend function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      &lt;list&gt;  cellView::getNets()
+    </font></h4>
+
+    <p>
+      Returns a Python list of all nets in the cellView. 
+      This is a python wrapper created using the SWIG %extend function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      &lt;list&gt;  cellView::getPins()
+    </font></h4>
+
+    <p>
+      Returns a Python list of all pins in the cellView. 
+      This is a python wrapper created using the SWIG %extend function.
+    </p>
+
+    <p>
+      An example of using the access functions to create text labels on pins follows.
+    </p>
+
+    <pre>	
+      # script to create labels from pins
+      #
+      # Get the current edit cellView, lib and technology
+      cv = getEditCellView()
+      lib = cv.lib()
+      tech = lib.tech()
+      #
+      # Get desired pin layer
+      lyr = tech.getLayerNum(&quot;text&quot;, &quot;drawing&quot;)
+      #
+      # Iterate over all top level pins
+      #
+      pins = cv.getPins()
+      for pn in pins :
+        name = pn.name()
+        # Get the pin shapes and iterate over them
+        shapes = pn.getPorts()
+        for shp in shapes :
+          box = shp.bBox()
+          origin = box.centre()
+          cv.dbCreateLabel(origin, name, R0, 1.0, centreCentre, lyr)
+        # end while
+      # end while
+      #
+      # commit edits
+      cv.update()
+    </pre>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="shape.htm">shape</a> *new_shp cellView::roundCorners(<a href="shape.htm">shape </a>*shp, 
+      int32_t inner_radius, int32_t outer_radius, int32_t segs, float64_t grid)
+    </font></h4>
+
+    <p>
+      Rounds the shape <em>shp</em> with the radius given in dbu, using a minimum number of segments 
+      <em>segs</em>, and snaps the vertices of the curve to <em>grid</em> in microns. <em>inner_radius</em> 
+      is the radius of inner (concave) corners; <em>outer_radius</em> is the radius of outer 
+      (convex) corners.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h2>
+      <u>Iterators</u>
+    </h2>
+
+    <p>
+      Instead of using getInsts/getNets/getPins/getLpps it is possible to use iterators in Python:
+    </p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      iter = instIterator(cellView *cv)
+    </font></h4>
+
+    <p>
+      Initialises the inst iterator for the cellView. For example:
+    </p>
+
+    <pre>
+      # Script to print instance names in a cellview
+      #
+      from ui import *
+      #
+      cv = getEditCellView()
+      iter = instIterator(cv)
+      while not iter.end() :
+        inst = iter.value()
+        name = inst.instName()
+        print &quot;inst name = &quot;, name
+        iter.next()
+      #
+    </pre>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      iter.next()</strong>
+    </h4>
+
+    <p>
+      Advances the iterator to the next instance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool iter.end()
+    </font></h4>
+
+    <p>
+      Returns false if there are more instances, else returns true if there are no more.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="inst.htm">inst</a> = iter.value()
+    </font></h4>
+
+    <p>
+      Returns the current instance.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      iter = netIterator(cellView *cv)
+    </font></h4>
+
+    <p>
+      Initialises the net iterator for the cellView. The iterator has similar next(), end();and value() functions as above.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      iter = pinIterator(cellView *cv)
+    </font></h4>
+
+    <p>
+      Initialises the pin iterator for the cellView. The iterator has similar next(), end() and value() functions as above.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      iter = lppIterator(cellView *cv)
+    </font></h4>
+
+    <p>
+      Initialises the dbLpp iterator for the cellView. The iterator has similar next(), end() and value() functions as above.
+    </p>
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      iter = dbObjIterator(dbObjList *list)
+    </font></h4>
+
+    <p>
+      Initialises the dbObj iterator for a dbObjList. The iterator has similar next(), end() and value() functions as above.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      iter = shapeIterator(shape *list)
+    </font></h4>
+
+    <p>
+      Initialises the shape iterator for a shape. The iterator has similar next(), end() and value() functions as above.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h2>
+      <u>Hashtable access</u>
+    </h2>
+
+    <p>
+      Provided for documentation of the C++ API only.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      InstHashTable * cellView::getInstHashTable()
+    </font></h4>
+
+    <p>
+      Gets the hash table of instances.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      NetHashTable *cellView::getNetHashTable()
+    </font></h4>
+
+    <p>
+      Gets the hash table of nets.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      PinHashTable *cellView::getPinHashTable()
+    </font></h4>
+
+    <p>
+      Gets the hash table of pins.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+  </div>
+</body>
+<!-- #EndTemplate --></html>

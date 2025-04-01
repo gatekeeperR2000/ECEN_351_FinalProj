@@ -1,0 +1,15 @@
+* C:\Users\Randall_Jack\Desktop\glade5_win64\ECEN351\C5N_LTspice\buffer.asc
+XX1 IN N001 POS NEG inverter
+XX2 N001 OUT POS NEG inverter
+
+* block symbol definitions
+.subckt inverter Vin Vout Vpos Vneg
+M1 Vout Vin Vpos Vpos C5NPMOS l=0.6u w=1.8u
+M2 Vout Vin Vneg Vneg C5NNMOS l=0.6u w=1.8u
+.ends inverter
+
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\Randall_Jack\Documents\LTspiceXVII\lib\cmp\standard.mos
+.backanno
+.end

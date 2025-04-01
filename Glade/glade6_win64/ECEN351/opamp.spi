@@ -1,0 +1,29 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : buffer_ex
+* Top Cell Name: opamp
+* View Name: schematic
+* Netlist created: 07.Apr.2021 17:01:17
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: buffer_ex
+* Cell Name:    opamp
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT opamp avm avp vinp ibias vinn vout 
+*.PININFO avp:B avm:B vinp:I vout:O vinn:I ibias:I
+
+M4 n5 n5 avp avp pch w=1.1u l=0.13u m=1
+M3 vout n5 avp avp pch w=1.1u l=0.13u m=1
+M1 vout vinn n4 avm nch w=1.1u l=0.13u m=1
+M2 n4 ibias avm avm nch w=1.1u l=0.13u m=1
+M0 n5 vinp n4 avm nch w=1.1u l=0.13u m=1
+.ENDS
+
+.END

@@ -1,0 +1,19 @@
+* C:\Users\Randall Jack\iCloudDrive\Classes\LTspice\Diff Amp Active.asc
+M1 ibias ibias 0 0 NMOS l=1u w=10u
+M2 N002 ibias 0 0 NMOS l=1u w=20u
+M3 N001 vinp N002 0 NMOS l=2u w=10u m=4
+M4 vout vinn N002 0 NMOS l=2u w=10u m=4
+M5 N001 N001 vdd vdd PMOS l=2u w=10u m=4
+M6 vout N001 vdd vdd PMOS l=2u w=10u m=4
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\Randall Jack\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran .1u 10u 0 10p
+.include C5_models.txt
+vdd vdd 0 3
+ibias vdd ibias 10u
+vinp vinp 0 pwl 0 1.4 10u 1.6
+vinn vinn 0 pwl 0 1.6 10u 1.4
+ediff_in vin 0 vinp vinn 1
+.backanno
+.end

@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+  <!-- #BeginEditable "doctitle" -->
+      <title>Glade Reference Manual</title>
+      <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" -->
+          <h2><font face="Arial, Helvetica, sans-serif">Simulation</font></h2>
+
+          <p>
+            Glade supports simulation initially from schematics. The currently supported simulators include:
+          </p>
+          <ul>
+            <li>Xyce - A public domain Spice like simulator from Sandia Labs.</li>
+            <li>Spice3f5 - A venerable simulator from Berkeley.</li>
+          </ul>
+
+          <p>&nbsp;</p>
+
+          <h2>Simulator installation</h2>
+
+          <p>
+            To download a prebuilt binary of the Xyce, go to the Xyce website at
+            https://xyce.sandia.gov/ and select Download. You need to register to
+            get download access. Follow the installation instructions in the
+            documentation. You will need to make a note of the installation
+            directory for use in the simulation setup dialog below.
+          </p>
+          <p>
+            To download a prebuilt binary of Spice3f5, go to
+            www.peardrop.co.uk/downloads and download the Spice3f5 package for your
+            OS.
+          </p>
+
+          <p>&nbsp;</p>
+
+          <h2>Schematic simulation symbol library</h2>
+
+          <p> 
+            The library 'XyceLib' supplied with Glade contains device primitives
+            (resistors, capacitors, MOS, bipolar, Jfet devices etc) for use in
+            schematics you will simulate using Xyce.
+          </p>
+
+          <p align="center"><img src="images/xyce_symbols.png" alt="Xyce symbols" width="775" height="1016"></p>
+
+          <p>&nbsp;</p>
+
+          <h2>Probing a schematic</h2>
+
+          <p>
+            You can use the Probe Window to set up probes for simulation plotting.
+            A shortcut to entering nets to probe is to right click on them. 
+          </p>
+
+          <p align="center"><img src="images/schematic_probe1.png" alt="sch1" style="width: 716px; height: 483px;"></p>
+
+          <p align="left">
+            A popup menu appears when you right click on a net and
+            allows you to add a voltage probe for that net, to clear an existing
+            probed net or to clear all probed nets.
+          </p>
+
+          <p align="left">
+            Similarly if you right click on a voltage source you can add a probe for its branch current:
+          </p>
+
+          <p align="center"><img src="images/schematic_probe2.png" alt="sch2" style="width: 718px; height: 486px;"></p>
+
+          <p>&nbsp;</p>
+
+          <p align="left">Probes entered are shown in the probes window (Tools-&gt;Probe WIndow).</p>
+
+          <p align="center"><img src="images/schematic_probe3.png" alt="sch3" style="width: 450px; height: 176px;"></p>
+
+          <p align="left">
+            The first column of the probe window shows the expression
+            passed to the simulator. So for probing the voltage on node n5, the
+            probe expression is V(n5). Double left clicking on the expression allows
+            you to edit it.
+          </p>
+
+          <p align="left">
+            The second column shows the colour of the probe, as
+            highlighted in the schematic, and shown in the plot window. The text is
+            the colour in hex rgb format. Double clicking on the entry allows you to
+            change the probe colour.
+          </p>
+
+          <p align="left">
+            The third column shown the linestyle; double clicking again allows you to change this.
+          </p>
+          <p align="left">
+            The fourth column shows the linewidth of the waveform in the plot window. 
+          </p>
+
+          <p align="left">
+            The + and - buttons allow you to add new probe expressions
+            or delete existing ones manually. Note that probe expressions do not
+            necessarily correspond to node names and can be anything the simulator
+            supports.
+          </p>
+
+          <p>&nbsp;</p>
+
+          <h2>Simulator Setup</h2>
+
+          <p>
+            The <strong>Simulation-&gt;Setup... </strong>menu sets the simulator
+            runtime options and netlisting options.
+          </p>
+
+          <p align="center"><img src="images/simsetup1.png" alt="simsetup1" style="width: 378px; height: 239px;"></p>
+
+          <p align="left"><em>Simulator</em> sets the simulator name. It is a cyclic
+            field of suppported simulators. <em>Simulator Path</em> is the path to
+            the simulator executable. The combination of simulator path and name is
+            used to invoke the simulator. <em>Working Directory</em> is the
+            directory where e.g. netlisting and plot (rawfile) files are generated.
+            Glade reads Spice3-style rawfiles for plotting; if <em>Ascii Rawfile?</em>
+            is checked, the rawfile will be written in ascii, else it will be
+            binary. <em>Simulator Cmd Line Options</em> are passed to the simulator
+            on invocation.
+          </p>
+
+          <p align="center"><img src="images/simsetup2.png" alt="simsetup2" style="width: 375px; height: 237px;"></p>
+
+          <p align="left">
+            <em>Netlister Switchlist</em> is a whitespace delimited list of views that the netlister uses 
+            to switch into lower leves of a schematic hierarchy. <em>Netlister Stoplist</em> is a whitespace
+            delimited list of views that the netlister will stop on and not descend further. <em>Global Nets</em> 
+            are nets which are added to the netlist as .GLOBAL, i.e. common throughout the subcircuit hierarchy. 
+            <em>NLP Property Name</em> is the name of the property that holds thenetlister formatting string.
+          </p>
+
+          <p>&nbsp;</p>
+
+          <h2>DC Operating Point Analysis</h2>
+
+          <p>
+            The <strong>Simulation-&gt;Run DCOP Analysis</strong> command displays
+            the dc operating point dialog.
+          </p>
+
+          <p>
+            If <em>Backannotate To Schematic</em> is checked, the DC operating point voltages are annotated 
+            to wires in the schematic as properties. They will be displayed if the wire is highlighted (set 
+            highlighting on in the Selection Options dialog).
+          </p>
+
+          <p><br></p>
+
+          <h2>Transient Analysis</h2>
+
+          <p>
+            The <strong>Simulation-&gt;Run Transient Analysis</strong> command displays the transient analysis dialog.
+          </p>
+
+          <p align="center"><img src="images/trananalysis1.png" alt="tran1" width="347" height="261"></p>
+
+          <p align="left">
+            <em>Initial timestep value </em>is the minimum initial timestep used for simulation. Note that 
+            Xyce has slightly different meaning to this that e.g. Spice3; consult the Xyce user reference for
+            details. <em>Final Time Value </em>is the simulation end time. <em>Start Time Value</em> is the 
+            time at which simulation results are stored; it is not the simulation starting time (which is 
+            always zero). <em>Maximum Timestep </em>is the maximum allowed timestep during simulation. 
+            <em>Use Initial Conditions </em>makes use of device initial conditions at the start of transient 
+            analysis. <em>Use Step Analysis</em> expands the form to allow a parameter to be stepped over a 
+            range, with a transient analysis for each value.
+          </p>
+
+          <p align="center"><img src="images/trananalysis2.png" alt="tran2" width="347" height="461"></p>
+
+          <p align="left">
+            When <em>Step Analysis</em> is enabled, <em>Sweep Type</em> sets the type of the stepping - linear, 
+            decade or octave stepping. <em>Name</em> is the name of the parameter to be stepped, and <em>Start</em>, 
+            <em>Stop</em> and <em>Step</em> control the starting, stopping and step increment.
+          </p>
+
+          <p align="left">
+            You can set up probes on nets before running transient analysis, and then the plot window will 
+            automatically be opened with the probed nets (or sources) displayed.
+          </p>
+
+          <p>&nbsp;</p>
+
+          <h2>AC Analysis</h2>
+
+          <p>
+            The <strong>Simulation-&gt;Run AC Analysis</strong> command displays the AC analysis dialog.
+          </p>
+
+          <p align="center"><img src="images/acanalysis1.png" alt="ac1" width="347" height="234"></p>
+
+          <p align="left">
+            <em>Sweep Type</em> is the type of AC analysis; it can be <em>Decade</em>, <em>Linear</em> 
+            or Octave. <em>Points</em> is the number of analysis points per decade or octave, or the total 
+            number of points for a linear sweep. Start Frequency and Stop Frequency set the initial and 
+            final analysis frequencies. <em>Use Step Analysis</em> expands the form to allow a parameter 
+            to be stepped over a range, with an AC analysis for each value.
+          </p>
+
+          <p align="center"><img src="images/acanalysis2.png" alt="acan2" width="347" height="434"></p>
+
+          <p align="left">
+            When <em>Step Analysis</em> is enabled, <em>Sweep Type</em> sets the type of the stepping - linear, 
+            decade or octave stepping. <em>Name</em> is the name of the parameter to be stepped, and <em>Start</em>, 
+            <em>Stop</em> and <em>Step</em> control the starting, stopping and step increment.
+          </p>
+
+          <p>&nbsp;</p>
+
+          <h2>DC Analysis</h2>
+
+          <p>
+            The <strong>Simulation-&gt;Run DC Analysis</strong> command displays
+            the DC analysis dialog.
+          </p>
+
+          <p align="center"><img src="images/dcanalysis1.png" alt="dcan1" width="370" height="275"></p>
+
+          <p align="left">
+            <em>Sweep Type</em> is the type of DC analysis for the sweep varable 1, and can be <em>Linear</em>, 
+            <em>Decade</em>, <em>Octave</em> or <em>None</em>. <em>Name</em> is the name of the first swept
+            parameter. <em>Start</em>, <em>Stop</em> and <em>Step</em> set the starting, stopping and increment 
+            values. If <em>Two Variable Sweep</em> is set, a second swept variable can be used.
+          </p>
+
+          <p align="center"><img src="images/dcanalysis2.png" alt="dcan2" width="370" height="425"></p>
+
+          <p align="left">
+            If <em>Two Variable Sweep</em> is checked,the second sweep variable name, start, stop and increment can be specified.
+          </p>
+
+          <p>&nbsp;</p>
+
+          <h2>Plotting</h2>
+
+          <p>
+            The <strong>Simulation-&gt;Plot...</strong> command displays the plot window..
+          </p>
+
+          <p align="center"><img src="images/plot1.png" alt="plot1" style="width: 912px; height: 598px;"></p>
+
+          <p align="left">
+            The plot window allows plotting node voltages, branchcurrents or expressions. 
+          </p>
+
+          <ul>
+            <li>
+              <strong>File-&gt;Open Rawfile... </strong>
+              opens a
+              ascii or binary rawfile. Note that these are the same format as e.g.
+              Spice3, LTSpice etc. Once open, the 'Signal' dock window is populated
+              with the names of the expressions (node voltages, branch currents or
+              expressions of these and/or other parameters). You can add an
+              expression to the chart by double clicking on its name.
+            </li>
+            <li>
+              <strong>File-&gt;Copy to Clipboard</strong> 
+              copies the chart to the clipboard. You can then paste this into other
+              applications, e.g. MS Word, Paint etc.
+            </li>
+            <li>
+              <strong>File-&gt;Print</strong> 
+              opens a file chooser dialog to save the file as a .png format, for printing or 
+              inclusion in documentation.
+            </li>
+            <li><strong>File-&gt;Exit</strong> exits the plot window.</li>
+            <li>
+              <strong>View-&gt;Fit</strong> 
+              (bindkey f) fits the simulation waveform(s) to the chart.
+            </li>
+            <li>
+              <strong>View-&gt;Zoomin</strong> 
+              (bindkey z) zooms into the chart by a factor of 2.
+            </li>
+            <li>
+              <strong>View-&gt;Zoomout</strong> 
+              (bindkey Shift+z) zooms out of the chart by a factor of 2.
+            </li>
+            <li>
+              <strong>View-&gt;Scroll Left/Right/Up/Down</strong>
+              (arrow bindkeys) scrolls the chart by about 20%.
+            </li>
+          </ul>
+
+          <p>
+            The plot window auto scales plotted expressions to the chart area.
+          </p>
+
+          <p>
+            The mouse wheel zooms in/out of the chart.
+          </p>
+
+          <p>
+            Clicking on a waveform with the left mouse button displays
+            a callout (like a speech bubble) with the expression/variable name and
+            X/Y values. You can have any number of callouts set, and they will be
+            maintained on zooming or panning. Note that you must click precisely on
+            the waveform to generate a callout.
+          </p>
+          <p>
+            Clicking with the right mouse button shows a popup menu
+            that allows you to clear all callouts.
+          </p>
+          <p>
+            Right mouse button dragging zooms into a region of the
+            chart. By default a rectangular area is zoomed into. Holding the Shift
+            key while dragging zooms in by X axis only; holding the Ctrl key while
+            dragging zooms in by Y axis only. Use View-&gt;Fit (f key) to reset the
+            zoom.
+          </p>
+          <p>
+            The X axis and Y axis tabs allow chart X axis and Y axis
+            to be controlled. The axis type can be Log or Linear. By default the
+            axes are auto scaled; however checking e.g. Xmin or Xmax allows entering
+            minimum/maximum limits for the axes. Major ticks and minor ticks are
+            shown and automatically chosen; they can be manually shown/hidden;,
+            their linestyles chose and the number of ticks set (-1 signifies use the
+            default settings).
+          </p>
+          <p>
+            The <em>Misc</em> tab allows control over whether a single chart is
+            used by all waveforms (the default), or a chart per waveform is '<em>Multiple
+            Plots</em>' is checked. Changing this option removes all plot
+            expressions; they can be re-added by clicking on their names in the
+            Signal dock window. <em>Show Data Points</em> shows the actual
+            simulation data; else a spline fit to the data points is drawn.
+          </p>
+
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+
+          <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" -->
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" -->
+    <h2><font face="Arial, Helvetica, sans-serif">
+      mpp class
+    </font></h2>
+
+    <p>
+      The mpp class is derived from a shape. This class is normally created in a cellView using 
+      the dbCreateMPP() function.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h2><font face="Arial, Helvetica, sans-serif">
+      mppLayer class
+    </font></h2>
+
+    <p>
+      A mppLayer is a helper class to hold information about each layer that comprises a mpp. It
+      has the following accessor fuctions:
+    </p>
+
+    <pre>
+      class mppLayer {
+        setWidth(int32_t w);
+        int32_t width(void) const;
+        setLength(int32_t l);
+        int32_t length(void) const;
+        setSpace(int32_t s);
+        int32_t space(void) const;
+        setBegExt(int32_t e);
+        int32_t begExt(void) const;
+        setEndExt(int32_t e);
+        int32_t endExt(void) const;
+        setLayer(int16_t l);
+        int16_t layer(void) const;
+        int32_t offset(void) const;
+        setOffset(int32_t offset);
+      }
+    </pre>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::addLayer(mppLayer l)
+    </font></h4>
+
+    <p>
+      Adds a layer to the mpp.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mppLayer getLayer(int32_t idx)
+    </font></h4>
+
+    <p>
+      Gets the mpp_layer by index.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mppLayer * mpp::getLayers()
+    </font></h4>
+
+    <p>
+      Gets the mppLayer&rsquo;s as an array for the mpp.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::setLayers(mppLayer * l, int32_t numLayers)
+    </font></h4>
+
+    <p>
+      Sets the mpp layers.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t mpp::numLayers()
+    </font></h4>
+
+    <p>
+      Get the number of mpp layers.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::setNumLayers(int32_t num)
+    </font></h4>
+
+    <p>
+      Set the number of mpp layers.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h2><font face="Arial, Helvetica, sans-serif">
+      mppRule class
+    </font></h2>
+
+    <p>
+      A mppRule is a heper struct to hold mpp rules.
+    </p>
+
+    <pre>
+      struct mppRule {
+        char              * name;
+        uint32_t            numLayers;
+        cdb::mppLayer     * layers;
+        int32_t             maxWidth;
+      }
+    </pre>
+
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::setMppRule(mppRule *rule)
+    </font></h4>
+
+    <p>
+      Set the mpp rule.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mppRule *rule = mpp::getMppRule()
+    </font></h4>
+
+    <p>
+      Get the mpp_rule.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Rect.htm">Rect</a> mpp::bBox();
+    </font></h4>
+
+    <p><font face="Arial, Helvetica, sans-serif" pbzloc="603">
+      Get the bounding box of this mpp.</font></p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::bBox(<a href="Rect.htm">Rect</a> b);
+    </font></h4>
+
+    <p>
+      Set the bounding box of this mpp. Not useful and will throw an exception if called.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      db_Type t = m.objType();
+    </font></h4>
+
+    <p>
+      Returns the object type of this path as MPP.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      const char *name = m.objName();
+    </font></h4>
+
+    <p>
+      Returns the object name of this path as &quot;MPP&quot;.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t  mpp::nPoints();
+    </font></h4>
+
+    <p>
+      Returns the number of points of the mpp.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="Point.htm">Point</a> *  mpp::ptlist();
+    </font></h4>
+
+    <p>
+      Returns the point list of this mpp as an array or Points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::bias(int32_t bias, float64_t grid);
+    </font></h4>
+
+    <p>
+      Bias this mpp by <i>bias</i>, snapping to the grid <i>grid</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::scale(float64_t scale, float64_t grid);
+    </font></h4>
+
+    <p>
+      Scale this mpp by <i>scale</i>, snapping to the grid <i>grid</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t mpp::getNearestEdge(const <a href="Point.htm">Point</a> &amp;p, <a href="segment.htm">segment</a> &amp;s);
+    </font></h4>
+
+    <p>
+      Get the distance of the nearest segment <i>s</i> of this mpp to the point <i>p</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t mpp::getNearestVertex(const <a href="Point.htm">Point</a> &amp;p, <a href="vertex.htm">vertex</a> &amp;v);
+    </font></h4>
+
+    <p>
+      Get the distance of the nearest vertex <i>s</i> of this mpp to the point <i>p</i>;
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::transform(<a href="transform.htm">transform</a> trans);
+    </font></h4>
+
+    <p>
+      Transform this mpp using <i>trans</i>.
+    </p>
+
+    <p pbzloc="632">&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool mpp::ptInPoly(<a href="Point.htm">Point</a> p)
+    </font></h4>
+
+    <p>
+      Returns true if the Point p is contained in the mpp or on its edges.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::Move(<a href="cellview.htm">cellView</a> *cv, <a href="Point.htm">Point</a> delta, bool opt = true);
+    </font></h4>
+
+    <p>
+      Move this mpp by distance <i>delta</i>. If opt is true then the database is re-optimised for the new 
+      mpp position. If there are a lot of objects to move it makes sense to turn this off and instead use 
+      the cellView update() function after moving them all.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj</a> * mpp::Copy(<a href="cellview.htm">cellView</a> *cv, <a href="Point.htm">Point</a> delta);
+    </font></h4>
+
+    <p>
+      Copy this mpp to cellView <i>cv</i>, with offset <i>delta</i>. 
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="dbObj.htm">dbObj</a> * mpp::Flatten(<a href="cellview.htm">cellView</a> *cv, <a href="transform.htm">transform</a> trans);
+    </font></h4>
+
+    <p>
+      Flatten this mpp into cellView <i>cv</i> with transformation <i>trans</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::Stretch(<a href="Point.htm">Point</a> delta, <a href="segment.htm">segment</a> seg);
+    </font></h4>
+
+    <p>
+      Stretch segment <i>seg</i> of this mpp by <i>delta</i>.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      mpp::compressPoints();
+    </font></h4>
+
+    <p>
+      Removes colinear points.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="polygon.htm">polygon</a> * mpp::shapeToPoly ();
+    </font></h4>
+
+    <p>
+      Converts this mpp to polygons.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

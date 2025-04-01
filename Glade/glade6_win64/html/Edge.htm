@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+    <html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+    <head>
+      <!-- #BeginEditable "doctitle" --> 
+      <title>Glade Reference Manual</title>
+      <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+      <!-- #EndEditable -->
+      <meta http-equiv="Content-Type"
+      content="text/html; charset=iso-8859-1">
+      <style type="text/css">
+      body,td,th {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      </style>
+    </head>
+
+    <body bgcolor="#ffffff">
+    <div align="left">
+        <img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+        <p align="left"><font face="Arial, Helvetica, sans-serif"><b>
+            <font size="4">
+            Glade Reference
+            </font></b>
+        </font></p>
+        <hr>
+        
+        <!-- #BeginEditable "text" -->
+        <h2><font face="Arial, Helvetica, sans-serif">
+            Edge class
+        </font></h2>
+
+        <p>
+            The Edge class represents an edge, i.e a connected pair of vertices.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            Edge::Edge
+        </font></h4>
+
+        <p>
+            Creates and edge object. The endpoints are undefined.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            Edge::Edge(<a href="Point.htm">Point </a>p0, <a href="Point.htm">Point </a>p1)
+        </font></h4>
+
+        <p>
+            Creates and Edge object and initialises the endpoints to the two points.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            Edge::Edge(int32_t x0, int32_t y0, int32_t x1, int32_t y1)
+        </font></h4>
+
+        <p>
+            Creates and Edge object and initialises the endpoints.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            <a href="Point.htm">Point </a>Edge::getP0()
+        </font></h4>
+
+        <p>
+            Gets one endpoint P0.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            <a href="Point.htm">Point </a>Edge::getP1()
+        </font></h4>
+
+        <p>
+            Gets the other endpoint P1.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            Edge::setP0(<a href="Point.htm">Point </a>p)
+        </font></h4>
+
+        <p>
+            sets endpoint P0 to p.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            Edge::setP1(<a href="Point.htm">Point </a>p)
+        </font></h4>
+
+        <p>
+            sets endpoint P1 to p.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            Edge::offset(int dx, int dy)
+        </font></h4>
+
+        <p>
+            Transposes the edge by the distance specified by dx, dy.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::operator ==
+        </font></h4>
+
+        <p>
+            Returns true if the edges are the same i.e. endpoints P0 and P1 are identical.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::operator !=
+        </font></h4>
+
+        <p>
+            Returns true if of the edges are not the same i.e. endpoints P0 and P1 are not identical.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            int32_t Edge::length()
+        </font></h4>
+
+        <p>
+            Returns the Euclidian length of the edge e.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::isHorizontal()
+        </font></h4>
+
+        <p>
+            Returns true if the edge is horizontal.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::isVertical()
+        </font></h4>
+
+        <p>
+            Returns true if the edge is vertical.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::isDiagonal()
+        </font></h4>
+
+        <p>
+            Returns true if the edge is diagonal.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::isOrthogonal()
+        </font></h4>
+
+        <p>
+        Returns true if the edge is either horizontal or vertical.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            int Edge::deltax()
+        </font></h4>
+
+        <p>
+            Returns the horizontal distance between the edges endpoints i.e. P1-P0.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            int Edge::deltay()
+        </font></h4>
+
+        <p>
+            Returns the vertical distance between the edges endpoints i.e. P1-P0.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::contains(const <a href="Point.htm">Point</a> &amp;p, bool includeEnds=true)
+        </font></h4>
+
+        <p>
+            Returns true if the point p lies on the edge e. If <em>includeEnds</em> is true, 
+            the point <em>p</em> can lie on the endpoints of the edge and be considered &#39;
+            contained&#39;.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::crosses(const <a href="Rect.htm">Rect</a> &amp;r, bool touch = true)
+        </font></h4>
+
+        <p>
+            Returns true if the edge crosses the <a href="Rect.htm">Rect</a> r, i.e. 
+            if the edge intersects one of the Rect's edges. If touch is true, this 
+            includes the endpoint of the edge touching an edge of the Rect.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::crosses(<a href="Point.htm">Point</a> *pts, int numPoints, bool touch = true)
+    </font></h4>
+
+        <p>
+            Returns true if the edge crosses the polygon given by pts, i.e. if the edge 
+            intersects one of the polygon's edges. If touch is true, this includes the 
+            endpoint of the edge touching an edge of the polygon.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            int Edge::pointToEdge(const <a href="Point.htm"> Point</a> &amp;p)
+        </font></h4>
+
+        <p>
+            Returns the shortest distance of a point p to the edge.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            int Edge::distance(const Edge &amp;e)
+        </font></h4>
+
+        <p>
+            Returns the shortest distance of the edge to another edge.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::.intersects(const <a href="Edge.htm">Edge</a> &amp;other, bool includeEnds=true)
+        </font></h4>
+
+        <p>
+            Returns true if the edges intersect at some point. If includeEnds is true, returns true 
+            if the edges intersect at endpoint(s).
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            Point Edge::interSectsAt(const <a href="Edge.htm"> Edge</a> &amp;other)
+        </font></h4>
+
+        <p>
+            Returns the point of intersection of two edges. The result is only valid if the edges intersect.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::isColinear(const <a href="Edge.htm"> Edge</a> &amp;other)
+        </font></h4>
+
+        <p>
+            Returns true if the edges are colinear, i.e. the edges are parallel and a point of one edge is on the other edge.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::parallel(const Edge &amp;other)
+        </font></h4>
+
+        <p>
+            Returns true if this edge is parallel to the other edge.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::left(const <a href="Point.htm"> Point &amp;</a>p)
+        </font></h4>
+
+        <p>
+            Returns true if point p is to the left of edge e, i.e. &#39;inside&#39;.
+            Note this assumes the direction of the Edge is from endpoint P0 to 
+            endpoint P1.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            <a href="Point.htm">Point</a> Edge::nearestPoint(const <a href="Point.htm"> Point</a> &amp;pt)
+        </font></h4>
+        
+        <p>
+            Returns the point on the edge that is nearest the Point <em>pt</em>. The point 
+            p is either on a line perpendicular to the edge, or if no such line exists, is 
+            the nearest endpoint of the edge.
+        </p>
+        
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            <a href="Vector.htm"> Vector</a> Edge::normalTo(const <a href="Point.htm">Point</a> &amp;pt)
+        </font></h4>
+
+        <p>
+            Returns a <a href="Vector.htm">Vector</a> that is the perpendicular distance from 
+            the Point <em>pt</em> to the edge.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+            bool Edge::projects(const <a href="Edge.htm">Edge</a> &amp;e1, const <a href="Edge.htm">Edge</a> &amp;e2, <a href="Edge.htm">Edge</a> &amp;e3, <a href="Edge.htm">Edge</a> &amp;e4)
+        </font></h4>
+
+        <p>
+            Returns true if edges E1 and E2 are parallel and project. 
+            e3 and e4 are the resulting projecting edges.
+        </p>
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+
+        <!-- #EndEditable --> 
+        <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+        <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+    </body>
+<!-- #EndTemplate --></html>

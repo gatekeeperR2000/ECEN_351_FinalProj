@@ -1,0 +1,34 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib
+* Top Cell Name: nand3_2x
+* View Name: extracted
+* Netlist created: 28.Mar.2019 16:57:12
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    nand3_2x
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT nand3_2x Y B C
+*.PININFO Y:B B:B C:B
+
+MM28 n7 B n6 vss C5NNMOS w=5.4e-06 l=6e-07 as=4.455e-12 ps=1.41e-05 ad=4.86e-12 pd=1.44e-05 $X=13.95 $Y=2.1
+MM30 vdd C Y vdd C5NPMOS w=3.6e-06 l=6e-07 as=2.97e-12 ps=1.05e-05 ad=3.24e-12 pd=1.08e-05 $X=4.35 $Y=15.3
+MM24 vss C n6 vss C5NNMOS w=5.4e-06 l=6e-07 as=4.455e-12 ps=1.41e-05 ad=4.86e-12 pd=1.44e-05 $X=4.35 $Y=2.1
+MM25 n6 B n7 vss C5NNMOS w=5.4e-06 l=6e-07 as=4.455e-12 ps=1.41e-05 ad=4.86e-12 pd=1.44e-05 $X=6.75 $Y=2.1
+MM34 vdd B Y vdd C5NPMOS w=3.6e-06 l=6e-07 as=2.97e-12 ps=1.05e-05 ad=3.24e-12 pd=1.08e-05 $X=13.95 $Y=15.3
+MM31 Y B vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=2.97e-12 ps=1.05e-05 ad=3.24e-12 pd=1.08e-05 $X=6.75 $Y=15.3
+MM33 Y A vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=2.97e-12 ps=1.05e-05 ad=3.24e-12 pd=1.08e-05 $X=11.55 $Y=15.3
+MM29 n6 C vss vss C5NNMOS w=5.4e-06 l=6e-07 as=4.455e-12 ps=1.41e-05 ad=4.86e-12 pd=1.44e-05 $X=16.35 $Y=2.1
+MM32 vdd A Y vdd C5NPMOS w=3.6e-06 l=6e-07 as=2.97e-12 ps=1.05e-05 ad=3.24e-12 pd=1.08e-05 $X=9.15 $Y=15.3
+MM35 Y C vdd vdd C5NPMOS w=3.6e-06 l=6e-07 as=2.97e-12 ps=1.05e-05 ad=3.24e-12 pd=1.08e-05 $X=16.35 $Y=15.3
+MM26 n7 A Y vss C5NNMOS w=5.4e-06 l=6e-07 as=4.455e-12 ps=1.41e-05 ad=4.86e-12 pd=1.44e-05 $X=9.15 $Y=2.1
+MM27 Y A n7 vss C5NNMOS w=5.4e-06 l=6e-07 as=4.455e-12 ps=1.41e-05 ad=4.86e-12 pd=1.44e-05 $X=11.55 $Y=2.1
+.ENDS

@@ -1,0 +1,862 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" -->
+    <title>Glade Reference Manual</title>
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left">
+      <img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>
+        <font size="4">Glade  Reference
+        </font></b>
+      </font></p>
+      <hr>
+      <!-- #BeginEditable "text" -->
+
+      <h2> <font face="Arial, Helvetica, sans-serif"> <b>Editing Commands</b> </font></h2>
+
+      <p>
+        Note that there are several function keys that can be used 
+        during viewing and editing. F1-F9 are hard coded and cannot be reassigned like 
+        bindkeys. On some platforms e.g. Mac, the function keys by default are assigned 
+        to special actions by the OS (for example raising/lowering the brightness of the 
+        display). It is possible to switch to normal Fn key mode 
+        operation (e.g. on the Mac by the Settings-&gt;Keyboard dialog).
+      </p>
+
+      <p> 
+        <b>Escape key</b> <a name="edit_escape"></a>
+        - aborts the current command.
+      </p>
+
+      <p> 
+        <b>Return key</b> <a name="edit_return"></a>
+        - completes a Create Path, Create Polygon, Create MPP, Create Wire or Reshape command. The current cursor position 
+        is used as the last point. This is usuallly easier than double clicking to complete these commands.
+      </p>
+
+      <p>
+        <b>Backspace key</b> <a name="edit_backspace"></a> 
+        - deletes the last vertex during a Create Path, Create Polygon, Create MPP, Create Wire or Reshape command.
+      </p>
+
+      <p>
+        <b>F1 key</b> <a name="edit_F1"></a>
+        - opens the help browser.
+      </p>
+
+      <p>
+        <b>F2 key</b> <a name="edit_F2"></a>
+        - toggles the <a href="view_menu.htm" target="selection_options">Selection Options</a> 'Gravity Mode' on/off.
+      </p>
+
+      <p>
+        <b>F3 key</b> <a name="edit_F3"></a>
+        - shows/hides the&nbsp;command option dialogs.
+      </p>
+
+      <p>
+        <b>F4 key</b>  <a name="edit_F4"></a>
+        - toggles the<a href="view_menu.htm" target="selection_options"> Selection Options</a> 
+        Full and Partial selection modes.
+      </p>
+
+      <p>
+        <b>F5 key</b> <a name="edit_F5"></a> 
+        - shows the Enter Coordinate dialog. For any command that normally takes 
+        a mouse click to enter a coordinate, F5 allows the user to specify the coordinates 
+        through the Enter Coordinates dialog box instead. For example, if you want 
+        to create a rectangle with coordinates (0.0, 0.0) (2.0, 3.0), click on the 
+        Create Rectangle icon, then press F5 and enter the first pair of coordinates 
+        and press OK. Then press F5 again and enter the second pair of coordinates.
+      </p>
+      <p>
+        <b>F6 key</b> </strong><a name="edit_F6"></a> 
+        - toggles the <a href="view_menu.htm" target="selection_options">Selection Options</a> 
+        'Display Connectivity' mode on/off.
+      </p>
+
+      <p>
+        <b>F7 key</b> <a name="edit_F7"></a>
+        - toggles the <a href="view_menu.htm" target="selection_options">Selection Options</a> 
+        'Selection Type' mode between Object and Net.
+      </p>
+
+      <p>
+        <b>F8 key</b> <a name="edit_F8"></a>
+        - toggles  the <a href="view_menu.htm" target="display_options">Display Options</a> 
+        'Immediate Move' mode on/off.
+      </p>
+
+      <p>
+        <b>F9 key</b> <a name="edit_F9"></a>
+        - cycles through the Snap Mode angle.
+      </p>
+
+      <p>
+        Also note that double clicking the left mouse button will add a final path/mpp point, 
+        or add a final polygon point, or terminate the Reshape command.
+      </p>
+
+      <h2> <font face="Arial, Helvetica, sans-serif"> <u>Edit Commands</u> </font></h2>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Undo<a name="edit_undo"></a>
+      </font></h4>
+
+      <p>
+        undos the last edit made. Multiple 
+        undos can be carried out. Currently the only operations that can be undone 
+        are Delete, Move, Move Origin, Copy, Rotate, Stretch, Create, Merge, Chop, 
+        Flatten, Align, Reshape.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Redo<a name="edit_redo"></a> 
+      </font></h4>
+
+      <p>
+        redos the last undo. Multiple 
+        redos can be carried out. Currently the only operations that can be redone 
+        are Delete, Move, Move Origin, Copy, Rotate, Stretch, Create, Merge, Chop, 
+        Flatten, Align, Reshape.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Yank<a name="edit_tank"></a>
+      </font></h4>
+
+      <p>
+        Copies the selected set into a yank buffer, for use with the Paste command.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Paste</strong><a name="edit_paste"></a>
+      </font></h4>
+
+      <p>
+        Pastes the contents of the yank buffer into the current cellView.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Delete<a name="edit_delete"></a>  
+      </font> </h4>
+
+      <p>
+        deletes the current selected set. Deletes can be undone.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Copy<a name="edit_copy"></a>
+      </font></h4>
+
+      <p>
+        Copies the current selected set. The F3 key will toggle the Copy options dialog.
+      </p>
+
+      <h4 align="center"><img src="images/copyOptions.png" width="299" height="263" alt="Copy"></h4>
+
+      <p>
+        <i>Snap Mode</i> can be set to Manhattan, Diagonal or Any Angle. 
+        <i>Copy Net info</i> if checked will copy a shape's net connectivity. 
+        If a shape is being copied, <i>Change Layer</i> will allow the layer of the new 
+        shape to be changed. 
+        If <i>Rows</i> or <i>Cols</i> is set to a number greater than 1, an array of 
+        objects will be copied with the spacing set by <i>Row Spacing</i> and <i>Col Spacing</i>. 
+        If <i>Mirror X</i> is pressed (or the 'x' key) during a copy, the object is mirrored in the X axis. 
+        If <i>Mirror Y </i>is pressed (or the 'y' key) during a copy, the object is mirrored about the Y axis. 
+        If <i>Rotate</i> is pressed (or the 'r' key) the object is rotated 90 degrees anticlockwise.
+      </p>
+
+      <p>
+        If infix mode is on, the current cursor position is used for the reference coordinate. Else 
+        you will be prompted to enter the reference coordinate. During a copy operation, the object(s) 
+        are shown as outlines and delta 
+        coordinates (dX/dY) from the initial position are shown on the status bar.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Move<a name="edit_move"></a>
+      </font> </h4>
+
+      <p> 
+        Moves the current selected set. The F3 key will toggle the Move options dialog.
+      </p>
+
+      <p align="center"><img src="images/moveOptions.png" width="303" height="222" alt="Move"></p>
+
+      <p>
+        <i>Snap Mode</i> can be set to Manhattan, Diagonal or Any Angle. 
+        If a shape is being moved, <i>Change Layer</i> will allow its layer to be changed. 
+        If moving instances, <i>Snap insts to rows</i> will snap instances to row objects if they exist.   
+        If <i>Mirror X</i> is pressed (or the 'x' key) during a copy, the object is mirrored in the X axis. 
+        If <i>Mirror Y </i>is pressed (or the 'y' key) during a copy, the object is mirrored about the Y axis. 
+        If <i>Rotate</i> is pressed (or the 'r' key) the object is rotated 90 degrees anticlockwise.
+      </p>
+
+      <p>
+        If infix mode is on, the current cursor position is used for the reference coordinate. Else you will 
+        be prompted to enter the reference coordinate. During a move operation, the object(s) are shown as 
+        outlines and delta coordinates (dX/dY) from the initial position are shown on the status bar.
+      </p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Move By...<a name="edit_moveby"></a>
+      </font> </h4>
+
+      <p>
+        Move the current selected set by the distance specified in the Move By dialog.
+      </p>
+
+      <p align="center"><img src="images/moveBy.png" width="334" height="109" alt="Move By"></p>
+
+      <p>&nbsp;</p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Nudge...<a name="edit_nudge"></a>
+      </font></h4>
+
+      <p>
+        Nudges the current selected set in small increments in X or Y.
+      </p>
+
+      <p align="center"><img src="images/nudge.jpg" width="434" height="191" alt="Nudge"></p>
+
+      <p>
+        The distance to nudge by is set according to the <em>Nudge By</em> choice.<em> User deltaX/Y</em> 
+        takes the values of <em>X delta</em> and<em> Y delta</em> as the nudge distance. <em>Snap Grid</em> 
+        sets the nudge distance to the current X and Y snap distances. <em>Minor Grid</em> sets the nudge 
+        distnance to the current X and Y display grid. <em>Major Grid</em> sets the nudge distance to the 
+        minor display grid times the major grid multiplier.
+      </p>
+
+      <p>
+        After invoking the command, the left/right/up/down arrow keys moce the selected set according to 
+        the nudge distance, until the command is aborted by pressing the ESC key. While the nudge command 
+        is active, zooming, selecting/deselecting etc is available - but not panning via the arrow keys.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Stretch<a name="edit_stretch"></a>
+      </font></h4>
+
+      <p>
+        Stretches the current selected edge or vertex. The F3 key will toggle the Stretch options dialog.
+      </p>
+
+      <h4 align="center"><img src="images/stretch.png" width="281" height="155" alt="Stretch"></h4>
+
+      <p>
+        <i>Snap Angle</i> sets the allowed stretch direction. If objects 
+        as well as edges or vertices are selected, they are moved by the stretch distance. 
+        If <i>Lock diagonals</i> is checked, diagonal edges will be locked to 45 degrees. 
+        Otherwise moving an edge adjacent to a diagonal may make the diagonal edge 
+        become any angle. If <em>Lock endpoints</em> is checked, then stretching a path  segment at 
+        the beginning or end of the path will split the path at the start or end vertex, keeping the 
+        start/end vertex fixed and stretching the other part of the split segment.
+      </p>
+
+      <p> 
+        If infix mode is on, the current cursor position is 
+        used for the reference coordinate. Else you will be prompted to enter the reference coordinate. 
+        During a stretch operation, the object edge(s)/vertex(vertices) are shown as outlines and delta 
+        coordinates (dX/dY) from the initial position are shown on the status bar.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Reshape</font><a name="edit_reshape"></a> 
+      </h4>
+
+      <p align="center"><img src="images/reshape.png" width="303" height="156" alt="Reshape"></p>
+
+      <p>
+        Reshapes the currently selected 
+        edge of a polygon or path. First select an edge of a polygon or the centreline 
+        of a path (in edge selection mode). Then enter vertices you wish to add to 
+        the edge. The original start and end points of the edge remain the same, vertices 
+        can be added with diagonal, manhattan or any angle snapping. Double click 
+        or press return to complete reshaping the edge. Pressing backspace will back 
+        up one vertex. Although Reshape only works with paths and polygons, you can convert 
+        any object e.g. a rectangle to a polygon using the Edit-&gt;Convert to Polygon 
+        command.
+      </p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Round Corners<a name="edit_round"></a>
+      </font> </h4>
+
+      <p align="center"><img border="0" hspace="0" src="images/round.png"> </p>
+      <p>
+        Rounds the corners 
+        of a rectangle or polygons. You must first select a shape to round. 
+        <em>Corner radius</em> sets the radius of curvature in microns. <em>Number of 
+        segments per corner</em> sets the precision of the generated curve which is made 
+        up of segments (straight lines). <em>Snap Grid</em> sets the manufacturing snap 
+        grid to avoid off-grid vertices; if no snapping is required set the value to the 
+        user database resolution (usually 0.001um). If <em>Delete original shape</em> is 
+        checked (the default), the original shape is deleted, else it is 
+        kept.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Add Vertex<a name="edit_add_vertex"></a>
+      </font> </h4>
+
+      <p> 
+        Adds a vertex to a selected path or polygon at the point given by 
+        the cursor. The vertex that has been added is selected so it can be moved 
+        using a Stretch command.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Rotate<a name="edit_rotate"></a>
+      </font></h4>
+
+      <h4 align="center">&nbsp;<img border="0" hspace="0" src="images/rotate.png"> </h4>
+
+      <p>
+        Rotates the current selected set 
+        about a point, which the user is prompted to enter. <i>Mirror about Xaxis</i> 
+        mirrors the objects in X, <i>Mirror about Y axis</i> mirrors the objects in 
+        Y. <i>Rotate CCW</i> rotates the objects counterclockwise. Rotate (instances 
+        and shapes) rotates instances according to the transform selected. Rotate by 
+        angle rotates shapes by any angle from -360.0 to +360.0 degrees; a positive angle 
+        corresponds to a clockwise rotation. Only shapes can be rotated by any angle; 
+        rectangles and squares get converted to polygons and are then rotated, while paths 
+        and polygons are maintained and their vertices are rotated. Note: cell placement 
+        orientation can be changed by querying the instance's properties and changing the 
+        orientation.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Move Origin<a name="edit_move_origin"></a>
+      </font></h4>
+
+      <p>
+        Moves the origin of the current cell. Click on the point that you want to make the 
+        new origin, and all object coordinates in the current cell will be changed to make 
+        this point (0, 0).
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">Edit-&gt;Convert to Polygon<a name="edit_path_to_polygon"></a></font></h4>
+
+      <p>
+        Converts selected shapes into polygons. Useful in conjunction with the Edit-&gt;Reshape command above.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Boolean Operations...<a name="booleans"></a>
+      </font></h4>
+
+      <p>
+        Perform boolean operations on layers.
+      </p>
+
+      <p align="center">&nbsp;<img border="0" hspace="0" src="images/boolean.png"> </p>
+
+      <p>
+        <i>Layer1</i> and <i>Layer2</i> are input layers, and <i>Output Layer</i> is the 
+        output layer. By default layer data is processed from the current open cellView, 
+        however it is possible to set the lib/cell/view names of the cells containing 
+        <em>Layer1</em> data and <em>Layer2</em> data.Operations that can be performed are 
+        two layer AND, two layer OR, single layer OR (merge), single layer NOT, two layer NOT, 
+        two layer XOR, sizing and up/down sizing (first size up by a given amount, then 
+        size down by the same amount - useful for removing small gaps or notches) and 
+        selection (select all shapes on a layer that touch shapes on another layer). 
+        <em>Mode</em> allows either selected shapes on <em>Layer1</em> and, if 
+        used, <em>Layer2</em> to be processed only, else all shapes for the layer(s) will 
+        be processed. If <i>Output data as trapezoids</i> is checked, the resulting layer is 
+        converted into trapezoids rather than complex polygons. If <i>Hierarchical</i> is 
+        checked, the design hierarchy is flattened and all shapes on the layer(s) are processed; 
+        else just shapes in the top level cellview are processed. The <i>Output Cellview</i> 
+        is the destination for the generated data. By default this is set to the current cellview, but can 
+        be any cellview; if the cellview does not exist it will be created.        
+        If <i>Size Output Layer</i> is checked, the output layer can be also sized by an amount 
+        (except for the operation <em>Size lyr1</em>).
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Tiled Boolean Operations...<a name="tiled_booleans"></a> 
+      </font> </h4>
+
+      <p>
+        Performs boolean operations on layers. Useful when the data is too large to 
+        process with Edit-&gt;Boolean Operations... as it uses a tiling algorithm to 
+        process the data tile by tile.
+      </p>
+
+      <p align="center"> <img border="0" hspace="0" src="images/tiledBoolean.png"> </p>
+
+      <p> 
+        <em>Layer1</em> data and <em>Layer2 data</em> specify 
+        the input layer sources. The cellView for each layer defaults to the current 
+        displayed cellView, but can be changed e.g. to compare two cells using an 
+        XOR operation on the same layer, for example. <em>Operation</em> specifies the boolean 
+        operation to be performed. Currently only merge (single layer OR), OR, 
+        AND, ANDNOT, NOT, XOR and SIZE operations are supported. The <em>Output Cellview</em> 
+        specifies the cellView that output shapes will be created on, according to 
+        the <em>output layer</em> specified.
+      </p>
+
+      <p>
+        If Hierarchical is checked, the cellView's data is flattenned before the operation.
+      </p>
+
+      <p>
+        <em>Tile size</em> can be determined automatically if 
+        <em>Tiling Mode</em> is set to <em>Auto</em>. Else the tile width and height 
+        can be specified if <em>Tiling Mode</em> is set to <em>Manual</em>. The larger 
+        the tile size, the more physical memory will be used. For large designs with 
+        many levels of hierarchy, computing the best tile size can take a long time 
+        - so in this case manually setting the tile sizes is preferable. Typically 
+        a starting point of 500-1000um should be acceptable. Seting smaller tile sizes 
+        will use less memory, but may run longer.
+      </p>
+
+      <p>
+        <em>Multithreaded</em>      
+        specifies that the tiles are split and run on a multiple number of threads, 
+        which may speed up overall runtime at the expense of somewhat more memory 
+        usage. # threads defaults to the maximum number of threads that are feasible 
+        on your system. For example, a 4 core Intel i7 processor will support 8 threads. 
+        Speed improvement is not linear with the number of threads due to IO and memory 
+        bottlenecks. Typically with 4 cores, about 3.5x speed improvement is gained. 
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Merge Selected<a name="edit_merge"></a>
+      </font> </h4>
+
+      <p>
+        Merges all selected shapes into polygons. Layers are 
+        preserved, i.e. only shapes on the same layer are merged. If you want 
+        to merge shapes on different layers, use the Edit-&gt;Booleans command with operation Layer1 OR layer2.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Chop<a name="edit_chop"></a>
+      </font></h4>
+
+      <h4 align="center"><img src="images/chop.png" width="207" height="133" alt="Chop"></h4>
+
+      <p>
+        Chops a rectangle out of a selected 
+        shape. First, select a shape. Then invoke the chop command and draw a chop 
+        rectangle. The shape will have the rectangle chopped out of it. If <i>Convert 
+        paths to polygons</i> is checked, paths will be converted to polygons before 
+        the chop takes place. Otherwise paths will be maintained and will be cut. 
+        If <i>Keep chopped shapes</i> is checked, the chop shapes from polygons are 
+        not deleted.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Align<a name="edit_align"></a>
+      </font></h4>
+
+      <p>
+        Aligns objects and optionally spaces them in the direction perpendicular to the alignment edge.
+      </p>
+
+      <p align="center"><img src="images/align.png" width="303" height="350" alt="Align"></p>
+
+      <p align="left">
+        <i>Alignment Direction</i> is used when <i>Align Using</i> is set to <i>Object Origin</i> 
+        and can be horizontal or vertical. <i>Horizontal</i> will align objects horizontally 
+        e.g. by their left edges, and <i>Vertical</i> will align them vertically e.g. 
+        by their bottom edges.
+      </p>
+        
+      <p>
+        <em>Align Using</em> can be by <i>Object Origin</i>, <i>Object bBox</i> or <i>Layer bBox</i>.
+      </p>
+
+      <ul>
+        <li> 
+          <i>Object Origin</i> aligns according to the origin of an instance or array 
+          or the lower left of the bounding box of shapes.
+        <li> 
+          <i>Object bBox</i> aligns 
+          according to the two object's bounding boxes, and ignores the <i>Alignment 
+          Direction</i>. When selected, <i>Object bBox </i>alignment will enable the 
+          <i>Alignment Reference</i> choices over which edge of the bounding box will 
+          be aligned. For example selecting <i>Top</i> will align the top edges of 
+          the objects; <i>Centre</i> will align the objects so they are centred on 
+          each other.
+        <li> 
+          <i>Layer bBox </i>alignment 
+          is only applicable when aligning instances, and will align them according 
+          to a common layer in the instance.
+        </li>
+      </ul>
+
+      <p>
+        <i>Spacing Type</i> 
+        sets whether the objects should be spaced apart as they are aligned. It can 
+        be set to either <i>None</i>, <i>Space</i> or <i>Pitch</i>.
+      </p>
+      <ul>
+        <li> 
+          <i>None</i> does not space objects when aligning them. For example if objects are aligned according to their 
+          origin horizontally, their position in the Y direction remains unchanged.
+        <li> 
+          <i>Space</i> aligns objects 
+          so that the space between the reference object edge and the first object edge, the 
+          first object edge and the second object edge and so on is equal to the space value 
+          set. For Object bBox / Layer bBox alignment, spacing is only valid for left/right/top/bottom alignment reference.
+        <li> 
+          <i>Pitch</i> aligns objects 
+          so that the pitch between the reference object and the first object, the 
+          first object and the second object and so on is equal to the pitch value 
+          set. For Object bBox / Layer bBox alignment, pitch is only valid for left/right/top/bottom alignment reference.
+        </li>
+      </ul>
+      <p>
+        Click on <i>Set Reference 
+        Object to align to</i> to set the alignment reference object. Then click on 
+        the objects you wish to align; cancel or OK the dialog to finish an alignment 
+        sequence, or click again on <i>Set Reference Object</i> to start a new alignment. 
+        Note: cancel or OK the Align command before carrying out another command.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Scale<a name="edit_scale"></a>
+      </font></h4>
+
+        <h4 align="center"><img src="images/scale.png" width="301" height="164" alt="Scale"></h4>
+
+        <p>
+          Scales all objects in the current cellview by a simple linear scale factor. If 
+          <i>Scale all cells?</i> is checked, all cells in the library will be scaled. 
+          Coordinates are snapped to the <i>Snap Grid</i>.
+        </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Bias<a name="edit_bias"></a>
+      </font></h4>
+
+      <h4 align="center">&nbsp;<img border="0" hspace="0" src="images/bias.png"> </h4>
+
+      <p>
+        <em>Bias</em> can be either <em>Bias by Layer</em>, which biases all  shapes on the specified 
+        <em>Layer to bias</em>,  or <em>Bias Selected</em> (selected shapes can  be on any layer). 
+        <em>Bias by</em> sets the  bias. A positive bias causes shapes to grow in size; a negative bias 
+        causes  them to shrink. If <em>Bias all cells?</em> is checked, all cells in the library will 
+        have the bias applied. Coordinates are  snapped to the <em>X Snap Grid</em> and <em>Y Snap Grid</em>. 
+        Note that polygons with collinear  or coincident points will not be biased correctly and a 
+        warning will be given.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Set Net<a name="set_net"></a>
+      </font></h4>
+
+      <p align="center"><img src="images/setNet.png" width="303" height="134" alt="Set Net"></p>
+
+      <p>
+        Sets the selected shape(s) net. 
+        The <i>Net Name</i> combo box is filled with any existing net names in the 
+        cellview, or you can type in a net name to create that net. If <i>Pin?</i> 
+        is checked, the shape(s) will become pin shapes.
+        </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Create Pins From Labels<a name="create_pins_from_labels"></a>
+      </font></h4>
+
+      <p align="center"><img src="images/createPinsFromLabels.png" width="559" height="239" alt="Create Pins"></p>
+
+      <p>
+        Creates pin shapes based on text 
+        labels. All label layers are shown in the dialog with a second layer chooser 
+        to allow control of the layer than pins will be generated on. Pins are created 
+        as rectangles centred on the label origin with the specified width and height. 
+        Pins are only created if the <i>Use?</i> option is checked.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Hierarchy-&gt;Ascend<a name="hierarchy_ascend"></a>
+      </font></h4>
+
+      <p>
+        Ascends one level of hierarchy, 
+        assuming you have previously descended into a cellview's hierarchy.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Hierarchy-&gt;Descend<a name="hierarchy_descend"></a>
+      </font></h4>
+
+      <p align="center"><img src="images/hierDescend.png" width="307" height="178" alt="Descend Hierarchy"></p>
+
+      <p>
+        Descends down into the selected instance, or tries to find an instance under the cursor to descend into if 
+        nothing is selected. <em>View</em> is the view of the instance to descend into; for example a schematic 
+        instance may have both a symbol view and a schematic (lower level of hierarchy) view. <em>Open In</em> 
+        controls the window used to display the cellView; <em>Current Window</em> uses the existing window, and 
+        the <a href="#hierarchy_ascend">Ascend</a> command can be used to return to the previous cellView in the 
+        hierarchy. <em>New Window</em> opens a new window for the cellView, levaving the previous cellView window 
+        open.
+      </p>
+
+        <h4> <font face="Arial, Helvetica, sans-serif">
+          Edit-&gt;Hierarchy-&gt;Create<a name="hierarchy_create"></a>
+        </font></h4>
+
+        <h4 align="center"><img src="images/hierCreate.png" width="268" height="194" alt="Hier Create"></h4>
+
+      <p>
+        <em>Library</em>, <em>Cell Name</em> and <em>View Name</em> specify the new cellView to be created. By 
+        default the  selected objects are deleted from the current cellView, and an instance of the  new cellView
+        is placed in the current cellView to replace them. If <em>Replace?</em> is checked, then the selected  
+        objects are deleted.
+      </p>
+      
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Hierarchy-&gt;Flatten<a name="hierachy_flatten"></a>
+      </font> </h4>
+
+      <p align="center"><img src="images/hierFlatten.png" width="299" height="126" alt="Flatten Hierarchy"></p>
+        
+      <p> 
+        Flattens the current selected instances into the current cellView. <em>Flatten level</em> controls the 
+        flattening process; with <em>Full</em> checked the complete hierarchy from the current level down to 
+        leaf cells is flattened. If <em>This Level</em> is checked, then only instances at the current level of 
+        hierarchy are flattened; lower levels of the hierarchy are preserved.
+      </p>
+
+      <h4>&nbsp;</h4>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Group-&gt;Add To Group<a name="add_to_group"></a>
+      </font> </h4>
+
+      <p>
+        Adds objects to an existing group. <em>Add To Group</em> prompts the user to select a group to add to, 
+        or uses an existing selected group. Then the user is prompted to select objects to add to the group. 
+        As objects are added, the group bounding box shape is modified to enclose the objects.
+      </p>
+
+      <p>To create a group, use the <em>Create-&gt;Group</em> command.</p>
+
+      <p>&nbsp;</p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Group-&gt;Remove From Group<a name="remove_from_group"></a>
+      </font> </h4>
+
+      <p>
+        Removes objects from a group. The group must be editable in transparent mode; use the 
+        View-&gt;Display Options dialog to set groups to transparent mode. Remove From Group prompts 
+        the user to selct objects, and removes them from the group. The group shape bounding box 
+        is adjusted to enclose the remaining shapes.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <<h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Group-&gt;Ungroup<a name="ungroup"></a>
+      </font> </h4>
+
+      <p>
+        Ungroups objects. The Ungroup command prompts the user to select a group to ungroup, 
+        or uses an existing selected group.
+      </p>
+
+      <h4>&nbsp;</h4>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Edit in place-&gt;Edit in place<a name="edit_in_place"></a>
+      </font> </h4>
+
+      <p> 
+        Allows editing a cell in place. 
+        First select an instance that you want to edit. The Edit in place command 
+        will cause all subsequent selection and editing will be done in the master 
+        cell for that instance, but with the original top level cell displayed. The 
+        edit in place cell will be shown with layers of normal intensity, whereas 
+        all other shapes (of non-editable cells) will be shown dimmed.
+      </p>
+
+      <p>
+        Edit in place is hierarchical, i.e. you can choose to edit in place a cell within 
+        another cell you are currently editing in place.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Edit in place-&gt;Return<a name="edit_return"></a>
+      </font></h4>
+
+      <p>
+        Returns to the parent cell of the current edit in place cell.
+      </p>
+
+      <h4><font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Select-&gt;Inst by name<a name="edit_select_inst"></a>
+      </font></h4>
+
+      <p align="center"><img src="images/selectInst.png" width="308" height="145" alt="Select Instance"></p>
+
+        <p>
+          Displays the Select Inst dialog which allows selection of instances based on their instance name.
+        </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Select-&gt;Net by Name<a name="edit_select_net"></a>
+      </font></h4>
+
+      <p align="center"><img src="images/selectNet.png" width="289" height="145" alt="Select Net"></p>
+
+      <p>
+        Displays the Select Net dialog which allows selection of nets based on their name.
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Select-&gt;Select All<a name="edit_selectall"></a>
+      </font></h4>
+
+      <p> 
+        Selects all currently selectable objects. 
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Select-&gt;Deselect All<a name="edit_deselectall"></a>
+        </font> </h4>
+
+      <p>
+        Deselects all the selected set. 
+      </p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Find<a name="find_object"></a>
+      </font> </h4>
+
+      <p>
+        Displays the Search dialog.
+      </p>
+
+      <p align="center"><img src="images/find1.png" width="624" height="579" alt="Find"></p>
+
+      <p>
+        Find searches for objects, either in the current cellView, or hierarchically from the current 
+        cellView down, and optionally can replace them, or their attributes and/or properties. Names 
+        can be matched by <em>Wildcards</em> (e.g. VDD* matches VDD1, VDD2,  VDD) or by <em>RegExp</em> 
+        (regular  expressions). Currently you can search for instances, nets, shapes, ellipses/circles, 
+        labels, MPPs, paths, polygons, rectangles and viaInsts.
+      </p>
+      <p>
+        For each object type you can add a criteria. For example instances can have cell name, lib name, 
+        inst name, view name, orientation and properties as the criteria to match them. You can have one
+        or more criteria, and match All criteria (i.e. the AND of each) or Any criteria (i.e. the OR of each).
+      </p>
+      <p>
+        Objects that match the search criteria can be added to the  selected set or highlighted according to 
+        the <em>Find Action</em>. If <em>Find Action</em> is <em>Select</em>, objects will be selected, 
+        and further control is given by <em>Select Action</em>. <em>New Selection</em> clears any existing 
+        selected objects. <em>Add to Selection</em> adds the found selected ites to the selected set. 
+        <em>Remove from Selection</em> removes found objects from the selected set. 
+      </p>
+      <p>
+        In the case of highlighted nets, they can be displayed  either as the actual net shapes highlighted if 
+        <em>Highlight Shapes</em> is checked, or by a <em>Spanning Tree</em> between the instance pins of 
+        the instances the net  connects to, or as <em>a Steiner tree</em>.  This is useful, for example, in 
+        highlighting the connectivity of unrouted nets;  the spanning tree is a good approximation to the path 
+        an autorouter will take;  the Steiner tree is even better although can be slow on nets with many pins.  
+        The highlight colour can be chosen using the <em>Highlight  Colour</em> button; the <em>Highlight Fill</em> 
+        can be <em>Solid</em> or <em>Hollow</em> and the linewidth can be specified for hollow fills. Optionally 
+        the display can <em>Zoom to Selected</em> object(s) and it is possible to clear all highlighted  objects 
+        using the <em>Clear highlighted</em> button.
+      </p>
+      <p>
+        Once objects have been found (by clicking on the Find button), then it is possible to replace them. The 
+        <em>Replace</em> combo box shows the possible replacements depending on the object searched for. For 
+        example you can replace the layer of a shape, or the property of an object.
+      </p>
+
+      <p>
+        Note that it is not currently possible to undo the actions of the <em>Replace</em> command. Be sure 
+        to save first!
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">Edit-&gt;Query<a name="query_object"></a></font></h4>
+
+      <p>
+        Queries the selected object. Note you can select and query an object by double clicking it with 
+        the left mouse button.
+      </p>
+
+      <p align="center"><img border="0" hspace="0" src="images/query_rect.png"></p>
+
+    <p>
+      With nothing selected, the current cell's properties are queried. Otherwise you may query any 
+      selected object's properties and attributes, and cycle through the selected set using the <i>Previous</i> 
+      and <i>Next</i> buttons. You can delete a queried object using the <i>Delete</i> button. You can 
+      remove an&nbsp;object from the selected set with the <em>Deselect </em> button. &nbsp;If multiple 
+      objects are selected, <i>Change all selected objects </i>allows their common attributes to be changed. 
+      For example, if shapes are selected then the layer may be changed for all shapes. If the object 
+      has connectivity, a Net properties tab is added to the dialog. All objects may have user or 
+      system-defined properties which can be manipulated on the Properties tab page.
+    </p>
+
+      <p align="center"><img src="images/properties.png" width="691" height="435" alt="Properties"></p>
+
+      <p>
+        Properties can be added as string, float, integer, boolean, list or orient. Click on the property 
+        name or value to change the text, or click on the type and select the type in the combo box that will 
+        appear. Click on the '+' button to add a (initially blank) property entry, or select a property 
+        and click on the '-' button to delete the property. There is currently no undo capability if you delete 
+        a property!
+      </p>
+
+      <p align="center">&nbsp;</p>
+
+      <h4> <font face="Arial, Helvetica, sans-serif">
+        Edit-&gt;Bindkeys</font> <a name="edit_bindkeys"></a>
+      </h4>
+
+      <p>
+        All menus and toolbar buttons have actions. An action has a unique command associated with it; it also has 
+        an optional bindkey. For example the 'Open Cell' action by default has a bindkey Ctrl+O.
+      </p>
+
+      <p> 
+        Bindkeys may be redefined by the 
+          user using the Edit Bindkeys command. This shows a table of all current bindkey 
+          assignments. 
+      </p>
+
+      <p align="center"><img src="images/bindkeys.png" width="301" height="539" alt="Bindkeys"></p>
+
+      <p>
+        Clicking on the 'Bindkey' 
+        entry in the table allows editing the bindkey for that action. A single letter 
+        in uppercase indicates that key will be used. Modifier keys may be specified 
+        e.g. Shift+, Ctrl+, Alt+ and should precede the key, with no spaces.
+      </p>
+
+      <p>
+        Bindkeys are saved in the preferences file (~/.gladerc) and are loaded automatically every time 
+        Glade is run. A local .gladerc file will override values specified in the global ~/.gladerc 
+        file, so you have a project-specific subset of settings.
+      </p>
+
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

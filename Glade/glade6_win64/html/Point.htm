@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left">
+      <img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+
+    <div align="left">
+      <p align="left">
+        <font face="Arial, Helvetica, sans-serif">
+          <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">Point class</font></h2>
+
+      <p>
+        A Point class represents a coordinate or xy pair.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::Point()
+      </font></h4>
+
+      <p>
+        Creates a Point object p. The Point is initialised to (0, 0) by default.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::Point(int32_t x, int32_t y)
+
+      </font></h4>
+
+      <p>
+        Creates a Point object and initialises its coordinates.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t Point::getX()
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t Point::getY()
+      </font></h4>
+
+      <p>
+        Get the specified Point coordinate.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::setX(int32_t x)
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::setY(int32_t y)
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::setCoord(int32_t x, int32_t y)
+      </font></h4>
+
+      <p>
+        Set the specified Point coordinate.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator == (const Point &amp;other)
+      </font></h4>
+
+      <p>
+        Returns true if the two Points are equal.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator != 
+      </font></h4>
+
+      <p>
+        Returns true if the two Points are not equal.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator &lt;
+      </font></h4>
+
+      <p>
+        Returns true if the first point is 'less than' the second. 
+        First the X coordinate is compared; if equal then the Y coordinate is compared.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator &gt; 
+      </font></h4>
+
+      <p>
+        Returns true if the first point is 'greater than' the second. 
+        First the X coordinate is compared; if equal then the Y coordinate is compared.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator +
+      </font></h4>
+
+      <p>
+        A Point plus a Vector returns a Point transposed by the Vector.
+      </p>
+      <p>
+        A Point plus a Point returns a Point transposed by the Point.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator -
+      </font></h4>
+
+      <p>
+        A Point minus a Point returns a Vector.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator -
+      </font></h4>
+
+      <p><font face="Arial, Helvetica, sans-serif">        
+        A Point minus a Vector returns a Point transposed by the Vector.
+      </font></p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator +=
+      </font></h4>
+
+      <p>
+        A Point plus a scalar (i.e. an integer) is offset, or moved, by the 
+        value of the scalar in both X and Y. 
+      </p>
+
+      <p>A Point plus a 
+        Point returns a Point with the sum of the two Points X and Y values.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator -=
+      </font></h4>
+
+      <p>
+        A Point minus a Point returns a Point with the differrence of the two Points X and Y values.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Point::operator *=
+      </font></h4>
+
+      <p>
+        A Point times a scalar is scaled (multiplied) by the scalar.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">
+        Copyright &copy; Peardrop Design 2024.
+      </font></p>
+    </div>
+  </body>
+<!-- #EndTemplate -->
+</html>

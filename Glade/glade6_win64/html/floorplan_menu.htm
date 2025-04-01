@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+  <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+  </div>
+  <div align="left">
+    <p align="left"><font face="Arial, Helvetica, sans-serif">
+      <b><font size="4">
+        Glade Reference
+      </font></b>
+    </font></p>
+    <hr>
+
+    <!-- #BeginEditable "text" --> 
+    <h2 align="left"><font face="Arial, Helvetica, sans-serif"><u>Floorplan commands</u></font> </h2>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Initialise Floorplan<a name="init_floorplan"></a>
+    </font></h4>
+
+    <p>
+      (Re)Initialises the floorplan.
+    </p>
+
+    <p align="center"><img src="images/initFloorplan.png" width="301" height="172" alt="Init Floorplan"></p>
+
+    <p align="left">
+      The <i>Horizontal pin layer</i> 
+      and <i>Vertical pin layer</i> fields set the layer for pins created on the 
+      top/bottom and left/right edges of the design boundary, respectively. <i>Aspect 
+      ratio</i> is the block aspect ratio, with numbers greater than 1 representing 
+      tall blocks and numbers less than 1 giving wide blocks. <i>Utilisation</i> 
+      is the desired cell utilisation, i.e. the ratio of total cell area to design 
+      boundary area.
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Create Rows...<a name="create_rows"></a>
+    </font></h4>
+
+    <p align="center"><img src="images/createRows.png" width="317" height="312" alt="Create Rows"></p>
+
+    <p align="left">
+      Creates rows for use with Place 
+      &amp; Route. The design must have standard cells and a valid design boundary 
+      (a rectangle on the boundary layer). A valid <i>Site name</i> must exist, 
+      which will normally be found automatically from the library is a cell exists 
+      with the boolean property 'site'. <i>Row orientation</i> is the desired row 
+      orientation - R0, R180, MX and MY create horizontal rows wheras the rest create 
+      vertical rows. <i>Flip alternate rows</i> if checked will flip the orientation 
+      of adjacent rows to provide power track sharing in libraries that support 
+      it. <i>Rows per set</i> can be either 1 or 2 and specifies the number of rows 
+      placed together before any row spacing is applied. <i>Row separation</i> is 
+      the seperation between sets of rows, in microns. Altenatively <i>Row utilisation</i> 
+      can be give as a percentage. Margin specifies a margin around the rows, which 
+      are created inside the design boundary (boundary layer).
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Create Groups...<a name="create_groups"></a>
+    </font></h4>
+
+    <h4 align="center"><img src="images/createGroups.png" width="343" height="231" alt="Create Groups"></h4>
+
+    <p align="left">
+      Creates and/or edits groups for 
+      use with Place &amp; Route. Any existing groups are shown in the <i>Groups</i> 
+      list box on the left; clicking on a group in the list box updates the <i>Group 
+      name</i> field, and also the <i>Region name</i> field if there is a region 
+      associated with the group. Groups can be created using <i>Create Group</i>; 
+      instances must be selected first and a Group name must be specified (or be 
+      an existing group name). <i>Delete Group</i> will delete a group specified 
+      by the <i>Group name</i>. <i>Select Group</i> will select all instances of 
+      the group in the <i>Group name</i> field.
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Create Region...<a name="create_region"></a>
+    </font></h4>
+
+    <p align="center"><img src="images/createRegion.png" width="305" height="161" alt="Create Region"></p>
+
+    <p align="left">
+      Creates a region for use with Place 
+      &amp; Route. A region is a rectangle on the <i>Region</i> layer with string 
+      properties <i>type</i> and <i>name</i>. Regions can be of type <i>Guide</i> 
+      or <i>Fence</i>. Fence regions are hard constraints whereas Guide regions 
+      are soft constraints.
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Placement-&gt;Place<a name="place"></a>
+    </font></h4>
+
+    <h4 align="center"><img src="images/place.png" width="326" height="190" alt="Place"></h4>
+
+    <p align="left">
+      Places cells in rows using the 
+      UCLA Capo placer. Glade exports LEF and DEF from the current design and invokes 
+      Capo; on completion, Glade reads in the placed DEF.
+    </p>
+
+    <p align="left">
+      The design must have rows for placement 
+      of cells, as defined using the <i>Row</i> layer, and a valid design area as 
+      defined by the <i>boundary</i> layer. Placement regions may exist as defined 
+      by the <i>Region</i> layer.
+    </p>
+
+    <p align="left">
+      Currently only horizontal cell 
+      rows are supported for placement - this is a limitation of the Capo code. 
+      Rows can be flipped and cell orientations will obey row orientations (this 
+      is a bugfix from the distribution Capo code which assumes all rows are N orientation)
+    </p>
+
+    <p align="left">&nbsp;</p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Placement-&gt;Unplace<a name="unplace_cells"></a>
+    </font></h4>
+
+    <p align="left">
+      Unplaces all standard cells. Cells 
+      are moved to the right of the design area and have their orientation set to 
+      R0 and placement status set to unplaced.
+    </p>
+
+    <p align="left">&nbsp;</p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Global Route-&gt;Global Route<a name="groute"></a>
+    </font></h4>
+
+    <p align="center"><img src="images/globalRoute.png" width="307" height="221"></p>
+
+    <p align="left">
+      Runs global routing on the design. 
+      The design must be a placed standard cell or block design, imported using 
+      LEF/DEF or LEF/Verilog. Global routing partitions the design into bins also 
+      known as gcells. The size of the gcell has a direct impact on the speed and 
+      accuracy of the global routing: smaller gcells give a more accurate picture 
+      of the congestion but at the expense of speed. <i>Max pins/net to route</i> 
+      limits global routing to nets with less than the limit. <i>Pattern route</i> 
+      routes small two pin nets first using a L-shaped pattern. This is much faster 
+      than routing nets using the full maze router.
+    </p>
+
+    <p align="left">
+      The congestion map displayed shows 
+      the gcell grid and the edge congestion in a colourmap. Edges that are blue 
+      have 0 more tracks available (supply) to route on than are required (demand). 
+      Cyan edges have a demand of 1, green edges have a demand of 2, yellow 3, red 
+      4, purple 5, white greater than 5.
+    </p>
+
+    <p align="left">
+      Currently the global router is 
+      single-layer i.e. all layers are compressed into one. This gives a good idea 
+      of congestion but no layer by layer congestion map. This is an area for future 
+      enhancement, as is accurately modelling obstructions.
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Global Route-&gt;Show global routed net<a name="show_groute"></a>
+    </font></h4>
+
+    <h4 align="center"><img src="images/grouteDisplay.png" width="335" height="135" alt="Show Global"></h4>
+
+    <p align="left">
+      Displays the path the global router 
+      took for the user-specified net. If a net is not displayed, either it has 
+      more pins than the max pins/net limit, or the net starts and ends within the 
+      gcell.
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Global Route-&gt;Toggle congestion map display<a name="congestion_map"></a>
+    </font></h4>
+
+    <p align="left">
+      Toggles the display of the congestion map.
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Placement-&gt;Check Overlaps<a name="check_overlaps"></a>
+    </font></h4>
+
+    <p align="left">
+      Checks for any overlapping standard cells in the design, reporting their names and locations if found
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan</font><font face="Arial, Helvetica, sans-serif">-&gt;Fillers-&gt;Add...<a name="add_fillers"></a>
+      </font></h4>
+
+    <h4 align="center"><img src="images/addFillers.png" width="314" height="282" alt="Add Fillers"></h4>
+
+    <p align="left">
+      Adds filler cells. Rows must be 
+      present in order to add filler cells. The filler cells are specified by the 
+      filler name pattern given (e.g. FILL*). The instance names of fillers are 
+      prepended by the given name prefix and a count, e.g. FILLER1234. The site 
+      name needs to be specified from the list of site names. <i>Power Net</i> and 
+      <i>Ground Net </i>are the names of the power and ground nets that the filler 
+      cells should be connected to. Fillers can be added either for the whole row, 
+      or just between cells.
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan-&gt;Fillers-&gt;Delete...<a name="delete_fillers"></a>
+    </font></h4>
+
+    <h4 align="center"><img src="images/deleteFillers.png" width="299" height="105" alt="Delete Fillers"></h4>
+
+    <p align="left">
+      Deletes cells matching the pattern. Note that this can be used to delete any cells matching the pattern, not just 
+      filler cells.
+    </p>
+
+    <h4 align="left"><font face="Arial, Helvetica, sans-serif">
+      Floorplan</font><font face="Arial, Helvetica, sans-serif">-&gt;Replace Views...<a name="replace_views"></a>
+      </font></h4>
+
+    <h4 align="center"><img src="images/replaceViews.png" width="301" height="190" alt="Replace Views"></h4>
+
+    <p align="left">
+      Replaces instances with masters 
+      of one view type with masters of another view type. <i>Replacement view</i> 
+      is the view to replace the existing master's view with. <i>All Cells</i> will 
+      replace all instances in the current cellview. <i>Selected Cells</i> will 
+      replaced just the instances in the selected set.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 align="left"><font face=Arial>
+      Floorplan-&gt;highlightNetTypes...<a name="highlight_net_type"></a>
+    </font></h4>
+
+    <p align="center"><img border="0" hspace="0" src="images/highlightNetTypes.png"></p>
+
+    <p align="left">
+      Highlights DEF nets by type i.e. SIGNAL, ANALOG, CLOCK, POWER, GROUND, RESET, SCAN, TIEOFF.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+    <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+    <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+  </div>
+  </body>
+<!-- #EndTemplate --></html>

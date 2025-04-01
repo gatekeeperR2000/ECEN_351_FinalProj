@@ -1,0 +1,15 @@
+.SUBCKT and3_1x B Y C A
+*.PININFO  Y:O B:B A:I C:I
+*
+*.SCALE METER
+*.GLOBAL vss vdd
+*
+M3  n3 C vss vss C5NNMOS  w=5.4u l=0.6u m=1
+M7  Y n2 vss vss C5NNMOS  w=1.8u l=0.6u m=1
+M4  n2 B vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M6  Y n2 vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M1  n1 B n3 vss C5NNMOS  w=5.4u l=0.6u m=1
+M2  n2 A n1 vss C5NNMOS  w=5.4u l=0.6u m=1
+M0  n2 A vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+M5  n2 C vdd vdd C5NPMOS  w=3.6u l=0.6u m=1
+.ENDS

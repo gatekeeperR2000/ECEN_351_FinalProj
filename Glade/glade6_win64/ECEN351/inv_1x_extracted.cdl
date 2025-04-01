@@ -1,0 +1,24 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib
+* Top Cell Name: inv_1x
+* View Name: extracted
+* Netlist created: 22.Mar.2019 20:34:31
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    inv_1x
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT inv_1x Z A
+*.PININFO Z:B A:B
+
+MM9 vdd A Z vdd C5NPMOS w=3.6e-06 l=6e-07 as=2.97e-12 ps=1.05e-05 ad=3.24e-12 pd=1.08e-05 $X=4.35 $Y=15.3
+MM8 vss A Z vss C5NNMOS w=1.8e-06 l=6e-07 as=2.97e-12 ps=6.9e-06 ad=2.97e-12 pd=6.9e-06 $X=4.35 $Y=2.1
+.ENDS

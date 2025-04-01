@@ -1,0 +1,2175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2>UI Python command reference</h2>
+
+      <p>
+        This document describes the Python functions available from  the Glade GUI. Argument types are 
+        shown as C++ types with default values where applicable, however all arguments are really python 
+        variables. All of the following functions are part of the ui class. There is a global pointer to 
+        the gui called <b>cvar.guiptr</b>. Therefore to use 
+        them , define you own variable e.g. gui=cvar.guiptr, then call as gui.OpenCellView(...)
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::redraw(bool force = true)
+      </font></h4>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::loadPCell(char *libName, char *pcellName)
+      </font></h4>
+
+      <p>
+        Loads the PCell with name <em>pcellName</em> into the library <em>libName</em>. If the 
+        PCell already exists in the library, the action is ignored and returns true. If a cellView with 
+        the same name exists, it is deleted and is replaced by the PCell supermaster. 
+        Note that once a PCell is loaded into a library and that library is saved, it 
+        will remain a PCell, so there is no need to load it again (although it is 
+        harmless and you will just get warnings about the load being 
+        ignored). If the PCell cannot be created, it returns false.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::updatePCellMaster(char *pcellName)
+      </font></h4>
+
+      <p>
+        Searches all libraries for instances of PCells with supermaster names given by 
+        name. Any instances found are updated with the (potentially new) python code for the PCell. 
+        This is necessary if you change the PCell code as there is no automatic updating performed.  
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p>
+        Refresh the display. If force is false, the operation is put on the event queue, else it is immediately acted on.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::setMaxErrorCount(int32_t val)
+      </font></h4>
+
+      <p>
+        Sets the maximum error count before errors are suppressed. THe default is 50. This is used in e.g. import commands where
+        there may be many errors generated.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t ui::maxErrorCount()
+      </font></h4>
+
+      <p>
+        Gets the maximum error count.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::editFile(char *fileName=null)
+      </font></h4>
+
+      <p>
+        Edit or view a file. If <em>fileName</em> is not specified, a file open dialog is displayed, else the f
+        ile given by <em>fileName</em> will be opened. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::execPythonFile (const char *fileName)
+      </font></h4>
+
+      <p>
+        Execute the python script given by <i>fileName</i>.
+      </p>
+
+    
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="cellView.htm">cellView</a> ui::getEditCellView()
+      </font></h4>
+
+      <p>
+        Returns the current cellview being edited. If multiple cellviews are open, it returns the cellview 
+        of the current active window. There is also a top level python binding to this function, 
+        getEditCellView(). This function returns None in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="library.htm">library</a> ui::getLibByName(const char *name)
+      </font></h4>
+
+      <p>
+        Returns the library given by name.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ui::deleteLib(const <a href="library.htm">library</a> *lib)
+      </font></h4>
+
+      <p>
+        Deletes a library.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"></font>
+        <a href="dbObjList.htm">dbObjList</a>&lt;<a href="library.htm">library</a>&gt; * ui::getLibList()
+      </font></h4>
+
+      <p>
+        Returns a dbObjList of all open libraries. There is also a top level python binding of the same 
+        name that returns a python list of open libraries.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"></font>
+        ui::fileSaveAs(
+          const char *libName,
+          const char *libPath,
+          bool verbose=true,
+          bool saveCells=true
+        )
+      </font></h4>
+
+      <p>
+        Saves a library to disk as <em>libName</em> to the path <em>libPath</em>.
+        A library is a directory structure containing metadata in a glade.lib file, plus cellViews
+        in subdirectories where each subdirectory is the cell name, and the subdirectory contains files 
+        each of which are the viewName of the cellView. <br>
+
+        If <em>verbose</em> is true, detailed information on cells saved is written to the logfile. 
+        If <em>saveCells</em> is true, library cells are saved; if false, then only the library tech 
+        info is saved (to the glade.lib file in the library directory).
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"></font>
+        bool ui::closeLib(const char *name)
+      </font></h4>
+
+      <p>
+        Closes the library given by <em>name</em>. If cellViews from  that library are displayed, their windows 
+        will be closed. The library is  removed from the list of open libraries. No checking is performed for 
+        edited  cells. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="dbObjList.htm">dbObjList</a>&lt;<a href="cellView.htm">cellView</a>&gt; * ui::getCellList()
+      </font></h4>
+
+      <p>
+        Returns a dbObjList of all open cellViews. There is also a top level python binding of the same 
+        name that returns a python list of open cellViews. This function returns None in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ui::openCellView (const char * libName, const char * cellName, const char * viewName, bool editable=true)
+      </font></h4>
+
+      <p>
+        Opens the cellview specified by <em>libName</em>, <em>cellName</em> and <em>viewName</em> in a new window.
+        if <em>editable</em> is true the cellView is opened in edit mode, else it is opened in read mode. 
+        Returns true if successful.
+        This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ui::closeCellView (const char * libName, const char * cellName, const char * viewName)
+      </font></h4>
+
+      <p>
+        Closes the cellview specified by <em>libName</em>, <em>cellName</em> and <em>viewName</em> and returns true if successful.
+        This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::closeAllWindows ()
+      </font></h4>
+
+      <p>
+        Closes all open windows.This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importTech(
+          const char *libName, 
+          const char *techFileName, 
+          unsigned int32_t dbu=1000,
+          bool merge=true,
+          bool verbose=true)
+      </font></h4>
+
+      <p>
+        Imports the techfile <i>techFileName</i> into the library <i>libName</i>. 
+        <em>dbu</em> is the number of database units to one micron.
+        If <em>merge</em> is true, the techfile is merged with the eixting techfile, else the existing techfile is overwritten.
+        if <em>verbose</em> is true, detailed information is written to the logfile.
+        The library is created if it does not already exist. Returns true if no error occurred.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::exportTech(
+          const char *libName, 
+          const  char *techFileName, 
+          bool systemLayers=false)
+      </font></h4>
+
+      <p>
+        Exports  the techfile <i>techFileName</i> from the library <i>libName</i>. The library must exist. 
+        If <em>systemLayers</em> is true, Glade system layers e.g. cursor, backgnd etc 
+        will be written to the techfile. This is only necessary if you have modified the system 
+        layers in the LSW - for example changed the backgnd color from black to white. Returns true 
+        if no error occurred.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importGds2 ( 
+        const char * libName, 
+        const char * gdsFileName, 
+        const char * dumpFile = &quot;&quot;, 
+        int32_t csen = 0, 
+        bool do_dump = false, 
+        double gdsScaleFactor = 1.0, 
+        double gdsXOffset = 0.0, 
+        double gdsYOffset = 0.0, 
+        int32_t gdsNetAttr = 23, 
+        int32_t gdsDevAttr = 7, 
+        int32_t gdsInstAttr = 102, 
+        bool compressed=false, 
+        bool dubiousData=true, 
+        bool setDBUfromGDS=true, 
+        bool reportCells=false, 
+        int32_t pathConv=2, 
+        int32_t layer=0, 
+        int32_t datatype=0,
+        bool openTopCell=false, 
+        bool setLibName=false, 
+        bool convertVias=false, 
+        int32_t duplicates=0, 
+        char *viewName=&quot;layout&quot;, 
+        bool importPCells=false) 
+      </font></h4>
+
+      <p>
+        Import the GDS2 file <i>gdsFileName</i> into library <i>libName</i>. The library is 
+        created if it does not already exist.  <br>
+
+        <i>csen</i> sets case sensitivity. 
+        0 = preserve case, 
+        1 = convert to upper, 
+        2 = convert to lower. <br>
+        
+        If <i>do_dump</i> is true and <i>dumpFile</i> is a valid file name, the GDS2 will be 
+        written in an ascii format suitable for debugging purposes.  <br>
+
+        <i>gdsScaleFactor</i> can be used to scale all coordinates in the GDS2 file.  <br>
+
+        <i>gdsXOffset</i> and <i>gdsYOffset</i> can be used to apply a fixed offset to all 
+        GDS2 coordinates.  <br>
+        
+        <i>gdsNetAttr</i> specifies the GDS2 attribute number used for net names, if present, 
+        <i>gdsDevAttr</i> specifies the GDS2 attribute number used for devices, if present, and 
+        <i>gdsInstAttr</i> specifies the GDS2 attribute number for instance names, if present.  <br>
+        
+        If <i>compressed</i> is true, a gzip compressed format file is expected and will 
+        be uncompressed during stream in.  <br>
+        
+        If <i>dubiousData</i>is true, dubious data constructs in the GDS2 file are reported.  <br>
+        
+        If<i>setDBUfromGDS</i> is true, the library DBUperUU is set from the GDS DBU. <br>
+        
+        If <i>reportCells</i> is true, cells are reported in the message window as they are read. <br>
+
+        <i>pathconv</i> is used to control 2 point path conversion. 
+        If set to 0, 2point manhattan paths are converted to rectangles. 
+        If set to 1, 2 pointmanhattan paths are set to H/VSegs. 
+        If set to 2 (the default), paths remain as paths.  <br>
+        
+        <i>convLayers</i> determines which layers are imported. 
+        If set to0 (the default), all layers found in the GDS2 file are converted. 
+        If set to1, only layers that are defined in the techfile with gds layer
+        number/datatypes are imported. 
+        If set to 2, only a single layer will be imported, defined by <i>layer</i> and <i>datatype</i>.  <br>
+        
+        If <i>openTopCell</i> is true, all potential top cell candidates are opened in
+        the gui. A top cell candidate is any cell that is not referenced by another
+        cell, and is not empty. <br>
+        
+        If <em>setLibName</em> is true, the library name is set to that of the GDS2 library name.  <br>
+        
+        If <em>convertVias</em> is true, Glade will convert via cells to Glade vias, 
+        and instances of these via cells to viaInsts.  <br>
+        
+        <em>duplicates</em> controls handling of duplicate cell definitions. If 0, 
+        duplicate cells replace any existing cell definitions. If 1, duplicate cells 
+        definitions are ignored. If 2, duplicate cell data is merged into existing cells.  <br>
+        
+        <em>viewName</em> sets the view name of cellViews created during import GDS2. <br>
+        
+        If <em>importPCells</em> is true, PCell information is imported from GDS2 properties written by exportGds2.
+      </p>
+      
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::exportGds2 (
+        const char * libName, 
+        const char * viewNameList, 
+        const char * gdsFileName, 
+        bool outputNetAttrs=false, 
+        bool outputDevAttrs=false,
+        bool outputInstAttrs=false,
+        bool outputAllCells=true, 
+        bool outputChildCells=true,
+        const char * topCellName =NULL, 
+        int32_t netAttr=23, 
+        int32_t devAttr=7,
+        int32_t InstAttr=102, 
+        bool compressed=false, 
+        bool reportCells=false, 
+        double grid=0.005, 
+        bool writeViaCells=true, 
+        int32_t polyVertexLimit=8192,
+        bool singleNet = false, 
+        const char *netName=&quot;&quot;, 
+        bool exportPCells=false)
+      </font></h4>
+
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        Export a GDS2 file <i>gdsFileName</i> from the library <i>libName</i>. 
+        <i>viewNameList</i> is a space seperated list of view names to export. 
+        Only views in the list will be exported; others will be skipped.  <br>
+
+        If <i>outputAllCells</i> is true then all cells in the library are output to the GDS2 file and 
+        <i>topCellName</i> is ignored.  <br>
+
+        If <i>outputAllCells</i> is false then <i>topCellName</i> is a space or comma 
+        delimited list of cells to output.  <br>
+
+        If <i>outputChildCells</i> is true, all child cells of the top cell are output, 
+        else only the top level cell(s) are output. <br>
+
+        If <i>outputNetAttrs</i> is true then net names are output as GDS2 attributes 
+        with attribute number given by <i>netAttr</i>.  <br>
+
+        If <i>outputDevAttrs</i> is true then device names are output as GDS2 attributes 
+        with attribute number given by <i>devAttr</i>.  <br>
+
+        If <i>outputInstAttrs</i> is true then instance names are output as GDS2 attributes 
+        with attribute number given by <i>instAttr</i>.  <br>
+
+        If <i>compressed</i> is true the GDS2 file is written in gzip compressed format according to RFC1951. <br>
+
+        If <i>reportCells</i> is true, cells are reported in the message window as they are written.  <br>
+        
+        <i>grid</i> specifies the manufacturing grid, used to snap vertices of circles/ellipses 
+        as they are converted to polygons on export. <br>
+
+        <em>writeViaCells</em> if true will write vias as cells and viaInsts as instances, else vias will 
+        get flattened.  <br>
+        
+        <em>polyVertexLimit</em> sets the maximum number of vertices for the polygon; polygons with more 
+        vertices will be decomposed into trapezoids.  <br>
+        
+        If <em>singleNet</em> is true, then only shapes and vias with net attributes and a net name matching 
+        <em>netName</em> will be output.  <br>
+        
+        If <em>exportPCells</em> is true, PCell information is exported as GDS2 properties that can be read by importGds2.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importLef (
+        const char * libName, 
+        const char * lefFileName, 
+        bool compressed=false, 
+        bool generateLabels=true, 
+        float64_t size=0.25. 
+        bool allShapes=false,
+        bool metLayers=false)
+      </font></h4>
+
+      <p>
+        Import a LEF file <i>lefFileName</i> into the library <i>libName</i>. The library will be 
+        created if it does not already exist.  <br>
+
+        If <i>compressed</i> is true a gzip compressed format file is expected and will be uncompressed 
+        during LEF in.  <br>
+        
+        If <i>generateLabels</i> is true, text labels will be generated on the Text layer for each 
+        pin in the LEF macro.  <br>
+        
+        <i>size</i> sets the size of the generated labels.  <br>
+        
+        If <i>allShapes</i> is true, then text labels are generated for all 
+        pin shapes.
+
+        If <em>metLayers</em> is true, the LEF pin tect is created on the pin layer, else it is created on the system TEXT layer.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::exportLef (
+        const char * libName, 
+        const char * lefFileName, 
+        bool technology=true, 
+        bool allCells=true, 
+        const char *cellName=NULL, 
+        const char viewName='abstract', 
+        const char * powerNets=NULL, 
+        const char * groundNets=NULL, 
+        bool separatePorts=false, 
+        bool writeNonDefRules=true)
+      </font></h4>
+
+      <p>
+        Export a LEF file <i>lefFileName</i> from library <i>libName</i>. 
+
+        If <i>technology</i> is true, the LEF technology section will be included in the LEF file. 
+        
+        If <i>allCells</i> is true, all library cells will be output. 
+        
+        If <em>allCells</em> is false, LEF for the cell defined by <em>cellName</em> and <em>viewName</em> 
+        is output. 
+        
+        The string <i>powerNets</i> is a space delimited list of net names.
+        Any pins with a name in this list will have their +USE attribute set to
+        POWER.  
+        
+        Similarly, the string <i>groundNets</i> is a space delimited list of 
+        net names; any pins with a name in this list will have their +USE attribute 
+        set to GROUND.
+
+        If <i>seperatePorts</i> is true, net shapes will be written as separate PORTs in the LEF.
+
+        If <i>writeNonDefRules</i> is true, any non default rules defined in the library will be written.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importDef (
+        const char * libName, 
+        const char * viewName, 
+        const char * defFileName, 
+        bool ecoMode=false, 
+        bool compressed=false, 
+        bool reportMissingPins=true, 
+        bool importSpecial=true, 
+        bool importRegular=true, 
+        bool reportUnplacedComps=false,
+        bool openTopCell=true,
+        const char *viewList="autoLayout abstract layout",
+        bool generateLabels=false,
+        float64_t labelSize=1.0,
+        bool metLayers=false,
+        bool additionalPurpose=false,
+        const char *purpose="boundary")
+      </font></h4>
+
+      <p>
+        Import a DEF file <i>defFileName</i> into the library <i>libName</i>, which must exist. 
+        The cellName is determined from the DEF DESIGN keyword and the view name from 
+        <i>viewName</i>. <br>
+        
+        If <i>ecoMode</i> is true then the COMPONENTS and PINS sections only are read, and existing 
+        components and pins will have their origin and orientation updated from the 
+        DEF file.  <br>
+        
+        If <i>compressed</i> is true a gzip compressed format file is expected 
+        and will be uncompressed during DEF in.  <br>
+        
+        If <i>reportMissingPins</i> is true,  missing net connections to pins will be reported.  <br>
+        
+        If <i>importSpecial</i> is true then the SPECIALNETS section is imported. <br>
+        
+        if <i>importRegular</i> is true then the NETS section is imported.  <br>
+        
+        If <i>reportUnplacedComps</i> is true then any components with a placement status of UNPLACED will be reported. <br>
+
+        If <i>openTopCell</i> is true, the top cell (the DESIGN in DEF) will be opened. <br>
+
+        <i>viewList</i> is a space delimited list of views that are used to resolve instance (DEF COMPONENT) masters.
+        When an instance is encountered, a search is made for the a view that matches any of those in the viewList.
+        The first cellView that matches is used. <br>
+
+        If <i>generateLabels</i> is true, pin text labels are created for the DEF PINs. <br>
+
+        If <i>metLayers</i> is true, the pin labels are created on the same layer as the pin, else the system layer TEXT is used. <br>
+
+        If <i>additionalPurpose</i> is true, an additional pin shape is created on the same layer as the pin shape, but with purpose given by <i>purpose</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::exportDef (
+        const char * libName, 
+        const char * cellName, 
+        const char * viewName, 
+        const char * defFileName, 
+        bool comps=true, 
+        bool pins=true, 
+        bool regular=true, 
+        bool special=true, 
+        bool regularRouting=true, 
+        bool specialRouting=true)
+      </font></h4>
+
+      <p>
+        Export a DEF file <i>defFileName</i> from the library <i>libName</i>, cell <i>cellName</i> and view <i>viewName</i>. <br>
+
+        If <i>comps</i> is true the COMPONENTS section will be output.<br>
+
+        If <i>pins</i> is true the PINS section will be output.<br>
+
+        If <i>regular</i> is true the NETS section will be output; <br>
+
+        if <i>special</i> is true the SPECIALNETS section will be output. <br>
+
+        If <i>regularRouting</i> is true then routing from the NETS section is output, else just the connectivity. <br>
+
+        If <i>specialRouting</i> is true then routing from the SPECIALNETS section is output, else just the connectivity.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importVerilog (
+        const char * libName, 
+        const char * verilogFileName, 
+        const char * powerNet, 
+        const char * groundNet, 
+        const char * flatViewName, 
+        bool flatten, 
+        const char * topCellName, 
+        int16_t hPinLayer, 
+        int16_t vPinLayer, 
+        double aspect, 
+        double utilisation)
+      </font></h4>
+
+      <p>
+        Import a Verilog file <i>verilogFileName</i> into library <i>libName</i>. <br>
+        
+        Cells with names matching the verilog module names are created with a view type of netlist. <br>
+        
+        <i>powerNet</i> and <i>groundNet</i> specify the supply and ground nets used to resolve 1'b1 and 1'b0 references respectively. <br>
+        
+        If <i>flatten</i> is true the Verilog netlist will be flattened 
+        into view <i>flatViewName</i>; <i>topCellName</i> is used as the top cell 
+        of the design to flatten. <br>
+        
+        <i>hPinLayer</i> and <i>vPinLayer</i> are the layer numbers that are used for 
+        pins created in the flattened view. <br>
+        
+        <i>aspect</i> is the aspect ratio of the resulting boundary layer created in the flattened view and <i>utilisation</i> 
+        sets the area out the boundary layer such that the total cell area divided by the boundary area equals the utilisation.
+      </p>
+
+      <p align="left">&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::exportVerilog (
+        const char * libName, 
+        const char * cellName, 
+        const char * viewName, 
+        const char * verilogFileName)
+      </font></h4>
+
+      <p>
+        Export a Verilog file <em>verilogFileName</em> from library <em>libName</em>, cell name <em>cellName</em>, and view name <em>viewName</em>. 
+        Currently only a flat verilog netlist is output.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importECO (const char * ecoFileName)
+      </font></h4>
+
+      <p>
+        Import an ECO file from file <i>ecoFileName</i> into the current open cellView. This function does nothing in non-graphics mode.
+      </p>
+
+      <p align="left">&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importOasis(
+        const char * libName, 
+        const char * oasisFileName, 
+        bool dubiousData=true, 
+        bool allowNonPrintingChars=false, 
+        bool reportCells=false, 
+        bool openTopCell=false, 
+        double scale=1.0, 
+        double xoffset=0.0, 
+        double yoffset=0.0, 
+        int32_t csen=0, 
+        int32_t duplicates=0, 
+        char *viewName=&quot;layout&quot;)
+      </font></h4>
+
+      <p>
+        Import an OASIS file <i>oasisFileName</i> into the library <i>libName</i>. The library is created if it does not already exist. <br>
+        
+        If <i>dubiousData</i> is true, dubious constructs in the Oasis data are reported. <br>
+
+        If <i>allowNonPrintingChars</i> is true, non-printing characters will be allowed to be read; normally Oasis only permits printable
+        characters in a-string or n-string types. <br>
+        
+        If <i>reportCells</i> is true, cells are reported in the message window as they are read.  <br>
+        
+        If <i>openTopCell</i> is true, all potential top cell candidates are opened in
+        the gui. A top cell candidate is any cell that is not referenced by another
+        cell, and is not empty. <br>
+        
+        <em>scale</em> allows scaling of all input data by the factor specified. <br>
+
+        <em>xoffset</em> will add the specified offset to all x coordinate data, <br>
+
+        <em>yoffset</em> will add the specified offset to all y coordinate data. <br>
+
+        <em>csen</em> controls case sensitivity, 0 means preserve case, 1 converts to uppercase, 2 to lowercase. <br>
+
+        <em>duplicates</em> controls handling of duplicate cell definitions. <br>
+        If 0, duplicate cells replace any existing cell definitions. <br>
+        If 1, duplicate cells definitions are ignored. <br>
+        If 2, duplicate cell data is merged into existing cells. <br>
+        
+        <em>viewName</em> sets the view name of cellViews created during import. 
+      </p>
+      
+      <p align="left">&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::exportOasis (
+          const char * libName, 
+          const char * viewNames, 
+          const char * oasisFileName, 
+          bool outputAllCells = true, 
+          bool outputChildCells = true, 
+          const char * topCellName = NULL, 
+          bool strict = false, 
+          bool cblock = false, 
+          bool cellOfsets = false, 
+          bool reportCells = false, 
+          double grid=0.005)
+      </font></h4>
+
+      <p>
+        Export an OASIS file <i>oasisFileName</i> from library <i>libName</i>. <br>
+
+        All views specified in the space or comma delimited list <i>viewNames</i>viewNames are output.  <br>
+        
+        If <i>outputAllCells</i> is true then all cells in the library are output to the GDS2 
+        file and <i>topCellName</i> is ignored.  <br>
+
+        If <i>outputAllCells</i> is false then <i>topCellName</i> is a space or comma 
+        delimited list of cells to output.  <br>
+        
+        If <i>strict</i> is true, the OASIS file is written in STRICT mode.  <br>
+        
+        If <i>cblock</i> is true, CBLOCK compression is used which can substantially reduce the output file size.  <br>
+        
+        If<i>cellOfsets</i> is checked in STRICT mode, the property S_CELL_OFFSET is
+        written for each cell in the cellname table so that random access to cells
+        are possible allowing e.g. multithreaded reading of the OASIS file. <br>
+        
+        If <i>reportCells</i> is checked, cells are reported in the message window as they are written. <br>
+
+        <i>grid</i> is used when exporting ellipses and is the snap grid for vertices.
+
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importDxf(
+        const char * libName, 
+        const char * cellName, 
+        const char * dxfFileName, 
+        int32_t dbu=1000)
+      </font></h4>
+
+      <p>
+        Import a DXF file <i>dxfFileName</i> into the library <i>libName</i>. <br>
+        The library is created if it does not already exist. <br>
+        The DXF file is imported into a cell with name <i>cellName</i> and viewname layout.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::exportDxf(
+        const char * libName, 
+        const char * cellName, 
+        const char * dxfFileName, 
+        bool outputText=true, 
+        bool allLayers=true)
+      </font></h4>
+
+      <p>
+        Export a DXF file <i>dxfFileName</i> from the library <i>libName</i>, cell <i>cellName</i> and view name layout. <br>
+        If <i>outputText</i> is true then text labels are output. <br>
+        If <i>allLayers</i> is true then all layers are output to the DXF file, else only the currently visible layers are output.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importCDL(
+        const char * libName, 
+        const char * cdlFileName)
+      </font></h4>
+
+      <p>
+        Import a CDL file <i>cdlFileName</i> into the library <i>libName</i>. Note that no attempt is made to create a schematic
+        from this netlist, although the connectivity will be present.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::exportCDL(
+          const char * libName, 
+          const char *cellname, 
+          const char *viewName, 
+          const char * cdlFileName, 
+          const char *globals, 
+          bool annotateXY=0, 
+          bool microns=false, 
+          bool rmodel=false, 
+          char * rpropname="r", 
+          bool cmodel=false, 
+          char *cpropname="c", 
+          double filterCapLimit=-1.0, 
+          bool filterCaps= true, 
+          bool mergeCaps=false, 
+          const char *nlpPropName=&quot;&quot;, 
+          const char *busLeft=&quot;&lt;&quot;, 
+          const char *busRight=&quot;&gt;&quot;)
+      </font></h4>
+
+      <p>
+        Export a flat CDL file <i>cdlFileName</i> from the library <i>libName</i> with cell <i>cellname</i>, view
+        <i>viewName</i>. <br>
+
+        <i>globals</i> is a space delimited list of global net names e.g. VDD and VSS. <br>
+
+        If <em>annotateXY</em> is true, XY coordinates of instances are written in the CDL file as $X= / $Y= values. <br>
+
+        If <em>rmodel</em> is true then the resistor model name is reported, else the resistor value (R=...) is reported. 
+        <em>rpropname</em> is the property that is used to report the resistor value and should be a property of the resistor extraction pcell. <br>
+        
+        <em>cmodel</em> and <em>cpropname</em> act similarly for capacitors (but not for parasitic capacitors which are always reported by value). <br>
+        
+        If <em>filterCaps</em> is true and a positive <em>filterCapLimit</em> is specified, any parasitic capacitances 
+        below this limit (in Farads) will not be written in the CDL file.<br>
+         
+        If <em>mergeCaps</em> is true then parasitic caps between net pairs are lumped all togther and reported
+        only once per net pair.<br>
+        
+        <em>nlpPropName</em> is the name of the NLP property controlling instance netlisting.<br>
+
+        <em>busLeft</em> is the left bus bit character.<br>
+
+        <em>busRight</em> is the right bus bit character.
+      </p>
+      
+        <>&nbsp;</p>
+
+        <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::schHNLOut(char *libName, 
+        char *cellName, 
+        char *viewName, 
+        char *cdlFileName, 
+        char *switchList, 
+        char *stopList, 
+        char *globals, 
+        bool addEnd=false,
+        bool rmodel=false, 
+        char * rpropname="r",
+        bool cmodel=false, 
+        char *cpropname="c", 
+        double  filterCapLimit=-1.0, 
+        bool filterCaps= true, 
+        bool mergeCaps=false, 
+        const char *nlpPropName=&quot;&quot;, 
+        const char *busLeft=&quot;&lt;&quot;, 
+        const char *busRight=&quot;&gt;&quot;
+      </font>)</h4>
+
+      <p>
+        Export a hierarchical CDL file <em>cdlFileName</em> from the library <em>libName</em> 
+        with cell <em>cellName</em> and view <em>viewName</em>. <br>
+
+        <em>switchList</em> is a space delimited list of view names the netlister can switch into 
+        e.g. &quot;schematic symbol&quot;. <br>
+
+        <em>stopList</em> is a space delimited list of views the netlist can stop on, which should have a 
+        NLPDeviceFormat string property to describe the netlist format for the cellView. <br>
+
+        <em>globals</em> is a space delimited list of global net names. <br>
+
+        If <em>addEnd</em> is true, a '.end' line is added to the end of the netlist (for Spice correct syntax of a complete netlist). <br>
+
+        If <em>rmodel</em> is true then the resistor model name is reported, else the resistor value (R=...) is 
+        reported. <br>
+
+        <em>rpropname</em> is the property that is used to report the resistor value and should be a 
+        property of the resistor extraction pcell. <br>
+
+        <em>cmodel</em> and <em>cpropname</em> act similarly for capacitors (but not for parasitic 
+        capacitors which are always reported by value). <br>
+
+        If <em>filterCaps</em> is true and a positive <em>filterCapLimit</em> is specified, any parasitic 
+        capacitances below this limit (in Farads) will not be written in the CDL file. <br>
+
+        If <em>mergeCaps</em> is true then parasitic caps between net pairs are lumped all togther and 
+        reported only once per net pair.<br>
+
+        <em>nlpPropName</em> is the name of the NLP property controlling instance netlisting.<br>
+
+        <em>busLeft</em> is the left bus bit character.<br>
+
+        <em>busRight</em> is the right bus bit character.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importDSPF(
+        const char * libName, 
+        const char * dspfFileName,
+        const char * netsToRead=NULL,
+        bool saveC = true,
+        bool saveR = true,
+        bool saveI = false,
+        bool overwrite = true,
+        const char *purpose = "net")
+      </font></h4>
+
+      <p>
+        Imports a DSPF file <em>dspfFileName</em> into library <em>libName</em>. 
+        <em>netsToRead</em> is an optional space delimited list of net names to read; if null then all nets are read.
+        If <em>saveC</em> is true, parasitic capacitors in the DSPF are saved to the db.
+        if <em>saveR</em> is true, parasitic resistors in the DSPF are saved to the db.
+        If <em>saveI</em> is true, instances in the DSPF are savved to the db.
+        If <em>overwrite</em> is true, existing net info is overwitten.
+        <em>purpose</em> is the layer purpose that the net shapes in the DSPF are created on.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::importEDIF(
+        const char * edifFileName,
+        bool useScale)
+      </font></h4>
+
+      <p>
+        Imports a EDIT file <em>edifFileName</em>. If useScale is set, the database units in the EDIF file are used, else
+        the default database units (1000 for layout views, 160 for schematic/symbol views) are used.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::exportEDIF(
+        const char *libName,
+        const char *cellName,
+        const char *viewName,
+        const char * edifFileName,
+        const char *extLibs)
+      </font></h4>
+
+      <p>
+        Exports a EDIF file <em>edifFileName</em> from library <em>libName</em>, cell <em>cellName</em>, view <em>viewName</em>.
+        <em>extLibs</em> is a space delimited list of external libs to be used as external in the EDIF. If a library referenced by
+        the cellView is not in extLibs, it is written to the EDIF file.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::ImportSkill(
+        const char *libName,
+        const char *displayName,
+        const char *skillFileName,
+        uint32_t dbu=1000,
+        bool useMapFile=false,
+        const char *mapFile=NULL)
+      </font></h4>
+
+      <p>
+        Imports a Cadence Skill techfile to library <em>libName</em>
+        <em>displayName</em> is the display.drf file name.
+        <em>skillFileName</em> is the Skill techfile name.
+        <em>dbu</em> is the database units per micron.
+        If <em>useMapFile</em> is true, the map file <em>mapFile</em> is used to read layer name/purpose to GDS layer/datatype mappings.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::ImportLaker(
+        const char *libName,
+        const char *displayName,
+        const char *techName,
+        uint32_t dbu=1000,
+        bool useMapFile=false,
+        const char *mapFile=NULL)
+      </font></h4>
+
+      <p>
+        Imports a Laker techfile to library <em>libName</em>
+        <em>displayName</em> is the display.drf file name.
+        <em>techName</em> is the Laker techfile name.
+        <em>dbu</em> is the database units per micron.
+        If <em>useMapFile</em> is true, the map file <em>mapFile</em> is used to read layer name/purpose to GDS layer/datatype mappings.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::ImportHercules(
+        const char *fileName,
+        const char *libName,
+        const char *cellName,
+        const char *viewName)
+      </font></h4>
+
+      <p>
+        Imports a Hercules error file to library <em>libName</em>, cell <em>cellName</em>, view <em>viewName</em>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::ImportCalibre(
+        const char *fileName,
+        const char *libName,
+        const char *cellName,
+        const char *viewName)
+      </font></h4>
+
+      <p>
+        Imports a Calibre error file to library <em>libName</em>, cell <em>cellName</em>, view <em>viewName</em>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::cdlFlatten(
+        const char *inFile,
+        const char *outFile,
+        const char *topCellName,
+        const char *delimiter="|")
+      </font></h4>
+
+      <p>
+        Reads a hierarchical CDL file <em>inFile</em> and flattens it, writing it to <em>outFile</em>.
+        <em>topCellName</em> is the name of the top level subcircuit, and <em>delimiter</em> is the 
+        delimiter character to use for hierarchical names in the output file.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::scaleCells(cellView *cv, db_Float64 scaleFactor, db_Int32 grid, bool allCells)
+      </font></h4>
+
+      <p>>
+        Scale cell(s) hierarcically. <em>cv</em> is the cellView of the cell to scale, or any cell in the library. 
+        <em>scaleFactor</em> is the scale factor to apply to the cell(s). <em>grid</em> is the snap 
+        grid to snap resulting shapes to. If <em>allCells</em> is true, then all cellViews in the library 
+        containing <em>cv</em> will be scaled.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::scaleCell(cellView *cv, db_Float64 scaleFactor, db_Int32 grid)
+      </font></h4>
+
+      <p>>
+        Scale a cell. <em>cv</em> is the cellView of the cell to bias, or any cell in the library. 
+        <em>scaleFactor</em> is the scale factor to apply to the cell(s). <em>grid</em> is the snap 
+        grid to snap resulting shapes to.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      ui::biasCells(cellView *cv, int16_t layer, int32_t biasFactor, int32_t grid, int32_t allCells)
+      </font></h4>
+
+      <p>
+        Bias cell(s). <em>cv</em> is the cellView of the cell to bias, or any cell in the library. 
+        <em>layer</em> is the layer to bias, and <em>biasFactor</em> is the amount to bias the 
+        <em>layer</em> in database units. A positive <em>biasFactor</em> will grow the 
+        shapes, a negative <em>biasFactor</em> will shrink the shapes. <em>grid</em> is 
+        the snap grid to snap resulting shapes to. If <em>allCells</em> is true, 
+        then all cellViews in the library containing <em>cv</em> will be 
+        biassed.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::biasCell(cellView *cv, int16_t layer, int32_t biasFactor, int32_t grid)
+      </font></h4>
+  
+      <p>
+        Bias a cell. <em>cv</em> is the cellView of the cell to bias, or any cell in the library. 
+        <em>layer</em> is the layer to bias, and <em>biasFactor</em> is the amount to bias the 
+        <em>layer</em> in database units. A positive <em>biasFactor</em> will grow the 
+        shapes, a negative <em>biasFactor</em> will shrink the shapes. <em>grid</em> is 
+        the snap grid to snap resulting shapes to.
+        biassed.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::zoomIn()
+      </font></h4>
+
+      <p>
+        Zoom in according to the current zoomin factor.This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::zoomIn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
+      </font></h4>
+
+      <p>
+        Zoom in to the area given by x1 y1 x2 y2. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::zoomOut()
+      </font></h4>
+
+      <p>
+        Zoom out according to the current zoomout factor. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::zoomOut (int32_t x1, int32_t y1, int32_t x2, int32_t y2)
+      </font></h4>
+
+      <p>
+        Zoom out by the area given by x1 y1 x2 y2. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::zoomToNet(const char *netName)
+      </font></h4>
+
+      <p>
+        Zoom in to the net <em>netName</em>. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::selectArea (int32_t  x1, int32_t y1, int32_t x2, int32_t y2, bool add = false)
+      </font></h4>
+
+      <p>
+        Select objects in the area given by <em>x1 y1 x2 y2</em>. If <em>add</em> is  true, then the 
+        objects are added to the selected set. This function does  nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::deselectArea (int32_t  x1, int32_t y1, int32_t x2, int32_t y2)
+      </font></h4>
+
+      <p>
+        Deselect objects in the area given <em>by x1 y1 x2 y2</em>. This function does nothing in non-graphics mode.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::selectAll()
+      </font></h4>
+
+      <p>
+        Select all objects in the current canvas cellView. This  function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::deselectAll()
+      </font></h4>
+
+      <p>
+        Deselect all objects in the current canvas cellView. This  function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::selectPoint (int32_t  x1, int32_t y1, bool add = false)
+      </font></h4>
+
+      <p>
+        Select an object at the coordinate <em>x1 y1</em>. If <em>add</em> is true,  then the object is added 
+        to the selected set. This function does nothing in  non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::deselectPoint (int32_t  x1, int32_t y1)
+      </font></h4>
+
+      <p>
+        Deselect an object at the coordinate <em>x1 y1</em>. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::selectObj(<a href="dbObj.htm">dbObj</a>  *obj)
+      </font></h4>
+
+      <p>
+        Selects an object. The existing selection list is cleared. This  function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::selectObj(<a href="#_net__class_1">net</a> *net)
+      </font></h4>
+
+      <p>
+        Selects shapes for the net <em>net</em>. The existing selection list is cleared. This 
+        function does  nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::deselectObj(<a href="dbObj.htm">dbObj</a> *obj)
+      </font></h4>
+
+      <p>
+        Deselects an object. This function does nothing in  non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::deselectObj(<a href="#_net__class_1">net</a> *net)
+      </font></h4>
+
+      <p>
+        Deselects shapes for a net <em>net</em>. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addSelected(<a href="dbObj.htm">dbObj</a>  *obj)
+      </font></h4>
+
+      <p>
+        Adds the object to the selected set. This function does  nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addSelected(<a href="#_net__class_1">net</a> *net)
+      </font></h4>
+
+      <p>
+        Adds the net shapes to the selected set. This function does  nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="dbObjList.htm">dbObjList</a>&lt;<a href="dbObj.htm">dbObj</a> * ui::getSelectedSet()
+      </font></h4>
+
+      <p>
+        Returns a dbObjList of the selected set. There is also a top level python binding of the same 
+        name that returns a python list of selected objects. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::moveSelected(Point  delta, orient_t orient)
+      </font></h4>
+
+      <p>
+        Moves the selected set by <em>delta</em>, optionally rotating it by <em>orient</em>. 
+        This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::copySelected(Point  delta, orient_t orient)
+      </font></h4>
+
+      <p>
+        Copies the selected set, moving the copy by <em>delta</em>, optionally rotating it by <em>orient</em>.  
+        This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;  </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addMarker( int32_t x, int32_t y, int32_t size=20, int32_t lineWidth=0, color=Qt::yellow)
+      </font></h4>
+
+      <p>
+        Adds a marker at the specified x and y values (given in database units). The size of the marker 
+        defaults to 20 dbu and the linewith to 0 (i.e. one pixel wide). This function does nothing in 
+        non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::clearMarkers()
+      </font></h4>
+
+      <p>
+        Clears all markers. This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addHilite(<a href="dbHierObj.htm">dbHierObj</a> obj, uint32_t r, uint32_t g, uint32_t b, uint32_t a=255)
+      </font></h4>
+
+      <p>
+        Add a hilite to the dbHierObj <em>obj</em> using the given rgba colour value.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addHilite(<a href="dbObj.htm">dbObj</a> * obj, uint32_t r, uint32_t g, uint32_t b, uint32_t a=255)
+      </font></h4>
+
+      <p>
+        Add a hilite to the dbObj <em>obj</em> using the given rgba colour value.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addHilite(<a href="net.htm">net</a> obj, uint32_t r, uint32_t g, uint32_t b, uint32_t a=255)
+      </font></h4>
+
+      <p>
+        Add a hilite to the net <em>obj</em> using the given rgba colour value.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addHilite(const char *name, uint32_t r, uint32_t g, uint32_t b, uint32_t a=255)
+      </font></h4>
+
+      <p>
+        Add a hilite to the name <em>name</em> using the given rgba colour value.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addHiliteByLayer(const char *name, int16_t lyr, uint32_t r, uint32_t g, uint32_t b, uint32_t a=255)
+      </font></h4>
+
+      <p>
+        Add a hilite to the name <em>name</em> on layer <em>lyr</em>using the given rgba colour value.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addHilite(int32_t x1, int32_t y1, int32_t x2, int32_t y2,, uint32_t r, uint32_t g, uint32_t b, uint32_t a=255)
+      </font></h4>
+
+      <p>
+        Add a hilite to the rectangle defined by x1,y1,x2,y2 the given rgba colour value.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::clearHilites()
+      </font></h4>
+
+      <p>
+        Clear all hilites
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::hiliteSubNetsByCap(const char *netName, uint32_t a=128)
+      </font></h4>
+
+      <p>
+        Hilite subnets of the net <em>netName</em> according to their capacitance.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::displayOnlyThisNet(const char *name)
+      </font></h4>
+
+      <p>
+        Display only shapes of the named net. All other shapes with net info will be hiddent from the display.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::displayAddThisNet(const char *name)
+      </font></h4>
+
+      <p>
+       Add shapes of the named net to the display to the show list.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::displayHideThisNet(const char *name)
+      </font></h4>
+
+      <p>
+       Hide shapes of the named net from the display by removing the net from the show list. Adds the net to the hide list.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::displayAllNets()
+      </font></h4>
+
+      <p>
+       Show all net shapes. Effectively the show list is cleared.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        const char *ui::getDisplayNets()
+      </font></h4>
+
+      <p>
+       Get a space delimited list of nets in the show list.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ui::isMemberOfDisplayNets(const char *name)
+      </font></h4>
+
+      <p>
+        Returns true if net <em>name</em> is a member of the show list.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        const char *ui::getHideNets()
+      </font></h4>
+
+      <p>
+       Get a space delimited list of nets in the hide list.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ui::isMemberOfHideNets(const char *name)
+      </font></h4>
+
+      <p>
+        Returns true if net <em>name</em> is a member of the hise list.
+      </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::updateLibBrowser()
+      </font></h4>
+  
+      <p>
+        Updates (refreshes) the library browser. This function does nothing in non-graphics mode.
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::updateLSW()
+      </font></h4>
+  
+      <p>
+        Updates (refreshes) the LSW. This function does nothing in non-graphics mode.
+      </p>
+  
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ok = ui::setLayerVisible(const char *layerName, const char *purpose, bool val)
+      </font></h4>
+  
+      <p>
+        Returns true if the layer 
+        specified by <em>layerName </em>and <em>purpose</em>&nbsp;can be set visible in 
+        the current cellView&nbsp;or false&nbsp;if there is no current 
+        cellView. This function does nothing in non-graphics mode.
+      </p>
+  
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool  ok = ui:isLayerVisible(const char *layerName, const char *purpose)
+      </font></h4>
+  
+      <p>
+        Returns true if the layer specified by <em>layerName </em>and <em>purpose</em> is 
+        visible in the current cellView or false if it is invisible, or there is no current cellView.
+  
+        This function does nothing in non-graphics mode.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ok = ui::setAllVisible(bool val)
+      </font></h4>
+  
+      <p>
+        Sets all layers visible. This function does nothing in non-graphics mode.
+      </p>
+  
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::setLayerSelectable(const char *layerName, const char *purpose, bool val)
+      </font></h4>
+  
+      <p>
+        Returns true if the layer specified by <em>layerName </em>and <em>purpose</em> can be
+         set visible in the current cellView or false if there is no current cellView. This function 
+         does nothing in non-graphics mode.
+      </p>
+  
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ok = ui::isLayerSelectable(const char *layerName, const char *purpose)
+      </font></h4>
+  
+      <p>
+        Returns true if the layer specified by <em>layerName </em>and <em>purpose</em>&nbsp;is selectablein the 
+        current cellView or false if it is invisible, or there is no current 
+        cellView. This function does nothing in non-graphics mode.
+      </p>
+  
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ok = ui::setAllSelectable(bool val)
+      </font></h4>
+  
+      <p>
+        Sets all layers selectable. This function does nothing in non-graphics mode.
+      </p>
+  
+      <p>&nbsp;</p>
+
+      <h2>Extending Glade by creating menus / bindkeys etc.</h2>
+
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        cvar.uiptr
+      </font></h4>
+  
+      <p>
+        A global pointer to the ui class instanciation in Glade. Use this rather than creating your own ui 
+        variable using ui(). For example:
+      </p>
+  
+      <blockquote>
+        gui=cvar.uiptr
+        gui.OpenCellView("default", "nand", "layout")
+      </blockquote>
+  
+      <p>
+        Although you <i>can</i> use e.g. ui().&lt;functionName()&gt;, this will not work for commands 
+        like createAction() which only work with the existing instanciated ui object.
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        menu = ui::createMenu(const char *name)
+      </font></h4>
+  
+      <p>
+        Creates a menu called <i>name</i> 
+      in the menu bar
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif"
+        >menu = ui::createMenu(QMenu *menu, const char *name)
+      </font></h4>
+  
+      <p>
+        Creates a submenu called <i>name</i> in <i>menu</i>.
+    </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addSeparator(QMenu *menu)
+      </font></h4>
+  
+      <p>
+        Adds a separator to the menu.
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        action = ui::createAction(const char *name, const char *cmd)
+      </font></h4>
+  
+      <p>
+        Creates an <i>action</i> called <i>name</i> with a command <i>cmd</i>. The command should be a valid Python 
+      command. An action defines a common command that can be invoked by any or all of a menu item, a bindkey or a toolbar button.
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        action = ui::createAction(const char *name, const char *cmd, QActionGroup *group)
+      </font></h4>
+  
+      <p>
+        Creates an <i>action</i> called 
+        <i>name</i> with a command <i>cmd</i> that is part of an actionGroup 
+        <i>group</i>. The command should be a valid Python command. An action defines a 
+        common command that can be invoked by any or all of a menu item, a bindkey or a 
+        toolbar button.
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        actionGroup = ui::createActionGroup()
+      </font></h4>
+  
+      <p>
+        Create an actionGroup.
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::createMenuItem(menu, action)
+      </font></h4>
+  
+      <p>
+        Adds the <i>action</i> to the <i>menu</i>. The action name will be shown on the menu, along with any key 
+        binding defined for the action.
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::setBindKey(action, const char *keysequence)
+      </font></h4>
+  
+      <p>
+        Sets the bindkey for <i>action</i>. 
+        <i>keysequence</i> can be a key e.g. "k" or a combination e.g. "Ctrl+p", 
+        "Shift+p", "Alt+p"
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        icon =  ui::createIcon (char *fileName)
+      </font></h4>
+  
+      <p>
+        Creates an icon from an image file (.png format)
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::setIcon (QAction *action, const char *fileName)
+      </font></h4>
+  
+      <p>
+        Sets the icon for an action from the image file (.png format)
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::setIcon (QAction *action, QIcon *icon)
+      </font></h4>
+  
+      <p>
+        Sets the icon for an action
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        toolbar = </font><font face="Arial"> ui::createToolBar (const char*name)
+      </font></h4>
+  
+      <p>
+        Creates a tool bar with name <em>name</em>. 
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::createToolBarItem (QToolBar *toolBar, QAction *action)
+      </font></h4>
+  
+      <p>
+        Adds an action to a toolbar.
+      </p>
+  
+      <p>&nbsp;</p>
+  
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::addSeparator (QToolBar *toolBar)
+      </font></h4>
+  
+      <p>       
+        Adds a separator to a toolbar.
+      </p>
+    
+      <p>&nbsp;</p>
+  
+      <p>
+        An example of a python script for  setting up a user-defined menu is as follows:</p>
+  
+      <blockquote>
+        <pre>
+        # define some user function
+        def myFunction() :
+          print "Hello World!"
+  
+        gui = cvar.uiptr
+        menu = gui.createMenu("MyMenu")
+        action=gui.createAction("MyAction", "myFunction()")
+        gui.createMenuItem(menu, action)
+        gui.setBindKey(action, "!")
+        </pre>
+      </blockquote>
+  
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t ui::traceNet(cellView *cv, 
+              Point start, 
+              int32_t mode, 
+              bool addNetName=false, 
+              const char  *netName=NULL, 
+              const char *libName=NULL, 
+              const char *cellName=NULL, 
+              const char *viewName=NULL)
+      </font></h4>
+  
+      <p>
+        Runs the net tracer using the current <a href="#_cellView_class_1">cellView</a> <em>cv</em>,  
+        starting tracing from the <a href="#_Point__class_1">Point</a> <em>start</em>. Mode can be:</p>
+  
+      <ol>
+        <li>Trace the net and highlight the resulting traced  shapes.</li>
+        <li>Trace the net, and select shapes on the top  level only (traced shapes in lower levels of the hierarchy cannot be selected).</li>
+        <li>Trace the net, hightlight the traced shapes, and  save the shapes to the cellView given by libName / cellName / viewName. Note  the shapes are flattened.</li>
+      </ol>
+  
+      <p>
+        If addNetName is set true and a netName is given, all traced  shapes will be assigned to a net of that name.
+      </p>
+  
+      <p>
+        The numTraced return parameter is the number of traced  shapes.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        ui::compareCells(
+          const char *libName1, 
+          const char *cellName1, 
+          const char *viewName1, 
+          const char *libName2, 
+          const char *cellName2, 
+          const char *viewName2, 
+          int16_t compareLayer, 
+          bool hier, 
+          bool countShapes)
+      </font></h4>
+    
+    <p>
+      Compares two cellViews using an XOR operation using a simple non-tiled approach. This is good for cells of less 
+      than a few thousand transistors/shapes. The comparison is done for <em>compareLayer;</em> if this is set to -1 all 
+      layers in the cellViews are compared, else just the layer specified. If <em>hier</em> is false (the default), then 
+      the comparison is done at the top level only; if true then it is done hierarchically. The function returns 0 if 
+      the two cellViews are identical, -1 if an error occurred e.g. different number of layers in the cells, or different 
+      number of shapes (but see <em>countShapes</em>),&nbsp;or the number of differences found. If <em>countShapes</em> 
+      is false (the default) then the number of shapes may differ between the cells, but the XOR result must match.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t val = ui::compareCells2(
+        const char *libName1, 
+        const char *cellName1, 
+        const char *viewName1, 
+        const char *libName2, 
+        const char *cellName2, 
+        const char *viewName2, 
+        int16_T compareLayer, 
+        bool hier, 
+        bool multiThreaded=1, 
+        int32_t  maxThreads=QThread::idealThreadCount(), 
+        bool tileAuto=1,
+        int32_t tileWidth=1, 
+        int32_t tileHeight=1, 
+        int16_t outputLayer=TECH_MARKER_LAYER)
+    </font></h4>
+
+    <p>
+      Compares two cellViews using a tiled XOR operation. The comparison is done for <em>compareLayer</em>; 
+      if this is set to -1 all layers in the cellViews are compared. 
+      If <em>hier</em> is true (1), then the comparison is done hierarchically. The function returns 0 if the two 
+      cellViews are identical, -1 if an error occurred, or the number of differences found. 
+      If <em>multiThreaded</em> is true (the default), then the layout is tiled and run with <em>maxThreads</em> 
+      threads. If tileAuto is true (the default), an intelligent tiling algorithm is used, else tile widths and 
+      heights must be specified. Returns 0 is cells identical, -1 if error, else # of diffs
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t val = ui::compareCells3(
+        const char *libName1, 
+        const char *cellName1, 
+        const char *viewName1, 
+        const char *libName2, 
+        const char *cellName2, 
+        const char *viewName2, 
+        const char *libName3, 
+        const char *cellName3, 
+        const char *viewName3, 
+        int16_T compareLayer, 
+        bool hier, 
+        bool multiThreaded=1, 
+        int32_t  maxThreads=QThread::idealThreadCount(), 
+        bool tileAuto=1,
+        int32_t tileWidth=1, 
+        int32_t tileHeight=1, 
+        int16_t outputLayer=TECH_MARKER_LAYER)
+    </font></h4>
+
+    <p>
+      Compares two cellViews using a tiled XOR operation. The comparison is done for <em>compareLayer</em>; 
+      if this is set to -1 all layers in the cellViews are compared. 
+      If <em>hier</em> is true (1), then the comparison is done hierarchically. The function returns 0 if the two 
+      cellViews are identical, -1 if an error occurred, or the number of differences found. 
+      If <em>multiThreaded</em> is true (the default), then the layout is tiled and run with <em>maxThreads</em> 
+      threads. If tileAuto is true (the default), an intelligent tiling algorithm is used, else tile widths and 
+      heights must be specified. Returns 0 is cells identical, -1 if error, else # of diffs
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool ok = ui::booleanOp(
+        const char* libName, 
+        const char *cellName, 
+        const char *viewName, 
+        int32_t opType, 
+        int16_t lyr1, 
+        int16_t lyr2, 
+        int16_t lyr3, 
+        bool hier=true, 
+        bool outputTraps=false,
+        bool size=false, 
+        float64_t sizeBy=1.0)
+    </font></h4>
+
+    <p> 
+      Performs boolean operations on layer(s) in a cellView. The cellView  is selected by <em>libName</em>, 
+      <em>cellName</em>, <em>viewName</em>. 
+      
+      The operation type <em>opType</em> can be one of OP_AND (two layer AND), OP_OR2 (Two layer OR), OP_OR1 
+      (single layer merge), OP_NOT2 (Two layer ANDNOT), OP_NOT1 (Single layer NOT), OP_XOR, OP_SIZE, 
+      OP_OVERUNDERSIZE (sizes a layer up and then down), OP_SELECTTOUCH (Selects layer1 shapes that 
+      touch layer2), OP_SELECTOVERLAP (Selects layer1 shapes that overlap layer2), OP_SELECTABUT (Selects layer1 
+      shapes that abut layer2). 
+      
+      <em>hier</em> if true will flatten any hierarchy before applying the operation. 
+
+      If <em>outputTraps</em> is true, outputs the resulting shapes as trapezoids rather than polygons (with holes using cutlines). 
+
+      <em>size</em> if true will size the output shapes by <em>sizeBy</em> microns.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool ok = ui::booleanOp(
+        const char* libName1, 
+        const char *cellName1, 
+        const char *viewName1, 
+        const char* libName2, 
+        const char *cellName2, 
+        const char *viewName2, 
+        const char* libName3, 
+        const char *cellName3, 
+        const char *viewName3,
+        int32_t opType, 
+        int16_t lyr1, 
+        int16_t lyr2, 
+        int16_t lyr3, 
+        bool hier=true, 
+        bool outputTraps=false, 
+        bool size=false, 
+        float64_t sizeBy=1.0)
+      </font></h4>
+
+    <p> 
+      Performs boolean operations on layer(s) in a cellView. The cellView  is selected by <em>libName</em>, <em>cellName</em>, <em>viewName</em>. 
+      
+      The operation type <em>opType</em> can be one of OP_AND (two layer AND), OP_OR2 (Two layer OR), OP_OR1 (single layer merge), OP_NOT2 
+      (Two layer ANDNOT), OP_NOT1 (Single layer NOT), OP_XOR, OP_SIZE, OP_OVERUNDERSIZE (sizes a layer up and then down), OP_SELECTTOUCH 
+      (Selects layer1 shapes that touch layer2), OP_SELECTOVERLAP (Selects layer1 shapes that overlap layer2), OP_SELECTABUT (Selects 
+      layer1 shapes that abut layer2). 
+      
+      <em>hier</em> if true will flatten any hierarchy before applying the operation. 
+      
+      If <em>outputTraps</em> is true, outputs the resulting shapes as trapezoids rather than polygons (with holes using cutlines). 
+      <em>size</em> if true will size the output shapes by <em>sizeBy</em> microns.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool ok = ui::tiledBooleanOp(
+        const char* libName, 
+        const char *cellName, 
+        const char *viewName, 
+        int32_t opType, 
+        int16_t lyr1, 
+        int16_t lyr2, 
+        int16_t lyr3, 
+        bool hier=true, 
+        bool outputTraps=false,
+        bool size=false, 
+        float64_t sizeBy=1.0,
+        bool multiThreaded=true,
+        int32_t maxThreads=QThread::idealThreadCount(),
+        bool tileAuto=true,
+        float64_t tileWidth=1,
+        float64_t tileHeight=1)
+    </font></h4>
+
+    <p> 
+      Performs tiled boolean operations on layer(s) in a cellView. The cellView  is selected by <em>libName</em>, 
+      <em>cellName</em>, <em>viewName</em>. 
+      
+      The operation type <em>opType</em> can be one of TILEOP_AND (two layer AND), TILEOP_OR2 (Two layer OR), TILEOP_OR1 
+      (single layer merge), TILEOP_NOT2 (Two layer ANDNOT), TILEOP_NOT1 (Single layer NOT), TILEOP_XOR, TILEOP_SIZE. 
+      
+      <em>hier</em> if true will flatten any hierarchy before applying the operation. 
+
+      If <em>outputTraps</em> is true, outputs the resulting shapes as trapezoids rather than polygons (with holes using cutlines). 
+
+      <em>size</em> if true will size the output shapes by <em>sizeBy</em> microns.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool ok = ui::tiledBooleanOp(
+        const char* libName1, 
+        const char *cellName1, 
+        const char *viewName1, 
+        const char* libName2, 
+        const char *cellName2, 
+        const char *viewName2, 
+        const char* libName3, 
+        const char *cellName3, 
+        const char *viewName3,
+        int32_t opType, 
+        int16_t lyr1, 
+        int16_t lyr2, 
+        int16_t lyr3, 
+        bool hier=true, 
+        bool outputTraps=false, 
+        bool size=false, 
+        float64_t sizeBy=1.0,
+        bool multiThreaded=true,
+        int32_t maxThreads=QThread::idealThreadCount(),
+        bool tileAuto=true,
+        float64_t tileWidth=1,
+        float64_t tileHeight=1)
+      </font></h4>
+
+    <p> 
+      Performs tiled boolean operations on layer(s) in a cellView. The cellView  is selected by <em>libName</em>, <em>cellName</em>, <em>viewName</em>. 
+      
+      The operation type <em>opType</em> can be one of TILEOP_AND (two layer AND), TILEOP_OR2 (Two layer OR), TILEOP_OR1 (single layer merge), OP_NOT2 
+      (Two layer ANDNOT), TILEOP_NOT1 (Single layer NOT), TILEOP_XOR, TILEOP_SIZE. 
+      
+      <em>hier</em> if true will flatten any hierarchy before applying the operation. 
+      
+      If <em>outputTraps</em> is true, outputs the resulting shapes as trapezoids rather than polygons (with holes using cutlines). 
+      <em>size</em> if true will size the output shapes by <em>sizeBy</em> microns.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool val = ui::runLVS(
+        const char *libName, 
+        const char *cellName,
+        const char *viewName, 
+        const char *netlist,
+        const char *globalNets=NULL, 
+        const char *workDir= ".", 
+        bool isHierNetList=false, 
+        const char *delimiter= "/", 
+        const char *topCellName=NULL, 
+        bool checkDeviceProps=false, 
+        boolcollapseLikeSized= false, 
+        bool noCollapseFingered= false,
+        bool noCollapseChains= false, 
+        bool warnChains= false, 
+        bool caseFoldNets= false,
+        bool noLocalMatching= false,
+        bool noOptLabelling= false, 
+        bool matchProperties=false, 
+        bool matchPorts=false, 
+        bool warnZeroNets= false, 
+        bool verbose= false,
+        const char *errorLimit= NULL,
+        const const char *netSizeLimit= NULL,
+        const char *progressLimit= NULL,
+        const char *suspectNodeLimit= NULL, 
+        double Tolerance=10.0 , 
+        const char *equivInFileName=  NULL, 
+        const char *equivOutFileName= NULL)
+      </font></h4>
+
+    <p>
+      Runs LVS, comparing the cellview given by <em>libName/cellName/viewName</em>, which should be an extracted cellView, 
+      against the Spice/CDL netlist given by <em>netlist</em>. 
+      
+      <em>globalNets</em> is a space delimited list of global net names. 
+
+      <em>workDir</em> is used for the creation of temporary files. 
+      
+      If <em>isHierNetList</em> is true, then the <em>netlist</em> is 
+      treated as hierarchical and will be flattened with delimiter character 
+      <em>delimiter</em> and top cell name <em>topCellName</em>. 
+    
+      If <em>checkDeviceProps</em> is true, device properties e.g. W, L or MOS devices are checked according to the tolerance 
+      specified by<em>Tolerance</em>.
+
+      The remainder of the parameters correspond to Gemini options.
+    </p>
+
+    <p>&nbsp;</p>
+      
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t errors = ui::schCheck(char *libName, char *cellName, char *viewName, bool snapLabels, float64_t snapDist)
+    </font></h4>
+
+    <p>
+      Check a schematic cellView. errors is the number of errors found, or -1 if the cell could not be checked. 
+      If <em>snapLabels</em> is true, labels within <em>snapDist</em> of a wire will be snapped to the wire.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      int32_t errors = ui::symCheck(char *libName, char *cellName, char *viewName, bool snapLabels, float64_t snapDist)
+    </font></h4>
+
+    <p>
+      Check a symbol cellView. errors is the number of errors found, or -1 if the cell could not be checked.
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      <a href="line.htm">line</a> = ui::routeWire<a href="Point.htm">(Point</a> start,<a href="Point.htm"> Point</a> stop, 
+      char *netName=null, float64_t wrongWayCost=2.0, float64_t blockageCost=4.0)
+    </font></h4>
+      
+    <p>
+      Routes a line on the wire layer from <em>start</em> to <em>stop</em>, avoiding  obstacles (symbols and parallel 
+      collinear wires). If the route is successful,  returns the <a href="line.htm">line</a> object created, or None 
+      if failed. If <em>netName</em> is specified,  then the line is assigned that net name.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      bool ok = ui::createCellView(char *libName, char *cellName, char *viewName, int32_t shape=0, int32_t pinSize=4, float64_t snapGrid=0.0625)
+    </font></h4>
+
+    <p>
+      Create a symbol cellView from the given cellView (normally a schematic). Returns true if successful. The 
+      symbol outline can be set by <em>shape</em>, and can be 0 (rectangular), 1 (triangular) or 2 (circular). 
+      <em>pinSize</em> sets the pi size in database units. <em>snapGrid</em> sets the snapping grid of the 
+      generated shapes
+    </p>
+
+
+    
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      ui::deleteCell(const char *libName,  const char *cellName, const char *viewName)
+    </font></h4>
+
+    <p>
+      Delete the cell specified by <em>libName</em>, <em>cellName</em> and <em>viewName</em>.This function 
+      does nothing in non-graphics mode.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      ui::renameCell(const char *libName, const char *cellName, const char *viewName)
+    </font></h4>
+
+    <p>
+      Rename the cell specified by <em>libName</em>, <em>cellName</em> and <em>viewName</em>. A dialog 
+      will be displayed prompting for the new cell name.  This function does nothing in non-graphics mode.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      ui::copyCell(const char *libName, const char *cellName, const char *viewName)
+    </font></h4>
+
+    <p>
+      Copy the cell specified by <em>libName</em>, <em>cellName</em> and <em>viewName</em>. A dialog 
+      will be displayed prompting for the new cell name. This function does nothing in non-graphics mode.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+      ui::properties(const char *libName, const char *cellName, const char *viewName)
+    </font></h4>
+
+    <p>
+      Display the properties of the cell specified by <em>libName</em>, <em>cellName</em> and <em>viewName</em>.
+      This function does nothing in non-graphics mode.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

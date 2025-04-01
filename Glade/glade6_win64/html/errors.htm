@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b><font size="4">Glade 
+        Reference</font></b></font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">
+        Error reporting<a name="error_log"></a>
+      </font></h2>
+
+      <p align="left">
+        In the unfortunate event of an internal program error occurring, on all 
+        platforms except Solaris, Glade will trap the error and report diagnostics 
+        which can be mailed to the developers so 
+        the bug can be fixed. To get diagnostics reported, you must set the environment 
+        variable GLADE_NO_EXCEPTION_HANDLER to yes. Otherwise the exception may be 
+        handled by the default GUI exception handler.
+      </p>
+
+      <p align="center">
+        <img src="images/errorLog.png" width="651" height="367">
+      </p>
+
+      <p align="left">
+        The error report shows 
+        the type of error, CPU register contents and a stack trace with the most recent 
+        stack frame first. Clicking 
+        on the <i>Mail bug report</i> button will open up your system's default mailer (on Windows), 
+        and put a copy of the error report in the system clipboard. You can then paste 
+        the report into the mail. Clicking on the <i>Exit</i> button will exit the 
+        application. If there is unsaved data, you will be prompted to save the library.
+      </p>
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop  Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

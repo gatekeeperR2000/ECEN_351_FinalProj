@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+  <!-- #BeginEditable "doctitle" --> 
+  <title>Glade Reference Manual</title>
+  <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade  Reference
+        </font></b>
+      </font></p>
+      <hr>
+
+      <!-- #BeginEditable "text" --> 
+      <p>&nbsp;</p>
+
+      <h2><font face="Arial, Helvetica, sans-serif">Tools Commands</font> </h2>
+
+      <h2>
+        tools-&gt;LSW<a name="tools_lsw"></a>
+      </h2>
+
+      <p>
+        Toggles the display of the <a href="theLSW.htm">LSW</a>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>
+        tools-&gt;Message Window<a name="tools_msg"></a>
+      </h2>
+
+      <p>
+        Toggles the display of the Output 
+        message window. The Output message window can be used for entering Python 
+        commands and displays messages from Glade. All messages in the Output window 
+        are written to the log file, called glade.log.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>
+        tools-&gt;Library Browser<a name="library_browser"></a>
+      </h2>
+
+      <p>
+        Toggles the display of the library browser.
+      </p>
+
+      <p align="center"><img src="images/libbrowser.png" width="195" height="1157" alt="Library Browser"></p>
+
+      <p>
+        Use the library browser to open 
+        cellviews, rename cellviews, copy cellviews or delete cellviews. The library 
+        browser shows the library name(s), the cell names and their view names as 
+        a tree. The library browser has several menu commands:
+      </p>
+
+      <p>
+        <strong>Library-&gt;Refresh</strong> - Refreshes the library browser display.
+      </p>
+      <p>
+        <strong>Library-&gt;New Lib</strong> - Creates a new library.
+      </p>
+      <p>
+        <strong>Library-&gt;Open Lib</strong> - Opens a library.
+      </p>
+      <p>
+        <strong>Library-&gt;Save Lib As...</strong> - Saves a library to disk.
+      </p>
+      <p>
+        <strong>Library-&gt;Exit</strong> - exits the library browser and closes the window.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p>
+        You can interact with the library browser using the left and right mouse 
+        buttons as follows:
+      </p>
+
+      <h4>
+        Left Mouse double click
+      </h4>
+      <p>
+        If you double click over the view name of a cell, that cellview is opened.
+      </p>
+      <h4>
+        Right Mouse click
+      </h4>
+
+      <p>
+        If you click over the name of a library, a popup menu is displayed that allows you to do the following:
+      </p>
+    <ul>
+      <li>
+        <em>Save Library</em> - saves the library.
+      <li>
+        <em>Save Library As...</em> - saves the library to a new disk file.
+      <li>
+        <em>Close Library</em> - closes the library. 
+      <li>
+        <em>Rename Library</em> - renames the library. 
+      <li>
+        <em>Create CellView</em> - creates a new cellView in the library.
+      <li>
+        <em>Tree View</em> - toggles tree view vs flat view display of the library contents.
+      <li>
+        <em>Case Sensitive</em> - toggles case sensitive sorting of cell names.
+      <li>
+        <em>Find...</em> - Allows you to search for a cell by name
+      <li>
+        <em>Refresh</em> - Refreshes the library browser's contents.
+      </li>
+    </ul>
+      <p>
+        If you click over the&nbsp;cell name  of a cell, a popup menu is displayed that allows you to do the following:
+      </p>
+    <ul>
+      <li>
+        <i>Delete Cell</i>  - deletes the cell and all its views from the library.
+      <li>
+        <em>Rename Cell</em> - renames the cell and updates all references to it and it's cellviews within the library.
+      </li>
+      <li>
+        <em>Copy Cell</em> - copies the cell and all its views to a new library/cell.
+      </li>
+    </ul>
+      <p>
+        If you click over the view name of a cell, a popup menu is displayed that allows you to do the following:
+      </p>
+    <ul>
+      <li>
+        <i>Open CellView</i>&nbsp;- opens the cellview
+      <li>
+        <i>Delete CellView</i> &nbsp;- deletes the cellview 
+        and purges it from memory. Note this does not delete the cell in the library 
+        saved to disk.
+      <li>
+        <i>Rename</i> CellView - renames the cellview  and updates all references to it within the library.
+      <li>
+        <i>Copy</i> CellView- copies the cellview to a new cell and/or view name
+      <li>
+        <i>Properties</i> - displays the  cellview's properties.
+      </li>
+    </ul>
+
+      <h4><font face="Arial, Helvetica, sans-serif">Finding a cell</font></h4>
+
+      <p>
+        To find a cell in 
+        the library browser, use the <i>Edit-&gt;Find...</i> menu command to locate 
+        a cell by name. Alternatively, pressing an alphabetic key will take you to 
+        the first cell beginning with that character.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>
+        Tools-&gt;Hierarchy  Browser <a name="hierarchy_browser"></a>
+      </h2>
+
+      <p>
+        Displays the current edit cell's hierarchy in the hierarchy browser dock window.
+      </p>
+
+      <p align="center"><img src="images/hierBrowser.png" width="232" height="650" alt="Hierarchy Browser"></p>
+
+      <p>
+        The hierarchy browser shows the design 
+        hierarchy. The root cell is shown with its subcells displayed by their cell 
+        names.
+      </p>
+
+      <p>   
+        In addition to expanding the list items by clicking on the '+' boxes, several other operations can be 
+        performed.
+      </p>
+
+      <p>             
+        Left mouse double clicking on any cell name will descend into that 
+        cell and it will be displayed in the browser as the new root 
+        cell.
+      </p>
+
+      <p>
+        Right mouse clicking 
+        on any subcell name will show that instance's properties (and hence the instance 
+        name).
+      </p>
+
+      <p>
+        Right mouse clicking on the root cell name will show a popup menu allowing:
+      </p>
+    <ul>
+      <li>
+        <em>Ascend</em> - ascends to the parent cell of the current cell.
+      <li>
+        <em>Refresh</em> - refreshes the hierarchy browser.
+      </li>
+    </ul>
+
+      <p>&nbsp;</p>
+
+      <h2>
+        Tools-&gt;Net Browser<a name="net_browser"></a>
+      </h2>
+
+      <p>   
+        Displays the current cell's nets in 
+        the net browser dock window. The cell name is shown as the root with 
+        its nets displayed.
+      </p>
+
+      <p align="center"><img src="images/netbrowser.png" width="173" height="532" alt="Net Browser"></p>
+
+      <p>   
+         Left mouse clicking on a net will expand the net's subnets, if the net has subnets (e.g. if the design is from reading DSPF).
+      </p>
+
+      <p>
+        Right mouse button clicking on a net name will display a popup menu that allows you to do the following:
+      </p>
+
+      <p align="center"><img src="images/netbrowser_popup.png" width="240" height="407" alt="Net Browser popup menu"></p>
+
+    <ul>
+      <li>
+        Select All Insts - Selects all the instances that connect to the net via instPins.
+      <li>
+        Select Driver Inst - Selects the instance(s) that have output instPin(s) connected to the net, i.e. drive the net.
+      <li>
+        Select Load Insts - Selects the instances that have input pins connected to the net, i.e. are 
+        loads of the net.
+      <li>
+        Select pins - Selects the pin(s) of the nets.
+      <li>
+        Select net - Selects the net. All the net's shapes are added to the selected set.
+      <li>
+        Highlight Net - Highlights the net shapes with one of the 7 colours.
+      <li>
+        Highlight Caps - Highlights the net parasitic capacitors with a thermal map of colours.
+      <li>
+        Clear Highlights - clears all colour highlighting.
+      <li>
+        Show This Net - Make only the shapes of this net visible. All other nets will be hidden.
+      <li>
+        Show Add Net - Add a net to the set of visible nets.
+      <li>
+        Hide this Net - Remove (make invisible) a net from the set of visible nets.
+      <li>
+        Show All Nets - Make all nets visible.
+      <li>
+        Set Primary Net - make this net the primary net for coupling capacitance analysis.
+      <li>
+        Add Secondary Net - Add this net to the nets for coupling capacitance analysis.
+      <li>
+        Clear Primary and Secondary nets.
+      <li>
+        Show Coupling Cap Filitelines - show flightlines of coupling caps between the primary net and secondary net(s).
+      <li>
+        Clear Coupling Cap Filitelines - clear all flightlines.
+      <li>
+        Show Net Properties - show properties of all shapes of the net.
+      <li>
+        Delete Net - deletes the net. All shapes that had this net attribute will have their net attribute removed.
+    </ul>
+
+    <p align="center"><img src="images/net_options.png" width="207" height="96" alt="Net Browser options menu"></p>
+
+    <p>
+      The Net Browser Options menu allows choosing:
+      <li>
+        Refresh - refreshes the browser window.
+      <li>
+        Net Transparency - allows setting the display alpha (transparency) for highlighting.
+       <li>
+        Display Nets Without shapes
+      <li>
+        Coupling Cap Filter Threshold - Set the minimum threshold, below which coupling caps are ignored.
+      <li>
+        Log Color Scale - Toggle using a log scale for coupling cap colourmap display.
+      </li>
+    </p>
+
+      <p>&nbsp;</p>
+
+      <h2>
+        Tools-&gt;Add Marker
+      </h2>
+
+      <p align="center"><font face="Arial"><img border="0" hspace="0" src="images/addMarker.png"></font></p>
+
+      <p>
+        Adds a marker at a specified location. 
+        The marker colour can be changed by the <em>Marker Colour</em> button, which 
+        displays the current marker colour. <em>Marker size</em> sets the size of the 
+        marker in pixels, so the marker size remains unchanged with zoom in/out 
+        operations. <em>Line Width</em> sets the linewidth; a line width of 0 or 1 is a 
+        single pixel line. Finally the <em>Marker Coordinates</em> are the XY location 
+        of the marker in microns.
+      </p>
+
+      <p>
+        Markers are useful for setting temporary 
+        reference points in layout. Like rulers, they are not persistent i.e. they are 
+        not stored in any output format.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>
+        Tools-&gt;Clear Markers
+      </h2>
+
+      <p>
+        Clears all markers.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>Tools-&gt;Update PCells</h2>
+
+      <p align="center"><img src="images/updatepcell.png" width="321" height="167" alt="update pcell"></p>
+
+      <p>
+        Updates the named PCell and all its instances in a library. This should be done if the PCell code 
+        is changed, as PCell masters and submasters are  not evaluated at runtime.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>Tools-&gt;Netlist View</h2>
+
+      <p>
+        Opens the Netlist View window. This is a dock window to display a Spice/CDL netlist for netlist driven layout
+      </p>
+
+      <p>&nbsp;</p>
+
+      <p align="center"><img src="images/netlist_view.png" width="390" height="1181" alt="Netlist View"></p>
+
+      <h4>File-&gt;Open</h4>
+
+      <p>
+        Loads a Spice or CDL file. The file is displayed in the Netlist View window with syntax highlighting.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>File-&gt;Save</h4>
+
+      <p>
+        Saves the current open file.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>File Save As...</h4>
+
+      <p>
+        Saves the current open file to a (new) file.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>File-&gt;Close</h4>
+
+      <p>
+        Closes the current open file.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Edit-&gt;Undo</h4>
+
+      <p>
+        Undoes an edit.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Edit-&gt;Redo</h4>
+
+      <p>
+        Redoes an undone edit.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Edit-&gt;Cut</h4>
+
+      <p>
+        Cuts the selected text.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Edit-&gt;Copy</h4>
+
+      <p>
+        Copies the selected text to the clipboard.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Edit-&gt;Paste</h4>
+
+      <p>
+        Pastes the text from the clipboard to the current cursor location.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Edit-&gt;Find...</h4>
+
+      <p align="center"><img src="images/find_text.png" width="299" height="181" alt="Find"></p>
+
+      <p>
+        Finds the specified text.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4>Edit-&gt;Goto Line...</h4>
+
+      <p>
+        Moves the cursor to the specified line number.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>Layout-&gt;Map Devices<a name="device_mapping"></a></h2>
+
+      <p>
+        Displays the Map dialog.
+      </p>
+
+      <p align="center"><img src="images/map_devices.png" width="680" height="382" alt="Map Devices"></p>
+
+      <p>
+        The top level table widget shows the device names found in the netlist in the first column. The 
+        second and third column contain the cellName and viewName of the cellView to map this device to 
+        in the layout. The lower level table widget shows the instance names found in the netlist in the 
+        first column. The second and third column contain the cellName and viewName of the cellView to 
+        map this instance to in the layout. Instance name mapping overrides device name mapping. 
+        <br>
+        <br>
+        Device mapping defaults can be set in the techfile. For example,
+        <br>
+        <br>
+        MAP nch TO nmos13_multi layout ;
+        <br>
+        <br>
+        Maps the netlist device name to the layout cellView 'nmos13_multi layout'.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>Layout-&gt;Gen Layout<a name="gen_layout"></a></h2>
+
+      <p align="center"><img src="images/create_layout.png" width="539" height="738" alt="Create Layout"></p>
+
+      <p>
+        The target cellView is specified using the <em>Library Name</em> / <em>Cell Name</em> / 
+        <em>View Name</em> fields. If <em>Create m factor instances</em> is set, then if a netlist 
+        instance has a property 'm', then multiple instances of the cell will be created in the 
+        layout based on the value of the property, and the m property is not passed to the layout 
+        PCell. If not checked, the m property is passed to the layout pcell, if the pcell is 
+        required to handle this itself.
+      </p>
+
+      <p>
+        <em>Scale Factor</em> is not used when generating layout from a netlist.
+      </p>
+
+      <p>
+        <em>Utilisation</em> is used to create the cell boundary layer in the resulting layout view. 
+        The area of all the layout instances is summed, and divided by 100/utilisation%. If <em>Width</em> 
+        is specified, the cell boundary will be rectangular with the specified width, and height will 
+        be computed from the area/width. If <em>Height</em> is specified, the cell boundary rectangle 
+        will have the specified height and the width will be computed from the area/height. If both 
+        <em>Width</em> and <em>Height</em> are specified, then the cell boundary rectangle will use 
+        the specified width and height.
+      </p>
+
+      <p>
+        <em>Placement method</em> can only be  <em> Area</em> when generating layout from a netlist. 
+        <em>Area</em> arranges the layout cells by type (PMOS/NMOS/resistor/capacitor).
+      </p>
+      <p>
+        The pin field allows pin width, side and layer to be specified for each pin. Pins are placed 
+        abutting the cell boundary rectangle according to their side.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h2>Layout-&gt;Clear Hilite</h2>
+
+      <p>
+        Clears existing netlist/layout hilites.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

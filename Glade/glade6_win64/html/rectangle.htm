@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+    <!-- #BeginEditable "doctitle" --> 
+    <title>Glade Reference Manual</title>
+    <link href="CSS Docs/shadowHeading1.css" rel="stylesheet" type="text/css">
+    <!-- #EndEditable -->
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+      
+      <!-- #BeginEditable "text" --> 
+      <h2><font face="Arial, Helvetica, sans-serif">rectangle class</font></h2>
+
+      <p>
+        The rectangle class is derived 
+        from a shape. This class is normally created in a cellView using the dbCreateRect() 
+        function.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t rectangle::left()</strong>
+      </font></h4>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t rectangle::bottom()
+      </font></h4>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t rectangle::right()
+      </font></h4>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t rectangle::top()
+      </font></h4>
+
+      <p>
+        Get the coordinates of the rectangle.
+      </p>
+
+      <p>&nbsp;  </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::setLeft(int32_t x)
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::setBottom(int32_t y)
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::setRight(int32_t x)
+      </font></h4>
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::setTop(int32_t y)
+      </font></h4>
+
+      <p>
+        Set the coordinates of the rectangle.
+      </p>
+
+      <p>&nbsp;  </p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a> rectangle::origin()
+      </font></h4>
+
+      <p>
+        Get the origin (lower left) of this rectangle.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t rectangle::width()
+      </font></h4>
+
+      <p>
+        Get the width of this rectangle.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::width(int32_t w)
+      </font></h4>
+
+      <p>
+        Set the width of this rectangle. The origin is maintained.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t rectangle::height()
+      </font></h4>
+
+      <p>
+        Get the height of this rectangle.
+      </p>
+
+      <h4>&nbsp;</h4>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::height(int32_t h)
+      </font></h4>
+
+      <p>
+        Set the height of this rectangle. 
+        The origin is maintained.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a> p = rectangle::centre()
+      </font></h4>
+
+      <p>
+        Get the centre of a rectangle.
+      </p>
+
+      <h4>&nbsp;</h4>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        Rect rectangle::bBox()
+      </font></h4>
+
+      <p>
+        Get the bounding box of this rectangle.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::bBox(<a href="Rect.htm">Rect</a> b)
+      </font></h4>
+
+      <p>
+        Set the bounding box of this rectangle. This will  change the size of the rectangle.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        db_Type rectangle::objType()
+      </font></h4>
+
+      <p>
+        Returns the object type of this rectangle as RECTANGLE.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        const char * rectangle::objName()
+      </font></h4>
+
+      <p>
+        Returns the object name of this rectangle as "RECTANGLE".
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t rectangle::nPoints()
+      </font></h4>
+
+      <p>
+        Returns the number of points of the rectangle's boundary as 4.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="Point.htm">Point</a> * rectangle::ptlist()
+      </font></h4>
+
+      <p>
+        Returns the point list of this rectangle as an array of 4 points.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="polygon.htm">polygon</a> * rectangle::shapeToPoly()
+      </font></h4>
+
+      <p>
+        Returns a polygon with a pointlist identical to this rectangle.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::bias(int32_t bias, double grid)
+      </font></h4>
+
+      <p>
+        Bias this rectangle by <i>bias</i>, snapping to the grid <i>grid</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::scale(double scale, double grid);
+      </font></h4>
+
+      <p>
+        Scale this rectangle by <i>scale</i>, 
+        snapping to the grid <i>grid</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t rectangle::getNearestEdge(const <a href="Point.htm">Point</a> &amp;p, <a href="segment.htm">segment</a> &amp;s)
+      </font></h4>
+
+      <p>
+        Get the distance of the nearest segment <i>s</i> of this rectangle to the point <i>p</i>;
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t d = rectangle::getNearestVertex(<a href="Point.htm">Point</a> p, <a href="vertex.htm">vertex</a> s)
+      </font></h4>
+
+      <p>
+        Get the distance of the nearest vertex <i>s</i> of this rectangle to the point <i>p</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        double a = rectangle::area()
+      </font></h4>
+
+      <p>
+        Get the area of this rectangle.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        int32_t p = rectangle::perimeter()
+      </font></h4>
+
+      <p>
+        Get the perimeter of this rectangle.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::transform(<a href="transform.htm">transform</a> trans)
+      </font></h4>
+
+      <p>
+        Transform this rectangle using <i>trans</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        bool ptInPoly(const <a href="Point.htm">Point</a> &amp;p)
+      </font></h4>
+
+      <p>
+        Returns true if the point is contained in or on the edge of the rectangle.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::Move(<a href="cellview.htm">cellView</a> *cv, <a href="Point.htm">Point</a> delta, bool opt = true)
+      </font></h4>
+
+      <p>
+        Move this rectangle by distance 
+        <i>delta</i>.&nbsp; If opt is true then the database is 
+        re-optimised for the new rectangle position. If there are a lot of objects to 
+        move it makes sense to turn this off and instead use the cellView update() 
+        function after moving them all.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="dbObj.htm">dbObj</a> *obj = rectangle::Copy(<a href="cellview.htm">cellView</a> *cv, 
+        <a href="Point.htm">Point</a> delta, int32_t layerNum = -1)
+      </font></h4>
+
+      <p>
+        Copy this rectangle to cellView <i>cv</i>, with offset <i>delta</i>. If <i>layerNum</i> is non negative the rectangle 
+        will be copied to the that layer.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        <a href="dbObj.htm">dbObj</a> *obj = rectangle::Flatten(<a href="cellview.htm">cellView</a> *cv, <a href="transform.htm">transform </a>trans)
+      </font></h4>
+
+      <p>
+        Flatten this rectangle into cellView <i>cv</i> with transformation <i>trans</i>.
+      </p>
+
+      <p>&nbsp;</p>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::Stretch(<a href="Point.htm">Point</a> delta, <a href="segment.htm">segment</a> * seg, bool lock45 = true, bool lockEnds = true)
+      </font></h4>
+
+      <p>
+        Stretch segment <i>seg</i> of this rectangle by <i>delta</i>. If <i>lock45</i> is true, diagonal 
+        edges will be locked diagonal; if <i>lockEnds</i> is true, the endpoints of the segment will remain fixed.
+      </p>
+
+      <h4>&nbsp;</h4>
+
+      <h4 class="shadowHeading1"><font face="Arial, Helvetica, sans-serif">
+        rectangle::Stretch(<a href="Point.htm">Point</a> delta, <a href="vertex.htm">vertex</a> v)
+      </font></h4>
+
+      <p>
+        Stretch vertex <i>v</i> of this rectangle by <i>delta</i>.
+      </p>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      
+      <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

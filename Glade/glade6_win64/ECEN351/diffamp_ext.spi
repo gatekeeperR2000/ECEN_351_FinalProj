@@ -1,0 +1,41 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : Amplifier
+* Top Cell Name: diffamp
+* View Name: extracted
+* Netlist created: 19.Mar.2019 10:21:39
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: Amplifier
+* Cell Name:    diffamp
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT diffamp gnd vinp vout vinn ibias
+*.PININFO gnd:B vinp:B vout:B vinn:B ibias:B
+
+MM6 vout vinn n6 gnd C5NNMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM9 n6 vinn vout gnd C5NNMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM4 n7 vinp n6 gnd C5NNMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM7 n6 vinp n7 gnd C5NNMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM13 vdd n7 vout vdd C5NPMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM5 n6 vinn vout gnd C5NNMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM2 n6 ibias gnd gnd C5NNMOS w=9.9e-06 l=1.2e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM15 vdd n7 n7 vdd C5NPMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM14 vout n7 vdd vdd C5NPMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM8 n7 vinp n6 gnd C5NNMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM3 n6 vinp n7 gnd C5NNMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM18 vout n7 vdd vdd C5NPMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM17 vdd n7 vout vdd C5NPMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM16 n7 n7 vdd vdd C5NPMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM12 n7 n7 vdd vdd C5NPMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM11 vdd n7 n7 vdd C5NPMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM0 ibias ibias gnd gnd C5NNMOS w=9.9e-06 l=1.2e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM1 gnd ibias n6 gnd C5NNMOS w=9.9e-06 l=1.2e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+MM10 vout vinn n6 gnd C5NNMOS w=9.9e-06 l=2.1e-06 as=1.6335e-11 ps=2.31e-05 ad=1.782e-11 pd=2.34e-05
+.ENDS

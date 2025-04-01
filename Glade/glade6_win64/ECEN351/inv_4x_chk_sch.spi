@@ -1,0 +1,39 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib_chk
+* Top Cell Name: inv_4x_chk
+* View Name: schematic
+* Netlist created: 23.Feb.2019 19:56:02
+*******************************************************************************
+
+*.SCALE MICRONS
+*.GLOBAL vdd gnd
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    inv_4x
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT inv_4x A Z wp=1.6u wn=0.8u lp=0.13u ln=0.13u
+*.PININFO Z:O A:I
+
+M6 Z A vdd vdd pmos w=7.2 l=0.6 m=2
+M1 Z A gnd gnd nmos w=3.6 l=0.6 m=2
+.ENDS
+
+*******************************************************************************
+* Library Name: C5N_std_lib_chk
+* Cell Name:    inv_4x_chk
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT inv_4x_chk vin vout
+*.PININFO vin:I vout:O
+
+X1 n0 vout inv wp=1.6u wn=0.8u lp=0.13u ln=0.13u
+X0 vin n0 inv wp=1.6u wn=0.8u lp=0.13u ln=0.13u
+.ENDS
+
+.END

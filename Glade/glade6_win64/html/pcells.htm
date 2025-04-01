@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- #BeginTemplate "/Templates/glade.dwt" --><!-- DW6 -->
+  <head>
+  <!-- #BeginEditable "doctitle" --> 
+  <title>Glade Reference Manual</title>
+  <!-- #EndEditable -->
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+  body,td,th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <div align="left"><img src="images/canvasview" width="32" height="32" align="right"><br>
+    </div>
+    <div align="left">
+      <p align="left"><font face="Arial, Helvetica, sans-serif">
+        <b><font size="4">
+          Glade Reference
+        </font></b>
+      </font></p>
+      <hr>
+      <!-- #BeginEditable "text" -->
+
+    <h2><font face="Arial, Helvetica, sans-serif">PCells</font></h2>
+
+    <p>
+      Glade can use python to create parameterised cells, or PCells. A parameterised cell has a python script 
+      that defines how the cell is created, and takes parameters. For example a MOS device might take a W and 
+      L value and have the transistor automatically created with the correct poly, diffusion and contact layers. 
+      Please note that Glade PCells are <strong>NOT</strong> compatible with Cadence Skill-based PCells, or 
+      Synopsys PyCells.
+    </p>
+
+    <p>
+      To use Pcells in Glade you first need to define python code for the cells. An example is given below of a 
+      NMOS transistor Pcell that takes parameters w and l and builds a device according to encoded design rules. 
+      The Pcell has pins for the source, gate and drain nodes.
+    </p>
+
+    <blockquote>
+    <p><font face="Courier" size="2">
+    #------------------------------------------------------------------------------<br />
+    #<br />
+    # NMOS Pcell example<br />
+    #<br />
+    # Note: The first argument is always the cellView of the subMaster.<br />
+    # All subsequent arguments should have default values and will<br />
+    # be passed by name<br />
+    #<br />
+    #------------------------------------------------------------------------------
+  </font></p>
+
+  <p><font face="Courier" size="2">
+    # Import the db wrappers<br />
+    from ui import *
+    <br />
+    # The entry point. The name should match the superMaster.<br />
+    def nmos(cv, w=1.1, l= 0.18)<br />
+    <br />
+    # Some useful variables<br />
+    lib = cv.lib()<br />
+    dbu = lib.dbuPerUU()<br />
+    width = int(w * dbu)<br />
+    length = int(l * dbu)&lt; /FONT &gt; <br />
+    <br />
+    # Some predefined rules<br />
+    cut = int(0.18 * dbu)<br />
+    poly_to_cut = int(0.1 * dbu)<br />
+    active_ovlp_cut = int(0.1 * dbu)<br />
+    poly_ovlp_active = int(0.12 * dbu)<br />
+    nplus_ovlp_active = int(0.2 * dbu)<br />
+    metal_ovlp_cut = int(0.05 * dbu)&lt; /FONT &gt; <br />
+    <br />
+    # Create active<br />
+    tech = lib.tech()<br />
+    layer = tech.getLayerNum(&quot;active&quot;, &quot;drawing&quot;)<br />
+    r = Rect(-width/2,<br />
+    -(active_ovlp_cut + cut + poly_to_cut + length/2),<br />
+    width/2,<br />
+    (active_ovlp_cut + cut + poly_to_cut + length/2))<br />
+    active = cv.dbCreateRect(r, layer);<br />
+    bbox = Rect(active.bBox())&lt; /FONT &gt; <br />
+    <br />
+    # Create nplus<br />
+    layer = tech.getLayerNum(&quot;nplus&quot;, &quot;drawing&quot;)<br />
+    r = Rect(bbox.left() - nplus_ovlp_active,<br />
+    bbox.bottom() - nplus_ovlp_active,<br />
+    bbox.right() + nplus_ovlp_active,<br />
+    bbox.top() + nplus_ovlp_active)<br />
+    cv.dbCreateRect(r, layer);<br />
+    <br />
+    # Create poly<br />
+    layer = tech.getLayerNum(&quot;poly&quot;, &quot;drawing&quot;)<br />
+    p = Rect(-width/2-poly_ovlp_active,<br />
+    -length/2,<br />
+    width/2+poly_ovlp_active,<br />
+    length/2)<br />
+    gate = cv.dbCreateRect(p, layer)<br />
+    net = cv.dbCreateNet(&quot;G&quot;)<br />
+    pin = cv.dbCreatePin(&quot;G&quot;, net, DB_PIN_INPUT)<br />
+    <br />
+    # Create contacts<br />
+    layer = tech.getLayerNum(&quot;cont&quot;, &quot;drawing&quot;)<br />
+    numCuts = width / (2 * cut)<br />
+    c = Rect(-width/2 + active_ovlp_cut - cut * 2,<br />
+    -(length/2 + poly_to_cut + cut),<br />
+    -width/2 + active_ovlp_cut - cut,<br />
+    -(length/2 + poly_to_cut))<br />
+    <br />
+    for i in range(numCuts) :<br />
+    &nbsp;&nbsp;&nbsp; c.offset(cut * 2, 0)<br />
+    &nbsp;&nbsp;&nbsp; cv.dbCreateRect(c, layer)<br />
+    <br />
+    c = Rect(-width/2 + active_ovlp_cut - cut * 2,<br />
+    (length/2 + poly_to_cut),<br />
+    -width/2 + active_ovlp_cut - cut,<br />
+    (length/2 + cut + poly_to_cut))<br />
+    <br />
+    for i in range(numCuts) :<br />
+    &nbsp;&nbsp;&nbsp; c.offset(cut * 2, 0)<br />
+    &nbsp;&nbsp;&nbsp; cv.dbCreateRect(c, layer)<br />
+    <br />
+    # Create metal<br />
+    layer = tech.getLayerNum(&quot;metal&quot;, &quot;drawing&quot;)<br />
+    m = Rect(-width/2 + active_ovlp_cut - metal_ovlp_cut,<br />
+    -length/2 - poly_to_cut - cut - metal_ovlp_cut,<br />
+    width/2 - active_ovlp_cut + metal_ovlp_cut,<br />
+    -length/2 - poly_to_cut + metal_ovlp_cut)<br />
+    source = cv.dbCreateRect(m, layer)<br />
+    net = cv.dbCreateNet(&quot;S&quot;)<br />
+    pin = cv.dbCreatePin(&quot;S&quot;, net, DB_PIN_INPUT)<br />
+    <br />
+    m = Rect(-width/2 + active_ovlp_cut - metal_ovlp_cut,<br />
+    length/2 + poly_to_cut - metal_ovlp_cut,<br />
+    width/2 - active_ovlp_cut + metal_ovlp_cut,<br />
+    length/2 + poly_to_cut + cut + metal_ovlp_cut)<br />
+    drain = cv.dbCreateRect(m, layer)<br />
+    net = cv.dbCreateNet(&quot;D&quot;)<br />
+    pin = cv.dbCreatePin(&quot;D&quot;, net, DB_PIN_INPUT)<br />
+    <br />
+    # Update the subMaster&#39;s bounding box<br />
+    cv.update()
+  </font></p>
+</blockquote>
+
+    <p>&nbsp;</p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      In the above example, we declare a function called &#39;nmos&#39; which takes 3 arguments. 
+      The first argument is <b>always</b> a cellView object, and should be called 'cv' (or at 
+      least a string containing the substring 'cv'). The remaining arguments can be any desired 
+      parameters; they <b>must all</b> have default values. This is so that if one of the parameters 
+      is missing, the default value can be used.
+    </p>
+
+    <p>
+      Note that you can pass a list of points to a Pcell. A list of points is defined in the standard 
+      Python syntax, and can be set as a string property in the Add Property dialog e.g.
+    </p>
+
+    <blockquote>
+    <p><font face="Courier" size="2">
+      [[0,0],[1000,0],[1000,1000],[0,1000]]
+    </font></p>
+    </blockquote>
+
+    <p>
+      It is important to follow the above syntax carefully - do not add any whitespace to the Pcell 
+      argument list. All points must have an X and Y coordinate.
+    </p>
+
+
+    <h4>
+      Changing PCell arguments from within PCell code
+    </h4>
+
+    <p>
+      If you change any of the Pcell arguments within your code and want the instance properties updated, 
+      you should save your properties e.g.
+    </p>
+
+    <blockquote>
+    <p><font face="Courier" size="2">
+      def nmos(cv, w=1.1, l= 0.18) 
+      a = w * l<br />
+      cv.dbAddProp(&quot;a&quot;, a)
+    </font></p>
+    </blockquote>
+
+    <p>&nbsp;</p>
+
+    <p><font face="Arial, Helvetica, sans-serif">
+      Also note that all dimensions must be converted to database units (dbu).
+    </font></p>
+
+    <p>
+      Why might you want to do this? Well, if you create an extraction pcell (see e.g. pres_ex.py in the 
+      distribution directory), you can include pcell arguments that you can to calculate and use e.g. 
+      for netlisting. For example for the resistor example,&nbsp; your pcell code computes &#39;r&#39; 
+      from the extracted width, length, number of bends and the resistor&#39;s sheet resistance in 
+      ohms/sq which can be hard coded into the extraction pcell.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <h4>
+      Using Python PCells
+    </h4>
+
+    <p>
+      With the PCell code created, it should be saved to a file e.g. nmos.py - the .py extension is required, 
+      and the name of the file, like the name of the function, <strong>must</strong> match the intended 
+      cellView name for the pcell. Currently the python pcell files can reside in any directory, <strong>provided</strong> 
+      that directory is included in the PYTHONPATH environment variable. Refer to Python documentation 
+      for more details.
+    </p>
+
+    <p>
+      Next, in Glade use the <i><a href="file_menu.htm#file_new">New Cell</a></i> command to create the PCell 
+      master.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p align="center"><img src="images/newCell.png" width="299" height="256" alt="Create Cell"></p>
+
+
+    <p>
+      Click on the <i>Pcell?</i> button to enable the <i>Pcell script</i> field. The file chooser can be 
+      used to select the name of the script file. This will create a new cellView for the pcell. Do not 
+      edit this cell - it is solely for visual display of the results of the script, using default values 
+      for the arguments.
+    </p>
+
+    <p>
+      Alternatively, PCells can be loaded into Glade using the <a href="ui.htm#loadPCell">ui().loadPcell()</a> 
+      command.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p align="left"><font face="Courier" size="2"><font face="Courier" size="2"><font face="Courier" size="2"><font face="Courier" size="2">&nbsp;</font></font></font></font></p>
+
+    <p>
+      To place an instance of a pcell, use the <a href="create_menu.htm#create_inst"><i>Create Instance</i></a>
+      command to place the pcell instance.
+    </p>
+
+    <p align="center"><img src="images/createInst.png" width="431" height="376" alt="Create Inst"></p>
+
+    <p>
+      First set the required pcell parameters. These are stored as properties on the instance, typically 
+      as floats.
+    </p>
+
+    <p align="center"><img src="images/createInst2.png" width="431" height="376" alt="Create Inst"></p>
+
+    <p>
+      You use the <i>Instance Properties</i> tab on the <i>Create Inst</i> dialog to add properties. 
+      Then choose the Pcell name from the CellName field of the <i>Instance Attributes</i> tab. 
+      Click on the location of the origin of the Pcell to create the required instance. 
+    </p>
+
+    <p>
+      To change the parameters of a Pcell instance, for example to change its width, select the instance 
+      and use the <a href="edit_menu.htm#query_object"><i>Query Properties</font> 
+      </i></a><font size="3">dialog to modify the instance&#39;s properties. The Pcell will be updated 
+        accordingly. Each instance of a Pcell will create a superMaster cell - this cell is names according 
+        to the Pcell name, concatenated with the Pcell parameters e.g. nmos$w:1.000000$$l:0.180000$
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <h4>
+      Loading PCells using Python
+    </h4>
+
+    <p>
+      PCells can be loaded in Python code, and instances of PCells can be created and their properties changed. 
+      For example:
+    </p>
+
+    <blockquote>
+
+    <p align="left"><font face="Courier" size="3">
+      gui = cvar.uiptr<br />
+      gui.importTech(&quot;default&quot;, &quot;C:/users/keith/c++stuff/glade4_win32/example.tch&quot;)<br />
+      gui.loadPCell(&quot;default&quot;, &quot;nmos13_multi&quot;)<br />
+      lib = getLibByName(&quot;default&quot;)<br />
+      cv = lib.dbOpenCellView(&quot;test&quot;, &quot;layout&quot;, &#39;w&#39;)<br />
+      origin = Point(0,0)<br />
+      i = cv.dbCreatePCellInst(&quot;default&quot;, &quot;nmos13_multi&quot;, &quot;layout&quot;, origin)<br />
+      i.dbReplaceProp(&quot;w&quot;, 2.50)<br />
+      cv.dbUpdatePCell(i);<br />
+      cv.update()<br />
+      gui.openCellView(&quot;default&quot;, &quot;test&quot;, &quot;layout&quot;)
+    </font></p>
+    </blockquote>
+
+    <p>
+      In the above, we create a library &#39;default&#39; and load a PCell called &#39;nmos13_multi&#39;. 
+      We then create a cellView called &#39;test&#39; and create a PCell instance. Next we change the value 
+      of the property &#39;w&#39; to 2.5. After changing any property or properties, we need to call 
+      dbUpdatePCell(), giving it the PCell instance as the argument. Lastly the cellView is updated in 
+      the database and opened in the gui.
+    </p>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- #EndEditable --> 
+      <p><a href="contents.htm"><font face="Arial, Helvetica, sans-serif">Contents</font></a><font face="Arial, Helvetica, sans-serif">|<a href="subject_index.htm">Index</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-2">Copyright &copy; Peardrop Design 2024.</font></p>
+    </div>
+  </body>
+<!-- #EndTemplate --></html>

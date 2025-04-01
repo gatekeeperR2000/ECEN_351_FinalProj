@@ -1,0 +1,27 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : hires_test
+* Top Cell Name: test_pcell
+* View Name: extracted
+* Netlist created: 17.Feb.2019 19:33:24
+*******************************************************************************
+
+*.SCALE MICRONS
+*.GLOBAL vdd gnd
+
+*******************************************************************************
+* Library Name: hires_test
+* Cell Name:    test_pcell
+* View Name:    extracted
+*******************************************************************************
+
+.SUBCKT test_pcell
+
+MM4 n0 n12 n3 n2 C5NNMOS w=4.8 l=0.6 as=4.32 ps=13.2 ad=4.32 pd=13.2
+MM3 n6 n11 n0 n2 C5NNMOS w=4.8 l=0.6 as=4.32 ps=13.2 ad=4.32 pd=13.2
+MM2 n1 n10 n6 n2 C5NNMOS w=4.8 l=0.6 as=4.32 ps=13.2 ad=4.32 pd=13.2
+MM1 n7 n9 n1 n2 C5NNMOS w=4.8 l=0.6 as=4.32 ps=13.2 ad=4.32 pd=13.2
+MM5 n3 n13 n4 n2 C5NNMOS w=4.8 l=0.6 as=4.32 ps=13.2 ad=4.32 pd=13.2
+MM0 n5 n8 n7 n2 C5NNMOS w=4.8 l=0.6 as=4.32 ps=13.2 ad=4.32 pd=13.2
+.ENDS

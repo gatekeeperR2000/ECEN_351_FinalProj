@@ -1,0 +1,201 @@
+#------------------------------------------------------------------------------
+#
+# C5N device and parasitic capacitance extraction script
+#
+#------------------------------------------------------------------------------
+
+from ui import *
+ui = cvar.uiptr
+cv = ui.getEditCellView()
+geomBegin(cv)
+lib = cv.lib()
+
+print ('Loading pcells for extraction...')
+ui.loadPCell(lib.libName(), 'C5NNMOS')
+ui.loadPCell(lib.libName(), 'C5NPMOS')
+ui.loadPCell(lib.libName(), 'C5NP1RES')
+ui.loadPCell(lib.libName(), 'C5NP2RES')
+ui.loadPCell(lib.libName(), 'C5NHIRES')
+ui.loadPCell(lib.libName(), 'C5NP1P2CAP')
+ui.loadPCell(lib.libName(), 'C5NPADCAP')
+
+# Parasitic capacitance density [F/um^2]
+e0 = 8.854187817e-12 # [F/m]
+er = 3.9             # SiO2
+c0 = e0 * er * 1e-6  # Normalized to 1um thickness c0 = 34.531 aF/um^2
+cp1sub  = 88 * 1e-6
+cm1p1   = 51 * 1e-6
+cm1p2   = 47 * 1e-6
+cm1diff = 36 * 1e-6
+cm1sub  = 31 * 1e-6
+cm2m1   = 31 * 1e-6
+cm2p1   = 15 * 1e-6
+cm2p2   = 15 * 1e-6
+cm2diff = 16 * 1e-6
+cm2sub  = 16 * 1e-6
+cm3m1   = 13 * 1e-6
+cm3m2   = 36 * 1e-6
+cm3p1   = 9  * 1e-6
+cm3p2   = 9  * 1e-6
+cm3diff = 12 * 1e-6
+cm3sub  = 10 * 1e-6
+
+print ('Getting raw layers...')
+nwell = geomGetShapes('nwell', 'drawing')
+active = geomGetShapes('active', 'drawing')
+poly = geomGetShapes('poly', 'drawing')
+nselect = geomGetShapes('nselect', 'drawing')
+pselect = geomGetShapes('pselect', 'drawing')
+poly2 = geomGetShapes('poly2', 'drawing')
+hires = geomGetShapes('hires', 'drawing')
+contact = geomGetShapes('contact', 'drawing')
+polycontact = geomGetShapes('polycontact', 'drawing')
+activecontact = geomGetShapes('activecontact', 'drawing')
+poly2contact = geomGetShapes('poly2contact', 'drawing')
+metal1 = geomGetShapes('metal1', 'drawing')
+via = geomGetShapes('via', 'drawing')
+metal2 = geomGetShapes('metal2', 'drawing')
+via2 = geomGetShapes('via2', 'drawing')
+metal3 = geomGetShapes('metal3', 'drawing')
+glass = geomGetShapes('glass', 'drawing')
+pads = geomGetShapes('pads', 'drawing')
+cap_id = geomGetShapes('cap_id', 'drawing')
+res_id = geomGetShapes('res_id', 'drawing')
+diode_id = geomGetShapes('diode_id', 'drawing')
+
+print ('Forming derived layers...')
+bkgnd = geomBkgnd()
+psub = geomAndNot(bkgnd, nwell)
+gate = geomAnd(poly, active)
+ngate = geomAnd(gate, nselect)
+pgate = geomAnd(gate, pselect)
+diff = geomAndNot(active, gate)
+ndiff = geomAnd(diff, nselect)
+pdiff = geomAnd(diff, pselect)
+nplug = geomAnd(ndiff, nwell)
+pplug = geomAndNot(pdiff, nwell)
+activecon = geomOr(geomAnd(contact, active), activecontact)
+polycon = geomOr(geomAnd(contact, poly), polycontact)
+poly2con = geomOr(geomAnd(contact, poly2), poly2contact)
+poly_wire = geomAndNot(poly, res_id)
+poly_res = geomAnd(poly, res_id)
+poly2_wire = geomAndNot(poly2, geomOr(res_id, hires))
+poly2_res = geomAnd(poly2, res_id)
+poly2_hires = geomAnd(poly2, hires)
+p1p2_cap = geomAnd(poly, geomAnd(poly2, cap_id))
+pad_cap = geomAnd(metal1, pads)
+
+print ('Labeling nodes...')
+geomLabel(poly_wire, 'poly', 'pin')
+geomLabel(poly2_wire, 'poly2', 'pin')
+geomLabel(metal1, 'metal1', 'pin')
+geomLabel(metal2, 'metal2', 'pin')
+geomLabel(metal3, 'metal3', 'pin')
+geomLabel(poly_wire, 'poly', 'net')
+geomLabel(poly2_wire, 'poly2', 'net')
+geomLabel(metal1, 'metal1', 'net')
+geomLabel(metal2, 'metal2', 'net')
+geomLabel(metal3, 'metal3', 'net')
+
+print ('Forming connectivity...')
+geomConnect([[pplug, psub, pdiff], 
+             [nplug, nwell, ndiff], 
+             [activecon, ndiff, pdiff, metal1], 
+             [polycon, poly_wire, metal1], 
+             [poly2con, poly2_wire, metal1], 
+             [via, metal1, metal2], 
+             [via2, metal2, metal3]])
+
+# Save connectivity to extracted view. Saved layers must be
+# ones previously connected by geomConnect. Any derived
+# layers must be saved to a named layer (e.g. psub below)
+print ('Saving interconnect...')
+saveInterconnect([[psub, 'psub'], 
+                  nwell, 
+                  [ndiff, 'active'], 
+                  [pdiff, 'active'],
+                  [nplug, 'active'], 
+                  [pplug, 'active'],
+                  [poly_wire, 'poly'], 
+                  [poly2_wire, 'poly2'], 
+                  [activecon, 'activecontact'], 
+                  [polycon, 'polycontact'], 
+                  [poly2con, 'poly2contact'], 
+                  metal1, 
+                  via, 
+                  metal2, 
+                  via2, 
+                  metal3])
+
+# Extract MOS devices. Device terminal layers *must* exist in
+# the extracted view as a result of saveInterconnect.
+# In this case we are using pcell devices which will be
+# created according to the recognition region polygon.
+print ('Extracting MOS devices...')
+extractMOS('C5NNMOS', ngate, poly, active, psub)
+extractMOS('C5NPMOS', pgate, poly, active, nwell)
+
+# Extract resistors. Device terminal layers must exist in
+# extracted view as a result of saveInterconnect.
+if geomNumShapes(poly_res)>0:
+    print ('Extracting poly1 resistors...')
+    extractRes('C5NP1RES', poly_res, poly_wire)
+if geomNumShapes(poly2_res)>0:
+    print ('Extracting poly2 resistors...')
+    extractRes('C5NP2RES', poly2_res, poly2_wire)
+if geomNumShapes(poly2_hires)>0:
+    print ('Extracting hires resistors...')
+    extractRes('C5NHIRES', poly2_hires, poly2_wire)
+
+# Extract poly1-poly2 capacitors. Device terminal layers must exist in
+# extracted view as a result of saveInterconnect.
+if geomNumShapes(p1p2_cap)>0:
+    print ('Extracting poly1-poly2 capacitors...')
+    extractMosCap('C5NP1P2CAP', p1p2_cap, poly2, poly)
+
+# Extract pad capacitors. Device terminal layers must exist in 
+# extracted view as a result of saveInterconnect.
+if geomNumShapes(pad_cap)>0:
+    print ('Extracting pad capacitors...')
+    extractMosCap('C5NPADCAP', pad_cap, metal1, psub)
+
+# Extracting parasitics
+
+print ("# Extract Poly parasitics")
+extractParasitic2(psub, poly, cp1sub, 0)
+extractParasitic2(nwell, poly, cp1sub, 0)
+
+print ("# Extract Metal1 parasitics")
+extractParasitic3(poly, metal1, cm1p1, 0, [poly2])
+extractParasitic2(poly2, metal1, cm1p2, 0)
+extractParasitic3(pdiff, metal1, cm1diff, 0, [poly, poly2])
+extractParasitic3(ndiff, metal1, cm1diff, 0, [poly, poly2])
+extractParasitic3(psub, metal1, cm1sub, 0, [poly, poly2, pdiff, ndiff])
+extractParasitic3(nwell, metal1, cm1sub, 0, [poly, poly2, pdiff, ndiff])
+
+print ("# Extract Metal2 parasitics")
+extractParasitic2(metal1, metal2, cm2m1, 0)
+extractParasitic3(poly, metal2, cm2p1, 0, [metal1, poly2])
+extractParasitic3(poly2, metal2, cm2p2, 0, [metal1])
+extractParasitic3(pdiff, metal2, cm2diff, 0, [metal1, poly, poly2])
+extractParasitic3(ndiff, metal2, cm2diff, 0, [metal1, poly, poly2])
+extractParasitic3(psub, metal2, cm2sub, 0, [metal1, poly, poly2, pdiff, ndiff])
+extractParasitic3(nwell, metal2, cm2sub, 0, [metal1, poly, poly2, pdiff, ndiff])
+
+print ("# Extract Metal3 parasitics")
+extractParasitic2(metal2, metal3, cm3m2, 0)
+extractParasitic3(metal1, metal3, cm3m1, 0, [metal2])
+extractParasitic3(poly, metal3, cm3p1, 0, [metal2, metal1, poly2])
+extractParasitic3(poly2, metal3, cm3p2, 0, [metal2, metal1])
+extractParasitic3(pdiff, metal3, cm3diff, 0, [metal2, metal1, poly, poly2])
+extractParasitic3(ndiff, metal3, cm3diff, 0, [metal2, metal1, poly, poly2])
+extractParasitic3(psub, metal3, cm3sub, 0, [metal2, metal1, poly, poly2, pdiff, ndiff])
+extractParasitic3(nwell, metal3, cm3sub, 0, [metal2, metal1, poly, poly2, pdiff, ndiff])
+
+
+# Exit geometry package, freeing memory.
+print ('Extraction completed.')
+geomEnd()
+
+# Open the extracted view.
+ui.openCellView(lib.libName(), cv.cellName(), 'extracted')

@@ -1,0 +1,25 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : C5N_std_lib
+* Top Cell Name: inv_4x
+* View Name: schematic
+* Netlist created: 22.Mar.2019 20:46:56
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    inv_4x
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT inv_4x Z A 
+*.PININFO Z:O A:I
+
+M4 Z A vss vss C5NNMOS w=1.8u l=0.6u m=4
+M5 Z A vdd vdd C5NPMOS w=3.6u l=0.6u m=4
+.ENDS
+

@@ -1,0 +1,85 @@
+*******************************************************************************
+* CDL netlist
+*
+* Library : test_library
+* Top Cell Name: test_cell
+* View Name: schematic
+* Netlist created: 26.Mar.2019 21:35:59
+*******************************************************************************
+
+*.SCALE METER
+*.GLOBAL vdd vss
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    mux2to1_1x
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT mux2to1_1x sel in1 in0 out 
+*.PININFO in1:I sel:I in0:I out:O
+
+M9 n6 n2 vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M10_21 n2 selbb in1 vss C5NNMOS w=1.8u l=0.6u m=1
+M2 selb sel vss vss C5NNMOS w=1.8u l=0.6u m=1
+M8 n6 n2 vss vss C5NNMOS w=1.8u l=0.6u m=1
+M3 selbb selb vss vss C5NNMOS w=1.8u l=0.6u m=1
+M18 n2 selbb in0 vdd C5NPMOS w=3.6u l=0.6u m=1
+M19 n2 selb in0 vss C5NNMOS w=1.8u l=0.6u m=1
+M12 out n6 vss vss C5NNMOS w=1.8u l=0.6u m=1
+M10 out n6 vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M11 n2 selb in1 vdd C5NPMOS w=3.6u l=0.6u m=1
+M0 selb sel vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M1 selbb selb vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+.ENDS
+
+*******************************************************************************
+* Library Name: C5N_std_lib
+* Cell Name:    mux4to1_1x
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT mux4to1_1x in1 sel1 sel0 in0 in3 out in2 
+*.PININFO in1:I sel1:I sel0:I in0:I in3:I out:O in2:I
+
+M2 sel0b sel0 vss vss C5NNMOS w=1.8u l=0.6u m=1
+M29 sel1bb sel1b vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M24 sel1b sel1 vss vss C5NNMOS w=1.8u l=0.6u m=1
+M20 mout sel1bb in23 vss C5NNMOS w=1.8u l=0.6u m=1
+M26_52 mout sel1bb in01 vdd C5NPMOS w=3.6u l=0.6u m=1
+M26 sel1b sel1 vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M27 out moutb vss vss C5NNMOS w=1.8u l=0.6u m=1
+M22 moutb mout vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M0 sel0b sel0 vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M14 in01 sel0b in0 vss C5NNMOS w=1.8u l=0.6u m=1
+M18_46 in23 sel0bb in2 vdd C5NPMOS w=3.6u l=0.6u m=1
+M18 moutb mout vss vss C5NNMOS w=1.8u l=0.6u m=1
+M17 out moutb vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+M23 mout sel1b in23 vdd C5NPMOS w=3.6u l=0.6u m=1
+M28 sel1bb sel1b vss vss C5NNMOS w=1.8u l=0.6u m=1
+M19 in23 sel0b in2 vss C5NNMOS w=1.8u l=0.6u m=1
+M11 in23 sel0b in3 vdd C5NPMOS w=3.6u l=0.6u m=1
+M16 in01 sel0bb in1 vss C5NNMOS w=1.8u l=0.6u m=1
+M15 in01 sel0b in1 vdd C5NPMOS w=3.6u l=0.6u m=1
+M25 mout sel1b in01 vss C5NNMOS w=1.8u l=0.6u m=1
+M3 sel0bb sel0b vss vss C5NNMOS w=1.8u l=0.6u m=1
+M10_21 in23 sel0bb in3 vss C5NNMOS w=1.8u l=0.6u m=1
+M13 in01 sel0bb in0 vdd C5NPMOS w=3.6u l=0.6u m=1
+M1 sel0bb sel0b vdd vdd C5NPMOS w=3.6u l=0.6u m=1
+.ENDS
+
+*******************************************************************************
+* Library Name: test_library
+* Cell Name:    test_cell
+* View Name:    schematic
+*******************************************************************************
+
+.SUBCKT test_cell in2 sel2 in5 in6 in3 in1 in7 in4 in0 sel1 sel0 out
+*.PININFO in2:I sel2:I in5:I in6:I in3:I in1:I in7:I in4:I out:O in0:I sel1:I sel0:I
+
+X2 sel2 n0 n1 out mux2to1_1x
+X0 in1 sel1 sel0 in0 in3 n1 in2 mux4to1_1x
+X1 in5 sel1 sel0 in4 in7 n0 in6 mux4to1_1x
+.ENDS
+
+.END

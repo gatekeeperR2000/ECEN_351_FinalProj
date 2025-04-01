@@ -1,0 +1,48 @@
+Version 4
+SymbolType BLOCK
+LINE Normal 0 -168 0 -176
+LINE Normal 0 168 0 176
+RECTANGLE Normal -128 -168 128 168
+WINDOW 0 88 -168 Bottom 2
+PIN -128 -144 LEFT 8
+PINATTR PinName and_in1
+PINATTR SpiceOrder 1
+PIN -128 -112 LEFT 8
+PINATTR PinName and_in2
+PINATTR SpiceOrder 2
+PIN -128 -80 LEFT 8
+PINATTR PinName and_in3
+PINATTR SpiceOrder 3
+PIN -128 -48 LEFT 8
+PINATTR PinName clk
+PINATTR SpiceOrder 4
+PIN -128 -16 LEFT 8
+PINATTR PinName inv_in
+PINATTR SpiceOrder 5
+PIN -128 16 LEFT 8
+PINATTR PinName or_in1
+PINATTR SpiceOrder 6
+PIN -128 48 LEFT 8
+PINATTR PinName or_in2
+PINATTR SpiceOrder 7
+PIN -128 80 LEFT 8
+PINATTR PinName sel0
+PINATTR SpiceOrder 8
+PIN -128 112 LEFT 8
+PINATTR PinName sel1
+PINATTR SpiceOrder 9
+PIN -128 144 LEFT 8
+PINATTR PinName sel3
+PINATTR SpiceOrder 10
+PIN 128 -48 RIGHT 8
+PINATTR PinName ff_out
+PINATTR SpiceOrder 11
+PIN 128 -16 RIGHT 8
+PINATTR PinName inv_out
+PINATTR SpiceOrder 12
+PIN 0 -176 TOP 8
+PINATTR PinName vdd
+PINATTR SpiceOrder 13
+PIN 0 176 BOTTOM 8
+PINATTR PinName vss
+PINATTR SpiceOrder 14
