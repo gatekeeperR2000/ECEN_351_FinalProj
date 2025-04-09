@@ -239,13 +239,13 @@
             <value>true</value>
         </attribute>
         <attribute name="windowSize">
-            <value>1536x793</value>
+            <value>1920x1009</value>
         </attribute>
         <attribute name="windowPos">
-            <value>125x69</value>
+            <value>0x23</value>
         </attribute>
         <attribute name="querySize">
-            <value>601x403</value>
+            <value>601x264</value>
         </attribute>
         <attribute name="queryPos">
             <value>766x69</value>
@@ -356,10 +356,10 @@
             <value>false</value>
         </attribute>
         <attribute name="showNetBrowser">
-            <value>false</value>
+            <value>true</value>
         </attribute>
         <attribute name="NetDockArea">
-            <value>0</value>
+            <value>2</value>
         </attribute>
         <attribute name="NetDockTabbed">
             <value>false</value>
